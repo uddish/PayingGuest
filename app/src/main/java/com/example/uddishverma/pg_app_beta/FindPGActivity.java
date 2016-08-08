@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+//************************************Class to Find PGs************************************************************
 public class FindPGActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -15,8 +16,10 @@ public class FindPGActivity extends AppCompatActivity {
     int [] imageId={R.drawable.pg1,R.drawable.pg2,R.drawable.pg3,R.drawable.pg4};
     String[] name={"AMBER","BASANT","CHARIOT","DOON"};
     String[] location={"Noida","Pitampura","Kohat Enclave","Dwarka Sector 18-B"};
-    Boolean[] wifi={true,true,false,true};
-    Boolean[] breakfast={true,false,true,true};
+    Boolean[] wifi= {true,true,false,true};
+    Boolean[] lunch= {true,false,true,true};
+    Boolean[] parking = {true,false,true,true};
+    Boolean[] metro = {true,false,true,true};
 
     ArrayList<PgDetails> list=new ArrayList<PgDetails>();
 
@@ -25,9 +28,9 @@ public class FindPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pg);
 
-        for(int i=0;i<4;i++)
+        for(int i = 0 ;i < 4 ; i++)
         {
-            PgDetails pObj=new PgDetails(imageId[i],name[i],location[i],wifi[i],breakfast[i]);
+            PgDetails pObj=new PgDetails(imageId[i],name[i],location[i],wifi[i],lunch[i], parking[i], metro[i]);
             list.add(pObj);
         }
 
@@ -37,9 +40,6 @@ public class FindPGActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         adapter=new PgDetailsAdapter(list);
         recyclerView.setAdapter(adapter);
-
-
-
 
     }
 }

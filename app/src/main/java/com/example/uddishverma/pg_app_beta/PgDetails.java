@@ -10,13 +10,18 @@ public class PgDetails
     String location;
     Boolean wifi;
     Boolean breakfast;
+    Boolean parking;
+    Boolean metro;
 
-    public PgDetails(int imageId, String pgName, String location, Boolean wifi, Boolean breakfast) {
+    public PgDetails(int imageId, String pgName, String location, Boolean wifi, Boolean breakfast, Boolean parking, Boolean metro) {
         this.imageId = imageId;
         this.pgName = pgName;
         this.location = location;
         this.wifi = wifi;
         this.breakfast = breakfast;
+        this.parking = parking;
+        this.metro = metro;
+
     }
 
 
@@ -45,6 +50,14 @@ public class PgDetails
         return breakfast;
     }
 
+    public Boolean getMetro() {
+        return metro;
+    }
+
+    public Boolean getParking() {
+        return parking;
+    }
+
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
@@ -63,5 +76,13 @@ public class PgDetails
 
     public void setBreakfast(Boolean breakfast) {
         this.breakfast = breakfast;
+    }
+
+    public void setParking(Boolean parking) {
+        this.parking = parking;
+    }
+
+    public void setMetro(Boolean metro) {
+        this.metro = metro;
     }
 }

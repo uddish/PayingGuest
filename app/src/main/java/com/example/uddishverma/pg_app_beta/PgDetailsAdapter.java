@@ -13,6 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by Naman on 07-08-2016.
  */
+//************************************Class to Create ListAdapter PGs****************************************************
 public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.DetailsViewHolder>
 {
 
@@ -31,7 +32,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
 
 
-        DetailsViewHolder detailsViewHolder =new DetailsViewHolder(view);
+        DetailsViewHolder detailsViewHolder = new DetailsViewHolder(view);
 
         return detailsViewHolder;
     }
@@ -41,19 +42,17 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     {
         PgDetails details=pgObject.get(position);
 
-        Log.d(TAG, "onBindViewHolder: " + details.getPgName());
-        Log.d(TAG, "onBindViewHolder: " + details.getLocation());
         holder.pg_img.setImageResource(details.getImageId());
         holder.name_tv.setText(details.getPgName());
         holder.loc_tv.setText(details.getLocation());
 
         if(details.getWifi()==true)
-            holder.wifi_img.setImageResource(R.drawable.ic_wifi_blue_grey_700_24dp);
+            holder.ic_wifi.setImageResource(R.drawable.ic_wifi_blue_grey_700_24dp);
         else
-            holder.wifi_img.setImageResource(R.drawable.ic_signal_wifi_off_grey_700_24dp);
+            holder.ic_wifi.setImageResource(R.drawable.ic_signal_wifi_off_grey_700_24dp);
 
         if(details.getBreakfast()==true)
-            holder.bf_image.setImageResource(R.drawable.ic_free_breakfast_grey_700_24dp);
+            holder.ic_lunch.setImageResource(R.drawable.ic_restaurant_grey_700_24dp);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
     public static class DetailsViewHolder extends RecyclerView.ViewHolder
     {
-       ImageView pg_img,wifi_img,bf_image;
+       ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
         TextView name_tv,loc_tv;
 
         public DetailsViewHolder(View view)
@@ -72,10 +71,12 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             super(view);
 
             pg_img= (ImageView) view.findViewById(R.id.pg_image);
-            wifi_img= (ImageView) view.findViewById(R.id.wifi);
             name_tv= (TextView) view.findViewById(R.id.pg_name);
             loc_tv= (TextView) view.findViewById(R.id.pg_location);
-            bf_image= (ImageView) view.findViewById(R.id.breakfast);
+            ic_wifi= (ImageView) view.findViewById(R.id.ic_wifi);
+            ic_lunch= (ImageView) view.findViewById(R.id.ic_lunch);
+            ic_parking= (ImageView) view.findViewById(R.id.ic_car_parking);
+            ic_metro= (ImageView) view.findViewById(R.id.ic_metro);
 
         }
     }

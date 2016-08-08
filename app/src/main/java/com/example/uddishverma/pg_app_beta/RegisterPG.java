@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+//************************************Class to Register PGs************************************************************
 public class RegisterPG extends AppCompatActivity {
 
     @Override
