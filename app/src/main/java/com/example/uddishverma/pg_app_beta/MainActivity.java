@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button registerPGBtn;
+    Button registerPGBtn, findPGBtn;
 
     Toolbar toolbar;
 
@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
     //This function opens the register pg activity
     public void openRegisterPgActivity(View view)   {
         Intent i = new Intent(this, RegisterPG.class);
+        startActivity(i);
+    }
+    //This function opens the find pg activity
+    public void openFindPgActivity(View view)   {
+        Intent i = new Intent(this, FindPGActivity.class);
         startActivity(i);
     }
 }

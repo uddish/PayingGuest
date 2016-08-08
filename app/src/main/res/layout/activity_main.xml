@@ -21,6 +21,8 @@
         android:text="REGISTER"/>
 
     <Button
+        android:id="@+id/find_pg_btn"
+        android:onClick="openFindPgActivity"
         android:textAppearance="?android:textAppearanceLarge"
         android:text="FIND"
         android:layout_weight="1"

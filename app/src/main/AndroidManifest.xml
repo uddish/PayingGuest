@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterPG"></activity>
+        <activity android:name=".RegisterPG" />
+        <activity android:name=".FindPGActivity"></activity>
     </application>
 
 </manifest>
