@@ -1,7 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +12,27 @@ import java.util.ArrayList;
 /**
  * Created by Naman on 07-08-2016.
  */
-//************************************Class to Create ListAdapter PGs****************************************************
+//************************************Class to join card view with recycler view****************************************************
 public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.DetailsViewHolder>
 {
 
     public static final String TAG = "PgDetailsAdapter";
 
-    ArrayList<PgDetails> pgObject=new ArrayList<PgDetails>();
+//    ArrayList<PgDetails_POJO> pgObject=new ArrayList<PgDetails_POJO>(2);
 
-    public PgDetailsAdapter(ArrayList<PgDetails> pgObject)
-    {
-        this.pgObject=pgObject;
+    ArrayList<PgDetails_POJO.PgDetails> pgObject = new ArrayList<>();
+
+    public PgDetailsAdapter(ArrayList<PgDetails_POJO.PgDetails> pgObject) {
+        this.pgObject = pgObject;
     }
+
 
     @Override
     public DetailsViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
+//        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,null);
 
 
         DetailsViewHolder detailsViewHolder = new DetailsViewHolder(view);
@@ -40,7 +43,8 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     @Override
     public void onBindViewHolder(DetailsViewHolder holder, int position)
     {
-        PgDetails details=pgObject.get(position);
+
+        PgDetails_POJO.PgDetails details = pgObject.get(position);
 
         holder.pg_img.setImageResource(details.getImageId());
         holder.name_tv.setText(details.getPgName());

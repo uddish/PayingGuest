@@ -13,32 +13,22 @@ public class FindPGActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    int [] imageId={R.drawable.pg1,R.drawable.pg2,R.drawable.pg3,R.drawable.pg4};
-    String[] name={"AMBER","BASANT","CHARIOT","DOON"};
-    String[] location={"Noida","Pitampura","Kohat Enclave","Dwarka Sector 18-B"};
-    Boolean[] wifi= {true,true,false,true};
-    Boolean[] lunch= {true,false,true,true};
-    Boolean[] parking = {true,false,true,true};
-    Boolean[] metro = {true,false,true,true};
 
-    ArrayList<PgDetails> list=new ArrayList<PgDetails>();
+    ArrayList<PgDetails_POJO.PgDetails> pgDetailsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pg);
 
-        for(int i = 0 ;i < 4 ; i++)
-        {
-            PgDetails pObj=new PgDetails(imageId[i],name[i],location[i],wifi[i],lunch[i], parking[i], metro[i]);
-            list.add(pObj);
-        }
+        pgDetailsList = PgDetails_POJO.getPGDetails();
 
-        recyclerView= (RecyclerView) findViewById(R.id.recycler_view);
-        layoutManager=new LinearLayoutManager(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter=new PgDetailsAdapter(list);
+        adapter = new PgDetailsAdapter(pgDetailsList);
         recyclerView.setAdapter(adapter);
 
     }
