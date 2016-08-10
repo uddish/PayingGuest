@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

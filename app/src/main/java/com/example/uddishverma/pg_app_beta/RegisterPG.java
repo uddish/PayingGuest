@@ -1,8 +1,10 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,8 @@ import com.firebase.client.Firebase;
 
 //************************************Class to Register PGs************************************************************
 public class RegisterPG extends AppCompatActivity {
+
+    public static final String TAG = "RegisterPG";
 
     EditText pgName, pgLocation, ownerName, contactNo, email, rent, depositAmount, extraFeatures;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
@@ -65,14 +69,17 @@ public class RegisterPG extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(pgName.getText().toString(), pgLocation.getText().toString(),
-                        ownerName.getText().toString(), Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
-                        Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
-                        wifi.isChecked(), breakfast.isChecked(), parking.isChecked());
+                int check = checkForNullFields();
+                if (check == 0) {
+                    PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(pgName.getText().toString(), pgLocation.getText().toString(),
+                            ownerName.getText().toString(), Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
+                            Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
+                            wifi.isChecked(), breakfast.isChecked(), parking.isChecked());
 
-                ref.push().setValue(pgDetails);
-//                Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
-                registerComplete();
+                    ref.push().setValue(pgDetails);
+                    Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+                    registerComplete();
+                }
             }
         });
 
@@ -108,8 +115,53 @@ public class RegisterPG extends AppCompatActivity {
 
     }
 
-//    private void checkForNullFields()   {
-//        if(pgName.getText() == null || pgLocation.getText() == null || ownerName.getText() == null
-//                || contactNo.getText() == null )
-//    }
+    //This function checks for the null fields
+    private int checkForNullFields() {
+        Log.d(TAG, "checkForNullFields: NULL VALUE");
+        Log.d(TAG, "checkForNullFields: " + pgName.getText().toString());
+
+        if (pgName.getText().toString().matches("")) {
+//            pgName.setText("Enter the details!");
+//            pgName.setTextColor(Color.RED);
+            Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if (pgLocation.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the PG Location!", Toast.LENGTH_SHORT).show();
+//            pgLocation.setText("Enter the details!");
+//            pgLocation.setTextColor(Color.RED);
+            return 1;
+        }
+        if (ownerName.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
+//            ownerName.setText("Enter the details!");
+//            ownerName.setTextColor(Color.RED);
+            return 1;
+        }
+        if (contactNo.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
+//            contactNo.setText("Enter the details!");
+//            contactNo.setTextColor(Color.RED);
+            return 1;
+        }
+        if (email.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
+//            email.setText("Enter the details!");
+//            email.setTextColor(Color.RED);
+            return 1;
+        }
+        if (rent.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
+//            rent.setText("Enter the details!");
+//            rent.setTextColor(Color.RED);
+            return 1;
+        }
+        if (depositAmount.toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
+//            depositAmount.setText("Enter the details!");
+//            depositAmount.setTextColor(Color.RED);
+            return 1;
+        }
+        return 0;
+    }
 }

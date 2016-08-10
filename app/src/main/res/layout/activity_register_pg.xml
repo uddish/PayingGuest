@@ -97,6 +97,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="CONTACT NO."
+                android:inputType="number"
+                android:maxLength="10"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />
@@ -116,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="EMAIL ID"
+                android:inputType="textEmailAddress"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />
@@ -330,6 +333,7 @@
             app:mtf_image="@drawable/ic_account_balance_grey_700_24dp"
             >
             <EditText
+                android:inputType="number"
                 android:id="@+id/rent_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -349,6 +353,7 @@
             app:mtf_image="@drawable/ic_account_balance_wallet_grey_700_24dp"
             >
             <EditText
+                android:inputType="number"
                 android:id="@+id/deposit_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -397,6 +402,7 @@
             android:textAppearance="?android:textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 
