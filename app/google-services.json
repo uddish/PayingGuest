@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "991428861284",
+    "firebase_url": "https://pgapp-c51ce.firebaseio.com",
+    "project_id": "pgapp-c51ce",
+    "storage_bucket": "pgapp-c51ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991428861284:android:87d6a2e235880b43",
+        "android_client_info": {
+          "package_name": "com.example.uddishverma.pg_app_beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991428861284-709m54ljeacpm500dop6bf0h7nhqc2h5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uddishverma.pg_app_beta",
+            "certificate_hash": "AD1CCEDC7471EDF1406A639F2F220AE8705F50BF"
+          }
+        },
+        {
+          "client_id": "991428861284-rsi3vd9p4v2rp8moivadknc2pkoqinqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnz6JcblDMKQJ5HTL5RgXxjop-QN8B0oA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991428861284-rsi3vd9p4v2rp8moivadknc2pkoqinqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

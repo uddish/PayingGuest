@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
                 <TextView
-                    android:id="@+id/pg_name"
+                    android:id="@+id/pg_name_tv"
                     android:layout_weight="1.5"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -39,7 +39,7 @@
                     android:hint="Name"
                     android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/pg_location"
+                    android:id="@+id/pg_location_tv"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

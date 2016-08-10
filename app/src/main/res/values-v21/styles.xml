@@ -2,7 +2,7 @@
 <resources>
 
     <style name="MyTheme" parent="MyTheme.base">
-        <item name="android:windowBackground">@color/windowBackground2</item>
+        <item name="android:windowBackground">@color/themeBack</item>
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
     </style>
 

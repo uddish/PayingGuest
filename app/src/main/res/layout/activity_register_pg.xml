@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.uddishverma.pg_app_beta.RegisterPG">
@@ -35,6 +35,7 @@
             app:mtf_image="@drawable/ic_location_city_black_24dp"
             >
             <EditText
+                android:id="@+id/pg_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PG NAME"
@@ -53,6 +54,7 @@
             app:mtf_image="@drawable/ic_room_grey_700_24dp"
             >
             <EditText
+                android:id="@+id/location_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="LOCATION"
@@ -72,6 +74,7 @@
             app:mtf_image="@drawable/ic_perm_identity_black_24dp"
             >
             <EditText
+                android:id="@+id/owner_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="OWNER'S NAME"
@@ -90,6 +93,7 @@
             app:mtf_image="@drawable/ic_perm_phone_msg_white_24dp"
             >
             <EditText
+                android:id="@+id/contactNumber_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="CONTACT NO."
@@ -108,6 +112,7 @@
             app:mtf_image="@drawable/ic_subject_white_24dp"
             >
             <EditText
+                android:id="@+id/email_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="EMAIL ID"
@@ -281,7 +286,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1A237E"
-            android:text="GENDER PREFERRED"
+            android:text="GENDER PREFERENCE"
             android:textColor="@android:color/white"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -325,6 +330,7 @@
             app:mtf_image="@drawable/ic_account_balance_grey_700_24dp"
             >
             <EditText
+                android:id="@+id/rent_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="MINIMUM RENT"
@@ -343,6 +349,7 @@
             app:mtf_image="@drawable/ic_account_balance_wallet_grey_700_24dp"
             >
             <EditText
+                android:id="@+id/deposit_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="DEPOSIT AMOUNT"
@@ -376,13 +383,20 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/extra_et"
             android:gravity="left"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:hint="MAX(100 chars.)"
             android:background="@android:color/white"/>
 
-
+        <Button
+            android:id="@+id/submit_btn"
+            android:text="SUBMIT"
+            android:layout_gravity="center"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
