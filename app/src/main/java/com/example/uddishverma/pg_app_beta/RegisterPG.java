@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.gc.materialdesign.widgets.SnackBar;
 
 //************************************Class to Register PGs************************************************************
 public class RegisterPG extends AppCompatActivity {
@@ -94,7 +95,7 @@ public class RegisterPG extends AppCompatActivity {
         rent.setText("");
         depositAmount.setText("");
         extraFeatures.setText("");
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, TempActivity.class));
 
 
         //******************************************For custom toast***********************************************

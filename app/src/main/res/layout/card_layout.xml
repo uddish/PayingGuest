@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/darker_gray"
     android:padding="5dp">
@@ -9,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/card_view"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
         
         <LinearLayout
             android:orientation="horizontal"
