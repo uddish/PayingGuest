@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
-        <activity android:name=".TempActivity"></activity>
+        <activity android:name=".TempActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

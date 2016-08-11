@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.gc.materialdesign.widgets.SnackBar;
+import com.sackcentury.shinebuttonlib.ShineButton;
 
 //************************************Class to Register PGs************************************************************
 public class RegisterPG extends AppCompatActivity {
@@ -30,11 +31,15 @@ public class RegisterPG extends AppCompatActivity {
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     RadioButton individual, sharing, male, female;
     Button submitBtn;
+    ShineButton shineButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_pg);
+
+        shineButton = (ShineButton) findViewById(R.id.shine_button);
+        shineButton.init(this);
 
         submitBtn = (Button) findViewById(R.id.submit_btn);
         //attaching the edit texts
