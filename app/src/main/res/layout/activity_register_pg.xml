@@ -133,7 +133,7 @@
             android:background="#1A237E"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
-            android:text="AVAILABILITY"/>
+            android:text="SERVICES"/>
 
         <LinearLayout
             android:id="@+id/layout_2"

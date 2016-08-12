@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+
 import java.util.ArrayList;
 
 /**
@@ -18,8 +20,6 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 {
 
     public static final String TAG = "PgDetailsAdapter";
-
-//    ArrayList<PgDetails_POJO> pgObject=new ArrayList<PgDetails_POJO>(2);
 
     ArrayList<PgDetails_POJO.PgDetails> pgObject = new ArrayList<>();
 
@@ -33,8 +33,6 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     {
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
-//        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,null);
-
 
         DetailsViewHolder detailsViewHolder = new DetailsViewHolder(view);
 
@@ -47,7 +45,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
         PgDetails_POJO.PgDetails details = pgObject.get(position);
 
-        holder.pg_img.setImageResource(details.getImageId());
+//        holder.pg_img.setImageResource(details.getImageId());
         holder.name_tv.setText(details.getPgName());
         holder.loc_tv.setText(details.getLocation());
 

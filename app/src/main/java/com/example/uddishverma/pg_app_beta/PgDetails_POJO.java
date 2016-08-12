@@ -7,8 +7,10 @@ import java.util.ArrayList;
  */
 public class PgDetails_POJO {
 
+    //TODO add support for imageID
+
     public static class PgDetails   {
-        private int imageId;
+//        private int imageId;
         String pgName;
         String location;
         String ownerName;
@@ -21,23 +23,24 @@ public class PgDetails_POJO {
         Boolean breakfast;
         Boolean parking;
     // add metro boolean
-        public PgDetails(int imageId, String pgName, String location,
-                         String ownerName, double contactNo, String email,
-                         double rent, double depositAmount, String extraFeatures, Boolean wifi,
-                         Boolean breakfast, Boolean parking) {
-            this.imageId = imageId;
-            this.pgName = pgName;
-            this.location = location;
-            this.ownerName = ownerName;
-            this.contactNo = contactNo;
-            this.email = email;
-            this.rent = rent;
-            this.depositAmount = depositAmount;
-            this.extraFeatures = extraFeatures;
-            this.wifi = wifi;
-            this.breakfast = breakfast;
-            this.parking = parking;
-        }
+//        public PgDetails(int imageId, String pgName, String location,
+//                         String ownerName, double contactNo, String email,
+//                         double rent, double depositAmount, String extraFeatures, Boolean wifi,
+//                         Boolean breakfast, Boolean parking) {
+//            this.imageId = imageId;
+//            this.pgName = pgName;
+//            this.location = location;
+//            this.ownerName = ownerName;
+//            this.contactNo = contactNo;
+//            this.email = email;
+//            this.rent = rent;
+//            this.depositAmount = depositAmount;
+//            this.extraFeatures = extraFeatures;
+//            this.wifi = wifi;
+//            this.breakfast = breakfast;
+//            this.parking = parking;
+//        }
+
         //This constructor doesn't contain image id
         public PgDetails(String pgName, String location,
                          String ownerName, double contactNo, String email,
@@ -57,9 +60,12 @@ public class PgDetails_POJO {
             this.parking = parking;
         }
 
-        public int getImageId() {
-            return imageId;
+        public PgDetails()  {
         }
+
+//        public int getImageId() {
+//            return imageId;
+//        }
 
         public String getPgName() {
             return pgName;
@@ -107,22 +113,22 @@ public class PgDetails_POJO {
 
     }
 
-    public static ArrayList<PgDetails> getPGDetails()   {
-        ArrayList<PgDetails> details = new ArrayList<>(10);
-        for (int i = 0; i < 4;i++) {
-            details.add(new PgDetails(R.drawable.pg1, "NAME 1", "DWARKA", "UDDISH", 1234, "xyz@gmail"
-                    , 100, 100, "none", true, true, true));
-
-            details.add(new PgDetails(R.drawable.pg2, "NAME 2", "NOIDA", "NAMAN", 1234, "xyz@gmail"
-                    , 100, 100, "none", true, true, true));
-
-            details.add(new PgDetails(R.drawable.pg3, "NAME 3", "GURGAON", "UDDISH", 1234, "xyz@gmail"
-                    , 100, 100, "none", true, true, true));
-
-            details.add(new PgDetails(R.drawable.pg4, "NAME 4", "DWARKA", "NAMAN", 1234, "xyz@gmail"
-                    , 100, 100, "none", true, true, true));
-        }
-        return details;
-    }
+//    public static ArrayList<PgDetails> getPGDetails()   {
+//        ArrayList<PgDetails> details = new ArrayList<>(10);
+//        for (int i = 0; i < 4;i++) {
+//            details.add(new PgDetails(R.drawable.pg1, "NAME 1", "DWARKA", "UDDISH", 1234, "xyz@gmail"
+//                    , 100, 100, "none", true, true, true));
+//
+//            details.add(new PgDetails(R.drawable.pg2, "NAME 2", "NOIDA", "NAMAN", 1234, "xyz@gmail"
+//                    , 100, 100, "none", true, true, true));
+//
+//            details.add(new PgDetails(R.drawable.pg3, "NAME 3", "GURGAON", "UDDISH", 1234, "xyz@gmail"
+//                    , 100, 100, "none", true, true, true));
+//
+//            details.add(new PgDetails(R.drawable.pg4, "NAME 4", "DWARKA", "NAMAN", 1234, "xyz@gmail"
+//                    , 100, 100, "none", true, true, true));
+//        }
+//        return details;
+//    }
 
 }

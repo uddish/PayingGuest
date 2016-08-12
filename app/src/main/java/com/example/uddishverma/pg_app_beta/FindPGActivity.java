@@ -4,15 +4,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //************************************Class to Find PGs************************************************************
 public class FindPGActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    public static final String TAG = "FindPGActivity";
+
+    RecyclerView mrecyclerView;
+    RecyclerView.Adapter madapter;
     RecyclerView.LayoutManager layoutManager;
+    private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
 
     ArrayList<PgDetails_POJO.PgDetails> pgDetailsList;
 
@@ -21,15 +33,58 @@ public class FindPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pg);
 
-        pgDetailsList = PgDetails_POJO.getPGDetails();
+//        pgDetailsList = PgDetails_POJO.getPGDetails();
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        cardDetails = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        adapter = new PgDetailsAdapter(pgDetailsList);
-        recyclerView.setAdapter(adapter);
+        mrecyclerView.setLayoutManager(layoutManager);
+        mrecyclerView.setHasFixedSize(true);
+        madapter = new PgDetailsAdapter(cardDetails);
+//        madapter = new PgDetailsAdapter(pgDetailsList);
+        mrecyclerView.setAdapter(madapter);
+
+        Firebase.setAndroidContext(this);
+
+        RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+        RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+
+            @JsonIgnoreProperties
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
+                        PgDetails_POJO.PgDetails model = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+                        cardDetails.add(model);
+//                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
+//                      madapter.notifyItemInserted(cardDetails.size() - 1);
+                        madapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
     }
 }
