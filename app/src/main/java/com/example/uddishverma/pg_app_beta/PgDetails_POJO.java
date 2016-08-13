@@ -27,6 +27,15 @@ public class PgDetails_POJO {
         String city;
         String state;
         double pinCode;
+        Boolean ac;
+        Boolean lunch;
+        Boolean dinner;
+        Boolean roWater;
+        Boolean security;
+        Boolean tv;
+        Boolean hotWater;
+        Boolean fridge;
+
     // add metro boolean
 //        public PgDetails(int imageId, String pgName, String location,
 //                         String ownerName, double contactNo, String email,
@@ -49,7 +58,9 @@ public class PgDetails_POJO {
         //This constructor doesn't contain image id
         public PgDetails(String id, String pgName, String ownerName, double contactNo, String email,
                          double rent, double depositAmount, String extraFeatures, Boolean wifi,
-                         Boolean breakfast, Boolean parking, String addressOne, String addressTwo, String city,
+                         Boolean breakfast, Boolean parking, Boolean ac, Boolean lunch ,Boolean dinner,
+                         Boolean roWater, Boolean security, Boolean tv, Boolean hotWater,Boolean fridge,
+                         String addressOne, String addressTwo, String city,
                          String state, double pinCode) {
 
             this.id = id;
@@ -63,6 +74,14 @@ public class PgDetails_POJO {
             this.wifi = wifi;
             this.breakfast = breakfast;
             this.parking = parking;
+            this.ac = ac;
+            this.lunch = lunch;
+            this.dinner = dinner;
+            this.roWater = roWater;
+            this.security = security;
+            this.tv = tv;
+            this.hotWater = hotWater;
+            this.fridge = fridge;
             this.addressOne = addressOne;
             this.addressTwo = addressTwo;
             this.city = city;
@@ -141,25 +160,39 @@ public class PgDetails_POJO {
             return id;
         }
 
+        public Boolean getAc() {
+            return ac;
+        }
+
+        public Boolean getLunch() {
+            return lunch;
+        }
+
+        public Boolean getDinner() {
+            return dinner;
+        }
+
+        public Boolean getRoWater() {
+            return roWater;
+        }
+
+        public Boolean getSecurity() {
+            return security;
+        }
+
+        public Boolean getTv() {
+            return tv;
+        }
+
+        public Boolean getHotWater() {
+            return hotWater;
+        }
+
+        public Boolean getFridge() {
+            return fridge;
+        }
+
 
     }
-
-//    public static ArrayList<PgDetails> getPGDetails()   {
-//        ArrayList<PgDetails> details = new ArrayList<>(10);
-//        for (int i = 0; i < 4;i++) {
-//            details.add(new PgDetails(R.drawable.pg1, "NAME 1", "DWARKA", "UDDISH", 1234, "xyz@gmail"
-//                    , 100, 100, "none", true, true, true));
-//
-//            details.add(new PgDetails(R.drawable.pg2, "NAME 2", "NOIDA", "NAMAN", 1234, "xyz@gmail"
-//                    , 100, 100, "none", true, true, true));
-//
-//            details.add(new PgDetails(R.drawable.pg3, "NAME 3", "GURGAON", "UDDISH", 1234, "xyz@gmail"
-//                    , 100, 100, "none", true, true, true));
-//
-//            details.add(new PgDetails(R.drawable.pg4, "NAME 4", "DWARKA", "NAMAN", 1234, "xyz@gmail"
-//                    , 100, 100, "none", true, true, true));
-//        }
-//        return details;
-//    }
 
 }

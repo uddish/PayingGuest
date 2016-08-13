@@ -502,14 +502,6 @@
             android:hint="MAX(100 chars.)"
             android:background="@android:color/white"/>
 
-        <Button
-            android:id="@+id/submit_btn"
-            android:text="SUBMIT"
-            android:layout_gravity="center"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
         <!--<com.sackcentury.shinebuttonlib.ShineButton-->
             <!--android:layout_width="50dp"-->
             <!--android:layout_height="50dp"-->

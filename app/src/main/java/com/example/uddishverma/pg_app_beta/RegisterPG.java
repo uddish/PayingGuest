@@ -40,8 +40,6 @@ public class RegisterPG extends AppCompatActivity {
         shineButton = (ShineButton) findViewById(R.id.shine_button);
         shineButton.init(this);
 
-        submitBtn = (Button) findViewById(R.id.submit_btn);
-
         //attaching the edit texts
         pgName = (EditText) findViewById(R.id.pg_name_et);
         ownerName = (EditText) findViewById(R.id.owner_name_et);
@@ -82,24 +80,20 @@ public class RegisterPG extends AppCompatActivity {
         shineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shineBtnClickListener();
-            }
-        });
-
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 int check = checkForNullFields();
                 if (check == 0) {
                     PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
                             Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
                             Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
-                            wifi.isChecked(), breakfast.isChecked(), parking.isChecked(),addressOne.getText().toString(), addressTwo.getText().toString(),
+                            wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
+                            roWater.isChecked(),security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
+                            addressOne.getText().toString(), addressTwo.getText().toString(),
                             city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()));
 
                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
                     Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
                     registerComplete();
+                    shineBtnClickListener();
                 }
             }
         });
@@ -114,7 +108,6 @@ public class RegisterPG extends AppCompatActivity {
                 // Start your app main activity
                 Intent i = new Intent(RegisterPG.this, MainActivity.class);
                 startActivity(i);
-
                 // close this activity
                 finish();
             }
@@ -127,11 +120,15 @@ public class RegisterPG extends AppCompatActivity {
         ownerName.setText("");
         contactNo.setText("");
         email.setText("");
+        addressOne.setText("");
+        addressTwo.setText("");
+        city.setText("");
+        state.setText("");
+        pinCode.setText("");
         rent.setText("");
         depositAmount.setText("");
         extraFeatures.setText("");
-        startActivity(new Intent(this, TempActivity.class));
-
+//        startActivity(new Intent(this, TempActivity.class));
 
         //******************************************For custom toast***********************************************
 //        LayoutInflater inflater = getLayoutInflater();
@@ -139,10 +136,9 @@ public class RegisterPG extends AppCompatActivity {
 //                (ViewGroup) findViewById(R.id.toast_layout_root));
 //
 //        ImageView image = (ImageView) layout.findViewById(R.id.image);
-////        image.setImageResource(R.drawable.android);
+//        image.setImageResource(R.drawable.android);
 //        TextView text = (TextView) layout.findViewById(R.id.text);
 //        text.setText("Hello! This is a custom toast!");
-//
 //        Toast toast = new Toast(getApplicationContext());
 //        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 //        toast.setDuration(Toast.LENGTH_LONG);
@@ -173,14 +169,6 @@ public class RegisterPG extends AppCompatActivity {
             Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
             return 1;
         }
-        if (rent.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (depositAmount.toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
         if (addressOne.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
             return 1;
@@ -196,6 +184,14 @@ public class RegisterPG extends AppCompatActivity {
         }
         if (pinCode.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if (rent.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if (depositAmount.toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         return 0;
