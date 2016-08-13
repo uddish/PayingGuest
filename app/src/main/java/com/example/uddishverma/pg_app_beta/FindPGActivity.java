@@ -33,23 +33,19 @@ public class FindPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pg);
 
-//        pgDetailsList = PgDetails_POJO.getPGDetails();
-
-
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         cardDetails = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);
         mrecyclerView.setLayoutManager(layoutManager);
         mrecyclerView.setHasFixedSize(true);
         madapter = new PgDetailsAdapter(cardDetails);
-//        madapter = new PgDetailsAdapter(pgDetailsList);
         mrecyclerView.setAdapter(madapter);
 
         Firebase.setAndroidContext(this);
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-        RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+        RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
             @JsonIgnoreProperties
             @Override
@@ -57,6 +53,7 @@ public class FindPGActivity extends AppCompatActivity {
 
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
+                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
                         PgDetails_POJO.PgDetails model = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
                         cardDetails.add(model);
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);

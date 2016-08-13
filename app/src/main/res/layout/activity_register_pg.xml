@@ -48,26 +48,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:mtf_animationDuration="200"
-            android:padding="15dp"
-            app:mtf_openKeyboardOnFocus="true"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_room_grey_700_24dp"
-            >
-            <EditText
-                android:id="@+id/location_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="LOCATION"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:mtf_animationDuration="200"
             app:mtf_openKeyboardOnFocus="true"
             android:padding="15dp"
             app:mtf_cardCollapsedHeight="4dp"
@@ -111,7 +91,7 @@
             android:padding="15dp"
             app:mtf_openKeyboardOnFocus="true"
             app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_subject_white_24dp"
+            app:mtf_image="@drawable/ic_email_grey_700_24dp"
             >
             <EditText
                 android:id="@+id/email_et"
@@ -119,6 +99,133 @@
                 android:layout_height="wrap_content"
                 android:hint="EMAIL ID"
                 android:inputType="textEmailAddress"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="center"-->
+            <!--android:background="#1A237E"-->
+            <!--android:textAppearance="?android:textAppearanceLarge"-->
+            <!--android:padding="15dp"-->
+            <!--android:text="LOCATION"/>-->
+        <LinearLayout
+            android:background="#1A237E"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="#1A237E"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:padding="15dp"
+                android:text="LOCATION"/>
+            <ImageView
+                android:src="@drawable/ic_room_black_24dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:background="#1A237E"/>
+        </LinearLayout>
+
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_room_grey_700_24dp"
+            >
+            <EditText
+                android:id="@+id/address_line_one_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ADDRESS LINE 1"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_home_grey_700_24dp"
+            >
+            <EditText
+                android:id="@+id/address_line_two_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ADDRESS LINE 2 (Optional)"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_home_grey_700_24dp"
+            >
+            <EditText
+                android:id="@+id/city_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CITY/TOWN"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_room_grey_700_24dp"
+            >
+            <EditText
+                android:id="@+id/state_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="STATE"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_room_grey_700_24dp"
+            >
+            <EditText
+                android:id="@+id/pincode_et"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_height="wrap_content"
+                android:hint="PIN CODE"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />

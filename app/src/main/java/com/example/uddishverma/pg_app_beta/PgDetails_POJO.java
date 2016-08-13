@@ -11,8 +11,8 @@ public class PgDetails_POJO {
 
     public static class PgDetails   {
 //        private int imageId;
+        String id;
         String pgName;
-        String location;
         String ownerName;
         double contactNo;
         String email;
@@ -22,6 +22,11 @@ public class PgDetails_POJO {
         Boolean wifi;
         Boolean breakfast;
         Boolean parking;
+        String addressOne;
+        String addressTwo;
+        String city;
+        String state;
+        double pinCode;
     // add metro boolean
 //        public PgDetails(int imageId, String pgName, String location,
 //                         String ownerName, double contactNo, String email,
@@ -42,13 +47,13 @@ public class PgDetails_POJO {
 //        }
 
         //This constructor doesn't contain image id
-        public PgDetails(String pgName, String location,
-                         String ownerName, double contactNo, String email,
+        public PgDetails(String id, String pgName, String ownerName, double contactNo, String email,
                          double rent, double depositAmount, String extraFeatures, Boolean wifi,
-                         Boolean breakfast, Boolean parking) {
+                         Boolean breakfast, Boolean parking, String addressOne, String addressTwo, String city,
+                         String state, double pinCode) {
 
+            this.id = id;
             this.pgName = pgName;
-            this.location = location;
             this.ownerName = ownerName;
             this.contactNo = contactNo;
             this.email = email;
@@ -58,6 +63,11 @@ public class PgDetails_POJO {
             this.wifi = wifi;
             this.breakfast = breakfast;
             this.parking = parking;
+            this.addressOne = addressOne;
+            this.addressTwo = addressTwo;
+            this.city = city;
+            this.state = state;
+            this.pinCode = pinCode;
         }
 
         public PgDetails()  {
@@ -69,10 +79,6 @@ public class PgDetails_POJO {
 
         public String getPgName() {
             return pgName;
-        }
-
-        public String getLocation() {
-            return location;
         }
 
         public String getOwnerName() {
@@ -110,6 +116,31 @@ public class PgDetails_POJO {
         public Boolean getParking() {
             return parking;
         }
+
+        public String getAddressOne() {
+            return addressOne;
+        }
+
+        public String getAddressTwo() {
+            return addressTwo;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public String getState() {
+            return state;
+        }
+
+        public double getPinCode() {
+            return pinCode;
+        }
+
+        public String getId() {
+            return id;
+        }
+
 
     }
 

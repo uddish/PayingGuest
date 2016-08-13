@@ -47,7 +47,11 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
 //        holder.pg_img.setImageResource(details.getImageId());
         holder.name_tv.setText(details.getPgName());
-        holder.loc_tv.setText(details.getLocation());
+        holder.address_tv.setText(details.getAddressOne());
+        holder.state_tv.setText(details.getState());
+        holder.city_tv.setText(details.getCity());
+        String pc = String.valueOf((int)details.getPinCode());
+        holder.pinCode_tv.setText(pc);
 
         if(details.getWifi()==true)
             holder.ic_wifi.setImageResource(R.drawable.ic_wifi_blue_grey_700_24dp);
@@ -67,7 +71,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     public static class DetailsViewHolder extends RecyclerView.ViewHolder
     {
        ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
-        TextView name_tv,loc_tv;
+        TextView name_tv,address_tv, state_tv, city_tv, pinCode_tv;
 
         public DetailsViewHolder(View view)
         {
@@ -75,7 +79,10 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
             pg_img= (ImageView) view.findViewById(R.id.pg_image);
             name_tv= (TextView) view.findViewById(R.id.pg_name_tv);
-            loc_tv= (TextView) view.findViewById(R.id.pg_location_tv);
+            address_tv= (TextView) view.findViewById(R.id.address_tv);
+            state_tv = (TextView) view.findViewById(R.id.state_tv);
+            city_tv = (TextView) view.findViewById(R.id.city_tv);
+            pinCode_tv = (TextView) view.findViewById(R.id.pincode_tv);
             ic_wifi= (ImageView) view.findViewById(R.id.ic_wifi);
             ic_lunch= (ImageView) view.findViewById(R.id.ic_lunch);
             ic_parking= (ImageView) view.findViewById(R.id.ic_car_parking);
