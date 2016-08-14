@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -34,6 +33,15 @@ public class FindPGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pg);
 
+
+/**
+ * To add Swipe Back Layout, extend the class to SwipeBackActivity
+ * setDragEdge(SwipeBackLayout.DragEdge.LEFT);
+ * compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar' in GRADLE
+ */
+
+
+
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         cardDetails = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);
@@ -53,6 +61,8 @@ public class FindPGActivity extends AppCompatActivity {
 
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
+
+
             @JsonIgnoreProperties
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -61,6 +71,7 @@ public class FindPGActivity extends AppCompatActivity {
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
                         PgDetails_POJO.PgDetails model = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+                    Log.d(TAG, "Pg ID: " + dataSnapshot.getValue(PgDetails_POJO.PgDetails.class).getId());
                         cardDetails.add(model);
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);

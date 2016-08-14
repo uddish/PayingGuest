@@ -35,5 +35,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:9.4.0'
     compile 'com.firebase:firebase-client-android:2.5.2+'
     compile 'com.sackcentury:shinebutton:0.1.5'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 apply plugin: 'com.google.gms.google-services'

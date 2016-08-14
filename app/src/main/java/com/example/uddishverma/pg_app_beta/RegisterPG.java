@@ -1,7 +1,11 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,27 +14,36 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 import com.firebase.client.Firebase;
 import com.sackcentury.shinebuttonlib.ShineButton;
+import com.squareup.picasso.Picasso;
+
 import android.os.Handler;
 
+import java.io.IOException;
+
 //************************************Class to Register PGs************************************************************
-//TODO complete shineBtnClickListener() method
+
 public class RegisterPG extends AppCompatActivity {
 
     static Firebase firebaseRef;
 
     public static final String TAG = "RegisterPG";
 
+    private int PICK_IMAGE_REQUEST_ONE = 1;
+    private int PICK_IMAGE_REQUEST_TWO = 2;
+    private int PICK_IMAGE_REQUEST_THREE = 3;
+    private int PICK_IMAGE_REQUEST_FOUR = 4;
+
     EditText pgName,ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, addressTwo,
                 city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     RadioButton individual, sharing, male, female;
-    Button submitBtn;
     ShineButton shineButton;
-    Handler handler;
+    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +80,64 @@ public class RegisterPG extends AppCompatActivity {
         hotWater = (CheckBox) findViewById(R.id.chk_hotwater);
         refrigerator = (CheckBox) findViewById(R.id.chk_refrigerator);
 
+        //Attaching the uploaded images
+        imgUpload_1 = (ImageView) findViewById(R.id.pg_img_one);
+        imgUpload_2 = (ImageView) findViewById(R.id.pg_img_two);
+        imgUpload_3 = (ImageView) findViewById(R.id.pg_img_three);
+        imgUpload_4 = (ImageView) findViewById(R.id.pg_img_four);
+
+
+        /**
+         *  Handling the click events of the four images being uploaded
+         *  Firing the intent
+         */
+        imgUpload_1.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+            }
+        });
+        imgUpload_2.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setType("image/*");
+                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+            }
+        });
+        imgUpload_3.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+            }
+        });
+        imgUpload_4.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+            }
+        });
+
+
+
         //disabling keyboard when the register activity opens
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -98,6 +169,34 @@ public class RegisterPG extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    /**
+     * Receiving the intent sent when the two images are clicked
+     * Attaching the Bitmap with the ImageViews
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+            Uri uri = data.getData();
+            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
+        }
+
+        if(requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+            Uri uri = data.getData();
+            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
+        }
+        if(requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+            Uri uri = data.getData();
+            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
+        }
+        if(requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+            Uri uri = data.getData();
+            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
+        }
     }
 
     private void shineBtnClickListener()    {

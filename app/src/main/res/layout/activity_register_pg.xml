@@ -23,6 +23,70 @@
             android:background="#1A237E"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
+            android:text="PG IMAGES"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#1A237E"
+            android:padding="15dp"
+            android:text="Please Upload the PG Images"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:padding="5dp"
+            android:id="@+id/pg_img_one"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:elevation="5dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_photo_camera_white_48dp"/>
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/pg_img_two"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:elevation="5dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_photo_camera_white_48dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/pg_img_three"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:elevation="5dp"
+                android:src="@drawable/ic_photo_camera_white_48dp"/>
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/pg_img_four"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:elevation="5dp"
+                android:src="@drawable/ic_photo_camera_white_48dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#1A237E"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:padding="15dp"
             android:text="PG DETAILS"/>
 
         <com.github.florent37.materialtextfield.MaterialTextField
@@ -375,6 +439,10 @@
             android:id="@+id/layout_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RadioGroup
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <RadioButton
                 android:id="@+id/rad_individual"
                 android:layout_weight="1"
@@ -385,12 +453,13 @@
                 android:text="Individual"/>
             <RadioButton
                 android:id="@+id/rad_sharing"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:text="Sharing"/>
+            </RadioGroup>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -401,6 +470,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RadioGroup
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <RadioButton
                 android:id="@+id/chk_individual"
                 android:layout_weight="1"
@@ -417,6 +490,7 @@
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:text="Female"/>
+            </RadioGroup>
         </LinearLayout>
 
         <TextView
