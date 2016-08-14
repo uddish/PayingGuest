@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -41,6 +42,11 @@ public class FindPGActivity extends AppCompatActivity {
         madapter = new PgDetailsAdapter(cardDetails);
         mrecyclerView.setAdapter(madapter);
 
+       //Adding progress dialogue while the cards are loading
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Please Wait...");
+        pd.show();
+
         Firebase.setAndroidContext(this);
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
@@ -59,6 +65,8 @@ public class FindPGActivity extends AppCompatActivity {
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);
                         madapter.notifyDataSetChanged();
+                    //Stopping the progress dialogue
+                    pd.dismiss();
                 }
             }
 
