@@ -26,8 +26,6 @@ public class FindPGActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
 
-    ArrayList<PgDetails_POJO.PgDetails> pgDetailsList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +56,9 @@ public class FindPGActivity extends AppCompatActivity {
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-        RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("pinCode").equalTo("4354"));
 
+        RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
 
             @JsonIgnoreProperties
@@ -67,14 +66,16 @@ public class FindPGActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
-                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
-                        PgDetails_POJO.PgDetails model = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
-                    Log.d(TAG, "Pg ID: " + dataSnapshot.getValue(PgDetails_POJO.PgDetails.class).getId());
+                    Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+//                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
+                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                .getValue(PgDetails_POJO.PgDetails.class);
+//                    Log.d(TAG, "Pg ID: " + dataSnapshot.getValue(PgDetails_POJO.PgDetails.class).getId().equals("1471105682"));
                         cardDetails.add(model);
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);
                         madapter.notifyDataSetChanged();
+
                     //Stopping the progress dialogue
                     pd.dismiss();
                 }

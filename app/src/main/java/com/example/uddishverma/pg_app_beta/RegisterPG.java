@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,12 +18,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
 import com.firebase.client.Firebase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import com.squareup.picasso.Picasso;
 
 import android.os.Handler;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 //************************************Class to Register PGs************************************************************
@@ -30,6 +39,7 @@ import java.io.IOException;
 public class RegisterPG extends AppCompatActivity {
 
     static Firebase firebaseRef;
+    StorageReference storageRef;
 
     public static final String TAG = "RegisterPG";
 
@@ -38,8 +48,8 @@ public class RegisterPG extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST_THREE = 3;
     private int PICK_IMAGE_REQUEST_FOUR = 4;
 
-    EditText pgName,ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, addressTwo,
-                city, state, pinCode;
+    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, addressTwo,
+            city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     RadioButton individual, sharing, male, female;
     ShineButton shineButton;
@@ -54,6 +64,8 @@ public class RegisterPG extends AppCompatActivity {
 
         shineButton = (ShineButton) findViewById(R.id.shine_button);
         shineButton.init(this);
+
+        //Getting fireBase storage instance to upload the images.
 
         //attaching the edit texts
         pgName = (EditText) findViewById(R.id.pg_name_et);
@@ -139,12 +151,11 @@ public class RegisterPG extends AppCompatActivity {
         });
 
 
-
         //disabling keyboard when the register activity opens
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        Long timeStamp = System.currentTimeMillis()/1000;
+        Long timeStamp = System.currentTimeMillis() / 1000;
         final String PgId = timeStamp.toString();
 
         Firebase.setAndroidContext(this);
@@ -159,7 +170,7 @@ public class RegisterPG extends AppCompatActivity {
                             Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
                             Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
                             wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
-                            roWater.isChecked(),security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
+                            roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
                             addressOne.getText().toString(), addressTwo.getText().toString(),
                             city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference);
 
@@ -172,52 +183,87 @@ public class RegisterPG extends AppCompatActivity {
         });
 
     }
+    //Uploading the image to FireBase Storage
+    public void uploadImage(Uri downloadUrl)   {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
+        StorageReference imagesRef = storageRef.child("images");
+
+        StorageMetadata metadata = new StorageMetadata.Builder()
+                .setContentType("image/jpg")
+                .build();
+
+        //Getting the data from ImageView as bytes
+//        imgUpload_1.setDrawingCacheEnabled(true);
+//        imgUpload_1.buildDrawingCache();
+//        Bitmap bitmap = imgUpload_1.getDrawingCache();
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//        byte[] data = baos.toByteArray();
+
+//        UploadTask uploadTask = imagesRef.putBytes(data);
+        UploadTask uploadTask = imagesRef.child("images/").putFile(downloadUrl, metadata);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterPG.this, "Image Upload Failed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+            }
+        });
+    }
+
 
     /**
      * Onclick method for the radio buttons
      * preference string contains which radioButton is selected
+     *
      * @param view
      */
-    public void preferenceRadioButton(View view)   {
+    public void preferenceRadioButton(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
 
-        switch (view.getId())   {
+        switch (view.getId()) {
             case R.id.radBtn_Individual:
-                if(checked) {
+                if (checked) {
                     preference = "Preference_Individual";
                     break;
                 }
             case R.id.radBtn_Sharing:
-                if(checked) {
+                if (checked) {
                     preference = "Preference_Sharing";
                     break;
                 }
             case R.id.rad_both_pref:
-                if(checked) {
+                if (checked) {
                     preference = "Preference_Both";
                     break;
                 }
         }
         Log.d(TAG, "preferenceRadioButton: " + preference);
     }
-    public void genderPreferenceRadioButton(View view)   {
+
+    public void genderPreferenceRadioButton(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
 
-        switch (view.getId())   {
+        switch (view.getId()) {
             case R.id.radBtn_male:
-                if(checked) {
+                if (checked) {
                     genderPreference = "Preference_Male";
                     break;
                 }
             case R.id.radBtn_female:
-                if(checked) {
+                if (checked) {
                     genderPreference = "Preference_Female";
                     break;
                 }
             case R.id.rad_both_gender:
-                if(checked) {
+                if (checked) {
                     genderPreference = "Preference_BothGender";
                     break;
                 }
@@ -234,26 +280,28 @@ public class RegisterPG extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+        if (requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
+
+            uploadImage(uri);
         }
 
-        if(requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+        if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
         }
-        if(requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+        if (requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
         }
-        if(requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null)  {
+        if (requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
         }
     }
 
-    private void shineBtnClickListener()    {
+    private void shineBtnClickListener() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -300,9 +348,12 @@ public class RegisterPG extends AppCompatActivity {
 
     }
 
-    //This function checks for the null fields
+    /**
+     * Checks for the null fields in the RegisterPg Activity
+     */
     private int checkForNullFields() {
-        Log.d(TAG, "Image View: " + imgUpload_1.getDrawable());
+
+        //TODO CHECK IF IMAGES ARE NULL OR NOT
 
 //        if(imgUpload_1.getDrawable() != null)   {
 //            Toast.makeText(RegisterPG.this, "Please Upload the Image!", Toast.LENGTH_SHORT).show();
@@ -353,5 +404,5 @@ public class RegisterPG extends AppCompatActivity {
         }
         return 0;
     }
-    
+
 }
