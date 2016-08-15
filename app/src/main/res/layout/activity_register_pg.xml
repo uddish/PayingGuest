@@ -32,7 +32,7 @@
             android:gravity="center"
             android:background="#1A237E"
             android:padding="15dp"
-            android:text="Please Upload the PG Images"/>
+            android:text="(Please Upload the PG Images)"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -44,6 +44,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:elevation="5dp"
+            android:background="@color/colorPrimary"
             android:layout_height="150dp"
             android:src="@drawable/ic_photo_camera_white_48dp"/>
             <ImageView
@@ -51,6 +52,7 @@
                 android:id="@+id/pg_img_two"
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:background="@color/colorPrimary"
                 android:elevation="5dp"
                 android:layout_height="150dp"
                 android:src="@drawable/ic_photo_camera_white_48dp"/>
@@ -64,6 +66,7 @@
                 android:padding="5dp"
                 android:id="@+id/pg_img_three"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:elevation="5dp"
@@ -73,6 +76,7 @@
                 android:id="@+id/pg_img_four"
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:background="@color/colorPrimary"
                 android:layout_height="150dp"
                 android:elevation="5dp"
                 android:src="@drawable/ic_photo_camera_white_48dp"/>
@@ -444,21 +448,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <RadioButton
-                android:id="@+id/rad_individual"
+                android:id="@+id/radBtn_Individual"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="preferenceRadioButton"
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:text="Individual"/>
             <RadioButton
-                android:id="@+id/rad_sharing"
+                android:id="@+id/radBtn_Sharing"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="preferenceRadioButton"
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:text="Sharing"/>
+                <RadioButton
+                    android:id="@+id/rad_both_pref"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="preferenceRadioButton"
+                    android:textColor="@android:color/white"
+                    android:padding="10dp"
+                    android:text="Both"/>
             </RadioGroup>
         </LinearLayout>
         <TextView
@@ -468,28 +483,41 @@
             android:text="GENDER PREFERENCE"
             android:textColor="@android:color/white"/>
         <LinearLayout
+            android:id="@+id/layout_7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <RadioGroup
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <RadioButton
-                android:id="@+id/chk_individual"
+                android:id="@+id/radBtn_male"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
+                android:onClick="genderPreferenceRadioButton"
                 android:padding="10dp"
                 android:text="Male"/>
             <RadioButton
-                android:id="@+id/chk_sharing"
+                android:id="@+id/radBtn_female"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="genderPreferenceRadioButton"
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:text="Female"/>
+            <RadioButton
+                android:id="@+id/rad_both_gender"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="genderPreferenceRadioButton"
+                android:textColor="@android:color/white"
+                android:padding="10dp"
+                android:text="Both"/>
             </RadioGroup>
         </LinearLayout>
 

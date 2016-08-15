@@ -44,6 +44,8 @@ public class RegisterPG extends AppCompatActivity {
     RadioButton individual, sharing, male, female;
     ShineButton shineButton;
     ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    String preference;
+    String genderPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +173,59 @@ public class RegisterPG extends AppCompatActivity {
 
     }
 
+    /**
+     * Onclick method for the radio buttons
+     * preference string contains which radioButton is selected
+     * @param view
+     */
+    public void preferenceRadioButton(View view)   {
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId())   {
+            case R.id.radBtn_Individual:
+                if(checked) {
+                    preference = "Preference_Individual";
+                    break;
+                }
+            case R.id.radBtn_Sharing:
+                if(checked) {
+                    preference = "Preference_Sharing";
+                    break;
+                }
+            case R.id.rad_both_pref:
+                if(checked) {
+                    preference = "Preference_Both";
+                    break;
+                }
+        }
+        Log.d(TAG, "preferenceRadioButton: " + preference);
+    }
+
+    public void genderPreferenceRadioButton(View view)   {
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId())   {
+            case R.id.radBtn_male:
+                if(checked) {
+                    genderPreference = "Preference_Male";
+                    break;
+                }
+            case R.id.radBtn_female:
+                if(checked) {
+                    genderPreference = "Preference_Female";
+                    break;
+                }
+            case R.id.rad_both_gender:
+                if(checked) {
+                    genderPreference = "Preference_BothGender";
+                    break;
+                }
+        }
+        Log.d(TAG, "preferenceRadioButton: " + genderPreference);
+    }
+
 
     /**
      * Receiving the intent sent when the two images are clicked
@@ -248,8 +303,12 @@ public class RegisterPG extends AppCompatActivity {
 
     //This function checks for the null fields
     private int checkForNullFields() {
-        Log.d(TAG, "checkForNullFields: NULL VALUE");
-        Log.d(TAG, "checkForNullFields: " + pgName.getText().toString());
+        Log.d(TAG, "Image View: " + imgUpload_1.getDrawable());
+
+        if(imgUpload_1.getDrawable() != null)   {
+            Toast.makeText(RegisterPG.this, "Please Upload the Image!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
 
         if (pgName.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
@@ -295,4 +354,5 @@ public class RegisterPG extends AppCompatActivity {
         }
         return 0;
     }
+    
 }
