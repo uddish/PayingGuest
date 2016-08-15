@@ -41,7 +41,6 @@ public class FindPGActivity extends AppCompatActivity {
  */
 
 
-
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         cardDetails = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);

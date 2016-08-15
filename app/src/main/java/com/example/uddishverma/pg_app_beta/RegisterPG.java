@@ -161,7 +161,7 @@ public class RegisterPG extends AppCompatActivity {
                             wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
                             roWater.isChecked(),security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
                             addressOne.getText().toString(), addressTwo.getText().toString(),
-                            city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()));
+                            city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference);
 
                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
                     Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
@@ -201,7 +201,6 @@ public class RegisterPG extends AppCompatActivity {
         }
         Log.d(TAG, "preferenceRadioButton: " + preference);
     }
-
     public void genderPreferenceRadioButton(View view)   {
 
         boolean checked = ((RadioButton) view).isChecked();
@@ -305,10 +304,10 @@ public class RegisterPG extends AppCompatActivity {
     private int checkForNullFields() {
         Log.d(TAG, "Image View: " + imgUpload_1.getDrawable());
 
-        if(imgUpload_1.getDrawable() != null)   {
-            Toast.makeText(RegisterPG.this, "Please Upload the Image!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
+//        if(imgUpload_1.getDrawable() != null)   {
+//            Toast.makeText(RegisterPG.this, "Please Upload the Image!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
 
         if (pgName.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();

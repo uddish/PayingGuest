@@ -35,6 +35,8 @@ public class PgDetails_POJO {
         Boolean tv;
         Boolean hotWater;
         Boolean fridge;
+        String preference;
+        String genderPreference;
 
     // add metro boolean
 //        public PgDetails(int imageId, String pgName, String location,
@@ -61,7 +63,7 @@ public class PgDetails_POJO {
                          Boolean breakfast, Boolean parking, Boolean ac, Boolean lunch ,Boolean dinner,
                          Boolean roWater, Boolean security, Boolean tv, Boolean hotWater,Boolean fridge,
                          String addressOne, String addressTwo, String city,
-                         String state, double pinCode) {
+                         String state, double pinCode, String preference, String genderPreference) {
 
             this.id = id;
             this.pgName = pgName;
@@ -87,6 +89,8 @@ public class PgDetails_POJO {
             this.city = city;
             this.state = state;
             this.pinCode = pinCode;
+            this.preference = preference;
+            this.genderPreference = genderPreference;
         }
 
         public PgDetails()  {
@@ -190,6 +194,14 @@ public class PgDetails_POJO {
 
         public Boolean getFridge() {
             return fridge;
+        }
+
+        public String getPreference() {
+            return preference;
+        }
+
+        public String getGenderPreference() {
+            return genderPreference;
         }
 
 
