@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,7 +33,9 @@ import com.squareup.picasso.Picasso;
 import android.os.Handler;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 //************************************Class to Register PGs************************************************************
 
@@ -202,6 +205,7 @@ public class RegisterPG extends AppCompatActivity {
 //        byte[] data = baos.toByteArray();
 
 //        UploadTask uploadTask = imagesRef.putBytes(data);
+        UUID.randomUUID().toString();
         UploadTask uploadTask = imagesRef.child("images/").putFile(downloadUrl, metadata);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -212,6 +216,7 @@ public class RegisterPG extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                Log.d(TAG, "onSuccess: " + downloadUrl);
             }
         });
     }
@@ -283,7 +288,6 @@ public class RegisterPG extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
-
             uploadImage(uri);
         }
 

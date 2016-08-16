@@ -2,6 +2,7 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,8 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 //        holder.pg_img.setImageResource(details.getImageId());
         holder.name_tv.setText(details.getPgName());
         holder.address_tv.setText(details.getAddressOne());
+        holder.address_tv.setSelected(true);
+
         holder.state_tv.setText(details.getState());
         String rent = String.valueOf((int)details.getRent());
         holder.rent_tv.setText("RENT : " + rent);
