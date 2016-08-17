@@ -14,7 +14,7 @@ public class PgDetails_POJO {
         String id;
         String pgName;
         String ownerName;
-        double contactNo;
+         double contactNo;
         String email;
         double rent;
         double depositAmount;
