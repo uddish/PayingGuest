@@ -44,7 +44,7 @@ public class FindPGActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mrecyclerView.setLayoutManager(layoutManager);
         mrecyclerView.setHasFixedSize(true);
-        madapter = new PgDetailsAdapter(cardDetails);
+        madapter = new PgDetailsAdapter(cardDetails,this);
         mrecyclerView.setAdapter(madapter);
 
        //Adding progress dialogue while the cards are loading
