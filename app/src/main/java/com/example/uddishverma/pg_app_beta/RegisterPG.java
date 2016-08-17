@@ -1,8 +1,11 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.firebase.client.Firebase;
+import com.firebase.client.utilities.Base64;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,7 +38,10 @@ import android.os.Handler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 //************************************Class to Register PGs************************************************************
@@ -187,38 +194,52 @@ public class RegisterPG extends AppCompatActivity {
 
     }
     //Uploading the image to FireBase Storage
-    public void uploadImage(Uri downloadUrl)   {
+    public void uploadImage(Uri downloadUrl)    {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
         StorageReference imagesRef = storageRef.child("images");
 
-        StorageMetadata metadata = new StorageMetadata.Builder()
-                .setContentType("image/jpg")
-                .build();
+//        StorageMetadata metadata = new StorageMetadata.Builder()
+//                .setContentType("image/jpg")
+//                .build();
 
-        //Getting the data from ImageView as bytes
+//        Getting the data from ImageView as bytes
 //        imgUpload_1.setDrawingCacheEnabled(true);
 //        imgUpload_1.buildDrawingCache();
 //        Bitmap bitmap = imgUpload_1.getDrawingCache();
 //        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 //        byte[] data = baos.toByteArray();
-
 //        UploadTask uploadTask = imagesRef.putBytes(data);
-        UUID.randomUUID().toString();
-        UploadTask uploadTask = imagesRef.child("images/").putFile(downloadUrl, metadata);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterPG.this, "Image Upload Failed", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                Log.d(TAG, "onSuccess: " + downloadUrl);
-            }
-        });
+
+
+        ContentResolver cr = getBaseContext().getContentResolver();
+        try {
+            InputStream inputStream = cr.openInputStream(downloadUrl);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = imagesRef.putBytes(data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+//        UUID.randomUUID().toString();
+//        UploadTask uploadTask = imagesRef.child("images/").putFile(downloadUrl, metadata);
+//        uploadTask.addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(RegisterPG.this, "Image Upload Failed", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                Log.d(TAG, "onSuccess: " + downloadUrl);
+//            }
+//        });
     }
 
 
@@ -290,7 +311,6 @@ public class RegisterPG extends AppCompatActivity {
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
             uploadImage(uri);
         }
-
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
