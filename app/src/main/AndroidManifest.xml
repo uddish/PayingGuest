@@ -22,7 +22,8 @@
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".TempActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".FragmentCaller"></activity>
     </application>
 
 </manifest>

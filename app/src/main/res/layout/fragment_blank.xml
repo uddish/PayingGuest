@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="VIEWPAGER"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:text="PG INFORMATION"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:elevation="15dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="PG NAME : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/pg_name"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="EXAMPLE NAME"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="OWNER's NAME : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/owners_name"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="XYZ"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="CONTACT NO. : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/contact"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="1234567891"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="PG LOCATION : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/loc"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="EXAMPLE NAME"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="EMAIL ID : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/email"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="xyz@gmail.com"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="AVAILABILITIES"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:elevation="15dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="WiFi : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/wifi"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="AC : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/ac"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="PARKING : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/parking"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+            <TextView
+                android:layout_weight="1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TV : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="LUNCH : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/lunch"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="DINNER : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/dinner"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="BREAKFAST : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/breakast"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="R.O WATER : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/ro"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="HOT WATER : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/hot_water"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="SECURITY : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/security"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="REFRIGERATOR : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/refrigerator"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="FINANCE INFORMATION"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:elevation="15dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="MINIMUM RENT : "
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/min_rent"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1.4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="DEPOSIT AMOUNT :"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/deposit"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
