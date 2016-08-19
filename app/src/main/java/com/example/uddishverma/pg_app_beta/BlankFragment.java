@@ -73,7 +73,9 @@ public class BlankFragment extends Fragment {
     }
 
 
-    TextView pg_name,pg_location,owners_name,contact_no,email_id,wifi,ac,parking,tv,lunch,dinner,breakfast,ro_water,hot_water,security,refrigerator,min_rent,deposit;
+    TextView pg_name,owners_name,contact_no,email_id,wifi,ac,parking,tv, lunch,dinner,breakfast,
+            ro_water,hot_water,security,refrigerator,min_rent,deposit;
+    TextView pgAddress, city, state, pinCode;
 
     private void findView(View v)
     {
@@ -94,76 +96,85 @@ public class BlankFragment extends Fragment {
         refrigerator= (TextView) v.findViewById(R.id.refrigerator);
         min_rent= (TextView) v.findViewById(R.id.min_rent);
         deposit= (TextView) v.findViewById(R.id.deposit);
+        pgAddress = (TextView) v.findViewById(R.id.address_one);
+        city = (TextView) v.findViewById(R.id.city);
+        state = (TextView) v.findViewById(R.id.state);
+        pinCode = (TextView) v.findViewById(R.id.pinCode);
 
     }
 
     private void setDetails(Bundle b)
     {
         pg_name.setText(b.getString("PG Name"));
-        owners_name.setText( b.getString("OWNER NAME"));
-        contact_no.setText(Double.toString(b.getDouble("CONTACT NO")));
+        owners_name.setText(b.getString("OWNER NAME"));
+        contact_no.setText(String.valueOf((int)b.getDouble("CONTACT NO")));
         email_id.setText(b.getString("EMAIL"));
-
-        min_rent.setText(Double.toString(b.getDouble("RENT")));
-        deposit.setText(Double.toString(b.getDouble("DEPOSIT")));
+        min_rent.setText(String.valueOf((int)b.getDouble("RENT")));
+        deposit.setText(String.valueOf((int)b.getDouble("DEPOSIT")));
+        pgAddress.setText(b.getString("ADDRESS"));
+        city.setText(b.getString("CITY"));
+        state.setText(b.getString("STATE"));
+        pinCode.setText(String.valueOf((int)b.getDouble("PINCODE")));
 
         if(b.getBoolean("WIFI")==true)
             wifi.setText("YES");
-        else wifi.setText("NO");
+        else
+            wifi.setText("NO");
 
         if(b.getBoolean("AC")==true)
             ac.setText("YES");
-        else ac.setText("NO");
+        else
+            ac.setText("NO");
 
         if(b.getBoolean("REFRIGERATOR")==true)
             refrigerator.setText("YES");
-        else refrigerator.setText("NO");
+        else
+            refrigerator.setText("NO");
 
         if(b.getBoolean("PARKING")==true)
             parking.setText("YES");
-        else parking.setText("NO");
+        else
+            parking.setText("NO");
 
         if(b.getBoolean("TV")==true)
             tv.setText("YES");
-        else tv.setText("NO");
+        else
+            tv.setText("NO");
 
         if(b.getBoolean("LUNCH")==true)
             lunch.setText("YES");
-        else lunch.setText("NO");
+        else
+            lunch.setText("NO");
 
         if(b.getBoolean("DINNER")==true)
             dinner.setText("YES");
-        else dinner.setText("NO");
+        else
+            dinner.setText("NO");
 
         if(b.getBoolean("BREAKFAST")==true)
             breakfast.setText("YES");
-        else breakfast.setText("NO");
+        else
+            breakfast.setText("NO");
 
         if(b.getBoolean("RO")==true)
             ro_water.setText("YES");
-        else ro_water.setText("NO");
+        else
+            ro_water.setText("NO");
 
         if(b.getBoolean("HOT WATER")==true)
             hot_water.setText("YES");
-        else hot_water.setText("NO");
+        else
+            hot_water.setText("NO");
 
         if(b.getBoolean("SECURITY")==true)
             security.setText("YES");
-        else security.setText("NO");
+        else
+            security.setText("NO");
 
 
 
 
     }
-
-
-
-
-
-
-
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

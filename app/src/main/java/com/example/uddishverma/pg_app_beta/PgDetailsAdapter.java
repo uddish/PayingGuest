@@ -132,8 +132,11 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             intent.putExtra("SECURITY",obj.getSecurity());
             intent.putExtra("RENT",obj.getRent());
             intent.putExtra("DEPOSIT",obj.getDepositAmount());
-
-
+            intent.putExtra("ADDRESS", obj.getAddressOne());
+            intent.putExtra("ADDRESSTWO", obj.getAddressTwo());
+            intent.putExtra("CITY", obj.getCity());
+            intent.putExtra("STATE", obj.getState());
+            intent.putExtra("PINCODE", obj.getPinCode());
 
 
             Log.d(TAG,"calling");

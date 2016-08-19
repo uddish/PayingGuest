@@ -43,7 +43,8 @@
             android:id="@+id/pg_img_one"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:elevation="5dp"            android:src="@drawable/ic_photo_camera_white_48dp"
+            android:elevation="5dp"
+            android:src="@drawable/ic_photo_camera_white_48dp"
             android:background="@color/colorPrimary"
             android:layout_height="150dp"
            />
@@ -54,7 +55,6 @@
                 android:layout_width="0dp"
                 android:background="@color/colorPrimary"
                 android:elevation="5dp"
-                app:elevation="5dp"
                 android:layout_height="150dp"
                 android:src="@drawable/ic_photo_camera_white_48dp"/>
         </LinearLayout>
@@ -77,7 +77,8 @@
                 android:id="@+id/pg_img_four"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:elevation="5dp"                android:background="@color/colorPrimary"
+                android:elevation="5dp"
+                android:background="@color/colorPrimary"
                 android:layout_height="150dp"
                 android:src="@drawable/ic_photo_camera_white_48dp"/>
         </LinearLayout>

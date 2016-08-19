@@ -197,7 +197,7 @@ public class RegisterPG extends AppCompatActivity {
     public void uploadImage(Uri downloadUrl)    {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
-        StorageReference imagesRef = storageRef.child("images");
+        StorageReference imagesRef = storageRef.child("PgImages2").child(UUID.randomUUID().toString());
 
 //        StorageMetadata metadata = new StorageMetadata.Builder()
 //                .setContentType("image/jpg")
@@ -218,9 +218,21 @@ public class RegisterPG extends AppCompatActivity {
             InputStream inputStream = cr.openInputStream(downloadUrl);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] data = baos.toByteArray();
             UploadTask uploadTask = imagesRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(RegisterPG.this, "ERROR IN UPLOADING!", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    Log.d(TAG, "onSuccess: Downoad Url : " + downloadUrl);
+                }
+            });
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -314,14 +326,17 @@ public class RegisterPG extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
+            uploadImage(uri);
         }
         if (requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
+            uploadImage(uri);
         }
         if (requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
+            uploadImage(uri);
         }
     }
 

@@ -37,6 +37,10 @@ public class PgDetails_POJO {
         Boolean fridge;
         String preference;
         String genderPreference;
+        String pgImageOne;
+        String PgImageTwo;
+        String pgImageThree;
+        String pgImageFour;
 
     // add metro boolean
 //        public PgDetails(int imageId, String pgName, String location,

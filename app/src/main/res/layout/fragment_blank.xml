@@ -120,8 +120,6 @@
                 android:textAppearance="?android:textAppearanceLarge"/>
         </LinearLayout>
 
-
-
         <LinearLayout
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -141,6 +139,108 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="xyz@gmail.com"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <TextView
+            android:text="LOCATION"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:elevation="15dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ADDRESS"
+            android:gravity="center"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="bold"/>
+         <TextView
+            android:id="@+id/address_one"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="xyz"
+            android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="CITY"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/city"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="XYZ"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="STATE"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/state"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="xyz"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="PINCODE"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/pinCode"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="110095"
                 android:textAppearance="?android:textAppearanceLarge"/>
         </LinearLayout>
 
