@@ -1,5 +1,7 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +12,7 @@ public class PgDetails_POJO {
     //TODO add support for imageID
 
     public static class PgDetails   {
-//        private int imageId;
+        //        private int imageId;
         String id;
         String pgName;
         String ownerName;
@@ -38,36 +40,17 @@ public class PgDetails_POJO {
         String preference;
         String genderPreference;
         String pgImageOne;
-        String PgImageTwo;
+        String pgImageTwo;
         String pgImageThree;
         String pgImageFour;
 
-    // add metro boolean
-//        public PgDetails(int imageId, String pgName, String location,
-//                         String ownerName, double contactNo, String email,
-//                         double rent, double depositAmount, String extraFeatures, Boolean wifi,
-//                         Boolean breakfast, Boolean parking) {
-//            this.imageId = imageId;
-//            this.pgName = pgName;
-//            this.location = location;
-//            this.ownerName = ownerName;
-//            this.contactNo = contactNo;
-//            this.email = email;
-//            this.rent = rent;
-//            this.depositAmount = depositAmount;
-//            this.extraFeatures = extraFeatures;
-//            this.wifi = wifi;
-//            this.breakfast = breakfast;
-//            this.parking = parking;
-//        }
-
         //This constructor doesn't contain image id
-        public PgDetails(String id, String pgName, String ownerName, double contactNo, String email,
-                         double rent, double depositAmount, String extraFeatures, Boolean wifi,
-                         Boolean breakfast, Boolean parking, Boolean ac, Boolean lunch ,Boolean dinner,
-                         Boolean roWater, Boolean security, Boolean tv, Boolean hotWater,Boolean fridge,
-                         String addressOne, String addressTwo, String city,
-                         String state, double pinCode, String preference, String genderPreference) {
+        public PgDetails(String id, String pgName, String ownerName, double contactNo, String email,double rent,
+                         double depositAmount, String extraFeatures, Boolean wifi,Boolean breakfast, Boolean parking,
+                          Boolean ac, Boolean lunch ,Boolean dinner,Boolean roWater, Boolean security,
+                          Boolean tv, Boolean hotWater,Boolean fridge,String addressOne, String addressTwo,
+                          String city,String state, double pinCode,String preference, String genderPreference,
+                         String pgImageOne, String pgImageTwo, String pgImageThree, String pgImageFour) {
 
             this.id = id;
             this.pgName = pgName;
@@ -95,6 +78,10 @@ public class PgDetails_POJO {
             this.pinCode = pinCode;
             this.preference = preference;
             this.genderPreference = genderPreference;
+            this.pgImageOne = pgImageOne;
+            this.pgImageTwo = pgImageTwo;
+            this.pgImageThree = pgImageThree;
+            this.pgImageFour = pgImageFour;
         }
 
         public PgDetails()  {
@@ -206,6 +193,22 @@ public class PgDetails_POJO {
 
         public String getGenderPreference() {
             return genderPreference;
+        }
+
+        public String getPgImageOne() {
+            return pgImageOne;
+        }
+
+        public String getPgImageTwo() {
+            return pgImageTwo;
+        }
+
+        public String getPgImageThree() {
+            return pgImageThree;
+        }
+
+        public String getPgImageFour() {
+            return pgImageFour;
         }
 
 

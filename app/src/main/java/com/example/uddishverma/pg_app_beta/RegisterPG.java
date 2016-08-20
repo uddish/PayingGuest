@@ -49,9 +49,10 @@ import java.util.UUID;
 public class RegisterPG extends AppCompatActivity {
 
     static Firebase firebaseRef;
-    StorageReference storageRef;
+    static StorageReference storageRef;
 
     public static final String TAG = "RegisterPG";
+    callUploadWhenBtnPressed cuwbp  = new callUploadWhenBtnPressed();
 
     private int PICK_IMAGE_REQUEST_ONE = 1;
     private int PICK_IMAGE_REQUEST_TWO = 2;
@@ -61,7 +62,6 @@ public class RegisterPG extends AppCompatActivity {
     EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, addressTwo,
             city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
-    RadioButton individual, sharing, male, female;
     ShineButton shineButton;
     ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
     String preference;
@@ -165,15 +165,24 @@ public class RegisterPG extends AppCompatActivity {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+
+        //Creating a unique ID for each PG
         Long timeStamp = System.currentTimeMillis() / 1000;
         final String PgId = timeStamp.toString();
 
         Firebase.setAndroidContext(this);
         firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
+
         shineButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                String image1, image2, image3, image4;
+                image1 = (cuwbp.downloadUrl1).toString();
+                image2 = (cuwbp.downloadUrl2).toString();
+                image3 = (cuwbp.downloadUrl3).toString();
+                image4 = (cuwbp.downloadUrl4).toString();
                 int check = checkForNullFields();
                 if (check == 0) {
                     PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
@@ -182,7 +191,8 @@ public class RegisterPG extends AppCompatActivity {
                             wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
                             roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
                             addressOne.getText().toString(), addressTwo.getText().toString(),
-                            city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference);
+                            city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
+                            image1, image2, image3, image4);
 
                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
                     Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
@@ -191,27 +201,13 @@ public class RegisterPG extends AppCompatActivity {
                 }
             }
         });
-
     }
+
     //Uploading the image to FireBase Storage
-    public void uploadImage(Uri downloadUrl)    {
+    public void uploadImage(Uri downloadUrl, final int imageNumber) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
-        StorageReference imagesRef = storageRef.child("PgImages2").child(UUID.randomUUID().toString());
-
-//        StorageMetadata metadata = new StorageMetadata.Builder()
-//                .setContentType("image/jpg")
-//                .build();
-
-//        Getting the data from ImageView as bytes
-//        imgUpload_1.setDrawingCacheEnabled(true);
-//        imgUpload_1.buildDrawingCache();
-//        Bitmap bitmap = imgUpload_1.getDrawingCache();
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//        byte[] data = baos.toByteArray();
-//        UploadTask uploadTask = imagesRef.putBytes(data);
-
+        StorageReference imagesRef = storageRef.child("PgImages").child(UUID.randomUUID().toString());
 
         ContentResolver cr = getBaseContext().getContentResolver();
         try {
@@ -220,6 +216,7 @@ public class RegisterPG extends AppCompatActivity {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] data = baos.toByteArray();
+            Log.d(TAG, "uploadImage: image size " + data.length);
             UploadTask uploadTask = imagesRef.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -230,28 +227,34 @@ public class RegisterPG extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    Log.d(TAG, "onSuccess: Downoad Url : " + downloadUrl);
+                    Log.d(TAG, "onSuccess: Download Url : " + downloadUrl);
+                    if(imageNumber == 1)
+                        cuwbp.downloadUrl1 = downloadUrl;
+                    if(imageNumber == 2)
+                        cuwbp.downloadUrl2 = downloadUrl;
+                    if(imageNumber == 3)
+                        cuwbp.downloadUrl3 = downloadUrl;
+                    if(imageNumber == 4)
+                        cuwbp.downloadUrl4 = downloadUrl;
                 }
             });
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * This class contains the Uri and the download Url  of the image
+     * which is fetched in the  onClick method of the button
+     * which then saves the data in the POJO class object and saves it in the database.
+     * @return uri
+     */
 
-//        UUID.randomUUID().toString();
-//        UploadTask uploadTask = imagesRef.child("images/").putFile(downloadUrl, metadata);
-//        uploadTask.addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(RegisterPG.this, "Image Upload Failed", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-//                Log.d(TAG, "onSuccess: " + downloadUrl);
-//            }
-//        });
+    public class callUploadWhenBtnPressed   {
+
+        Uri url1, url2, url3, url4;
+        Uri downloadUrl1, downloadUrl2, downloadUrl3, downloadUrl4;
+
     }
 
 
@@ -321,22 +324,26 @@ public class RegisterPG extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
-            uploadImage(uri);
+            cuwbp.url1 = uri;
+                uploadImage(uri, 1);
         }
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
-            uploadImage(uri);
+            cuwbp.url2 = uri;
+            uploadImage(uri, 2);
         }
         if (requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
-            uploadImage(uri);
+            cuwbp.url3 = uri;
+            uploadImage(uri, 3);
         }
         if (requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
-            uploadImage(uri);
+            cuwbp.url4 = uri;
+            uploadImage(uri, 4);
         }
     }
 

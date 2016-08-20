@@ -557,7 +557,65 @@
                 android:textAppearance="?android:textAppearanceLarge"/>
         </LinearLayout>
 
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/fab_margin_right"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_phone_black_24dp"
+            android:elevation="6dp"
+            app:pressedTranslationZ="12dp"/>
     </LinearLayout>
+
+    <!--<android.support.design.widget.CoordinatorLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+        <!--tools:context="com.example.uddishverma.pg_app_beta.BlankFragment">-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab_btn_loc"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="@dimen/fab_margin_right"-->
+            <!--android:layout_marginBottom="180dp"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:visibility="invisible"-->
+            <!--android:elevation="6dp"-->
+            <!--app:pressedTranslationZ="12dp"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab_btn_taxi"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="@dimen/fab_margin_right"-->
+            <!--android:layout_marginBottom="100dp"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:elevation="6dp"-->
+            <!--app:pressedTranslationZ="12dp"/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab_btn_add"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="@dimen/fab_margin_right"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--app:backgroundTint="@color/colorAccent"-->
+            <!--android:elevation="6dp"-->
+            <!--app:pressedTranslationZ="12dp"/>-->
+
+    <!--</android.support.design.widget.CoordinatorLayout>-->
 
 </ScrollView>
 

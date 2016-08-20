@@ -2,6 +2,8 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
@@ -11,8 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -22,6 +30,9 @@ import java.util.ArrayList;
 //************************************Class to join card view with recycler view****************************************************
 public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.DetailsViewHolder>
 {
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference imageDownloadRef;
 
     public static final String TAG = "PgDetailsAdapter";
 
@@ -47,12 +58,25 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     }
 
     @Override
-    public void onBindViewHolder(DetailsViewHolder holder, int position)
-    {
+    public void onBindViewHolder(final DetailsViewHolder holder, int position)    {
 
         PgDetails_POJO.PgDetails details = pgObject.get(position);
 
-//        holder.pg_img.setImageResource(details.getImageId());
+        //Fetching the image from the firebase reference;
+        Log.d(TAG, "onBindViewHolder: URL" + details.getPgImageOne());
+        imageDownloadRef = storage.getReferenceFromUrl(details.getPgImageOne());
+        imageDownloadRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(ctx).load(uri).resize(600, 600).centerCrop().into(holder.pg_img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ctx, "Failed To Upload The Image!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         holder.name_tv.setText(details.getPgName());
         holder.address_tv.setText(details.getAddressOne());
         holder.address_tv.setSelected(true);
