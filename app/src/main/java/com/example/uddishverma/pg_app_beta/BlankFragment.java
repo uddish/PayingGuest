@@ -66,9 +66,6 @@ public class BlankFragment extends Fragment {
         Bundle b = getArguments();
         setDetails(b);
 
-
-       /* TextView tv= (TextView) v.findViewById(R.id.tv_frag);
-        tv.setText(mParam1+":"+b.get("PG ID"));*/
         return v;
     }
 
@@ -170,9 +167,6 @@ public class BlankFragment extends Fragment {
             security.setText("YES");
         else
             security.setText("NO");
-
-
-
 
     }
 

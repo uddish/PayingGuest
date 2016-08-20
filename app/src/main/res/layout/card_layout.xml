@@ -72,6 +72,7 @@
                     android:text="RENT"
                     android:layout_weight="0.5"
                     android:gravity="center"
+                    android:layout_marginBottom="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="0dp" />
 
