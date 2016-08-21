@@ -67,10 +67,8 @@ public class FindPGActivity extends AppCompatActivity {
 
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
-//                    Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
                         PgDetails_POJO.PgDetails model = dataSnapshot
                                 .getValue(PgDetails_POJO.PgDetails.class);
-//                    Log.d(TAG, "Pg ID: " + dataSnapshot.getValue(PgDetails_POJO.PgDetails.class).getId().equals("1471105682"));
                         cardDetails.add(model);
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);

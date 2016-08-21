@@ -50,7 +50,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     public DetailsViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
 
         DetailsViewHolder detailsViewHolder = new DetailsViewHolder(view,ctx,pgObject);
 
@@ -103,7 +103,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     public static class DetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
-        TextView name_tv,address_tv, state_tv, city_tv, rent_tv;
+        TextView name_tv,address_tv, state_tv, rent_tv;
 
         ArrayList<PgDetails_POJO.PgDetails> list=new ArrayList<PgDetails_POJO.PgDetails>();
         Context ctx;
@@ -132,10 +132,10 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         @Override
         public void onClick(View v)
         {
-            int position=getAdapterPosition();
-            PgDetails_POJO.PgDetails obj=this.list.get(position);
+            int position = getAdapterPosition();
+            PgDetails_POJO.PgDetails obj = this.list.get(position);
 
-            Intent intent=new Intent(this.ctx,FragmentCaller.class);
+            Intent intent = new Intent(this.ctx,FragmentCaller.class);
             intent.putExtra("PG ID",obj.getId());
             intent.putExtra("PG Name",obj.getPgName());
             intent.putExtra("OWNER NAME",obj.getOwnerName());
@@ -161,7 +161,11 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             intent.putExtra("CITY", obj.getCity());
             intent.putExtra("STATE", obj.getState());
             intent.putExtra("PINCODE", obj.getPinCode());
-
+            //Sending the intents for the Pg Images which are to be attached to the View Pager
+            intent.putExtra("IMAGE_ONE", obj.getPgImageOne());
+            intent.putExtra("IMAGE_TWO", obj.getPgImageTwo());
+            intent.putExtra("IMAGE_THREE", obj.getPgImageThree());
+            intent.putExtra("IMAGE_FOUR", obj.getPgImageFour());
 
             Log.d(TAG,"calling");
             this.ctx.startActivity(intent);
