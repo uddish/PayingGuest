@@ -50,7 +50,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     public DetailsViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_new,parent,false);
 
         DetailsViewHolder detailsViewHolder = new DetailsViewHolder(view,ctx,pgObject);
 
@@ -68,7 +68,9 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         imageDownloadRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(ctx).load(uri).resize(600, 600).centerCrop().into(holder.pg_img);
+                Picasso.with(ctx).load(uri).resize(385, 175).centerCrop().into(holder.pg_img);
+
+//                Picasso.with(ctx).load(uri).resize(600, 600).centerCrop().into(holder.pg_img);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -81,7 +83,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         holder.address_tv.setText(details.getAddressOne());
         holder.address_tv.setSelected(true);
 
-        holder.state_tv.setText(details.getState());
+//        holder.state_tv.setText(details.getState());
         String rent = String.valueOf((int)details.getRent());
         holder.rent_tv.setText("RENT : " + rent);
 
@@ -105,7 +107,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
         TextView name_tv,address_tv, state_tv, rent_tv;
 
-        ArrayList<PgDetails_POJO.PgDetails> list=new ArrayList<PgDetails_POJO.PgDetails>();
+        ArrayList<PgDetails_POJO.PgDetails> list = new ArrayList<PgDetails_POJO.PgDetails>();
         Context ctx;
 
         public DetailsViewHolder(View view,Context ctx, ArrayList<PgDetails_POJO.PgDetails> list)
