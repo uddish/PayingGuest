@@ -22,6 +22,8 @@ import com.squareup.picasso.Picasso;
  */
 public class viewPagerFragment extends Fragment {
 
+    static int flag = 1;
+
     ImageView imageView;
     Context ctx;
 
@@ -73,26 +75,20 @@ public class viewPagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_view_pager, container, false);
-        findView(rootView);
         Bundle b = getArguments();
-        //Calling the getBundle() function in Adapter Class and passing the bundle there
-        ViewPagerFragmentAdapter.getBundle(b);
-        setDetails(b);
+
+        //Calling the getBundle() function in Adapter Class and passing the bundle there\
+        if(flag == 1) {
+            Log.d(TAG, "onCreateView: CALLING GETBUNDLE() FUNCTION" + flag);
+            ViewPagerFragmentAdapter.getBundle(b);
+            flag++;
+        }
+
+        imageView = (ImageView) rootView.findViewById(R.id.fragment_image_view);
+        Picasso.with(getContext()).load(mParam1).resize(950, 500).centerCrop().into(imageView);
+
         return rootView;
     }
 
-    public void findView(View v)  {
-        imageView = (ImageView) v.findViewById(R.id.fragment_image_view);
-    }
-
-    public void setDetails(Bundle b)    {
-//        Log.d(TAG, "setDetails: Image Url : " + b.getString("IMAGE_ONE"));
-//        Log.d(TAG, "setDetails: Image Url : " + b.getString("IMAGE_TWO"));
-//        Log.d(TAG, "setDetails: Image Url : " + b.getString("IMAGE_THREE"));
-        Log.d(TAG, "setDetails: IMAGE URL!!!!!!! " + mParam1);
-//        Picasso.with(ctx).load(b.getString("IMAGE_ONE")).resize(900, 600).centerCrop().into(imageView);
-        Picasso.with(getContext()).load(mParam1).resize(950, 500).centerCrop().into(imageView);
-//        Picasso.with(getContext()).load(Uri.parse(b.getString("IMAGE_ONE"))).resize(600, 600).centerCrop().into(imageView);
-    }
 
 }

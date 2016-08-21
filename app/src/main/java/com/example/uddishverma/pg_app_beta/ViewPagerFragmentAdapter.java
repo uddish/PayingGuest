@@ -30,20 +30,21 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
         Fragment frag;
         switch (position)   {
             case 0:
-//                Log.d(TAG, "getItem: Image URL 1 " + imageUrlOne);
+                Log.d(TAG, "getItem: Image URL 1 " + imageUrlOne);
                 frag = viewPagerFragment.newInstance(imageUrlOne, "one");
                 break;
             case 1:
-//                Log.d(TAG, "getItem: Image URL 2 " + imageUrlTwo);
+                Log.d(TAG, "getItem: Image URL 2 " + imageUrlTwo);
                 frag = viewPagerFragment.newInstance(imageUrlTwo, "two");
                 break;
             case 2:
-//                Log.d(TAG, "getItem: Image URL 3 " + imageUrlThree);
+                Log.d(TAG, "getItem: Image URL 3 " + imageUrlThree);
                 frag = viewPagerFragment.newInstance(imageUrlThree, "three");
                 break;
             case 3:default:
-//                Log.d(TAG, "getItem: Image URL 4 " + imageUrlFour);
+                Log.d(TAG, "getItem: Image URL 4 " + imageUrlFour);
                 frag = viewPagerFragment.newInstance(imageUrlFour, "four");
+                break;
         }
         return frag;
     }
@@ -56,14 +57,14 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
     public static void getBundle(Bundle b)   {
         imageUrlOne = b.getString("IMAGE_ONE");
         imageUrlTwo = b.getString("IMAGE_TWO");
+        imageUrlThree = b.getString("IMAGE_THREE");
+        imageUrlFour = b.getString("IMAGE_FOUR");
 //        Log.d(TAG, "getBundle: IMAGE URL 1 BY BUNDLE " + b.getString("IMAGE_THREE"));
 //        Log.d(TAG, "getBundle: IMAGE URL 2 BY BUNDLE " + b.getString("IMAGE_TWO"));
 //        Log.d(TAG, "getBundle: IMAGE URL 3 BY BUNDLE " + b.getString("IMAGE_ONE"));
-        imageUrlThree = b.getString("IMAGE_THREE");
-        imageUrlFour = b.getString("IMAGE_FOUR");
-        Log.d(TAG, "getItem: Image URL 1" + imageUrlOne);
-        Log.d(TAG, "getItem: Image URL 2" + imageUrlTwo);
-        Log.d(TAG, "getItem: Image URL 3" + imageUrlThree);
-        Log.d(TAG, "getItem: Image URL 4" + imageUrlFour);
+//        Log.d(TAG, "getItem: Image URL 1" + imageUrlOne);
+//        Log.d(TAG, "getItem: Image URL 2" + imageUrlTwo);
+//        Log.d(TAG, "getItem: Image URL 3" + imageUrlThree);
+//        Log.d(TAG, "getItem: Image URL 4" + imageUrlFour);
     }
 }
