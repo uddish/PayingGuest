@@ -207,6 +207,7 @@ public class RegisterPG extends AppCompatActivity {
     public void uploadImage(Uri downloadUrl, final int imageNumber) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
+
         StorageReference imagesRef = storageRef.child("PgImages").child(UUID.randomUUID().toString());
 
         ContentResolver cr = getBaseContext().getContentResolver();

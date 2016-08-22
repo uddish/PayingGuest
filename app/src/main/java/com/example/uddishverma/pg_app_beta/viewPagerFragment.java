@@ -79,14 +79,15 @@ public class viewPagerFragment extends Fragment {
 
         //Calling the getBundle() function in Adapter Class and passing the bundle there\
         if(flag == 1) {
-            Log.d(TAG, "onCreateView: CALLING GETBUNDLE() FUNCTION" + flag);
+            Log.d(TAG, "onCreateView: CALLING GETBUNDLE() FUNCTION " + flag);
             ViewPagerFragmentAdapter.getBundle(b);
             flag++;
         }
+        Log.d(TAG, "onCreateView: FLAG = " + flag);
 
         imageView = (ImageView) rootView.findViewById(R.id.fragment_image_view);
-        Picasso.with(getContext()).load(mParam1).resize(950, 500).centerCrop().into(imageView);
-
+        Picasso.with(getContext()).load(mParam1).fit().into(imageView);
+//        Picasso.with(getContext()).load(mParam1).resize(385, 175).centerCrop().into(imageView);
         return rootView;
     }
 
