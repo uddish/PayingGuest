@@ -254,6 +254,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_signal_wifi_4_bar_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -276,6 +281,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_ac_unit_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -299,6 +309,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_local_parking_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -321,6 +336,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_tv_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1.1"
                 android:layout_width="0dp"
@@ -343,50 +363,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight="1"
+            <ImageView
+                android:src="@drawable/ic_free_breakfast_grey_700_24dp"
+                android:layout_weight="0.5"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="LUNCH"
-                android:gravity="center"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/lunch"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="YES"
-                android:textAppearance="?android:textAppearanceLarge"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="DINNER"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/dinner"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="YES"
-                android:textAppearance="?android:textAppearanceLarge"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -409,6 +390,65 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_room_service_black_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="LUNCH"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/lunch"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_restaurant_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DINNER"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/dinner"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="YES"
+                android:textAppearance="?android:textAppearanceLarge"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_opacity_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1.1"
                 android:layout_width="0dp"
@@ -431,6 +471,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/hotwater"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1.1"
                 android:layout_width="0dp"
@@ -453,6 +498,11 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_security_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
                 android:layout_weight="1.1"
                 android:layout_width="0dp"
@@ -475,8 +525,13 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/ic_kitchen_grey_700_24dp"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
             <TextView
-                android:layout_weight="1.1"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
