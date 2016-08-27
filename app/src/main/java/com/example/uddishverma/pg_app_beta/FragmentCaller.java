@@ -12,7 +12,6 @@ import android.util.Log;
 public class FragmentCaller extends AppCompatActivity {
 
     Fragment frag = new BlankFragment();
-    Fragment viewPagerfrag = new viewPagerFragment();
     FragmentManager manager;
 
 
@@ -25,14 +24,10 @@ public class FragmentCaller extends AppCompatActivity {
 
         Log.d(TAG, "inside");
 
-        ViewPager vp = (ViewPager) findViewById(R.id.viewPager);
-        vp.setAdapter(new ViewPagerFragmentAdapter(getSupportFragmentManager()));
-
         Intent i = getIntent();
-        Bundle b = i.getExtras() ;
+        Bundle b = i.getExtras();
         Log.d(TAG, (String) b.get("PG ID"));
         callingFragment(b);
-        callingViewPagerFragment(b);
     }
 
     //This function extracts the pg "information" from the bundle and sends it via newInstance
@@ -46,12 +41,4 @@ public class FragmentCaller extends AppCompatActivity {
         transaction.commit();
     }
 
-    //This function extracts the "pg" images from the bundle and sends it via newInstance
-    public void callingViewPagerFragment(Bundle b)  {
-        manager = getSupportFragmentManager();
-        FragmentTransaction fTxn = manager.beginTransaction();
-        viewPagerfrag.setArguments(b);
-        fTxn.replace(R.id.viewPager, viewPagerfrag, null);
-        fTxn.commit();
-    }
 }

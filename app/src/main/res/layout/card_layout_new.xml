@@ -35,6 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RENT"
+                    android:background="#8888"
                     android:textColor="#FFFFFF"
                     android:padding="5dp"
                     android:textAppearance="?android:textAppearanceLarge"

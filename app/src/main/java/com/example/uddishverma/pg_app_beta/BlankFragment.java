@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.renderscript.Double2;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,11 @@ public class BlankFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG ="tv_test" ;
+
+    CustomPagerAdapter customPagerAdapter;
+
+    Context ctx;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -50,10 +56,12 @@ public class BlankFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: OnCreate Of BlankFragment called ");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -62,9 +70,12 @@ public class BlankFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_blank, container, false);
 
         findView(v);
-
+//
         Bundle b = getArguments();
         setDetails(b);
+
+        customPagerAdapter = new CustomPagerAdapter(getActivity(), b);
+        vPager.setAdapter(customPagerAdapter);
 
         return v;
     }
@@ -74,8 +85,13 @@ public class BlankFragment extends Fragment {
             ro_water,hot_water,security,refrigerator,min_rent,deposit;
     TextView pgAddress, city, state, pinCode;
 
+    ViewPager vPager;
+
     private void findView(View v)
     {
+
+        vPager = (ViewPager) v.findViewById(R.id.img_view_pager);
+
          pg_name= (TextView) v.findViewById(R.id.pg_name);
         owners_name= (TextView) v.findViewById(R.id.owners_name);
         contact_no= (TextView) v.findViewById(R.id.contact);
@@ -176,8 +192,8 @@ public class BlankFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
+        Log.d(TAG, "onAttach: CALLED");
         super.onAttach(context);
-
 
     }
 }
