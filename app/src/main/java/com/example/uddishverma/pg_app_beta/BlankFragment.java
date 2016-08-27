@@ -76,6 +76,7 @@ public class BlankFragment extends Fragment {
 
         customPagerAdapter = new CustomPagerAdapter(getActivity(), b);
         vPager.setAdapter(customPagerAdapter);
+        vPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         return v;
     }
