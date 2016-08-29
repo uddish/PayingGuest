@@ -35,4 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, FindPGActivity.class);
         startActivity(i);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        onStop();
+//    }
 }

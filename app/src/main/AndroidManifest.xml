@@ -24,7 +24,8 @@
         <activity android:name=".TempActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".FragmentCaller" />
-        <activity android:name=".RegisterUser"></activity>
+        <activity android:name=".RegisterUser" />
+        <activity android:name=".LoginUser"></activity>
     </application>
 
 </manifest>

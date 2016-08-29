@@ -24,7 +24,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     Button btnRegisterUser;
     EditText registerEmail, registerPassword;
     TextView tvSignIn, tvSkip;
-    private ProgressDialog dialog;
+    private ProgressDialog progressDialog;
 
     public static final String TAG = "RegisterUser";
 
@@ -35,17 +35,26 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        btnRegisterUser = (Button) findViewById(R.id.btn_register);
-        registerEmail = (EditText) findViewById(R.id.et_email);
-        registerPassword = (EditText) findViewById(R.id.et_password);
-        tvSignIn = (TextView) findViewById(R.id.tv_signin);
-        tvSkip = (TextView) findViewById(R.id.tv_skip);
+        btnRegisterUser = (Button) findViewById(R.id.btn_register_register);
+        registerEmail = (EditText) findViewById(R.id.et_register_email);
+        registerPassword = (EditText) findViewById(R.id.et_register_password);
+        tvSignIn = (TextView) findViewById(R.id.tv_register_signin);
+        tvSkip = (TextView) findViewById(R.id.tv_register_skip);
 
         btnRegisterUser.setOnClickListener(this);
         tvSignIn.setOnClickListener(this);
 
+        progressDialog = new ProgressDialog(this);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //Starting the main activity if the user is already logged in or inside the app
+        Log.d(TAG, "onCreate: Current User " + firebaseAuth.getCurrentUser());
+        if(firebaseAuth.getCurrentUser() != null)   {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+
+        //Skip Button starts the main activity
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,14 +70,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             registerUserFunction();
         }
         if (v == tvSignIn) {
-            Toast.makeText(RegisterUser.this, "Please Wait!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), LoginUser.class));
             //do login work here
         }
-//        if(v == tvSkip) {
-//            Intent i = new Intent(this, FindPGActivity.class);
-//            startActivity(i);
-//            Log.d(TAG, "onClick: Starting Main Activity");
-//        }
     }
 
     //This function registers the user to firebase.
@@ -90,15 +94,15 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        dialog.setMessage("Registering User...");
-        dialog.show();
+        progressDialog.setMessage("Registering User...");
+        progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             //start the activity which you want to open after the login in successful
-                            dialog.dismiss();
+                            progressDialog.dismiss();
                             Toast.makeText(RegisterUser.this, "Welcome!", Toast.LENGTH_SHORT).show();
                         }
                         else
