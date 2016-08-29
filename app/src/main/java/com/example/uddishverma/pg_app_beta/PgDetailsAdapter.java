@@ -42,7 +42,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
     public PgDetailsAdapter(ArrayList<PgDetails_POJO.PgDetails> pgObject,Context ctx) {
         this.pgObject = pgObject;
-        this.ctx=ctx;
+        this.ctx = ctx;
     }
 
 

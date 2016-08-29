@@ -52,7 +52,8 @@ public class RegisterPG extends AppCompatActivity {
     static StorageReference storageRef;
 
     public static final String TAG = "RegisterPG";
-    callUploadWhenBtnPressed cuwbp  = new callUploadWhenBtnPressed();
+    callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
+    String image1, image2, image3, image4;
 
     private int PICK_IMAGE_REQUEST_ONE = 1;
     private int PICK_IMAGE_REQUEST_TWO = 2;
@@ -178,23 +179,32 @@ public class RegisterPG extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String image1, image2, image3, image4;
+//                Log.d(TAG, "onClick: " + cuwbp.downloadUrl1.toString());
                 image1 = (cuwbp.downloadUrl1).toString();
+//                if((cuwbp.downloadUrl2).toString() != null)
                 image2 = (cuwbp.downloadUrl2).toString();
+//                if((cuwbp.downloadUrl3).toString() != null)
                 image3 = (cuwbp.downloadUrl3).toString();
+//                if((cuwbp.downloadUrl4).toString() != null)
                 image4 = (cuwbp.downloadUrl4).toString();
                 int check = checkForNullFields();
                 if (check == 0) {
-                    PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
-                            Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
-                            Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
-                            wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
-                            roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
-                            addressOne.getText().toString(), addressTwo.getText().toString(),
-                            city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
-                            image1, image2, image3, image4);
 
-                    firebaseRef.child("PgDetails").push().setValue(pgDetails);
+                    //Checking if the images are null before pushing them into firebase
+//                    if (image1 != null && image2 != null && image3 != null && image4 != null) {
+                        PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
+                                Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
+                                Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
+                                wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
+                                roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
+                                addressOne.getText().toString(), addressTwo.getText().toString(),
+                                city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
+                                image1, image2, image3, image4);
+
+                        firebaseRef.child("PgDetails").push().setValue(pgDetails);
+//                    }
+//                    else
+//                        Toast.makeText(RegisterPG.this, "Please Upload The Images!", Toast.LENGTH_SHORT).show();
                     Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
                     registerComplete();
                     shineBtnClickListener();
@@ -229,13 +239,13 @@ public class RegisterPG extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
                     Log.d(TAG, "onSuccess: Download Url : " + downloadUrl);
-                    if(imageNumber == 1)
+                    if (imageNumber == 1)
                         cuwbp.downloadUrl1 = downloadUrl;
-                    if(imageNumber == 2)
+                    if (imageNumber == 2)
                         cuwbp.downloadUrl2 = downloadUrl;
-                    if(imageNumber == 3)
+                    if (imageNumber == 3)
                         cuwbp.downloadUrl3 = downloadUrl;
-                    if(imageNumber == 4)
+                    if (imageNumber == 4)
                         cuwbp.downloadUrl4 = downloadUrl;
                 }
             });
@@ -248,10 +258,11 @@ public class RegisterPG extends AppCompatActivity {
      * This class contains the Uri and the download Url  of the image
      * which is fetched in the  onClick method of the button
      * which then saves the data in the POJO class object and saves it in the database.
+     *
      * @return uri
      */
 
-    public class callUploadWhenBtnPressed   {
+    public class callUploadWhenBtnPressed {
 
         Uri url1, url2, url3, url4;
         Uri downloadUrl1, downloadUrl2, downloadUrl3, downloadUrl4;
@@ -292,7 +303,6 @@ public class RegisterPG extends AppCompatActivity {
     public void genderPreferenceRadioButton(View view) {
 
         boolean checked = ((RadioButton) view).isChecked();
-
         switch (view.getId()) {
             case R.id.radBtn_male:
                 if (checked) {
@@ -326,7 +336,7 @@ public class RegisterPG extends AppCompatActivity {
             Uri uri = data.getData();
             Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
             cuwbp.url1 = uri;
-                uploadImage(uri, 1);
+            uploadImage(uri, 1);
         }
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
@@ -352,7 +362,7 @@ public class RegisterPG extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // This method will be executed once the timer is over
+                // This method will be executed once the animation of the shine button is over
                 // Start your app main activity
                 Intent i = new Intent(RegisterPG.this, MainActivity.class);
                 startActivity(i);

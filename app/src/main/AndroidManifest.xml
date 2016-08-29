@@ -3,8 +3,8 @@
     package="com.example.uddishverma.pg_app_beta">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,8 @@
         <activity android:name=".FindPGActivity" />
         <activity android:name=".TempActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".FragmentCaller"></activity>
+        <activity android:name=".FragmentCaller" />
+        <activity android:name=".RegisterUser"></activity>
     </application>
 
 </manifest>
