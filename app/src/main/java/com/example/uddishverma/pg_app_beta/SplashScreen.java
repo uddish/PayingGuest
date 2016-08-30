@@ -32,7 +32,7 @@ public class SplashScreen extends Activity {
             public void onAnimationEnd(Animation animation) {
                 finish();
 //                Intent intent=new Intent(SplashScreen.this,MainActivity.class);
-                Intent intent=new Intent(SplashScreen.this,RegisterUser.class);
+                Intent intent=new Intent(SplashScreen.this,LoginUserActivity.class);
                 startActivity(intent);
             }
 

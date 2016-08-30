@@ -1,6 +1,7 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -35,9 +36,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, FindPGActivity.class);
         startActivity(i);
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        onStop();
-//    }
 }
