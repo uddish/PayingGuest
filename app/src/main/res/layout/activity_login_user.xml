@@ -125,6 +125,7 @@
         app:fabSize="normal"
         android:src="@drawable/plus"
         android:transitionName="loginFab"
+        app:backgroundTint="#2fa881"
         android:layout_alignTop="@id/cv"
         android:layout_marginTop="25dp"
         android:layout_alignEnd="@id/cv"

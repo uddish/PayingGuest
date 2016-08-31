@@ -21,13 +21,14 @@
         </activity>
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
-        <activity android:name=".TempActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".FragmentCaller" />
-        <activity android:name=".RegisterUser" />
-        <activity android:name=".LoginUser" />
         <activity android:name=".LoginUserActivity" />
-        <activity android:name=".RegisterUserActivity"></activity>
+        <activity android:name=".RegisterUserActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/MyTheme">
+        </activity>
     </application>
 
 </manifest>

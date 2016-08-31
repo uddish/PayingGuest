@@ -54,9 +54,9 @@ public class RegisterUserActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         //Starting the animation
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             showEnterAnimation();
-        }
+//        }
 
         //Handling the click events of the Next Button which uploads the credentials to the Firebase
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -84,28 +84,28 @@ public class RegisterUserActivity extends AppCompatActivity {
         String password = etPassword.getText().toString().trim();
         String repeatPassword = etRepeatpassword.getText().toString().trim();
 
+
+        //Checking for the null fields
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(RegisterUserActivity.this, "Please Enter the Email Id!", Toast.LENGTH_SHORT).show();
             //Stopping further execution
             return;
         }
-
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(RegisterUserActivity.this, "Please Enter the Password!", Toast.LENGTH_SHORT).show();
             //Stopping further execution
             return;
         }
-
         if (TextUtils.isEmpty(repeatPassword)) {
             Toast.makeText(RegisterUserActivity.this, "Please Enter the Password!", Toast.LENGTH_SHORT).show();
             //Stopping further execution
             return;
         }
-
         if(!password.equals(repeatPassword))    {
             Toast.makeText(RegisterUserActivity.this, "Passwords do not Match!", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         progressDialog.setMessage("Registering User...");
         progressDialog.show();
@@ -125,9 +125,9 @@ public class RegisterUserActivity extends AppCompatActivity {
                 });
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void showEnterAnimation()   {
-            Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.fabtransition);
+
+    private void showEnterAnimation() {
+        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.fabtransition);
         getWindow().setSharedElementEnterTransition(transition);
 
         transition.addListener(new Transition.TransitionListener() {
@@ -156,6 +156,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             public void onTransitionResume(Transition transition) {
 
             }
+
         });
     }
 

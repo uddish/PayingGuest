@@ -605,18 +605,6 @@
             android:hint="MAX(100 chars.)"
             android:background="@android:color/white"/>
 
-        <!--<com.sackcentury.shinebuttonlib.ShineButton-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:src="@android:color/darker_gray"-->
-            <!--android:id="@+id/shine_button"-->
-            <!--app:btn_color="@android:color/darker_gray"-->
-            <!--app:btn_fill_color="@android:color/holo_green_dark"-->
-            <!--app:allow_random_color="false"-->
-            <!--app:siShape="@raw/smile"/>-->
-
         <com.sackcentury.shinebuttonlib.ShineButton
             android:layout_width="100dp"
             android:layout_height="100dp"

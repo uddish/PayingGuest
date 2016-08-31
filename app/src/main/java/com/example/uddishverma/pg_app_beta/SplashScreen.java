@@ -7,9 +7,19 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+/**
+ * Opens up in the starting of the app
+ * Checks if the user is logged in or not and
+ * opens the activity according to it
+ */
+
 public class SplashScreen extends Activity {
 
     ImageView imageView;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +28,7 @@ public class SplashScreen extends Activity {
 
         imageView = (ImageView) findViewById(R.id.splash_image);
 
-//        startActivity(new Intent(this, MainActivity.class));
+        firebaseAuth = FirebaseAuth.getInstance();
 
         Animation animationUtils= AnimationUtils.loadAnimation(getBaseContext(),R.anim.anim_splash_screen);
         imageView.startAnimation(animationUtils);
@@ -31,9 +41,17 @@ public class SplashScreen extends Activity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 finish();
-//                Intent intent=new Intent(SplashScreen.this,MainActivity.class);
-                Intent intent=new Intent(SplashScreen.this,LoginUserActivity.class);
-                startActivity(intent);
+
+                //Checking which activity to open based on the login status
+                if(firebaseAuth.getCurrentUser() == null) {
+                    Intent intent = new Intent(SplashScreen.this, LoginUserActivity.class);
+                    startActivity(intent);
+                }
+                else    {
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+
             }
 
             @Override
