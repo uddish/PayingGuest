@@ -12,7 +12,8 @@ public class PgDetails_POJO {
     //TODO add support for imageID
 
     public static class PgDetails   {
-        //        private int imageId;
+
+        String userUID;                 //authentication ID of the user
         String id;
         String pgName;
         String ownerName;
@@ -50,7 +51,7 @@ public class PgDetails_POJO {
                           Boolean ac, Boolean lunch ,Boolean dinner,Boolean roWater, Boolean security,
                           Boolean tv, Boolean hotWater,Boolean fridge,String addressOne, String addressTwo,
                           String city,String state, double pinCode,String preference, String genderPreference,
-                         String pgImageOne, String pgImageTwo, String pgImageThree, String pgImageFour) {
+                         String pgImageOne, String pgImageTwo, String pgImageThree, String pgImageFour, String userUID) {
 
             this.id = id;
             this.pgName = pgName;
@@ -82,14 +83,12 @@ public class PgDetails_POJO {
             this.pgImageTwo = pgImageTwo;
             this.pgImageThree = pgImageThree;
             this.pgImageFour = pgImageFour;
+            this.userUID = userUID;
         }
 
         public PgDetails()  {
         }
 
-//        public int getImageId() {
-//            return imageId;
-//        }
 
         public String getPgName() {
             return pgName;
@@ -209,6 +208,10 @@ public class PgDetails_POJO {
 
         public String getPgImageFour() {
             return pgImageFour;
+        }
+
+        public String getUserUID() {
+            return userUID;
         }
 
 

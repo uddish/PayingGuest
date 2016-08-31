@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -107,6 +108,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_account) {
+            if(firebaseAuth.getCurrentUser() == null)   {
+                startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
+            }
+            else
+                Toast.makeText(MainActivity.this, "My Account Updating Soon", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_pg) {
 
@@ -115,7 +121,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_deletePg) {
 
         } else if(id == R.id.nav_logout)    {
+            if(firebaseAuth.getCurrentUser() != null)
             firebaseAuth.signOut();
+            else
+                Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
