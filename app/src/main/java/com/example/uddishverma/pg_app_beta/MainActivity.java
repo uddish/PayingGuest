@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +38,9 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        Log.d(TAG, "onCreate: USER " + user.getEmail());
+        if(firebaseAuth.getCurrentUser() != null) {
+            Log.d(TAG, "onCreate: USER " + user.getEmail());
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_deletePg) {
 
         } else if(id == R.id.nav_logout)    {
-            
+            firebaseAuth.signOut();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

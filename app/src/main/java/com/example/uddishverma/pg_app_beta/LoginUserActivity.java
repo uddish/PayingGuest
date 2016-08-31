@@ -119,6 +119,7 @@ public class LoginUserActivity extends AppCompatActivity {
                         if(task.isSuccessful()) {
                             Toast.makeText(LoginUserActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             //set the credentials in navigation drawer and start the next activity
                         }
                         else
