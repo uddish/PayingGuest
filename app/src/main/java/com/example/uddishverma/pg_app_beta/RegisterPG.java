@@ -27,6 +27,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.utilities.Base64;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
@@ -46,6 +48,8 @@ import java.util.UUID;
 
 //************************************Class to Register PGs************************************************************
 
+//TODO Images uploading instantly after selecting them from the activity not after pressing the button
+
 public class RegisterPG extends AppCompatActivity {
 
     static Firebase firebaseRef;
@@ -54,6 +58,10 @@ public class RegisterPG extends AppCompatActivity {
     public static final String TAG = "RegisterPG";
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
+
+    FirebaseAuth firebaseAuth;
+
+    String userUID;
 
     private int PICK_IMAGE_REQUEST_ONE = 1;
     private int PICK_IMAGE_REQUEST_TWO = 2;
@@ -174,24 +182,30 @@ public class RegisterPG extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
+        //Getting firebase authorisation
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //Getting the unique UID for each person who SignsIn in the app and sending it to firebase database
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(firebaseAuth.getCurrentUser() != null) {
+            userUID = user.getUid();
+        }
+
 
         shineButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                Log.d(TAG, "onClick: " + cuwbp.downloadUrl1.toString());
+
                 image1 = (cuwbp.downloadUrl1).toString();
-//                if((cuwbp.downloadUrl2).toString() != null)
                 image2 = (cuwbp.downloadUrl2).toString();
-//                if((cuwbp.downloadUrl3).toString() != null)
                 image3 = (cuwbp.downloadUrl3).toString();
-//                if((cuwbp.downloadUrl4).toString() != null)
                 image4 = (cuwbp.downloadUrl4).toString();
                 int check = checkForNullFields();
+
                 if (check == 0) {
 
-                    //Checking if the images are null before pushing them into firebase
-//                    if (image1 != null && image2 != null && image3 != null && image4 != null) {
+                    //TODO Checking if the images are null before pushing them into firebase
                         PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
                                 Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
                                 Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
@@ -199,13 +213,12 @@ public class RegisterPG extends AppCompatActivity {
                                 roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
                                 addressOne.getText().toString(), addressTwo.getText().toString(),
                                 city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
-                                image1, image2, image3, image4);
+                                image1, image2, image3, image4, userUID);
 
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
-//                    }
-//                    else
-//                        Toast.makeText(RegisterPG.this, "Please Upload The Images!", Toast.LENGTH_SHORT).show();
+
                     Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+
                     registerComplete();
                     shineBtnClickListener();
                 }
