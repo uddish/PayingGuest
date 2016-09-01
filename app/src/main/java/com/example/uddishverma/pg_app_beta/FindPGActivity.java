@@ -5,7 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -26,10 +32,12 @@ public class FindPGActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pg);
+        setContentView(R.layout.test_layout);
 
 
 /**
@@ -37,6 +45,9 @@ public class FindPGActivity extends AppCompatActivity {
  * setDragEdge(SwipeBackLayout.DragEdge.LEFT);
  * compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar' in GRADLE
  */
+
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -100,5 +111,28 @@ public class FindPGActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu_toolbar,menu);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int res_id=item.getItemId();
+        if(res_id==R.id.filter)
+        {
+            Toast.makeText(getApplicationContext(),"filter",Toast.LENGTH_LONG).show();
+        }
+
+        return true;
     }
 }
