@@ -1,9 +1,11 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.renderscript.Double2;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -71,8 +73,16 @@ public class BlankFragment extends Fragment {
 
         findView(v);
 //
-        Bundle b = getArguments();
+        final Bundle b = getArguments();
         setDetails(b);
+
+        callFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + String.valueOf((int)b.getDouble("CONTACT NO"))));
+                startActivity(intent);
+            }
+        });
 
         customPagerAdapter = new CustomPagerAdapter(getActivity(), b);
         vPager.setAdapter(customPagerAdapter);
@@ -85,6 +95,7 @@ public class BlankFragment extends Fragment {
     TextView pg_name,owners_name,contact_no,email_id,wifi,ac,parking,tv, lunch,dinner,breakfast,
             ro_water,hot_water,security,refrigerator,min_rent,deposit;
     TextView pgAddress, city, state, pinCode;
+    FloatingActionButton callFab;
 
     ViewPager vPager;
 
@@ -92,6 +103,7 @@ public class BlankFragment extends Fragment {
     {
 
         vPager = (ViewPager) v.findViewById(R.id.img_view_pager);
+        callFab = (FloatingActionButton) v.findViewById(R.id.call_fab);
 
          pg_name= (TextView) v.findViewById(R.id.pg_name);
         owners_name= (TextView) v.findViewById(R.id.owners_name);
