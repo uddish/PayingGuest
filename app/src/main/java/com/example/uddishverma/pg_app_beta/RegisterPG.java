@@ -197,11 +197,6 @@ public class RegisterPG extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(userUID == null) {
-                    Toast.makeText(RegisterPG.this, "Please Login First!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 image1 = (cuwbp.downloadUrl1).toString();
                 image2 = (cuwbp.downloadUrl2).toString();
                 image3 = (cuwbp.downloadUrl3).toString();
@@ -210,7 +205,7 @@ public class RegisterPG extends AppCompatActivity {
 
                 if (check == 0) {
 
-                    //Checking if the images are null before pushing them into firebase
+                    //TODO Checking if the images are null before pushing them into firebase
                         PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
                                 Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
                                 Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),

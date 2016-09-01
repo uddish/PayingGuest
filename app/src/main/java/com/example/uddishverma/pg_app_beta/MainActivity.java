@@ -1,7 +1,9 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
 
     FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
 
         if(firebaseAuth.getCurrentUser() != null) {
             Log.d(TAG, "onCreate: USER " + user.getEmail());
@@ -58,8 +61,32 @@ public class MainActivity extends AppCompatActivity
 
     //This function opens the register pg activity
     public void openRegisterPgActivity(View view)   {
-        Intent i = new Intent(this, RegisterPG.class);
-        startActivity(i);
+
+        if(firebaseAuth.getCurrentUser() == null)   {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("SignIn Warning!");
+//            builder.setMessage("Please LogIn/SignUp before registering your PG!");
+            builder.setView(R.layout.signin_alert_dialog);
+            builder.setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
+                }
+            });
+
+            builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+        }
+        else {
+            Intent i = new Intent(this, RegisterPG.class);
+            startActivity(i);
+        }
     }
     //This function opens the find pg activity
     public void openFindPgActivity(View view)   {
