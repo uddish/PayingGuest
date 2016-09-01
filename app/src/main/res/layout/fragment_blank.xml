@@ -20,7 +20,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/img_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -734,17 +734,135 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/call_fab"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="16dp"
-            android:elevation="6dp"
-            android:src="@drawable/ic_phone_black_24dp"
-            app:backgroundTint="@color/colorPrimary"
-            app:pressedTranslationZ="12dp" />
+            android:layout_margin="3dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#1A237E"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="#FFFFFF"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="EXTRA FEATURES"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="57dp"
+                        android:layout_weight="1"
+                        android:background="#000000"
+                        android:src="@drawable/ic_feedback_white_24dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/extra_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NONE SPECIFIED BY THE USER"
+                    android:textAppearance="?android:textAppearanceLarge" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal">-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/call_fab"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:elevation="6dp"-->
+            <!--android:src="@drawable/ic_phone_black_24dp"-->
+            <!--app:backgroundTint="@color/colorPrimary"-->
+            <!--app:pressedTranslationZ="12dp" />-->
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/email_fab"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:elevation="6dp"-->
+            <!--android:src="@drawable/ic_phone_black_24dp"-->
+            <!--app:backgroundTint="@color/colorPrimary"-->
+            <!--app:pressedTranslationZ="12dp" />-->
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:id="@+id/loc_fab"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:elevation="6dp"-->
+                <!--android:src="@drawable/ic_phone_black_24dp"-->
+                <!--app:backgroundTint="@color/colorPrimary"-->
+                <!--app:pressedTranslationZ="12dp" />-->
+
+        <!--</LinearLayout>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_btn_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/fab_btn_add"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_phone_black_24dp"
+                android:layout_marginEnd="20dp"
+                app:backgroundTint="@color/colorPrimary"
+                android:visibility="invisible"
+                android:elevation="6dp"
+                app:pressedTranslationZ="12dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_btn_taxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/fab_btn_add"
+                android:layout_alignParentBottom="true"
+                app:backgroundTint="@color/colorPrimary"
+                android:layout_marginStart="10dp"
+                android:visibility="invisible"
+                android:src="@drawable/ic_my_location_white_24dp"
+                android:elevation="6dp"
+                app:pressedTranslationZ="12dp"/>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fab_margin_right"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                app:backgroundTint="@color/colorPrimary"
+                android:elevation="6dp"
+                android:src="@drawable/ic_add_white_24dp"
+                app:pressedTranslationZ="12dp"/>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </ScrollView>
