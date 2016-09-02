@@ -824,7 +824,7 @@
             android:padding="10dp">
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_btn_loc"
+                android:id="@+id/fab_btn_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/fab_btn_add"
@@ -837,7 +837,7 @@
                 app:pressedTranslationZ="12dp"/>
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_btn_taxi"
+                android:id="@+id/fab_btn_loc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/fab_btn_add"

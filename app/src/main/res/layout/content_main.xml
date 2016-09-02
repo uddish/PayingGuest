@@ -13,18 +13,23 @@
 
     <Button
         android:id="@+id/register_pg_btn"
+        android:background="@drawable/register"
         android:onClick="openRegisterPgActivity"
         android:textAppearance="?android:textAppearanceLarge"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="REGISTER"/>
+        android:layout_height="0dp" />
+
+    <View
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
 
     <Button
         android:id="@+id/find_pg_btn"
         android:onClick="openFindPgActivity"
         android:textAppearance="?android:textAppearanceLarge"
-        android:text="FIND"
+        android:background="@drawable/findact"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp" />

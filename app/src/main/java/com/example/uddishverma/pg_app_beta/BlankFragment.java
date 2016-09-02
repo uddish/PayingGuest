@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class BlankFragment extends Fragment {
@@ -86,13 +87,20 @@ public class BlankFragment extends Fragment {
         setDetails(b);
 
         //Adding call intent on the floating action button
-//        callFab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + String.valueOf((int) b.getDouble("CONTACT NO"))));
-//                startActivity(intent);
-//            }
-//        });
+        fabcall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + String.valueOf((int) b.getDouble("CONTACT NO"))));
+                startActivity(intent);
+            }
+        });
+
+        fabloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Location Activity Updating Soon", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         fabPlus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,21 +108,21 @@ public class BlankFragment extends Fragment {
 
                 if(isOpen)  {
 
-                    fabTaxi.startAnimation(fabClose);
-                    fabLoc.startAnimation(fabClose);
+                    fabloc.startAnimation(fabClose);
+                    fabcall.startAnimation(fabClose);
                     fabPlus.startAnimation(fabAnticlockwise);
-                    fabTaxi.setClickable(false);
-                    fabLoc.setClickable(false);
+                    fabloc.setClickable(false);
+                    fabcall.setClickable(false);
                     isOpen = false;
                 }
 
                 else    {
 
-                    fabTaxi.startAnimation(fabOpen);
-                    fabLoc.startAnimation(fabOpen);
+                    fabloc.startAnimation(fabOpen);
+                    fabcall.startAnimation(fabOpen);
                     fabPlus.startAnimation(fabClockwise);
-                    fabTaxi.setClickable(true);
-                    fabLoc.setClickable(true);
+                    fabloc.setClickable(true);
+                    fabcall.setClickable(true);
                     isOpen = true;
 
                 }
@@ -134,7 +142,7 @@ public class BlankFragment extends Fragment {
             ro_water, hot_water, security, refrigerator, min_rent, deposit;
     TextView pgAddress, city, state, pinCode, extraFeatures;
 
-    FloatingActionButton fabPlus, fabTaxi, fabLoc;
+    FloatingActionButton fabPlus, fabloc, fabcall;
 
     ViewPager vPager;
 
@@ -147,9 +155,8 @@ public class BlankFragment extends Fragment {
          * TEST FUNCTIONS
          */
         fabPlus = (FloatingActionButton) v.findViewById(R.id.fab_btn_add);
-        fabTaxi = (FloatingActionButton) v.findViewById(R.id.fab_btn_taxi);
-        fabLoc = (FloatingActionButton) v.findViewById(R.id.fab_btn_loc);
-
+        fabloc = (FloatingActionButton) v.findViewById(R.id.fab_btn_loc);
+        fabcall = (FloatingActionButton) v.findViewById(R.id.fab_btn_call);
 
         pg_name = (TextView) v.findViewById(R.id.pg_name);
         owners_name = (TextView) v.findViewById(R.id.owners_name);

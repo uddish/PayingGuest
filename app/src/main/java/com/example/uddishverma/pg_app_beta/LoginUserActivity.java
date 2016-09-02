@@ -79,20 +79,9 @@ public class LoginUserActivity extends AppCompatActivity {
 
         //Handling the click events of the floating action button
         fab.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                getWindow().setExitTransition(null);
-                getWindow().setEnterTransition(null);
-
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)   {
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(LoginUserActivity.this, fab, fab.getTransitionName());
-                    startActivity(new Intent(LoginUserActivity.this, RegisterUserActivity.class), options.toBundle());
-                }
-                else    {
-                    startActivity(new Intent(LoginUserActivity.this, RegisterUserActivity.class));
-                }
+                startActivity(new Intent(getApplicationContext(), RegisterUserActivity.class));
             }
         });
     }
