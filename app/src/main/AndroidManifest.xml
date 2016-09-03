@@ -28,8 +28,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/MyTheme">
-        </activity>
+            android:theme="@style/MyTheme"></activity>
+        <activity android:name=".FilterActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,13 +36,20 @@ public class FindPGActivity extends AppCompatActivity {
     RecyclerView.Adapter madapter;
     RecyclerView.LayoutManager layoutManager;
     private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
+    Button filterButton;
+    Intent filterActivityIntent;
+
 
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.test_layout);
+
+         filterActivityIntent=new Intent(this,FilterActivity.class);
+
 
 
 /**
@@ -48,6 +60,15 @@ public class FindPGActivity extends AppCompatActivity {
 
         toolbar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        filterButton= (Button) findViewById(R.id.filter);
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(filterActivityIntent);
+            }
+        });
 
 
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -114,25 +135,5 @@ public class FindPGActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.menu_toolbar,menu);
 
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        int res_id=item.getItemId();
-        if(res_id==R.id.filter)
-        {
-            Toast.makeText(getApplicationContext(),"filter",Toast.LENGTH_LONG).show();
-        }
-
-        return true;
-    }
 }
