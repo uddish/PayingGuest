@@ -60,7 +60,7 @@ public class CustomPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
-        View view = mLayoutInflater.inflate(R.layout.viewpager_imageview, container, false);
+        View view = mLayoutInflater.inflate(R.layout.view_pager_imageview, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.fragment_image_view);
 
         setImageUrl();

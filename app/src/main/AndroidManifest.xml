@@ -29,6 +29,9 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/MyTheme"></activity>
+
+        <activity android:name=".FilterActivity"></activity>
+
         <activity android:name=".AuthorisationActivity"></activity>
     </application>
 

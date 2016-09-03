@@ -1,11 +1,22 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -25,11 +36,20 @@ public class FindPGActivity extends AppCompatActivity {
     RecyclerView.Adapter madapter;
     RecyclerView.LayoutManager layoutManager;
     private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
+    Button filterButton;
+    Intent filterActivityIntent;
+
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pg);
+
+        setContentView(R.layout.test_layout);
+
+         filterActivityIntent=new Intent(this,FilterActivity.class);
+
 
 
 /**
@@ -37,6 +57,18 @@ public class FindPGActivity extends AppCompatActivity {
  * setDragEdge(SwipeBackLayout.DragEdge.LEFT);
  * compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar' in GRADLE
  */
+
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        filterButton= (Button) findViewById(R.id.filter);
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(filterActivityIntent);
+            }
+        });
 
 
         mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -101,4 +133,7 @@ public class FindPGActivity extends AppCompatActivity {
         });
 
     }
+
+
+
 }
