@@ -42,15 +42,8 @@ public class SplashScreen extends Activity {
             public void onAnimationEnd(Animation animation) {
                 finish();
 
-                //Checking which activity to open based on the login status
-                if(firebaseAuth.getCurrentUser() == null) {
-                    Intent intent = new Intent(SplashScreen.this, LoginUserActivity.class);
-                    startActivity(intent);
-                }
-                else    {
                     Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(intent);
-                }
 
             }
 

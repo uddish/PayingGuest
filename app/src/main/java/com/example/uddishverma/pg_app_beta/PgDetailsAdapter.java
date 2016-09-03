@@ -161,6 +161,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             intent.putExtra("CITY", obj.getCity());
             intent.putExtra("STATE", obj.getState());
             intent.putExtra("PINCODE", obj.getPinCode());
+            intent.putExtra("EXTRAFEATURES", obj.getExtraFeatures());
             //Sending the intents for the Pg Images which are to be attached to the View Pager
             intent.putExtra("IMAGE_ONE", obj.getPgImageOne());
             intent.putExtra("IMAGE_TWO", obj.getPgImageTwo());
