@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
+    TextView navName, navEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        navName = (TextView) header.findViewById(R.id.account_name);
+        navEmail = (TextView) header.findViewById(R.id.account_email);
+
+        if(user != null)    {
+            navEmail.setText(user.getEmail());
+
+        }
     }
 
 
@@ -65,13 +75,11 @@ public class MainActivity extends AppCompatActivity
         if(firebaseAuth.getCurrentUser() == null)   {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("SignIn Warning!");
-//            builder.setMessage("Please LogIn/SignUp before registering your PG!");
             builder.setView(R.layout.signin_alert_dialog);
             builder.setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
+                    startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
                 }
             });
 
@@ -136,7 +144,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_account) {
             if(firebaseAuth.getCurrentUser() == null)   {
-                startActivity(new Intent(getApplicationContext(), LoginUserActivity.class));
+                startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
             }
             else
                 Toast.makeText(MainActivity.this, "My Account Updating Soon", Toast.LENGTH_SHORT).show();
@@ -147,9 +155,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_deletePg) {
 
-        } else if(id == R.id.nav_logout)    {
-            if(firebaseAuth.getCurrentUser() != null)
-            firebaseAuth.signOut();
+        } else if(id == R.id.nav_logout) {
+            if (firebaseAuth.getCurrentUser() != null)  {
+                firebaseAuth.signOut();
+            Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+        }
             else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }

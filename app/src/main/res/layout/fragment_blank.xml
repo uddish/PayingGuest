@@ -856,6 +856,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/fab_margin_right"
                 android:layout_alignParentBottom="true"
+                app:fabSize="normal"
                 android:layout_centerInParent="true"
                 app:backgroundTint="@color/colorPrimary"
                 android:elevation="6dp"
