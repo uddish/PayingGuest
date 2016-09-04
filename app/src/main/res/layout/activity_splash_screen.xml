@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/splash_image"
-        android:src="@drawable/splashscreen"
+        android:src="@drawable/logonew"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
