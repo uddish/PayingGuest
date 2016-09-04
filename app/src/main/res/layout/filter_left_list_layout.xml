@@ -2,15 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="5dp"
     android:background="@android:color/white">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:layout_height="60dp"
+        android:text="FILTER BY"
+        android:gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
         android:id="@+id/options_tv"
-        android:layout_marginLeft="10dp"
-        android:textColor="@android:color/holo_blue_dark"
-
+        android:layout_margin="5dp"
+        android:textColor="@android:color/black"
         />
 
 </LinearLayout>

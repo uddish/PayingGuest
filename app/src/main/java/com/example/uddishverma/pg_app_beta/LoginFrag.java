@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +34,6 @@ public class LoginFrag extends Fragment {
     EditText loginEmail, loginPassword;
     Button btnLogin, btnGoogle, btnFb;
     TextView forgotPass;
-    int flag = 0;
     ProgressDialog progressDialog;
     ImageView eye;
     FirebaseAuth firebaseAuth;
@@ -42,7 +43,7 @@ public class LoginFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+//        Firebase.getDefaultConfig().setPersistenceEnabled(true);
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
 
@@ -56,10 +57,54 @@ public class LoginFrag extends Fragment {
         btnFb = (Button) view.findViewById(R.id.btn_fb);
         forgotPass = (TextView) view.findViewById(R.id.forgot_pass);
 
+
+       //Adding click events on the login button
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userLogin();
+            }
+        });
+
+        //Adding click events on the eye button
+        eye.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction())  {
+                    case MotionEvent.ACTION_DOWN:
+                        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                if(!TextUtils.isEmpty(loginEmail.getText()))    {
+                    String emailAddress = loginEmail.getText().toString();
+
+                    auth.sendPasswordResetEmail(emailAddress).
+                            addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Toast.makeText(getContext(), "Check your email for the password reset link", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                        Toast.makeText(getContext(), "Incorrect Email ID", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+                else    {
+                    Toast.makeText(getContext(), "Enter Email Id First", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -82,17 +127,17 @@ public class LoginFrag extends Fragment {
         }
 
         firebaseAuth.signInWithEmailAndPassword(email, password).
-                addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()) {
+                        if(task.isSuccessful()) {
                             Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-//                            finish();
                             startActivity(new Intent(getContext(), MainActivity.class));
-                            //set the credentials in navigation drawer and start the next activity
-                        } else
+                        }
+                        else    {
                             Toast.makeText(getContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }

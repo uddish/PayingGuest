@@ -14,20 +14,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:background="@color/colorPrimary"
-        android:drawableLeft="@drawable/filter"
-        android:text="Filter"
+        android:drawableLeft="@drawable/ic_done_white_24dp"
+        android:text="Done"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:background="@color/colorPrimary"
-        android:drawableLeft="@drawable/sort"
-        android:text="Sort"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
-
 
 </android.support.v7.widget.Toolbar>

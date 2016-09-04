@@ -46,7 +46,7 @@ public class FindPGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.test_layout);
+        setContentView(R.layout.activity_find_pg);
 
          filterActivityIntent=new Intent(this,FilterActivity.class);
 

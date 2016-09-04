@@ -20,7 +20,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="PG IMAGES"/>
@@ -30,7 +30,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:padding="15dp"
             android:text="(Please Upload the PG Images)"/>
 
@@ -89,7 +89,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="PG DETAILS"/>
@@ -195,7 +195,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#1A237E"
+                android:background="#F4CC70"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:padding="15dp"
                 android:text="LOCATION"/>
@@ -204,7 +204,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
-                android:background="#1A237E"/>
+                android:background="#F4CC70"/>
         </LinearLayout>
 
         <com.github.florent37.materialtextfield.MaterialTextField
@@ -306,7 +306,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="SERVICES"/>
@@ -434,7 +434,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="PREFERENCE"/>
@@ -480,7 +480,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:text="GENDER PREFERENCE"
             android:textColor="@android:color/white"/>
         <LinearLayout
@@ -528,7 +528,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="FINANCE INFORMATION"/>
@@ -611,7 +611,7 @@
             android:layout_centerInParent="true"
             android:src="@android:color/darker_gray"
             android:id="@+id/shine_button"
-            app:btn_color="#FF6666"
+            app:btn_color="#F4CC70"
             app:btn_fill_color="#1A237E"
             app:allow_random_color="false"
             app:enable_flashing="false"

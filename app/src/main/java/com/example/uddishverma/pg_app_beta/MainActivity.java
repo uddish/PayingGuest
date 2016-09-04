@@ -3,6 +3,8 @@ package com.example.uddishverma.pg_app_beta;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     FirebaseUser user;
 
     TextView navName, navEmail;
+    CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +63,14 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         navName = (TextView) header.findViewById(R.id.account_name);
         navEmail = (TextView) header.findViewById(R.id.account_email);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinate_layout);
 
+        //Setting the name in navigation drawer
         if(user != null)    {
-            navEmail.setText(user.getEmail());
+            navName.setText(user.getDisplayName().toString());
+            navEmail.setText(user.getEmail().toString());
+
+            Snackbar.make(coordinatorLayout, "Howdy " + user.getDisplayName().toString() + "!", Snackbar.LENGTH_LONG).show();
 
         }
     }

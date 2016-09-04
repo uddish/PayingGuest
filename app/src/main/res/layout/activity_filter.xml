@@ -3,26 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.uddishverma.pg_app_beta.FilterActivity"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context="com.example.uddishverma.pg_app_beta.FilterActivity">
 
+    <include
+        android:id="@+id/filter_toolbar"
+        layout="@layout/filter_toolbar" />
 
-    <ListView
-        android:layout_weight="2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:id="@+id/list_view_left"
-        android:background="@android:color/white"
-        >
-    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <ListView
-        android:id="@+id/list_view_right"
-        android:layout_weight="3"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        <ListView
+            android:id="@+id/list_view_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:background="@android:color/white"/>
 
-    </ListView>
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
+        <ListView
+            android:id="@+id/list_view_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@android:color/white">
+
+        </ListView>
+
+    </LinearLayout>
 
 </LinearLayout>

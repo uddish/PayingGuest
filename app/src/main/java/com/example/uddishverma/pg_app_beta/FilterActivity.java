@@ -2,6 +2,7 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,29 +24,33 @@ public class FilterActivity extends AppCompatActivity {
     ArrayList<String> colleges;
     ArrayList<String> institutes;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        detailsList=new ArrayList<String>();
+        detailsList = new ArrayList<String>();
         detailsList.add("Locality");
         detailsList.add("College");
         detailsList.add("Coaching Institute");
         detailsList.add("Rent");
 
+        toolbar = (Toolbar) findViewById(R.id.filter_toolbar);
+        setSupportActionBar(toolbar);
 
         String l[]={"Dwarka","Pitampura","Rohini","Rithala","Dilshad Garden","Vikas Puri","Jhilmil","Paschim Vihar"};
 
         locality=new ArrayList<String>();
-        for(int i=0;i<l.length;i++)
+        for(int i = 0; i < l.length; i++)
         {
             locality.add(l[i]);
         }
 
-        String c[]={"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
-        colleges=new ArrayList<String >();
-        for(int i=0;i<c.length;i++)
+        String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
+        colleges = new ArrayList<String >();
+        for(int i = 0; i < c.length; i++)
         {
             colleges.add(c[i]);
         }
@@ -63,7 +68,7 @@ public class FilterActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
             {
 
-                if(position==0)
+                if(position == 0)
                 {
                     RightListDetailsAdapter adapter=new RightListDetailsAdapter(locality);
                     rightList.setAdapter(adapter);

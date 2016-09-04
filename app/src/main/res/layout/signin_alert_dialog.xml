@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:fontFamily="sans-serif"
-        android:text="Please SignIn before registering yout PG!"
+        android:text="Please SignIn before registering your PG!"
         android:textAppearance="?android:textAppearanceLarge"/>
         </LinearLayout>
 
