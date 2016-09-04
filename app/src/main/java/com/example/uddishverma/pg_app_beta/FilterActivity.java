@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -98,7 +99,7 @@ public class FilterActivity extends AppCompatActivity {
 
         class ExpandViewHolder
         {
-            RadioButton filterExpandTextView;
+            CheckBox filterCheckBox;
         }
 
         @Override
@@ -122,14 +123,14 @@ public class FilterActivity extends AppCompatActivity {
             ExpandViewHolder holder=new ExpandViewHolder();
             if (convertView == null) {
                 convertView = l.inflate(R.layout.filter_right_list_layout, null);
-                holder.filterExpandTextView = (RadioButton) convertView.findViewById(R.id.radioButton);
+                holder.filterCheckBox = (CheckBox) convertView.findViewById(R.id.filter_chkbox);
                 convertView.setTag(holder);
             } else {
                 holder = (ExpandViewHolder) convertView.getTag();
             }
 
             String ob= (String) getItem(position);
-            holder.filterExpandTextView.setText(ob);
+            holder.filterCheckBox.setText(ob);
             return convertView;
         }
     }
