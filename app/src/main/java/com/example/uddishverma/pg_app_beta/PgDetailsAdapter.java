@@ -68,7 +68,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         imageDownloadRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-//                Picasso.with(ctx).load(uri).resize(395, 175).centerCrop().into(holder.pg_img);
+
                 Picasso.with(ctx).load(uri).fit().into(holder.pg_img);
             }
         }).addOnFailureListener(new OnFailureListener() {

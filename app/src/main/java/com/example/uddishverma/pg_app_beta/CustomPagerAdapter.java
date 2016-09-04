@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 /**
  * Created by UddishVerma on 27/08/16.
+ * This class fetches the images from firebase
+ * and are set into the viewpager in blankFragment class
  */
 public class CustomPagerAdapter extends PagerAdapter {
 

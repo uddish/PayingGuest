@@ -88,7 +88,7 @@ public class FindPGActivity extends AppCompatActivity {
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("pinCode").equalTo("4354"));
+        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("ac").equalTo("true"));
 
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
@@ -99,6 +99,16 @@ public class FindPGActivity extends AppCompatActivity {
 
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+
+                    /**
+                     * This statement will be used to query from the firebase wrt to a particular POJO field
+                     * The below log statement displays the city anit value
+                     * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city")));
+                     *
+                     * And this is used tp display cardViews where CITY = DELHI
+                     * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+                     */
+
                         PgDetails_POJO.PgDetails model = dataSnapshot
                                 .getValue(PgDetails_POJO.PgDetails.class);
                         cardDetails.add(model);
@@ -106,8 +116,8 @@ public class FindPGActivity extends AppCompatActivity {
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);
                         madapter.notifyDataSetChanged();
 
-                    //Stopping the progress dialogue
-                    pd.dismiss();
+                        //Stopping the progress dialogue
+                        pd.dismiss();
                 }
             }
 
