@@ -233,6 +233,31 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:text="LOCALITY"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/locality"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="xyz"
+                        android:textAppearance="?android:textAppearanceLarge" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="CITY"
                         android:textAppearance="?android:textAppearanceLarge"
                         android:textColor="#000000" />
@@ -294,6 +319,31 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="110095"
+                        android:textAppearance="?android:textAppearanceLarge" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="NEARBY INSTITUTION"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/nearby_ins"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="xyz"
                         android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
             </LinearLayout>

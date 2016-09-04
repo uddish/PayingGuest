@@ -140,7 +140,7 @@ public class BlankFragment extends Fragment {
 
     TextView pg_name, owners_name, contact_no, email_id, wifi, ac, parking, tv, lunch, dinner, breakfast,
             ro_water, hot_water, security, refrigerator, min_rent, deposit;
-    TextView pgAddress, city, state, pinCode, extraFeatures;
+    TextView pgAddress, city, state, pinCode, extraFeatures, locality, nearbyIns;
 
     FloatingActionButton fabPlus, fabloc, fabcall;
 
@@ -180,6 +180,8 @@ public class BlankFragment extends Fragment {
         state = (TextView) v.findViewById(R.id.state);
         pinCode = (TextView) v.findViewById(R.id.pinCode);
         extraFeatures = (TextView) v.findViewById(R.id.extra_tv);
+        locality = (TextView) v.findViewById(R.id.locality);
+        nearbyIns = (TextView) v.findViewById(R.id.nearby_ins);
 
     }
 
@@ -194,6 +196,8 @@ public class BlankFragment extends Fragment {
         city.setText(b.getString("CITY"));
         state.setText(b.getString("STATE"));
         pinCode.setText(String.valueOf((int) b.getDouble("PINCODE")));
+        locality.setText(b.getString("LOCALITY"));
+        nearbyIns.setText(b.getString("INSTITUTE"));
         if(!b.getString("EXTRAFEATURES").equals("")) {
             extraFeatures.setText(b.getString("EXTRAFEATURES"));
         }

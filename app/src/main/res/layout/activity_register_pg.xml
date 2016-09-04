@@ -220,7 +220,7 @@
                 android:id="@+id/address_line_one_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ADDRESS LINE 1"
+                android:hint="ADDRESS"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />
@@ -235,10 +235,10 @@
             app:mtf_image="@drawable/ic_home_grey_700_24dp"
             >
             <EditText
-                android:id="@+id/address_line_two_et"
+                android:id="@+id/locality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ADDRESS LINE 2 (Optional)"
+                android:hint="LOCALITY"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />
@@ -295,6 +295,26 @@
                 android:maxLength="6"
                 android:layout_height="wrap_content"
                 android:hint="PIN CODE"
+                android:textColor="#333"
+                android:textColorHint="#666"
+                android:textSize="20sp" />
+        </com.github.florent37.materialtextfield.MaterialTextField>
+        <com.github.florent37.materialtextfield.MaterialTextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mtf_animationDuration="200"
+            android:padding="15dp"
+            app:mtf_openKeyboardOnFocus="true"
+            app:mtf_cardCollapsedHeight="4dp"
+            app:mtf_image="@drawable/ic_location_city_black_24dp"
+            >
+            <EditText
+                android:id="@+id/nearby_inst"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_height="wrap_content"
+                android:hint="NEARBY INSTITUTION"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="20sp" />

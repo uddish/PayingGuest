@@ -141,8 +141,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             intent.putExtra("OWNER NAME",obj.getOwnerName());
             intent.putExtra("CONTACT NO",obj.getContactNo());
             intent.putExtra("EMAIL",obj.getEmail());
-            intent.putExtra("A1",obj.getAddressOne());
-            intent.putExtra("A2",obj.getAddressTwo());
+            intent.putExtra("INSTITUTE",obj.getNearbyInstitute());
             intent.putExtra("WIFI",obj.getWifi());
             intent.putExtra("AC",obj.getAc());
             intent.putExtra("REFRIGERATOR",obj.getFridge());
@@ -157,7 +156,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             intent.putExtra("RENT",obj.getRent());
             intent.putExtra("DEPOSIT",obj.getDepositAmount());
             intent.putExtra("ADDRESS", obj.getAddressOne());
-            intent.putExtra("ADDRESSTWO", obj.getAddressTwo());
+            intent.putExtra("LOCALITY", obj.getLocality());
             intent.putExtra("CITY", obj.getCity());
             intent.putExtra("STATE", obj.getState());
             intent.putExtra("PINCODE", obj.getPinCode());

@@ -26,10 +26,11 @@ public class PgDetails_POJO {
         Boolean breakfast;
         Boolean parking;
         String addressOne;
-        String addressTwo;
+        String locality;
         String city;
         String state;
         double pinCode;
+        String nearbyInstitute;
         Boolean ac;
         Boolean lunch;
         Boolean dinner;
@@ -49,9 +50,9 @@ public class PgDetails_POJO {
         public PgDetails(String id, String pgName, String ownerName, double contactNo, String email,double rent,
                          double depositAmount, String extraFeatures, Boolean wifi,Boolean breakfast, Boolean parking,
                           Boolean ac, Boolean lunch ,Boolean dinner,Boolean roWater, Boolean security,
-                          Boolean tv, Boolean hotWater,Boolean fridge,String addressOne, String addressTwo,
+                          Boolean tv, Boolean hotWater,Boolean fridge,String addressOne, String locality,
                           String city,String state, double pinCode,String preference, String genderPreference,
-                         String pgImageOne, String pgImageTwo, String pgImageThree, String pgImageFour, String userUID) {
+                         String pgImageOne, String pgImageTwo, String pgImageThree, String pgImageFour, String userUID, String nearbyInstitute) {
 
             this.id = id;
             this.pgName = pgName;
@@ -73,7 +74,7 @@ public class PgDetails_POJO {
             this.hotWater = hotWater;
             this.fridge = fridge;
             this.addressOne = addressOne;
-            this.addressTwo = addressTwo;
+            this.locality = locality;
             this.city = city;
             this.state = state;
             this.pinCode = pinCode;
@@ -84,6 +85,7 @@ public class PgDetails_POJO {
             this.pgImageThree = pgImageThree;
             this.pgImageFour = pgImageFour;
             this.userUID = userUID;
+            this.nearbyInstitute = nearbyInstitute;
         }
 
         public PgDetails()  {
@@ -134,8 +136,8 @@ public class PgDetails_POJO {
             return addressOne;
         }
 
-        public String getAddressTwo() {
-            return addressTwo;
+        public String getLocality() {
+            return locality;
         }
 
         public String getCity() {
@@ -212,6 +214,10 @@ public class PgDetails_POJO {
 
         public String getUserUID() {
             return userUID;
+        }
+
+        public String getNearbyInstitute() {
+            return nearbyInstitute;
         }
 
 

@@ -68,8 +68,8 @@ public class RegisterPG extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST_THREE = 3;
     private int PICK_IMAGE_REQUEST_FOUR = 4;
 
-    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, addressTwo,
-            city, state, pinCode;
+    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, locality,
+            city, state, pinCode, nearbyInstitute;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     ShineButton shineButton;
     ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
@@ -92,13 +92,14 @@ public class RegisterPG extends AppCompatActivity {
         contactNo = (EditText) findViewById(R.id.contactNumber_et);
         email = (EditText) findViewById(R.id.email_et);
         addressOne = (EditText) findViewById(R.id.address_line_one_et);
-        addressTwo = (EditText) findViewById(R.id.address_line_two_et);
+        locality = (EditText) findViewById(R.id.locality);
         city = (EditText) findViewById(R.id.city_et);
         state = (EditText) findViewById(R.id.state_et);
         pinCode = (EditText) findViewById(R.id.pincode_et);
         rent = (EditText) findViewById(R.id.rent_et);
         depositAmount = (EditText) findViewById(R.id.deposit_et);
         extraFeatures = (EditText) findViewById(R.id.extra_et);
+        nearbyInstitute = (EditText) findViewById(R.id.nearby_inst);
 
         //attaching the checkboxes
         wifi = (CheckBox) findViewById(R.id.chk_wifi);
@@ -211,9 +212,9 @@ public class RegisterPG extends AppCompatActivity {
                                 Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
                                 wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
                                 roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
-                                addressOne.getText().toString(), addressTwo.getText().toString(),
+                                addressOne.getText().toString(), locality.getText().toString(),
                                 city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
-                                image1, image2, image3, image4, userUID);
+                                image1, image2, image3, image4, userUID, nearbyInstitute.getText().toString());
 
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
 
@@ -392,13 +393,14 @@ public class RegisterPG extends AppCompatActivity {
         contactNo.setText("");
         email.setText("");
         addressOne.setText("");
-        addressTwo.setText("");
+        locality.setText("");
         city.setText("");
         state.setText("");
         pinCode.setText("");
         rent.setText("");
         depositAmount.setText("");
         extraFeatures.setText("");
+        nearbyInstitute.setText("");
 //        startActivity(new Intent(this, TempActivity.class));
 
         //******************************************For custom toast***********************************************
@@ -425,11 +427,6 @@ public class RegisterPG extends AppCompatActivity {
 
         //TODO CHECK IF IMAGES ARE NULL OR NOT
 
-//        if(imgUpload_1.getDrawable() != null)   {
-//            Toast.makeText(RegisterPG.this, "Please Upload the Image!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-
         if (pgName.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
             return 1;
@@ -451,6 +448,11 @@ public class RegisterPG extends AppCompatActivity {
             Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
             return 1;
         }
+        if (locality.getText().toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+
         // NOTE--> not adding constraints on address line two as it is optional
         if (city.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
@@ -462,6 +464,10 @@ public class RegisterPG extends AppCompatActivity {
         }
         if (pinCode.getText().toString().matches("")) {
             Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if (nearbyInstitute.toString().matches("")) {
+            Toast.makeText(RegisterPG.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (rent.getText().toString().matches("")) {
