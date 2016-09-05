@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
         } else if (id == R.id.nav_pg) {
+            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
 
         } else if (id == R.id.nav_editPg) {
 

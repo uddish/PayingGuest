@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 //TODO complete the click events of addPg and deletePg
 
+/**
+ * This activity gets called when the user clicks on the My Account section in the navigation drawer
+ */
 public class MyAccountPage extends AppCompatActivity {
 
     public static final String TAG = "MyAccountPage";

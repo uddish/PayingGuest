@@ -108,6 +108,7 @@ public class FindPGActivity extends AppCompatActivity {
                      * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
                      */
 
+                    Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
                         PgDetails_POJO.PgDetails model = dataSnapshot
                                 .getValue(PgDetails_POJO.PgDetails.class);
                         cardDetails.add(model);

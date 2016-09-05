@@ -31,7 +31,8 @@
             android:theme="@style/MyTheme" />
         <activity android:name=".FilterActivity" />
         <activity android:name=".AuthorisationActivity" />
-        <activity android:name=".MyAccountPage"></activity>
+        <activity android:name=".MyAccountPage" />
+        <activity android:name=".MyRegisteredPGInfo"></activity>
     </application>
 
 </manifest>
