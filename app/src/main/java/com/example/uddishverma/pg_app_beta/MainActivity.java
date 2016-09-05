@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
             }
             else
-                Toast.makeText(MainActivity.this, "My Account Updating Soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
         } else if (id == R.id.nav_pg) {
 

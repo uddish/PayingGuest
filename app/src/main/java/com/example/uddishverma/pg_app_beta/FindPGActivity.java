@@ -39,7 +39,6 @@ public class FindPGActivity extends AppCompatActivity {
     Button filterButton;
     Intent filterActivityIntent;
 
-
     Toolbar toolbar;
 
     @Override
@@ -48,7 +47,7 @@ public class FindPGActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_find_pg);
 
-         filterActivityIntent=new Intent(this,FilterActivity.class);
+         filterActivityIntent = new Intent(this,FilterActivity.class);
 
 
 

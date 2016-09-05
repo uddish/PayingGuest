@@ -605,7 +605,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="#1A237E"
+            android:background="#F4CC70"
             android:textAppearance="?android:textAppearanceLarge"
             android:padding="15dp"
             android:text="EXTRA FEATURES"/>
@@ -614,7 +614,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="57dp"
-            android:background="#1A237E"/>
+            android:background="#F4CC70"/>
         </LinearLayout>
 
         <EditText
