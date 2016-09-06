@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Thi activity is called when the user selects MY PG from the navigation drawer
  * It directs the user to the fragment and shows his/her PG's information
  */
+//TODO Check if the pg exists for the user
 public class MyRegisteredPGInfo extends AppCompatActivity {
 
     public static final String TAG = "MyRegisteredPGInfo";
@@ -100,13 +101,7 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
                             finish();
                             startActivity(intent);
                         }
-//                         else {
-//                            Log.d(TAG, "onChildAdded: ELSE STATEMENT CALLED");
-//                            pd.dismiss();
-//                            Toast.makeText(MyRegisteredPGInfo.this, "No PG found Under Your Account!", Toast.LENGTH_SHORT).show();
-//                            finish();
-//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                        }
+//
                     }
 
                 }
@@ -145,7 +140,7 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 //        if (flag == 1)  {
 //            Log.d(TAG, "onCreate: FLAG = 1");
 //            pd.dismiss();
-//            Toast.makeText(MyRegisteredPGInfo.this, "No PG found Under Your Account!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MyRegisteredPGInfo.this, "No PG Found Under Your Account!", Toast.LENGTH_SHORT).show();
 //            finish();
 //            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 //        }

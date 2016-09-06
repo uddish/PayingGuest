@@ -161,8 +161,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
 
         } else if (id == R.id.nav_editPg) {
+            Toast.makeText(MainActivity.this, "Edit Activity Updating Soon!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_deletePg) {
+            Toast.makeText(MainActivity.this, "Delete Activitiy Updating Soon!", Toast.LENGTH_SHORT).show();
 
         } else if(id == R.id.nav_logout) {
             if (firebaseAuth.getCurrentUser() != null)  {

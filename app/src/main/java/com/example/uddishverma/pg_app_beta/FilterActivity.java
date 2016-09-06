@@ -75,7 +75,7 @@ public class FilterActivity extends AppCompatActivity {
                     rightList.setAdapter(adapter);
                 }
 
-                else if(position==1)
+                else if(position == 1)
                 {
                     RightListDetailsAdapter adapter=new RightListDetailsAdapter(colleges);
                     rightList.setAdapter(adapter);

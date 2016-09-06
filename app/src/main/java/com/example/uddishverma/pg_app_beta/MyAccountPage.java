@@ -22,7 +22,7 @@ public class MyAccountPage extends AppCompatActivity {
     public static final String TAG = "MyAccountPage";
 
     TextView name, email, noOfPg;
-    Button addPG, deletePG, signOut;
+    Button addPG, deletePG, signOut, deleteAccount;
 
     FirebaseAuth firebaseAuth;
 
@@ -38,19 +38,30 @@ public class MyAccountPage extends AppCompatActivity {
         addPG = (Button) findViewById(R.id.myacc_addpg);
         deletePG = (Button) findViewById(R.id.myacc_deletepg);
         signOut = (Button) findViewById(R.id.myacc_signout);
+        deleteAccount = (Button) findViewById(R.id.myacc_deleteacc);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         name.setText(user.getDisplayName().toString());
         email.setText(user.getEmail());
         Log.d(TAG, "onCreate: " + user.getPhotoUrl());
 
+        //Setting the click events on the sign out button
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
                 Toast.makeText(MyAccountPage.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Setting click events on the Delete Account button
+        deleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterPG.firebaseRef  = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+//                RegisterPG.firebaseRef.removeUser();
             }
         });
 

@@ -188,7 +188,7 @@ public class RegisterPG extends AppCompatActivity {
 
         //Getting the unique UID for each person who SignsIn in the app and sending it to firebase database
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null) {
             userUID = user.getUid();
         }
 
@@ -198,15 +198,20 @@ public class RegisterPG extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                image1 = (cuwbp.downloadUrl1).toString();
-                image2 = (cuwbp.downloadUrl2).toString();
-                image3 = (cuwbp.downloadUrl3).toString();
-                image4 = (cuwbp.downloadUrl4).toString();
-                int check = checkForNullFields();
 
-                if (check == 0) {
+                //Checking if the images are null before pushing them into firebase
+                if (cuwbp.downloadUrl1 != null && cuwbp.downloadUrl2 != null &&
+                        cuwbp.downloadUrl3 != null && cuwbp.downloadUrl4 != null) {
 
-                    //TODO Checking if the images are null before pushing them into firebase
+                    image1 = (cuwbp.downloadUrl1).toString();
+                    image2 = (cuwbp.downloadUrl2).toString();
+                    image3 = (cuwbp.downloadUrl3).toString();
+                    image4 = (cuwbp.downloadUrl4).toString();
+
+                    int check = checkForNullFields();
+
+                    if (check == 0) {
+
                         PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
                                 Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
                                 Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
@@ -218,10 +223,14 @@ public class RegisterPG extends AppCompatActivity {
 
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
 
-                    Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
 
-                    registerComplete();
-                    shineBtnClickListener();
+                        registerComplete();
+                        shineBtnClickListener();
+                    }
+                }
+                else    {
+                    Toast.makeText(RegisterPG.this, "Please Upload the Images!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
