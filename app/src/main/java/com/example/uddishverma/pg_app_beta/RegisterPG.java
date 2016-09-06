@@ -187,17 +187,15 @@ public class RegisterPG extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         //Getting the unique UID for each person who SignsIn in the app and sending it to firebase database
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
         if (firebaseAuth.getCurrentUser() != null) {
             userUID = user.getUid();
         }
-
 
         shineButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
 
                 //Checking if the images are null before pushing them into firebase
                 if (cuwbp.downloadUrl1 != null && cuwbp.downloadUrl2 != null &&
