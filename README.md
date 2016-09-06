@@ -2,4 +2,4 @@
 Beta version of the PG App
 
 Splash Activity
-![screenshot_20160906-210443](https://cloud.githubusercontent.com/assets/15261102/18280483/c66b546a-7476-11e6-817c-336f4abf9102.png)
+![screenshot_20160906-210443](https://cloud.githubusercontent.com/assets/15261102/18280759/e3acfc76-7477-11e6-8fe8-4382ba8ddf85.png)
