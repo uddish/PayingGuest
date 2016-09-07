@@ -23,7 +23,10 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.firebase.client.utilities.Base64;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +61,11 @@ public class RegisterPG extends AppCompatActivity {
     public static final String TAG = "RegisterPG";
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
+
+    //************************************To get the intents from the edit PG Activity*********************************************
+    String key;
+    int editCheck;
+    //*****************************************************************************************************************************
 
     FirebaseAuth firebaseAuth;
 
@@ -192,6 +200,83 @@ public class RegisterPG extends AppCompatActivity {
             userUID = user.getUid();
         }
 
+
+//*************************************************************************************************************
+        //Receiving the key and flag from the Edit PG Activity so that it can be checked edit here
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        if(b != null) {
+            key = b.getString("key");
+            editCheck = b.getInt("flag");
+
+            //Setting the previous PG images in the Register Layout(like shared preferences)
+            firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if(dataSnapshot.child("userUID").getValue().equals(user.getUid()))  {
+                        PgDetails_POJO.PgDetails pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+
+                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).resize(600, 600).centerCrop().into(imgUpload_1);
+                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).resize(600, 600).centerCrop().into(imgUpload_2);
+                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).resize(600, 600).centerCrop().into(imgUpload_3);
+                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).resize(600, 600).centerCrop().into(imgUpload_4);
+
+                        pgName.setText(pgDetails.getPgName());
+                        ownerName.setText(pgDetails.getOwnerName());
+                        contactNo.setText(String.valueOf((int) pgDetails.getContactNo()));
+                        email.setText(pgDetails.getEmail());
+                        addressOne.setText(pgDetails.getAddressOne());
+                        locality.setText(pgDetails.getLocality());
+                        city.setText(pgDetails.getCity());
+                        state.setText(pgDetails.getState());
+                        pinCode.setText(String.valueOf((int) pgDetails.getPinCode()));
+                        rent.setText(String.valueOf((int) pgDetails.getRent()));
+                        depositAmount.setText(String.valueOf((int) pgDetails.getDepositAmount()));
+                        nearbyInstitute.setText(pgDetails.getNearbyInstitute());
+                        extraFeatures.setText(pgDetails.getExtraFeatures());
+
+                        wifi.setChecked(pgDetails.getWifi());
+                        //ac, break, lunch, dinner, park, ro, secu, tv, hotwa, refri
+                        ac.setChecked(pgDetails.getAc());
+                        breakfast.setChecked(pgDetails.getBreakfast());
+                        lunch.setChecked(pgDetails.getLunch());
+                        dinner.setChecked(pgDetails.getDinner());
+                        parking.setChecked(pgDetails.getParking());
+                        roWater.setChecked(pgDetails.getRoWater());
+                        security.setChecked(pgDetails.getSecurity());
+                        tv.setChecked(pgDetails.getTv());
+                        hotWater.setChecked(pgDetails.getHotWater());
+                        refrigerator.setChecked(pgDetails.getFridge());
+
+
+                    }
+
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+        }
+//**************************************************************************************************************
+
+
         shineButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -219,16 +304,27 @@ public class RegisterPG extends AppCompatActivity {
                                 city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
                                 image1, image2, image3, image4, userUID, nearbyInstitute.getText().toString());
 
-                        firebaseRef.child("PgDetails").push().setValue(pgDetails);
 
-                        Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+                        //UPDATING THE PG
+                        if (editCheck == EditPG.FINAL_FLAG) {
+                            Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
+                            firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
+//                            editCheck = EditPG.INITIAL_FLAG;
+                            Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
+                        }
 
+
+                        //ADDING A NEW PG
+                        else {
+                            Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
+                            firebaseRef.child("PgDetails").push().setValue(pgDetails);
+                            Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+                        }
                         registerComplete();
                         shineBtnClickListener();
                     }
-                }
-                else    {
-                    Toast.makeText(RegisterPG.this, "Please Upload the Images!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegisterPG.this, "Images Not Uploaded Successfully!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -23,8 +23,7 @@
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".FragmentCaller" />
-        <activity android:name=".LoginUserActivity" />
-        <activity android:name=".RegisterUserActivity" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
@@ -32,7 +31,8 @@
         <activity android:name=".FilterActivity" />
         <activity android:name=".AuthorisationActivity" />
         <activity android:name=".MyAccountPage" />
-        <activity android:name=".MyRegisteredPGInfo"></activity>
+        <activity android:name=".MyRegisteredPGInfo" />
+        <activity android:name=".EditPG" />
     </application>
 
 </manifest>
