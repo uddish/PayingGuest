@@ -28,8 +28,10 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.utilities.Base64;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -80,7 +82,7 @@ public class RegisterPG extends AppCompatActivity {
             city, state, pinCode, nearbyInstitute;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     ShineButton shineButton;
-    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4, cancelImage1, cancelImage2, cancelImage3, cancelImage4;
     String preference;
     String genderPreference;
 
@@ -127,6 +129,17 @@ public class RegisterPG extends AppCompatActivity {
         imgUpload_2 = (ImageView) findViewById(R.id.pg_img_two);
         imgUpload_3 = (ImageView) findViewById(R.id.pg_img_three);
         imgUpload_4 = (ImageView) findViewById(R.id.pg_img_four);
+
+        //Attaching the delete buttons for the images
+        cancelImage1 = (ImageView) findViewById(R.id.cancel_image_one);
+        cancelImage2 = (ImageView) findViewById(R.id.cancel_image_two);
+        cancelImage3 = (ImageView) findViewById(R.id.cancel_image_three);
+        cancelImage4 = (ImageView) findViewById(R.id.cancel_image_four);
+
+        cancelImage1.setClickable(false);
+        cancelImage2.setClickable(false);
+        cancelImage3.setClickable(false);
+        cancelImage4.setClickable(false);
 
 
         /**
@@ -205,16 +218,18 @@ public class RegisterPG extends AppCompatActivity {
         //Receiving the key and flag from the Edit PG Activity so that it can be checked edit here
         Intent i = getIntent();
         Bundle b = i.getExtras();
-        if(b != null) {
+        if (b != null) {
             key = b.getString("key");
             editCheck = b.getInt("flag");
+
 
             //Setting the previous PG images in the Register Layout(like shared preferences)
             firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if(dataSnapshot.child("userUID").getValue().equals(user.getUid()))  {
-                        PgDetails_POJO.PgDetails pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                        final PgDetails_POJO.PgDetails pgDetails;
+                        pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 
                         Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).resize(600, 600).centerCrop().into(imgUpload_1);
                         Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).resize(600, 600).centerCrop().into(imgUpload_2);
@@ -249,6 +264,125 @@ public class RegisterPG extends AppCompatActivity {
                         refrigerator.setChecked(pgDetails.getFridge());
 
 
+                        //Deleting the previous images from the firebase reference
+                        final FirebaseStorage storage = FirebaseStorage.getInstance();
+
+
+                        /**
+                         * Adding the click events of the cancelImage button
+                         * After clicking on this button, the images are deleted from the firebase reference
+                         */
+
+                        cancelImage1.setVisibility(View.VISIBLE);
+                        cancelImage2.setVisibility(View.VISIBLE);
+                        cancelImage3.setVisibility(View.VISIBLE);
+                        cancelImage4.setVisibility(View.VISIBLE);
+
+                        cancelImage1.setClickable(true);
+                        cancelImage2.setClickable(true);
+                        cancelImage3.setClickable(true);
+                        cancelImage4.setClickable(true);
+
+
+                        cancelImage1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
+                                StorageReference imageone = storageRef;
+
+                                Log.d(TAG, "onChildAdded: IMAGE ONE URI " + storageRef);
+
+                                imageone.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                        //Cancel Button 2
+                        cancelImage2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageTwo());
+                                StorageReference imagetwo = storageRef;
+
+                                Log.d(TAG, "onChildAdded: IMAGE TWO URI " + storageRef);
+
+                                imagetwo.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                        //Cancel Button 2
+                        cancelImage3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageThree());
+                                StorageReference imagethree = storageRef;
+
+                                Log.d(TAG, "onChildAdded: IMAGE THREE URI " + storageRef);
+
+                                imagethree.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                        //Cancel Button 2
+                        cancelImage4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageFour());
+                                StorageReference imagefour = storageRef;
+
+                                Log.d(TAG, "onChildAdded: IMAGE FOUR URI " + storageRef);
+
+                                imagefour.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
                     }
 
                 }
@@ -273,6 +407,19 @@ public class RegisterPG extends AppCompatActivity {
 
                 }
             });
+
+            //Deleting the previous images from the firebase reference
+//            FirebaseStorage storage = FirebaseStorage.getInstance();
+//            storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
+//            StorageReference imageone = storageRef.child(pgDetails.getPgImageOne());
+//            StorageReference imagetwo = storageRef.child(pgDetails.getPgImageTwo());
+//            StorageReference imagethree = storageRef.child(pgDetails.getPgImageThree());
+//            StorageReference imagefour = storageRef.child(pgDetails.getPgImageFour());
+//            imageone.delete();
+//            imagetwo.delete();
+//            imagethree.delete();
+//            imagefour.delete();
+
         }
 //**************************************************************************************************************
 
@@ -318,7 +465,7 @@ public class RegisterPG extends AppCompatActivity {
                         else {
                             Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                             firebaseRef.child("PgDetails").push().setValue(pgDetails);
-                            Toast.makeText(RegisterPG.this, "DETAILS SUBMITTED", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
                         }
                         registerComplete();
                         shineBtnClickListener();

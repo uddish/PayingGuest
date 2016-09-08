@@ -29,6 +29,8 @@ import java.util.concurrent.Executor;
 /**
  * Created by UddishVerma on 03/09/16.
  */
+
+//TODO add progress bar
 public class LoginFrag extends Fragment {
 
     EditText loginEmail, loginPassword;
