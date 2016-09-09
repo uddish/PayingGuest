@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -82,7 +83,8 @@ public class RegisterPG extends AppCompatActivity {
             city, state, pinCode, nearbyInstitute;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     ShineButton shineButton;
-    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4, cancelImage1, cancelImage2, cancelImage3, cancelImage4;
+    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    TextView cancelImage1, cancelImage2, cancelImage3, cancelImage4;
     String preference;
     String genderPreference;
 
@@ -131,10 +133,10 @@ public class RegisterPG extends AppCompatActivity {
         imgUpload_4 = (ImageView) findViewById(R.id.pg_img_four);
 
         //Attaching the delete buttons for the images
-        cancelImage1 = (ImageView) findViewById(R.id.cancel_image_one);
-        cancelImage2 = (ImageView) findViewById(R.id.cancel_image_two);
-        cancelImage3 = (ImageView) findViewById(R.id.cancel_image_three);
-        cancelImage4 = (ImageView) findViewById(R.id.cancel_image_four);
+        cancelImage1 = (TextView) findViewById(R.id.cancel_image_one);
+        cancelImage2 = (TextView) findViewById(R.id.cancel_image_two);
+        cancelImage3 = (TextView) findViewById(R.id.cancel_image_three);
+        cancelImage4 = (TextView) findViewById(R.id.cancel_image_four);
 
         cancelImage1.setClickable(false);
         cancelImage2.setClickable(false);
@@ -215,7 +217,7 @@ public class RegisterPG extends AppCompatActivity {
 
 
 //*************************************************************************************************************
-        //Receiving the key and flag from the Edit PG Activity so that it can be checked edit here
+        //Receiving the key and flag from the Edit PG Activity so that it can be checked and edit here
         Intent i = getIntent();
         Bundle b = i.getExtras();
         if (b != null) {
@@ -407,18 +409,6 @@ public class RegisterPG extends AppCompatActivity {
 
                 }
             });
-
-            //Deleting the previous images from the firebase reference
-//            FirebaseStorage storage = FirebaseStorage.getInstance();
-//            storageRef = storage.getReferenceFromUrl("gs://pgapp-c51ce.appspot.com");
-//            StorageReference imageone = storageRef.child(pgDetails.getPgImageOne());
-//            StorageReference imagetwo = storageRef.child(pgDetails.getPgImageTwo());
-//            StorageReference imagethree = storageRef.child(pgDetails.getPgImageThree());
-//            StorageReference imagefour = storageRef.child(pgDetails.getPgImageFour());
-//            imageone.delete();
-//            imagetwo.delete();
-//            imagethree.delete();
-//            imagefour.delete();
 
         }
 //**************************************************************************************************************

@@ -69,27 +69,35 @@
             android:orientation="horizontal"
             android:paddingBottom="5dp">
 
-            <ImageView
+            <TextView
                 android:id="@+id/cancel_image_one"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:elevation="5dp"
+                android:text="EDIT"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="#FFFFFF"
                 android:visibility="invisible"
                 android:background="@color/colorPrimary"
                 android:padding="5dp"
-                android:src="@drawable/ic_cancel_white_18dp" />
+                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/cancel_image_two"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:elevation="5dp"
+                android:text="EDIT"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="#FFFFFF"
                 android:visibility="invisible"
                 android:background="@color/colorPrimary"
                 android:padding="5dp"
-                android:src="@drawable/ic_cancel_white_18dp" />
+                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -126,27 +134,35 @@
             android:orientation="horizontal"
             android:paddingBottom="5dp">
 
-            <ImageView
+            <TextView
                 android:id="@+id/cancel_image_three"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:elevation="5dp"
+                android:text="EDIT"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="#FFFFFF"
                 android:visibility="invisible"
                 android:background="@color/colorPrimary"
                 android:padding="5dp"
-                android:src="@drawable/ic_cancel_white_18dp" />
+                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/cancel_image_four"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:elevation="5dp"
+                android:text="EDIT"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColor="#FFFFFF"
                 android:visibility="invisible"
                 android:background="@color/colorPrimary"
                 android:padding="5dp"
-                android:src="@drawable/ic_cancel_white_18dp" />
+                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
         </LinearLayout>
 
         <TextView
