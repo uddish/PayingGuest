@@ -285,12 +285,17 @@ public class RegisterPG extends AppCompatActivity {
                         cancelImage3.setClickable(true);
                         cancelImage4.setClickable(true);
 
+                        imgUpload_1.setClickable(false);
+                        imgUpload_2.setClickable(false);
+                        imgUpload_3.setClickable(false);
+                        imgUpload_4.setClickable(false);
 
                         cancelImage1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+
                                 storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
-                                StorageReference imageone = storageRef;
+                                final StorageReference imageone = storageRef;
 
                                 Log.d(TAG, "onChildAdded: IMAGE ONE URI " + storageRef);
 
@@ -298,7 +303,14 @@ public class RegisterPG extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
-                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+
+                                        //After deleting, starting the gallery intent
+                                        Intent intent = new Intent();
+                                        intent.setType("image/*");
+                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -323,7 +335,14 @@ public class RegisterPG extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
-                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+
+                                        //After deleting, starting the gallery intent
+                                        Intent i = new Intent();
+                                        i.setType("image/*");
+                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                        i.setAction(Intent.ACTION_GET_CONTENT);
+                                        startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -348,7 +367,13 @@ public class RegisterPG extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
-                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent();
+                                        intent.setType("image/*");
+                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -373,7 +398,13 @@ public class RegisterPG extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
-                                        Toast.makeText(RegisterPG.this, "Image Deleted!", Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent();
+                                        intent.setType("image/*");
+                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
