@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity
             builder.create().show();
         }
         else {
-            Intent i = new Intent(this, RegisterPG.class);
+//            Intent i = new Intent(this, RegisterPG.class);
+            Intent i = new Intent(this, RegisterPGPageOne.class);
             startActivity(i);
         }
     }

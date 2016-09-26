@@ -64,6 +64,7 @@ public class RegisterPG extends AppCompatActivity {
     public static final String TAG = "RegisterPG";
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
+    String source;                  //Source tell us from which activity the intent is coming from
 
     //************************************To get the intents from the edit PG Activity*********************************************
     String key;
@@ -219,231 +220,244 @@ public class RegisterPG extends AppCompatActivity {
 //*************************************************************************************************************
         //Receiving the key and flag from the Edit PG Activity so that it can be checked and edit here
         Intent i = getIntent();
-        Bundle b = i.getExtras();
-        if (b != null) {
-            key = b.getString("key");
-            editCheck = b.getInt("flag");
+
+        //Checkig if the intent is recieved from EditPG Activity
+        if (i.getStringExtra("source").equals("editPG")) {
+            Log.d(TAG, "onCreate: INTENT NOT FROM UPDATE ACTIVITY");
+            Bundle b = i.getExtras();
+            if (b != null) {
+                key = b.getString("key");
+                editCheck = b.getInt("flag");
 
 
-            //Setting the previous PG images in the Register Layout(like shared preferences)
-            firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
-                        final PgDetails_POJO.PgDetails pgDetails;
-                        pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+                //Setting the previous PG images in the Register Layout(like shared preferences for the user to edit it
+                firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                            final PgDetails_POJO.PgDetails pgDetails;
+                            pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 
-                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).resize(600, 600).centerCrop().into(imgUpload_1);
-                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).resize(600, 600).centerCrop().into(imgUpload_2);
-                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).resize(600, 600).centerCrop().into(imgUpload_3);
-                        Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).resize(600, 600).centerCrop().into(imgUpload_4);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).resize(600, 600).centerCrop().into(imgUpload_1);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).resize(600, 600).centerCrop().into(imgUpload_2);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).resize(600, 600).centerCrop().into(imgUpload_3);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).resize(600, 600).centerCrop().into(imgUpload_4);
 
-                        pgName.setText(pgDetails.getPgName());
-                        ownerName.setText(pgDetails.getOwnerName());
-                        contactNo.setText(String.valueOf((int) pgDetails.getContactNo()));
-                        email.setText(pgDetails.getEmail());
-                        addressOne.setText(pgDetails.getAddressOne());
-                        locality.setText(pgDetails.getLocality());
-                        city.setText(pgDetails.getCity());
-                        state.setText(pgDetails.getState());
-                        pinCode.setText(String.valueOf((int) pgDetails.getPinCode()));
-                        rent.setText(String.valueOf((int) pgDetails.getRent()));
-                        depositAmount.setText(String.valueOf((int) pgDetails.getDepositAmount()));
-                        nearbyInstitute.setText(pgDetails.getNearbyInstitute());
-                        extraFeatures.setText(pgDetails.getExtraFeatures());
+                            pgName.setText(pgDetails.getPgName());
+                            ownerName.setText(pgDetails.getOwnerName());
+                            contactNo.setText(String.valueOf((int) pgDetails.getContactNo()));
+                            email.setText(pgDetails.getEmail());
+                            addressOne.setText(pgDetails.getAddressOne());
+                            locality.setText(pgDetails.getLocality());
+                            city.setText(pgDetails.getCity());
+                            state.setText(pgDetails.getState());
+                            pinCode.setText(String.valueOf((int) pgDetails.getPinCode()));
+                            rent.setText(String.valueOf((int) pgDetails.getRent()));
+                            depositAmount.setText(String.valueOf((int) pgDetails.getDepositAmount()));
+                            nearbyInstitute.setText(pgDetails.getNearbyInstitute());
+                            extraFeatures.setText(pgDetails.getExtraFeatures());
 
-                        wifi.setChecked(pgDetails.getWifi());
-                        //ac, break, lunch, dinner, park, ro, secu, tv, hotwa, refri
-                        ac.setChecked(pgDetails.getAc());
-                        breakfast.setChecked(pgDetails.getBreakfast());
-                        lunch.setChecked(pgDetails.getLunch());
-                        dinner.setChecked(pgDetails.getDinner());
-                        parking.setChecked(pgDetails.getParking());
-                        roWater.setChecked(pgDetails.getRoWater());
-                        security.setChecked(pgDetails.getSecurity());
-                        tv.setChecked(pgDetails.getTv());
-                        hotWater.setChecked(pgDetails.getHotWater());
-                        refrigerator.setChecked(pgDetails.getFridge());
-
-
-                        //Deleting the previous images from the firebase reference
-                        final FirebaseStorage storage = FirebaseStorage.getInstance();
+                            wifi.setChecked(pgDetails.getWifi());
+                            ac.setChecked(pgDetails.getAc());
+                            breakfast.setChecked(pgDetails.getBreakfast());
+                            lunch.setChecked(pgDetails.getLunch());
+                            dinner.setChecked(pgDetails.getDinner());
+                            parking.setChecked(pgDetails.getParking());
+                            roWater.setChecked(pgDetails.getRoWater());
+                            security.setChecked(pgDetails.getSecurity());
+                            tv.setChecked(pgDetails.getTv());
+                            hotWater.setChecked(pgDetails.getHotWater());
+                            refrigerator.setChecked(pgDetails.getFridge());
 
 
-                        /**
-                         * Adding the click events of the cancelImage button
-                         * After clicking on this button, the images are deleted from the firebase reference
-                         */
+                            //Deleting the previous images from the firebase reference
+                            final FirebaseStorage storage = FirebaseStorage.getInstance();
 
-                        cancelImage1.setVisibility(View.VISIBLE);
-                        cancelImage2.setVisibility(View.VISIBLE);
-                        cancelImage3.setVisibility(View.VISIBLE);
-                        cancelImage4.setVisibility(View.VISIBLE);
 
-                        cancelImage1.setClickable(true);
-                        cancelImage2.setClickable(true);
-                        cancelImage3.setClickable(true);
-                        cancelImage4.setClickable(true);
+                            /**
+                             * Adding the click events of the cancelImage button
+                             * After clicking on this button, the images are deleted from the firebase reference
+                             */
 
-                        imgUpload_1.setClickable(false);
-                        imgUpload_2.setClickable(false);
-                        imgUpload_3.setClickable(false);
-                        imgUpload_4.setClickable(false);
+                            cancelImage1.setVisibility(View.VISIBLE);
+                            cancelImage2.setVisibility(View.VISIBLE);
+                            cancelImage3.setVisibility(View.VISIBLE);
+                            cancelImage4.setVisibility(View.VISIBLE);
 
-                        cancelImage1.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                            cancelImage1.setClickable(true);
+                            cancelImage2.setClickable(true);
+                            cancelImage3.setClickable(true);
+                            cancelImage4.setClickable(true);
 
-                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
-                                final StorageReference imageone = storageRef;
+                            imgUpload_1.setClickable(false);
+                            imgUpload_2.setClickable(false);
+                            imgUpload_3.setClickable(false);
+                            imgUpload_4.setClickable(false);
 
-                                Log.d(TAG, "onChildAdded: IMAGE ONE URI " + storageRef);
+                            cancelImage1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                                imageone.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                                    storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
+                                    final StorageReference imageone = storageRef;
 
-                                        //After deleting, starting the gallery intent
-                                        Intent intent = new Intent();
-                                        intent.setType("image/*");
-                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+                                    Log.d(TAG, "onChildAdded: IMAGE ONE URI " + storageRef);
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
-                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
+                                    imageone.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
 
-                        //Cancel Button 2
-                        cancelImage2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageTwo());
-                                StorageReference imagetwo = storageRef;
+                                            //After deleting, starting the gallery intent
+                                            Intent intent = new Intent();
+                                            intent.setType("image/*");
+                                            //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
 
-                                Log.d(TAG, "onChildAdded: IMAGE TWO URI " + storageRef);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                            Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
 
-                                imagetwo.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                            //Cancel Button 2
+                            cancelImage2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageTwo());
+                                    StorageReference imagetwo = storageRef;
 
-                                        //After deleting, starting the gallery intent
-                                        Intent i = new Intent();
-                                        i.setType("image/*");
-                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                                        i.setAction(Intent.ACTION_GET_CONTENT);
-                                        startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+                                    Log.d(TAG, "onChildAdded: IMAGE TWO URI " + storageRef);
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
-                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
+                                    imagetwo.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
 
-                        //Cancel Button 2
-                        cancelImage3.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageThree());
-                                StorageReference imagethree = storageRef;
+                                            //After deleting, starting the gallery intent
+                                            Intent i = new Intent();
+                                            i.setType("image/*");
+                                            //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                            i.setAction(Intent.ACTION_GET_CONTENT);
+                                            startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
 
-                                Log.d(TAG, "onChildAdded: IMAGE THREE URI " + storageRef);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                            Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
 
-                                imagethree.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                            //Cancel Button 2
+                            cancelImage3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageThree());
+                                    StorageReference imagethree = storageRef;
 
-                                        Intent intent = new Intent();
-                                        intent.setType("image/*");
-                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+                                    Log.d(TAG, "onChildAdded: IMAGE THREE URI " + storageRef);
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
-                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
+                                    imagethree.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
 
-                        //Cancel Button 2
-                        cancelImage4.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageFour());
-                                StorageReference imagefour = storageRef;
+                                            Intent intent = new Intent();
+                                            intent.setType("image/*");
+                                            //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
 
-                                Log.d(TAG, "onChildAdded: IMAGE FOUR URI " + storageRef);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                            Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
 
-                                imagefour.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+                            //Cancel Button 2
+                            cancelImage4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageFour());
+                                    StorageReference imagefour = storageRef;
 
-                                        Intent intent = new Intent();
-                                        intent.setType("image/*");
-                                        //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+                                    Log.d(TAG, "onChildAdded: IMAGE FOUR URI " + storageRef);
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
-                                        Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
+                                    imagefour.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "onSuccess: IMAGE DELETED SUCCESSFULLY");
+
+                                            Intent intent = new Intent();
+                                            intent.setType("image/*");
+                                            //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "onFailure: IMAGE DELETE FAILED");
+                                            Toast.makeText(RegisterPG.this, "Image Can Not Be Deleted!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
+
+                        }
 
                     }
 
-                }
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    }
 
-                }
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    }
 
-                }
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    }
 
-                }
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
 
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-            });
-
+                    }
+                });
+            }
         }
 //**************************************************************************************************************
 
+        //Checking if the intent is from registerPageOne Activity
+        Intent registerIntent = getIntent();
+        final Bundle bun = registerIntent.getExtras();
+        if (bun.getString("source").equals("registerPageOne")) {
+            Log.d(TAG, "onClick: NAME FROM INTENT " + bun.getString("pgName"));
+            Log.d(TAG, "onClick: PREFERENCE FROM INTENT " + bun.getString("preference"));
+            Log.d(TAG, "onClick: AC FROM INTENT " + bun.getBoolean("ac"));
+            Log.d(TAG, "onClick: wifi FROM INTENT " + bun.getBoolean("wifi"));
+
+        }
 
         shineButton.setOnClickListener(new View.OnClickListener() {
 
@@ -459,18 +473,28 @@ public class RegisterPG extends AppCompatActivity {
                     image3 = (cuwbp.downloadUrl3).toString();
                     image4 = (cuwbp.downloadUrl4).toString();
 
-                    int check = checkForNullFields();
+//                    if(check == 0)
 
-                    if (check == 0) {
+//                        PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
+//                                Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
+//                                Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
+//                                wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
+//                                roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
+//                                addressOne.getText().toString(), locality.getText().toString(),
+//                                city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
+//                                image1, image2, image3, image4, userUID, nearbyInstitute.getText().toString());
 
-                        PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
-                                Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
-                                Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
-                                wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
-                                roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
-                                addressOne.getText().toString(), locality.getText().toString(),
-                                city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
-                                image1, image2, image3, image4, userUID, nearbyInstitute.getText().toString());
+//******************************************* SENDING THE DETAILS TO THE FIREBASE DATABASE****************************************
+
+                        PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, bun.getString("pgName"), bun.getString("ownerName"),
+                                Double.parseDouble(bun.getString("contactNo")), bun.getString("email"),
+                                Double.parseDouble(bun.getString("rent")), Double.parseDouble(bun.getString("depositAmount")), bun.getString("extraFeatures"),
+                                bun.getBoolean("wifi"), bun.getBoolean("breakfast"), bun.getBoolean("parking"), bun.getBoolean("ac"), bun.getBoolean("lunching"), bun.getBoolean("dinner"),
+                                bun.getBoolean("roWater"), bun.getBoolean("security"), bun.getBoolean("tv"), bun.getBoolean("hotWater"), bun.getBoolean("refrigerator"),
+                                bun.getString("addressOne"), bun.getString("locality"),
+                                bun.getString("city"), bun.getString("state"), Double.parseDouble(bun.getString("pinCode")), bun.getString("preference"), bun.getString("genderPreference"),
+                                image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
+
 
 
                         //UPDATING THE PG
@@ -490,7 +514,6 @@ public class RegisterPG extends AppCompatActivity {
                         }
                         registerComplete();
                         shineBtnClickListener();
-                    }
                 } else {
                     Toast.makeText(RegisterPG.this, "Images Not Uploaded Successfully!", Toast.LENGTH_SHORT).show();
                 }
@@ -694,62 +717,62 @@ public class RegisterPG extends AppCompatActivity {
     /**
      * Checks for the null fields in the RegisterPg Activity
      */
-    private int checkForNullFields() {
-
-        //TODO CHECK IF IMAGES ARE NULL OR NOT
-
-        if (pgName.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-
-        if (ownerName.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (contactNo.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (email.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (addressOne.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (locality.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-
-        // NOTE--> not adding constraints on address line two as it is optional
-        if (city.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (state.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (pinCode.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (nearbyInstitute.toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (rent.getText().toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        if (depositAmount.toString().matches("")) {
-            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
-        return 0;
-    }
+//    private int checkForNullFields() {
+//
+//        //TODO CHECK IF IMAGES ARE NULL OR NOT
+//
+//        if (pgName.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//
+//        if (ownerName.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (contactNo.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (email.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (addressOne.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (locality.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//
+//        // NOTE--> not adding constraints on address line two as it is optional
+//        if (city.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (state.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (pinCode.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the PinCode!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (nearbyInstitute.toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (rent.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        if (depositAmount.toString().matches("")) {
+//            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
+//        return 0;
+//    }
 
 }

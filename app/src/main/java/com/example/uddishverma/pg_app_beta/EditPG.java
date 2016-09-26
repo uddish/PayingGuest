@@ -59,6 +59,7 @@ public class EditPG extends AppCompatActivity {
                             Intent i = new Intent(getApplicationContext(), RegisterPG.class);
                             i.putExtra("flag", flag);
                             i.putExtra("key", pgKey);
+                            i.putExtra("source", "editPG");
                             finish();
                             startActivity(i);
                         }
