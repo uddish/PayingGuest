@@ -23,7 +23,6 @@
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".FragmentCaller" />
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
@@ -33,6 +32,7 @@
         <activity android:name=".MyAccountPage" />
         <activity android:name=".MyRegisteredPGInfo" />
         <activity android:name=".EditPG" />
+        <activity android:name=".RegisterPGPageOne"></activity>
     </application>
 
 </manifest>
