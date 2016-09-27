@@ -19,16 +19,12 @@ public class SplashScreen extends Activity {
 
     ImageView imageView;
 
-    FirebaseAuth firebaseAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
         imageView = (ImageView) findViewById(R.id.splash_image);
-
-        firebaseAuth = FirebaseAuth.getInstance();
 
         Animation animationUtils= AnimationUtils.loadAnimation(getBaseContext(),R.anim.anim_splash_screen);
         imageView.startAnimation(animationUtils);

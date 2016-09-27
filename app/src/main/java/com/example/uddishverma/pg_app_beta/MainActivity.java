@@ -3,6 +3,7 @@ package com.example.uddishverma.pg_app_beta;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -35,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     TextView navName, navEmail;
     CoordinatorLayout coordinatorLayout;
 
+    GoogleApiClient mGoogleApiClient;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 
         if(firebaseAuth.getCurrentUser() != null) {
             Log.d(TAG, "onCreate: USER " + user.getEmail());
+            Log.d(TAG, "onCreate: USER " + user.getUid());
         }
 
 
@@ -64,6 +75,20 @@ public class MainActivity extends AppCompatActivity
         navName = (TextView) header.findViewById(R.id.account_name);
         navEmail = (TextView) header.findViewById(R.id.account_email);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinate_layout);
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+            @Override
+            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                Toast.makeText(MainActivity.this,"Google play services error..",Toast.LENGTH_SHORT).show();
+            }
+        }).addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .build();
 
         //Setting the name in navigation drawer
         if(user != null)    {
@@ -163,7 +188,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_editPg) {
             startActivity(new Intent(getApplicationContext(), EditPG.class));
-            Toast.makeText(MainActivity.this, "Edit Activity Updating Soon!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_deletePg) {
             Toast.makeText(MainActivity.this, "Delete Activity Updating Soon!", Toast.LENGTH_SHORT).show();
@@ -171,8 +195,17 @@ public class MainActivity extends AppCompatActivity
         } else if(id == R.id.nav_logout) {
             if (firebaseAuth.getCurrentUser() != null)  {
                 firebaseAuth.signOut();
+
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+
+                    }
+                });
+
             Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
         }
+
             else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }

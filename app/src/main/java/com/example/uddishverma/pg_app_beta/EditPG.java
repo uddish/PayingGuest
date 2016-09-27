@@ -25,7 +25,7 @@ public class EditPG extends AppCompatActivity {
     public static final int INITIAL_FLAG = 9001;
     public static final int FINAL_FLAG = 8001;
     int flag = INITIAL_FLAG;
-
+    int count = 0;
     ProgressDialog dialog;
 
     public static final String TAG = "EditPG";
@@ -43,6 +43,7 @@ public class EditPG extends AppCompatActivity {
         dialog.show();
 
         if (user != null) {
+            Log.d(TAG, "onCreate: COUNT 1 " + count);
 
             Firebase.setAndroidContext(this);
             RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
@@ -50,20 +51,34 @@ public class EditPG extends AppCompatActivity {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                     if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+
                         if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                            count = 1;
                             Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
                             pgKey = dataSnapshot.getKey();
                             flag = FINAL_FLAG;
                             dialog.dismiss();
-                            Intent i = new Intent(getApplicationContext(), RegisterPG.class);
+                            Intent i = new Intent(getApplicationContext(), RegisterPGPageOne.class);
                             i.putExtra("flag", flag);
                             i.putExtra("key", pgKey);
                             i.putExtra("source", "editPG");
                             finish();
                             startActivity(i);
+                            Log.d(TAG, "onChildAdded: COUNT 2 INSIDE LOOP " + count);
+                        }
+                        else    {
+                            Log.d(TAG, "onChildAdded: COUNT 3 OUTSIDE 2 LOOP " + count);
                         }
                     }
+
+//                    if(count == 0)  {
+//                        dialog.dismiss();
+//                        Log.d(TAG, "onChildAdded: COUNT " + count);
+//                        Toast.makeText(EditPG.this, "No Pg Found!", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                    }
                 }
 
                 @Override
@@ -86,7 +101,11 @@ public class EditPG extends AppCompatActivity {
 
                 }
             });
-        } else {
+        }
+
+        Log.d(TAG, "onCreate: COUNT 4 LAST ONE " + count);
+
+        if(user == null) {
             Toast.makeText(EditPG.this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
         }
     }
