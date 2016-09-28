@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash"
     tools:context="com.example.uddishverma.pg_app_beta.SplashScreen">
 
-    <ImageView
-        android:id="@+id/splash_image"
-        android:src="@drawable/logonew"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!--<ImageView-->
+        <!--android:id="@+id/splash_image"-->
+        <!--android:src="@drawable/splash"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 </RelativeLayout>
