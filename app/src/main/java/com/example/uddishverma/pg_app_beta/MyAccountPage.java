@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +54,8 @@ public class MyAccountPage extends AppCompatActivity {
             public void onClick(View v) {
                 firebaseAuth.signOut();
                 Toast.makeText(MyAccountPage.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 

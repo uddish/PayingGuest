@@ -55,38 +55,6 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 
 
 //        ******************************************************************************************************************
-//        ***********************************Counting number of Pgs in firebase ********************************************
-            RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                        Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                        count = dataSnapshot.getChildrenCount();
-                    }
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-            });
-//        ******************************************************************************************************************
-
 
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
@@ -136,10 +104,11 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 
                             finish();
                             startActivity(intent);
-                        } else {
+                        }
+                        else {
                             countFind++;
 
-                            if (countFind == count) {
+                            if (countFind == MainActivity.noOfChildren) {
                                 pd.dismiss();
                                 Toast.makeText(MyRegisteredPGInfo.this, "No PG Found Under Your Account!", Toast.LENGTH_SHORT).show();
                                 finish();
