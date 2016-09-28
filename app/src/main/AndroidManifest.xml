@@ -33,6 +33,7 @@
         <activity android:name=".MyRegisteredPGInfo" />
         <activity android:name=".EditPG" />
         <activity android:name=".RegisterPGPageOne"/>
+        <activity android:name=".MultiplePGEdit"/>
     </application>
 
 </manifest>
