@@ -64,6 +64,7 @@ public class RegisterPG extends AppCompatActivity {
     public static final String TAG = "RegisterPG";
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
+
     String source;                  //Source tell us from which activity the intent is coming from
 
     //************************************To get the intents from the edit PG Activity*********************************************

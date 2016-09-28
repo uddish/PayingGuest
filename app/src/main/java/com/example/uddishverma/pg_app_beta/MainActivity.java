@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -44,6 +49,10 @@ public class MainActivity extends AppCompatActivity
 
     GoogleApiClient mGoogleApiClient;
 
+    static long noOfChildren;
+
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(this);
 
         user = firebaseAuth.getCurrentUser();
 
@@ -186,8 +197,52 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_pg) {
             startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
 
-        } else if (id == R.id.nav_editPg) {
-            startActivity(new Intent(getApplicationContext(), EditPG.class));
+        }
+        else if (id == R.id.nav_editPg) {
+
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            Firebase.setAndroidContext(this);
+
+            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+            // ********************************Counting the number of Pgs firstin the firebase *****************************************
+            RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                        Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                        noOfChildren = dataSnapshot.getChildrenCount();
+                        finish();
+                        progressDialog.dismiss();
+                        startActivity(new Intent(getApplicationContext(), EditPG.class));
+                    }
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+
+            });
+
+            // ************************************************************************************************************************
 
         } else if (id == R.id.nav_deletePg) {
             Toast.makeText(MainActivity.this, "Delete Activity Updating Soon!", Toast.LENGTH_SHORT).show();

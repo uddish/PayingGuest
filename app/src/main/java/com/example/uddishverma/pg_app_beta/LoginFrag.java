@@ -64,17 +64,18 @@ public class LoginFrag extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-       //Google Sign In Integration in the app
+        //Google Sign In Integration in the app
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleApiClient=new GoogleApiClient.Builder(getContext()).enableAutoManage(LoginFrag.this.getActivity(),0, new GoogleApiClient.OnConnectionFailedListener() {
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext()).enableAutoManage(LoginFrag.this.getActivity(), 0, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                Toast.makeText(getContext(),"Google Play Services Error",Toast.LENGTH_SHORT).show();
-            }}).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+                Toast.makeText(getContext(), "Google Play Services Error", Toast.LENGTH_SHORT).show();
+            }
+        }).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
 
 
         eye = (ImageView) view.findViewById(R.id.eye);
@@ -86,7 +87,7 @@ public class LoginFrag extends Fragment {
         forgotPass = (TextView) view.findViewById(R.id.forgot_pass);
 
 
-       //Adding click events on the login button
+        //Adding click events on the login button
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +100,7 @@ public class LoginFrag extends Fragment {
         eye.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction())  {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         loginPassword.setInputType(InputType.TYPE_CLASS_TEXT);
                         break;
@@ -126,22 +127,20 @@ public class LoginFrag extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                if(!TextUtils.isEmpty(loginEmail.getText()))    {
+                if (!TextUtils.isEmpty(loginEmail.getText())) {
                     String emailAddress = loginEmail.getText().toString();
 
                     auth.sendPasswordResetEmail(emailAddress).
                             addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()) {
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(getContext(), "Check your email for the password reset link", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else
+                                    } else
                                         Toast.makeText(getContext(), "Incorrect Email ID", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
-                else    {
+                } else {
                     Toast.makeText(getContext(), "Enter Email Id First", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -175,11 +174,10 @@ public class LoginFrag extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
 
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
                             Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getContext(), MainActivity.class));
-                        }
-                        else    {
+                        } else {
                             Toast.makeText(getContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -188,7 +186,7 @@ public class LoginFrag extends Fragment {
 
 
     //Google SignIn Function
-    private void googleSignIn()  {
+    private void googleSignIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -198,16 +196,16 @@ public class LoginFrag extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RC_SIGN_IN)   {
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(result.isSuccess())  {
+            if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
                 fireBaseAuthWithGoogle(account);
             }
         }
     }
 
-    private void fireBaseAuthWithGoogle(GoogleSignInAccount acct)   {
+    private void fireBaseAuthWithGoogle(GoogleSignInAccount acct) {
 
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
@@ -220,10 +218,9 @@ public class LoginFrag extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
-                        if(!task.isSuccessful())    {
+                        if (!task.isSuccessful()) {
                             Toast.makeText(getContext(), "Authentication Failed !", Toast.LENGTH_SHORT).show();
-                        }
-                        else    {
+                        } else {
                             startActivity(new Intent(getContext(), MainActivity.class));
                         }
                     }
@@ -233,7 +230,7 @@ public class LoginFrag extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(mGoogleApiClient != null)    {
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
     }
@@ -248,7 +245,7 @@ public class LoginFrag extends Fragment {
     @Override
     public void onStop() {
 
-        if(mGoogleApiClient != null && mGoogleApiClient.isConnected())  {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
         super.onStop();
