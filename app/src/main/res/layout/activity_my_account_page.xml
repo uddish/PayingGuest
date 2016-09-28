@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="NUMBER OF PG REGISTERED"
+                android:text="REGISTERED PG(s)"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textSize="20dp" />
 
@@ -143,11 +143,11 @@
                 android:background="#68829E"
                 android:textColor="#F4CC70"/>
             <Button
-                android:id="@+id/myacc_deletepg"
+                android:id="@+id/myacc_editpg"
                 android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delete Your PG"
+                android:text="Edit Your PG"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textStyle="italic"
                 android:background="#68829E"

@@ -6,9 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -19,6 +16,7 @@
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,12 +32,7 @@
         <activity android:name=".MyAccountPage" />
         <activity android:name=".MyRegisteredPGInfo" />
         <activity android:name=".EditPG" />
-        <activity android:name=".RegisterPGPageOne" />
-        <activity
-            android:name=".IntroActivity"
-            android:theme="@style/Theme.Intro">
-
-        </activity>
+        <activity android:name=".RegisterPGPageOne"></activity>
     </application>
 
 </manifest>

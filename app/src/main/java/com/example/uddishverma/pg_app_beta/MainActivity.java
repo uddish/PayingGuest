@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         user = firebaseAuth.getCurrentUser();
 
-        if(firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null) {
             Log.d(TAG, "onCreate: USER " + user.getEmail());
             Log.d(TAG, "onCreate: USER " + user.getUid());
         }
@@ -96,13 +96,13 @@ public class MainActivity extends AppCompatActivity
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                Toast.makeText(MainActivity.this,"Google play services error..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Google play services error..", Toast.LENGTH_SHORT).show();
             }
-        }).addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+        }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         //Setting the name in navigation drawer
-        if(user != null)    {
+        if (user != null) {
             navName.setText(user.getDisplayName().toString());
             navEmail.setText(user.getEmail().toString());
 
@@ -112,11 +112,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     //This function opens the register pg activity
-    public void openRegisterPgActivity(View view)   {
+    public void openRegisterPgActivity(View view) {
 
-        if(firebaseAuth.getCurrentUser() == null)   {
+        if (firebaseAuth.getCurrentUser() == null) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setView(R.layout.signin_alert_dialog);
@@ -134,19 +133,18 @@ public class MainActivity extends AppCompatActivity
                 }
             });
             builder.create().show();
-        }
-        else {
+        } else {
 //            Intent i = new Intent(this, RegisterPG.class);
             Intent i = new Intent(this, RegisterPGPageOne.class);
             startActivity(i);
         }
     }
+
     //This function opens the find pg activity
-    public void openFindPgActivity(View view)   {
+    public void openFindPgActivity(View view) {
         Intent i = new Intent(this, FindPGActivity.class);
         startActivity(i);
     }
-
 
 
     @Override
@@ -188,67 +186,117 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_account) {
-            if(firebaseAuth.getCurrentUser() == null)   {
+            if (firebaseAuth.getCurrentUser() == null) {
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
-            }
-            else
+            } else
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
         } else if (id == R.id.nav_pg) {
-            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+// ********************************Counting the number of Pgs first in the firebase ***************************************
+            if (user == null) {
+                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+            } else {
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                Firebase.setAndroidContext(this);
 
-        }
-        else if (id == R.id.nav_editPg) {
+                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-            progressDialog.setMessage("Please Wait...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            Firebase.setAndroidContext(this);
-
-            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-            // ********************************Counting the number of Pgs firstin the firebase *****************************************
-            RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                        Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                        noOfChildren = dataSnapshot.getChildrenCount();
-                        finish();
-                        progressDialog.dismiss();
-                        startActivity(new Intent(getApplicationContext(), EditPG.class));
+                // ********************************Counting the number of Pgs first in the firebase ***********************************
+                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                            noOfChildren = dataSnapshot.getChildrenCount();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                        }
                     }
-                }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                }
+                    }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                }
+                    }
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+                    }
 
-                @Override
-                public void onCancelled(FirebaseError firebaseError) {
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
 
-                }
+                    }
 
-            });
+                });
+            }
+
+            // ************************************************************************************************************************
+
+
+        } else if (id == R.id.nav_editPg) {
+
+            if (user == null) {
+                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                Firebase.setAndroidContext(this);
+
+                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+                // ********************************Counting the number of Pgs first in the firebase ***********************************
+                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                            noOfChildren = dataSnapshot.getChildrenCount();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(), EditPG.class));
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+
+                });
+            }
 
             // ************************************************************************************************************************
 
         } else if (id == R.id.nav_deletePg) {
             Toast.makeText(MainActivity.this, "Delete Activity Updating Soon!", Toast.LENGTH_SHORT).show();
 
-        } else if(id == R.id.nav_logout) {
-            if (firebaseAuth.getCurrentUser() != null)  {
+        } else if (id == R.id.nav_logout) {
+
+            if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
 
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
@@ -258,10 +306,8 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-            Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
-        }
-
-            else
+                Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+            } else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
 
