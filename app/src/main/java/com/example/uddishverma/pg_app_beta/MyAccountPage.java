@@ -52,6 +52,7 @@ public class MyAccountPage extends AppCompatActivity {
         email.setText(user.getEmail());
         Log.d(TAG, "onCreate: " + user.getPhotoUrl());
 
+
         addPG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +60,7 @@ public class MyAccountPage extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RegisterPGPageOne.class));
             }
         });
+
 
         editPG.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,47 +70,7 @@ public class MyAccountPage extends AppCompatActivity {
             }
         });
 
-        //Setting the number of PGs
 
-//        if (user != null) {
-//
-//            Firebase.setAndroidContext(this);
-//            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-//
-//            RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//                    if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-//
-//                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
-//                            count++;
-//                        }
-//                    }
-//                }
-//
-//                @Override
-//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(FirebaseError firebaseError) {
-//
-//                }
-//            });
-//        }
-//
         //Setting the click events on the sign out button
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override

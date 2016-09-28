@@ -128,39 +128,10 @@ public class MultiplePGEditAdapter extends RecyclerView.Adapter<MultiplePGEditAd
             int position = getAdapterPosition();
             PgDetails_POJO.PgDetails obj = this.list.get(position);
 
-            Intent intent = new Intent(this.ctx,FragmentCaller.class);
+            Intent intent = new Intent(this.ctx,EditPG.class);
             intent.putExtra("PG ID",obj.getId());
-            intent.putExtra("PG Name",obj.getPgName());
-            intent.putExtra("OWNER NAME",obj.getOwnerName());
-            intent.putExtra("CONTACT NO",obj.getContactNo());
-            intent.putExtra("EMAIL",obj.getEmail());
-            intent.putExtra("INSTITUTE",obj.getNearbyInstitute());
-            intent.putExtra("WIFI",obj.getWifi());
-            intent.putExtra("AC",obj.getAc());
-            intent.putExtra("REFRIGERATOR",obj.getFridge());
-            intent.putExtra("PARKING",obj.getParking());
-            intent.putExtra("TV",obj.getTv());
-            intent.putExtra("LUNCH",obj.getLunch());
-            intent.putExtra("DINNER",obj.getDinner());
-            intent.putExtra("BREAKFAST",obj.getBreakfast());
-            intent.putExtra("RO",obj.getRoWater());
-            intent.putExtra("HOT WATER",obj.getHotWater());
-            intent.putExtra("SECURITY",obj.getSecurity());
-            intent.putExtra("RENT",obj.getRent());
-            intent.putExtra("DEPOSIT",obj.getDepositAmount());
-            intent.putExtra("ADDRESS", obj.getAddressOne());
-            intent.putExtra("LOCALITY", obj.getLocality());
-            intent.putExtra("CITY", obj.getCity());
-            intent.putExtra("STATE", obj.getState());
-            intent.putExtra("PINCODE", obj.getPinCode());
-            intent.putExtra("EXTRAFEATURES", obj.getExtraFeatures());
-            //Sending the intents for the Pg Images which are to be attached to the View Pager
-            intent.putExtra("IMAGE_ONE", obj.getPgImageOne());
-            intent.putExtra("IMAGE_TWO", obj.getPgImageTwo());
-            intent.putExtra("IMAGE_THREE", obj.getPgImageThree());
-            intent.putExtra("IMAGE_FOUR", obj.getPgImageFour());
-
-            Log.d(TAG,"calling");
+            intent.putExtra("source", "MultiplePGEditApapter");
+            //TODO How to add Finish(); here?
             this.ctx.startActivity(intent);
         }
     }

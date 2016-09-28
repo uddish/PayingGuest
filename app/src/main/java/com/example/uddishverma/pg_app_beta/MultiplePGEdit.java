@@ -96,6 +96,7 @@ public class MultiplePGEdit extends AppCompatActivity {
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                     Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
 
+                    //Getting the PGs of corresponding to the User's UID
                     if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
                         PgDetails_POJO.PgDetails model = dataSnapshot
                                 .getValue(PgDetails_POJO.PgDetails.class);
