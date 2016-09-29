@@ -9,7 +9,7 @@
 
     <Button
         android:layout_marginRight="10dp"
-        android:id="@+id/filter"
+        android:id="@+id/filter_apply_btn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="right"
