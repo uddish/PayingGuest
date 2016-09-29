@@ -205,10 +205,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_account) {
             if (firebaseAuth.getCurrentUser() == null) {
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
-            } else
+            }
+            else
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
-        } else if (id == R.id.nav_pg) {
+        }
+        else if (id == R.id.nav_pg) {
+
 // ********************************Counting the number of Pgs first in the firebase ***************************************
             if (user == null) {
                 Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
@@ -318,6 +321,7 @@ public class MainActivity extends AppCompatActivity
 
             if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
+                user = null;
 
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override

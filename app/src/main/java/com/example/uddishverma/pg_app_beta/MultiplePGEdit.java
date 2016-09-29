@@ -41,7 +41,7 @@ public class MultiplePGEdit extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    String pgId;
+    long noOfChildren;
     long count = 0;
     int countFind = 0;
 
@@ -83,71 +83,74 @@ public class MultiplePGEdit extends AppCompatActivity {
         //Adding progress dialogue while the cards are loading
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("Please Wait...");
-//        pd.setCancelable(false);
+        pd.setCancelable(false);
         pd.show();
 
         Firebase.setAndroidContext(this);
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-        RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+        if(MainActivity.noOfChildren == 0) {
+            Log.d(TAG, "onCreate: NUMBER OF CHILDREN FROM MY ACCOUNT " + MyAccountPage.noOfChildrenTwo);
+            MainActivity.noOfChildren = MyAccountPage.noOfChildrenTwo;
+        }
 
 
-            @JsonIgnoreProperties
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
-                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+                @JsonIgnoreProperties
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                    //Getting the PGs of corresponding to the User's UID
-                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
-                        PgDetails_POJO.PgDetails model = dataSnapshot
-                                .getValue(PgDetails_POJO.PgDetails.class);
-                        cardDetails.add(model);
-                        madapter.notifyDataSetChanged();
+                    if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                        Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
 
-                        pd.dismiss();
-                    }
+                        //Getting the PGs of corresponding to the User's UID
+                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                            PgDetails_POJO.PgDetails model = dataSnapshot
+                                    .getValue(PgDetails_POJO.PgDetails.class);
+                            cardDetails.add(model);
+                            madapter.notifyDataSetChanged();
 
-                    else {
-                        countFind++;
-                        Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
-
-                        //Checking if we have reached the end of the database and didn't find any PG
-                        if (countFind == MainActivity.noOfChildren) {
                             pd.dismiss();
-                            Log.d(TAG, "onChildAdded: COUNT " + count);
-                            Toast.makeText(getApplicationContext(), "No Pg Found!", Toast.LENGTH_SHORT).show();
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            countFind++;
+                            Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
+
+                            //Checking if we have reached the end of the database and didn't find any PG
+                            if (countFind == MainActivity.noOfChildren) {
+                                pd.dismiss();
+                                Log.d(TAG, "onChildAdded: COUNT " + count);
+                                Toast.makeText(getApplicationContext(), "No Pg Found!", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
                         }
                     }
                 }
-            }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            }
+                }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            }
+                }
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-            }
+                }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
 
-            }
-        });
+                }
+            });
+        }
 
-    }
 
     @Override
     public void onBackPressed() {
