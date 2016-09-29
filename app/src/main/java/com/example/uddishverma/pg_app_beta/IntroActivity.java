@@ -1,33 +1,27 @@
 package com.example.uddishverma.pg_app_beta;
 
-import android.*;
 import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import agency.tango.materialintroscreen.MaterialIntroActivity;
 import agency.tango.materialintroscreen.MessageButtonBehaviour;
-import agency.tango.materialintroscreen.SlideFragment;
 import agency.tango.materialintroscreen.SlideFragmentBuilder;
 import agency.tango.materialintroscreen.animations.IViewTranslation;
 
-import static android.R.attr.y;
 import static android.os.Build.VERSION_CODES.M;
-import static com.google.android.gms.analytics.internal.zzy.i;
-import static com.google.android.gms.analytics.internal.zzy.w;
 
 public class IntroActivity extends MaterialIntroActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enableLastSlideAlphaExitTransition(true);
-
+      //  enableLastSlideAlphaExitTransition(true);
+        setSkipButtonVisible();
         getNextButtonTranslationWrapper()
                 .setEnterTranslation(new IViewTranslation() {
                     @Override
@@ -40,6 +34,7 @@ public class IntroActivity extends MaterialIntroActivity {
                 .backgroundColor(R.color.first_slide_background)
                 .buttonsColor(R.color.first_slide_buttons)
                 .image(R.drawable.travel)
+
                 .title("welcome to the new city")
                 .description("We will help you to find your home")
                 .build(),
@@ -52,19 +47,11 @@ public class IntroActivity extends MaterialIntroActivity {
                     }
                 },"Sit back and Search"));
 
-//        addSlide(new SlideFragmentBuilder()
-//                .backgroundColor(R.color.second_slide_background)
-//                .buttonsColor(R.color.second_slide_buttons)
-//                .title("Want more?")
-//                .description("Go on ")
-//                .build()
-//        );
 
-//        addSlide(new CustomSlide());
 
         addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.third_slide_background)
-                .buttonsColor(R.color.third_slide_buttons)
+                .backgroundColor(R.color.second_slide_background)
+                .buttonsColor(R.color.second_slide_buttons)
                 .image(R.drawable.key)
                 .title("Here is the key of your new house")
                 .description("Enjoy")
@@ -79,19 +66,30 @@ public class IntroActivity extends MaterialIntroActivity {
                 },"Grab Your key"));
 
         addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.fourth_slide_background)
-                .buttonsColor(R.color.fourth_slide_buttons)
-                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_SMS})
-                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+                .backgroundColor(R.color.third_slide_background)
+                .buttonsColor(R.color.third_slide_buttons)
+                .possiblePermissions(new String[]{
+                        Manifest.permission.CALL_PHONE,
+                        })
+
+                .neededPermissions(new String[]{
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.INTERNET,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                })
                 .image(R.drawable.interiorhome)
                 .title("Start Your new Life")
                 .description("With us?")
                 .build());
+
     }
 
     @Override
     public void onFinish() {
-        super.onFinish();
-        Intent intent = new Intent(IntroActivity.this,SplashScreen.class);
+          super.onFinish();
+        //Intent intent = new Intent(IntroActivity.this,SplashScreen.class);
     }
 }

@@ -3,14 +3,9 @@ package com.example.uddishverma.pg_app_beta;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.TaskStackBuilder;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-
-import com.google.firebase.auth.FirebaseAuth;
-
-import static com.example.uddishverma.pg_app_beta.R.id.imageView;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Opens up in the starting of the app
@@ -20,10 +15,14 @@ import static com.example.uddishverma.pg_app_beta.R.id.imageView;
 
 public class SplashScreen extends Activity {
 
-    //ImageView imageView;
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         TaskStackBuilder.create(this)
@@ -31,29 +30,5 @@ public class SplashScreen extends Activity {
                 .addNextIntent(new Intent(this, IntroActivity.class))
                 .startActivities();
 
-//        imageView = (ImageView) findViewById(R.id.splash_image);
-//
-//        Animation animationUtils= AnimationUtils.loadAnimation(getBaseContext(),R.anim.anim_splash_screen);
-//        imageView.startAnimation(animationUtils);
-//        animationUtils.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                finish();
-//
-//                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-//                    startActivity(intent);
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//        });
     }
 }
