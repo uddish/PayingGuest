@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorAccent">#FAAE3D</color>
-    <color name="windowBackground2">#F4CC70</color>
-    <color name="navigationBarColor">#AF4425</color>
-    <color name="colorPrimary">#AF4425</color>
-    <color name="colorPrimaryDark">#662E1C</color>
-    <color name="themeBack">@drawable/theme_background_two</color>
+        <color name="windowBackground2">#F4CC70</color>
+        <color name="navigationBarColor">#AF4425</color>
+        <color name="colorPrimary">#AF4425</color>
+        <color name="colorPrimaryDark">#662E1C</color>
+        <color name="themeBack">@drawable/theme_background_two</color>
+
 </resources>
+

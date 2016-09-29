@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
  * It directs the user to the fragment and shows his/her PG's information
  */
 //TODO Check if the pg exists for the user
+
 public class MyRegisteredPGInfo extends AppCompatActivity {
 
     public static final String TAG = "MyRegisteredPGInfo";
@@ -29,6 +30,8 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
     PgDetails_POJO.PgDetails details;
     ProgressDialog pd;
     int flag = 1;
+    long count = 0;
+    int countFind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,9 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
             Firebase.setAndroidContext(this);
             RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
+
+//        ******************************************************************************************************************
+
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -60,8 +66,6 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 
                         if (dataSnapshot.child("userUID").getValue().equals(UID)) {
                             details = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
-
-                            flag = 0;
 
                             pd.dismiss();
 
@@ -101,6 +105,16 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
                             finish();
                             startActivity(intent);
                         }
+                        else {
+                            countFind++;
+
+                            if (countFind == MainActivity.noOfChildren) {
+                                pd.dismiss();
+                                Toast.makeText(MyRegisteredPGInfo.this, "No PG Found Under Your Account!", Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                        }
 //
                     }
 
@@ -135,14 +149,4 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
         }
     }
 
-//    public void noPg() {
-//
-//        if (flag == 1)  {
-//            Log.d(TAG, "onCreate: FLAG = 1");
-//            pd.dismiss();
-//            Toast.makeText(MyRegisteredPGInfo.this, "No PG Found Under Your Account!", Toast.LENGTH_SHORT).show();
-//            finish();
-//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//        }
-//    }
 }

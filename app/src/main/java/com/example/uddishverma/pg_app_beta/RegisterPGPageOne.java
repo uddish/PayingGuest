@@ -1,15 +1,29 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class RegisterPGPageOne extends AppCompatActivity {
 
@@ -21,6 +35,19 @@ public class RegisterPGPageOne extends AppCompatActivity {
     String preference;
     String genderPreference;
     ImageView nextBtn;
+
+    String isEdit = " ";
+    public static int editCalledFlag = 120;
+
+    //************************************To get the intents from the edit PG Activity*********************************************
+    String key;
+    int editCheck;
+    String pgId;
+    //*****************************************************************************************************************************
+
+
+    FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +85,10 @@ public class RegisterPGPageOne extends AppCompatActivity {
         //Attaching the next arrow button which will take us to the image upload activity
         nextBtn = (ImageView) findViewById(R.id.next_button);
 
+        //disabling keyboard when the register activity opens
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -69,6 +100,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), RegisterPG.class);
                     intent.putExtra("source", "registerPageOne");
+                    intent.putExtra("PgId", pgId);
                     intent.putExtra("pgName", pgName.getText().toString());
                     intent.putExtra("ownerName", ownerName.getText().toString());
                     intent.putExtra("contactNo", contactNo.getText().toString());
@@ -97,13 +129,109 @@ public class RegisterPGPageOne extends AppCompatActivity {
                     intent.putExtra("hotWater", hotWater.isChecked());
                     intent.putExtra("refrigerator", refrigerator.isChecked());
 
+                    if (isEdit.equals("comingFromEditActivity")) {
+                        intent.putExtra("editCheckFlag", editCalledFlag);
+                        Log.d(TAG, "onClick: EDIT SOURCE " + editCalledFlag);
+                    }
+
                     startActivity(intent);
 
                 }
             }
         });
 
+        //**********************************************UPDATING THE PG***********************************************************
+
+        Firebase.setAndroidContext(this);
+        RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+        //Getting firebase authorisation
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+
+        if (b != null) {
+
+            if (b.getString("source").equals("editPG")) {
+                isEdit = "comingFromEditActivity";
+                editCalledFlag = 2990;
+                Log.d(TAG, "onCreate: INTENT FROM UPDATE ACTIVITY");
+            }
+
+            pgId = b.getString("PgId");
+            key = b.getString("key");
+            editCheck = b.getInt("flag");
+
+
+            //Setting the previous PG images in the Register Layout(like shared preferences for the user to edit it
+            RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                    if (dataSnapshot.child("id").getValue().equals(pgId)) {
+                        final PgDetails_POJO.PgDetails pgDetails;
+                        pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+
+
+                        pgName.setText(pgDetails.getPgName());
+                        ownerName.setText(pgDetails.getOwnerName());
+                        contactNo.setText(String.valueOf((int) pgDetails.getContactNo()));
+                        email.setText(pgDetails.getEmail());
+                        addressOne.setText(pgDetails.getAddressOne());
+                        locality.setText(pgDetails.getLocality());
+                        city.setText(pgDetails.getCity());
+                        state.setText(pgDetails.getState());
+                        pinCode.setText(String.valueOf((int) pgDetails.getPinCode()));
+                        rent.setText(String.valueOf((int) pgDetails.getRent()));
+                        depositAmount.setText(String.valueOf((int) pgDetails.getDepositAmount()));
+                        nearbyInstitute.setText(pgDetails.getNearbyInstitute());
+                        extraFeatures.setText(pgDetails.getExtraFeatures());
+
+                        wifi.setChecked(pgDetails.getWifi());
+                        ac.setChecked(pgDetails.getAc());
+                        breakfast.setChecked(pgDetails.getBreakfast());
+                        lunch.setChecked(pgDetails.getLunch());
+                        dinner.setChecked(pgDetails.getDinner());
+                        parking.setChecked(pgDetails.getParking());
+                        roWater.setChecked(pgDetails.getRoWater());
+                        security.setChecked(pgDetails.getSecurity());
+                        tv.setChecked(pgDetails.getTv());
+                        hotWater.setChecked(pgDetails.getHotWater());
+                        refrigerator.setChecked(pgDetails.getFridge());
+
+
+                    }
+
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+        }
+
+        //************************************************************************************************************************
     }
+
 
     /**
      * Onclick method for the radio buttons
@@ -213,5 +341,12 @@ public class RegisterPGPageOne extends AppCompatActivity {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        super.onBackPressed();
     }
 }

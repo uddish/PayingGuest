@@ -1,8 +1,10 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +21,16 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -35,6 +47,13 @@ public class MainActivity extends AppCompatActivity
     TextView navName, navEmail;
     CoordinatorLayout coordinatorLayout;
 
+    GoogleApiClient mGoogleApiClient;
+
+    static long noOfChildren;
+
+    ProgressDialog progressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +64,13 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        progressDialog = new ProgressDialog(this);
+
         user = firebaseAuth.getCurrentUser();
 
-        if(firebaseAuth.getCurrentUser() != null) {
+        if (firebaseAuth.getCurrentUser() != null) {
             Log.d(TAG, "onCreate: USER " + user.getEmail());
+            Log.d(TAG, "onCreate: USER " + user.getUid());
         }
 
 
@@ -65,8 +87,22 @@ public class MainActivity extends AppCompatActivity
         navEmail = (TextView) header.findViewById(R.id.account_email);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinate_layout);
 
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+            @Override
+            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                Toast.makeText(MainActivity.this, "Google play services error..", Toast.LENGTH_SHORT).show();
+            }
+        }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
         //Setting the name in navigation drawer
-        if(user != null)    {
+        if (user != null) {
             navName.setText(user.getDisplayName().toString());
             navEmail.setText(user.getEmail().toString());
 
@@ -76,11 +112,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     //This function opens the register pg activity
-    public void openRegisterPgActivity(View view)   {
+    public void openRegisterPgActivity(View view) {
 
-        if(firebaseAuth.getCurrentUser() == null)   {
+        if (firebaseAuth.getCurrentUser() == null) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setView(R.layout.signin_alert_dialog);
@@ -98,19 +133,18 @@ public class MainActivity extends AppCompatActivity
                 }
             });
             builder.create().show();
-        }
-        else {
+        } else {
 //            Intent i = new Intent(this, RegisterPG.class);
             Intent i = new Intent(this, RegisterPGPageOne.class);
             startActivity(i);
         }
     }
+
     //This function opens the find pg activity
-    public void openFindPgActivity(View view)   {
+    public void openFindPgActivity(View view) {
         Intent i = new Intent(this, FindPGActivity.class);
         startActivity(i);
     }
-
 
 
     @Override
@@ -152,28 +186,128 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_account) {
-            if(firebaseAuth.getCurrentUser() == null)   {
+            if (firebaseAuth.getCurrentUser() == null) {
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
-            }
-            else
+            } else
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
         } else if (id == R.id.nav_pg) {
-            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+// ********************************Counting the number of Pgs first in the firebase ***************************************
+            if (user == null) {
+                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+            } else {
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                Firebase.setAndroidContext(this);
+
+                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+                // ********************************Counting the number of Pgs first in the firebase ***********************************
+                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                            noOfChildren = dataSnapshot.getChildrenCount();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+
+                });
+            }
+
+            // ************************************************************************************************************************
+
 
         } else if (id == R.id.nav_editPg) {
-            startActivity(new Intent(getApplicationContext(), EditPG.class));
-            Toast.makeText(MainActivity.this, "Edit Activity Updating Soon!", Toast.LENGTH_SHORT).show();
+
+            if (user == null) {
+                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                progressDialog.setMessage("Please Wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                Firebase.setAndroidContext(this);
+
+                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+                // ********************************Counting the number of Pgs first in the firebase ***********************************
+                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                            noOfChildren = dataSnapshot.getChildrenCount();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(), EditPG.class));
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+
+                });
+            }
+
+            // ************************************************************************************************************************
 
         } else if (id == R.id.nav_deletePg) {
             Toast.makeText(MainActivity.this, "Delete Activity Updating Soon!", Toast.LENGTH_SHORT).show();
 
-        } else if(id == R.id.nav_logout) {
-            if (firebaseAuth.getCurrentUser() != null)  {
+        } else if (id == R.id.nav_logout) {
+
+            if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
-            Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
-        }
-            else
+
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+
+                    }
+                });
+
+                Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+            } else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
 
