@@ -151,9 +151,9 @@ public class FilterActivity extends AppCompatActivity {
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
 
-                for(int i=0;i<checkedListLocality.size();i++)
+                for(int i = 0; i < checkedListLocality.size(); i++)
                 {
-                    Filter_POJO ob=checkedListLocality.get(i);
+                    Filter_POJO ob = checkedListLocality.get(i);
                     if(ob.isChecked())
                     {
                         Log.d(TAG,"checked:"+ob.getName()+"\n");

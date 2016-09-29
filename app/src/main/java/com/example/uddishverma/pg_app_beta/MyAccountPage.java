@@ -38,7 +38,6 @@ public class MyAccountPage extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.myacc_name);
         email = (TextView) findViewById(R.id.myacc_id);
-        noOfPg = (TextView) findViewById(R.id.myacc_no);
 
         addPG = (Button) findViewById(R.id.myacc_addpg);
         editPG = (Button) findViewById(R.id.myacc_editpg);

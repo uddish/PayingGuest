@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.ChildEventListener;
@@ -39,6 +40,10 @@ public class MultiplePGEdit extends AppCompatActivity {
     Intent filterActivityIntent;
 
     Toolbar toolbar;
+
+    String pgId;
+    long count = 0;
+    int countFind = 0;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -78,13 +83,12 @@ public class MultiplePGEdit extends AppCompatActivity {
         //Adding progress dialogue while the cards are loading
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("Please Wait...");
+//        pd.setCancelable(false);
         pd.show();
 
         Firebase.setAndroidContext(this);
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("ac").equalTo("true"));
 
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
@@ -104,6 +108,20 @@ public class MultiplePGEdit extends AppCompatActivity {
                         madapter.notifyDataSetChanged();
 
                         pd.dismiss();
+                    }
+
+                    else {
+                        countFind++;
+                        Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
+
+                        //Checking if we have reached the end of the database and didn't find any PG
+                        if (countFind == MainActivity.noOfChildren) {
+                            pd.dismiss();
+                            Log.d(TAG, "onChildAdded: COUNT " + count);
+                            Toast.makeText(getApplicationContext(), "No Pg Found!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
                     }
                 }
             }
@@ -131,5 +149,10 @@ public class MultiplePGEdit extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        super.onBackPressed();
+    }
 }

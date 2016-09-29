@@ -107,80 +107,80 @@ public class EditPG extends AppCompatActivity {
             });
 
         }
-        else {
-
-            Firebase.setAndroidContext(this);
-            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-            if (user != null) {
-//        ******************************************************************************************************************
-
-
-//      ****************************************Comparing The UID with PG's UID  ********************************************
-                RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-
-                            if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
-                                Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
-                                pgKey = dataSnapshot.getKey();
-                                flag = FINAL_FLAG;
-                                dialog.dismiss();
-                                Intent i = new Intent(getApplicationContext(), RegisterPGPageOne.class);
-                                i.putExtra("flag", flag);
-                                i.putExtra("key", pgKey);
-                                i.putExtra("source", "editPG");
-                                finish();
-                                startActivity(i);
-                            } else {
-                                countFind++;
-                                Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
-
-                                //Checking if we have reached the end of the database and didn't find any PG
-                                if (countFind == MainActivity.noOfChildren) {
-                                    dialog.dismiss();
-                                    Log.d(TAG, "onChildAdded: COUNT " + count);
-                                    Toast.makeText(EditPG.this, "No Pg Found!", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                }
-                            }
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });
-            }
-
-            if (user == null) {
-                Toast.makeText(EditPG.this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-
-        }
+//        else {
+//
+//            Firebase.setAndroidContext(this);
+//            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+//
+//            if (user != null) {
+////        ******************************************************************************************************************
+//
+//
+////      ****************************************Comparing The UID with PG's UID  ********************************************
+//                RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+//                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+//
+//                            if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+//                                Log.d(TAG, "onChildAdded: " + dataSnapshot.getKey());
+//                                pgKey = dataSnapshot.getKey();
+//                                flag = FINAL_FLAG;
+//                                dialog.dismiss();
+//                                Intent i = new Intent(getApplicationContext(), RegisterPGPageOne.class);
+//                                i.putExtra("flag", flag);
+//                                i.putExtra("key", pgKey);
+//                                i.putExtra("source", "editPG");
+//                                finish();
+//                                startActivity(i);
+//                            } else {
+//                                countFind++;
+//                                Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
+//
+//                                //Checking if we have reached the end of the database and didn't find any PG
+//                                if (countFind == MainActivity.noOfChildren) {
+//                                    dialog.dismiss();
+//                                    Log.d(TAG, "onChildAdded: COUNT " + count);
+//                                    Toast.makeText(EditPG.this, "No Pg Found!", Toast.LENGTH_SHORT).show();
+//                                    finish();
+//                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                                }
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(FirebaseError firebaseError) {
+//
+//                    }
+//                });
+//            }
+//
+//            if (user == null) {
+//                Toast.makeText(EditPG.this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+//                finish();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            }
+//
+//        }
     }
 
 }

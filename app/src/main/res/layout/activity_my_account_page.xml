@@ -93,30 +93,6 @@
                 android:layout_height="2dp"
                 android:background="@android:color/darker_gray"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="REGISTERED PG(s)"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/myacc_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="1"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textSize="25dp" />
-
-            <View
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -132,6 +108,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/myacc_mypg"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Pg(s)"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textStyle="italic"
+                android:background="#68829E"
+                android:textColor="#F4CC70"/>
             <Button
                 android:id="@+id/myacc_addpg"
                 android:layout_margin="5dp"
