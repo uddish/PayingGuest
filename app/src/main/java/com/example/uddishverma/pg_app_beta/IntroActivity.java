@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import agency.tango.materialintroscreen.MaterialIntroActivity;
 import agency.tango.materialintroscreen.MessageButtonBehaviour;
 import agency.tango.materialintroscreen.SlideFragmentBuilder;

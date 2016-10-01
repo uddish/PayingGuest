@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        navName = (TextView) header.findViewById(R.id.account_name);
-        navEmail = (TextView) header.findViewById(R.id.account_email);
+        navName = (TextView) header.findViewById(R.id.textview_username);
+
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinate_layout);
 
 
@@ -291,10 +291,7 @@ public class MainActivity extends AppCompatActivity
 
             // ************************************************************************************************************************
 
-        } else if (id == R.id.nav_deletePg) {
-            Toast.makeText(MainActivity.this, "Delete Activity Updating Soon!", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.nav_logout) {
+        }  else if (id == R.id.nav_help) {
 
             if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
@@ -310,6 +307,31 @@ public class MainActivity extends AppCompatActivity
             } else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
+
+        else if (id == R.id.nav_invite) {
+            /**
+             * open sharing intent to send
+             * a custom link of our app in the playstore .
+             *
+             * and side by side we can open an activity and show a QR code
+             * of our app in the playstore .
+
+             */
+        }
+
+        else if (id == R.id.nav_help) {
+
+                /**
+                 * OUR EMAIL ID'S
+
+                 */
+           }
+        else if (id == R.id.nav_rateus) {
+            /**
+             * Our Playstore link comment section
+             */
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

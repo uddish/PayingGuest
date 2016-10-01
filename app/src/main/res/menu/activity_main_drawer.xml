@@ -3,29 +3,38 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/nav_home"
+            android:title="Home" />
+        <item
             android:id="@+id/nav_pg"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/nav_pg"
             android:title="My PG" />
         <item
             android:id="@+id/nav_editPg"
             android:icon="@drawable/ic_location_city_black_24dp"
             android:title="Edit My PG" />
         <item
-            android:id="@+id/nav_deletePg"
-            android:icon="@drawable/ic_delete_black_24dp"
-            android:title="Delete PG" />
+            android:id="@+id/nav_account"
+            android:icon="@drawable/nav_userprofile"
+            android:title="My Profile" />
     </group>
 
-    <item android:title="Account">
+    <item android:title="about">
         <menu>
+
             <item
-                android:id="@+id/nav_account"
-                android:icon="@drawable/ic_perm_identity_black_24dp"
-                android:title="My Account" />
+                android:id="@+id/nav_invite"
+                android:icon="@drawable/nav_invite"
+                android:title="Invite" />
             <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_assignment_late_black_24dp"
-                android:title="Logout" />
+                android:id="@+id/nav_help"
+                android:icon="@drawable/nav_help"
+                android:title="help" />
+            <item
+                android:id="@+id/nav_rateus"
+                android:icon="@drawable/nav_rateus"
+                android:title="Rate Us" />
         </menu>
     </item>
 
