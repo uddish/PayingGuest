@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity
     GoogleApiClient mGoogleApiClient;
 
     static long noOfChildren;
+
+    Boolean doublepress = false;
 
     ProgressDialog progressDialog;
 
@@ -153,7 +156,21 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (doublepress) {
+                finish();
+                super.onBackPressed();
+                return;
+            }
+            doublepress = true;
+            Toast.makeText(MainActivity.this, "Press Again To Exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doublepress = false;
+                }
+            }, 2000);
         }
     }
 
@@ -188,10 +205,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_account) {
             if (firebaseAuth.getCurrentUser() == null) {
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
-            } else
+            }
+            else
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
-        } else if (id == R.id.nav_pg) {
+        }
+        else if (id == R.id.nav_pg) {
+
 // ********************************Counting the number of Pgs first in the firebase ***************************************
             if (user == null) {
                 Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
@@ -245,24 +265,28 @@ public class MainActivity extends AppCompatActivity
 
             if (user == null) {
                 Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
+
                 progressDialog.setMessage("Please Wait...");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
+
                 Firebase.setAndroidContext(this);
-
+//
                 RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-                // ********************************Counting the number of Pgs first in the firebase ***********************************
+//
+//                // ********************************Counting the number of Pgs first in the firebase ***********************************
                 RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                             Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
                             noOfChildren = dataSnapshot.getChildrenCount();
+
+//                            //Starting the Multiple Pg Edit Activity which will further allow user to choose a particular PG
+                            finish();
                             progressDialog.dismiss();
-                            startActivity(new Intent(getApplicationContext(), EditPG.class));
+                            startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
                         }
                     }
 
@@ -289,12 +313,12 @@ public class MainActivity extends AppCompatActivity
                 });
             }
 
-            // ************************************************************************************************************************
 
         }  else if (id == R.id.nav_help) {
 
             if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
+                user = null;
 
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override

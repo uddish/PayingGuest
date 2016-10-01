@@ -28,6 +28,7 @@ public class AuthorisationActivity extends AppCompatActivity {
 
         if(firebaseAuth.getCurrentUser() != null) {
             Toast.makeText(AuthorisationActivity.this,"You are already signed in.",Toast.LENGTH_SHORT).show();
+            finish();
             startActivity(new Intent(AuthorisationActivity.this,MainActivity.class));
         }
 

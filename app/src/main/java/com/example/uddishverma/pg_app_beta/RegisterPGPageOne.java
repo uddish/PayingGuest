@@ -42,6 +42,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
     //************************************To get the intents from the edit PG Activity*********************************************
     String key;
     int editCheck;
+    String pgId;
     //*****************************************************************************************************************************
 
 
@@ -99,6 +100,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), RegisterPG.class);
                     intent.putExtra("source", "registerPageOne");
+                    intent.putExtra("PgId", pgId);
                     intent.putExtra("pgName", pgName.getText().toString());
                     intent.putExtra("ownerName", ownerName.getText().toString());
                     intent.putExtra("contactNo", contactNo.getText().toString());
@@ -159,6 +161,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
                 Log.d(TAG, "onCreate: INTENT FROM UPDATE ACTIVITY");
             }
 
+            pgId = b.getString("PgId");
             key = b.getString("key");
             editCheck = b.getInt("flag");
 
@@ -167,7 +170,8 @@ public class RegisterPGPageOne extends AppCompatActivity {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+//                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                    if (dataSnapshot.child("id").getValue().equals(pgId)) {
                         final PgDetails_POJO.PgDetails pgDetails;
                         pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 
@@ -337,5 +341,12 @@ public class RegisterPGPageOne extends AppCompatActivity {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        super.onBackPressed();
     }
 }

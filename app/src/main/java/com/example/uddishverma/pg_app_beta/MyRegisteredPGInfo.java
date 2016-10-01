@@ -4,16 +4,23 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 /**
  * Thi activity is called when the user selects MY PG from the navigation drawer
@@ -23,101 +30,100 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MyRegisteredPGInfo extends AppCompatActivity {
 
-    public static final String TAG = "MyRegisteredPGInfo";
+    public static final String TAG = "FindPGActivity";
+
+    RecyclerView mrecyclerView;
+    RecyclerView.Adapter madapter;
+    RecyclerView.LayoutManager layoutManager;
+    private ArrayList<PgDetails_POJO.PgDetails> cardDetails;
+    Button filterButton;
+    Intent filterActivityIntent;
+
+    Toolbar toolbar;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
-    PgDetails_POJO.PgDetails details;
-    ProgressDialog pd;
-    int flag = 1;
+
     long count = 0;
-    int countFind;
+    int countFind = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_registered_pginfo);
+
+        setContentView(R.layout.activity_find_pg);
+
+        filterActivityIntent = new Intent(this, FilterActivity.class);
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        filterButton = (Button) findViewById(R.id.filter);
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(filterActivityIntent);
+            }
+        });
+
+
+        mrecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        cardDetails = new ArrayList<>();
+        layoutManager = new LinearLayoutManager(this);
+        mrecyclerView.setLayoutManager(layoutManager);
+        mrecyclerView.setHasFixedSize(true);
+        madapter = new PgDetailsAdapter(cardDetails, this);
+        mrecyclerView.setAdapter(madapter);
+
+        //Adding progress dialogue while the cards are loading
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Please Wait...");
+        pd.show();
+
+        Firebase.setAndroidContext(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+
+        RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("ac").equalTo("true"));
+
         if (user != null) {
-
-            pd = new ProgressDialog(this);
-            pd.setMessage("Please Wait...");
-            pd.show();
-
-            final String UID = user.getUid();
-            Log.d(TAG, "onCreate: UID " + UID);
-
-            Firebase.setAndroidContext(this);
-            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-
-//        ******************************************************************************************************************
-
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+
+
+                @JsonIgnoreProperties
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                     if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                        Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
 
-                        Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("userUID").getValue().equals(UID)));
-
-                        if (dataSnapshot.child("userUID").getValue().equals(UID)) {
-                            details = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
+                        //Getting the PGs of corresponding to the User's UID
+                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                            PgDetails_POJO.PgDetails model = dataSnapshot
+                                    .getValue(PgDetails_POJO.PgDetails.class);
+                            cardDetails.add(model);
+                            madapter.notifyDataSetChanged();
 
                             pd.dismiss();
-
-                            Intent intent = new Intent(getApplicationContext(), FragmentCaller.class);
-
-                            intent.putExtra("PG ID", details.getId());
-                            intent.putExtra("PG Name", details.getPgName());
-                            intent.putExtra("OWNER NAME", details.getOwnerName());
-                            intent.putExtra("CONTACT NO", details.getContactNo());
-                            intent.putExtra("EMAIL", details.getEmail());
-                            intent.putExtra("INSTITUTE", details.getNearbyInstitute());
-                            intent.putExtra("WIFI", details.getWifi());
-                            intent.putExtra("AC", details.getAc());
-                            intent.putExtra("REFRIGERATOR", details.getFridge());
-                            intent.putExtra("PARKING", details.getParking());
-                            intent.putExtra("TV", details.getTv());
-                            intent.putExtra("LUNCH", details.getLunch());
-                            intent.putExtra("DINNER", details.getDinner());
-                            intent.putExtra("BREAKFAST", details.getBreakfast());
-                            intent.putExtra("RO", details.getRoWater());
-                            intent.putExtra("HOT WATER", details.getHotWater());
-                            intent.putExtra("SECURITY", details.getSecurity());
-                            intent.putExtra("RENT", details.getRent());
-                            intent.putExtra("DEPOSIT", details.getDepositAmount());
-                            intent.putExtra("ADDRESS", details.getAddressOne());
-                            intent.putExtra("LOCALITY", details.getLocality());
-                            intent.putExtra("CITY", details.getCity());
-                            intent.putExtra("STATE", details.getState());
-                            intent.putExtra("PINCODE", details.getPinCode());
-                            intent.putExtra("EXTRAFEATURES", details.getExtraFeatures());
-                            //Sending the intents for the Pg Images which are to be attached to the View Pager
-                            intent.putExtra("IMAGE_ONE", details.getPgImageOne());
-                            intent.putExtra("IMAGE_TWO", details.getPgImageTwo());
-                            intent.putExtra("IMAGE_THREE", details.getPgImageThree());
-                            intent.putExtra("IMAGE_FOUR", details.getPgImageFour());
-
-                            finish();
-                            startActivity(intent);
-                        }
-                        else {
+                        } else {
                             countFind++;
+                            Log.d(TAG, "onChildAdded: COUNTFIND " + countFind);
 
+                            //Checking if we have reached the end of the database and didn't find any PG
                             if (countFind == MainActivity.noOfChildren) {
                                 pd.dismiss();
-                                Toast.makeText(MyRegisteredPGInfo.this, "No PG Found Under Your Account!", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "onChildAdded: COUNT " + count);
+                                Toast.makeText(getApplicationContext(), "No Pg Found!", Toast.LENGTH_SHORT).show();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
                         }
-//
                     }
-
                 }
 
                 @Override
@@ -140,13 +146,14 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 
                 }
             });
-
-
-        } else {
-            Toast.makeText(MyRegisteredPGInfo.this, "PG not Found. Please SignIn!", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
         }
+        else    {
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+
     }
+
 
 }

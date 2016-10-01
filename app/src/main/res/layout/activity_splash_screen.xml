@@ -3,11 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
+=======
+    android:background="@drawable/theme_background_two"
+>>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
     tools:context="com.example.uddishverma.pg_app_beta.SplashScreen">
 
     <ImageView
         android:id="@+id/splash_image"
+<<<<<<< HEAD
         android:src="@drawable/splash"
+=======
+        android:src="@drawable/logonew"
+>>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

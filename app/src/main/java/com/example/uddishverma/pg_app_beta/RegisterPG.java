@@ -70,6 +70,7 @@ public class RegisterPG extends AppCompatActivity {
     //************************************To get the intents from the edit PG Activity*********************************************
     String key;
     int editCheck;
+    String pgIdForEditing = null;
     //*****************************************************************************************************************************
 
     FirebaseAuth firebaseAuth;
@@ -223,7 +224,6 @@ public class RegisterPG extends AppCompatActivity {
         Intent i = getIntent();
 
         Bundle b = i.getExtras();
-
         //Intent is coming from RegisterPGPageOne Activity
         if (b != null) {
 
@@ -231,6 +231,8 @@ public class RegisterPG extends AppCompatActivity {
             if (RegisterPGPageOne.editCalledFlag == 2990) {
 
                 Log.d(TAG, "onCreate: INTENT FROM UPDATE ACTIVITY");
+                pgIdForEditing = b.getString("PgId");
+                Log.d(TAG, "onCreate: PG ID " + pgIdForEditing);
                 key = b.getString("key");
                 editCheck = b.getInt("flag");
 
@@ -238,7 +240,8 @@ public class RegisterPG extends AppCompatActivity {
                 firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+//                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+                        if (dataSnapshot.child("id").getValue().equals(pgIdForEditing)) {
                             final PgDetails_POJO.PgDetails pgDetails;
                             pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 

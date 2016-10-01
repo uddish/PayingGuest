@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <color name="windowBackground2">#E91E63</color>
     <color name="navigationBarColor">#E91E63</color>
 
@@ -22,6 +23,7 @@
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/colorPrimary</item>
 
+    <color name="colorAccent">#FAAE3D</color>
 
     <color name="primarytext">#212121</color>
     <color name="secondarytext">#757575</color>
@@ -37,3 +39,4 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
 </resources>
+
