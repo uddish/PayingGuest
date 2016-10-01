@@ -14,17 +14,13 @@ import android.support.v4.app.TaskStackBuilder;
 
 public class SplashScreen extends Activity {
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-<<<<<<< HEAD
         TaskStackBuilder.create(this)
                 .addNextIntentWithParentStack(new Intent(this, MainActivity.class))
                 .addNextIntent(new Intent(this, IntroActivity.class))
@@ -42,32 +38,9 @@ public class SplashScreen extends Activity {
     protected void onPause() {
         super.onPause();
         finish();
-=======
 
-        
-        Animation animationUtils = AnimationUtils.loadAnimation(getBaseContext(), R.anim.anim_splash_screen);
-        imageView.startAnimation(animationUtils);
-        animationUtils.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
 
-            }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                finish();
-
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(intent);
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
->>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
     }
 
 }

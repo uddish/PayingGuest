@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntroActivity"></activity>
+        <activity android:name=".IntroActivity"/>
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".FragmentCaller" />
@@ -38,13 +38,13 @@
         <activity android:name=".MyAccountPage" />
         <activity android:name=".MyRegisteredPGInfo" />
         <activity android:name=".EditPG" />
-<<<<<<< HEAD
+
         <activity android:name=".RegisterPGPageOne" />
         <activity android:name=".Signup"></activity>
-=======
-        <activity android:name=".RegisterPGPageOne"/>
+
+
         <activity android:name=".MultiplePGEdit"/>
->>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
+
     </application>
 
 </manifest>

@@ -8,13 +8,8 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_pg"
-<<<<<<< HEAD
             android:icon="@drawable/nav_pg"
             android:title="My PG" />
-=======
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="My PG(s)" />
->>>>>>> 30c6c9cbe342115abd8a83f2dbeb158ba1f265cb
         <item
             android:id="@+id/nav_editPg"
             android:icon="@drawable/ic_location_city_black_24dp"
