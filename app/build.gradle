@@ -49,7 +49,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:9.4.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'agency.tango.android:material-intro-screen:+'
-
 }
 
 apply plugin: "com.google.gms.google-services"

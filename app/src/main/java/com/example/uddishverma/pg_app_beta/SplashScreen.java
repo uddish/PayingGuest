@@ -6,13 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-import static com.example.uddishverma.pg_app_beta.R.id.imageView;
 
 /**
  * Opens up in the starting of the app
@@ -21,6 +15,7 @@ import static com.example.uddishverma.pg_app_beta.R.id.imageView;
  */
 
 public class SplashScreen extends Activity {
+
 
 //    ImageView imageView;
 //
@@ -68,6 +63,19 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+
+        TaskStackBuilder.create(this)
+                .addNextIntentWithParentStack(new Intent(this, MainActivity.class))
+                .addNextIntent(new Intent(this, IntroActivity.class))
+                .startActivities();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+
         shared = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = shared.edit();
         boolean firstTime = shared.getBoolean("first", true);
@@ -81,5 +89,8 @@ public class SplashScreen extends Activity {
             Intent intent = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(intent);
         }
+
     }
+
 }
+
