@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/fragment_image_view"
         android:layout_width="match_parent"

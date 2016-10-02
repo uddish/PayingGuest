@@ -30,7 +30,8 @@
                     android:text="LOG IN"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textSize="40dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -81,7 +82,8 @@
                     android:background="#ef6c00"
                     android:text="LOG IN"
                     android:textAppearance="?android:textAppearanceLarge"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
                 <TextView
                     android:id="@+id/forgot_pass"
@@ -90,7 +92,8 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Forgot Your Password?"
-                    android:textAppearance="?android:textAppearanceMedium" />
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:fontFamily="sans-serif"/>
 
             </LinearLayout>
 
@@ -110,7 +113,8 @@
                 android:text="OR"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textSize="30dp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:fontFamily="sans-serif"/>
 
         </android.support.v7.widget.CardView>
 
@@ -134,9 +138,10 @@
                     android:drawableLeft="@drawable/googleicon"
                     android:text="Login With Google"
                     android:textStyle="italic"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
-                <Button
+                <com.facebook.login.widget.LoginButton
                     android:id="@+id/btn_fb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -145,7 +150,9 @@
                     android:textStyle="italic"
                     android:drawableLeft="@drawable/facebookicon"
                     android:text="Login With Facebook"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif" />
+
 
             </LinearLayout>
 

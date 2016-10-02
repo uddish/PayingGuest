@@ -238,6 +238,7 @@ public class RegisterPG extends AppCompatActivity {
 
                 //Setting the previous PG images in the Register Layout(like shared preferences for the user to edit it
                 firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 //                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {

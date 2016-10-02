@@ -22,7 +22,8 @@
             android:text="PG DETAILS"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
 
         <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
@@ -118,7 +119,8 @@
                 android:text="LOCATION"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
 
             <ImageView
                 android:layout_width="0dp"
@@ -254,7 +256,8 @@
             android:text="SERVICES"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
 
         <LinearLayout
             android:id="@+id/layout_2"
@@ -393,7 +396,8 @@
             android:text="PREFERENCE"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
 
 
         <LinearLayout
@@ -443,7 +447,8 @@
             android:layout_height="wrap_content"
             android:background="#F4CC70"
             android:text="GENDER PREFERENCE"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif"/>
 
         <LinearLayout
             android:id="@+id/layout_7"
@@ -497,7 +502,8 @@
             android:text="FINANCE INFORMATION"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
 
         <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_width="match_parent"
@@ -555,7 +561,8 @@
                 android:text="EXTRA FEATURES"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
 
             <ImageView
                 android:layout_width="0dp"

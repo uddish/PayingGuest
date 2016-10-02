@@ -48,7 +48,9 @@ public class SignUpFrag extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
 
+
 //      Firebase.getDefaultConfig().setPersistenceEnabled(true);
+
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
 

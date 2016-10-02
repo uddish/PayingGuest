@@ -15,6 +15,6 @@
         android:id="@+id/options_tv"
         android:layout_margin="5dp"
         android:textColor="@android:color/black"
-        />
+        android:fontFamily="sans-serif"/>
 
 </LinearLayout>

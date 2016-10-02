@@ -44,7 +44,6 @@ public class MyAccountPage extends AppCompatActivity {
         addPG = (Button) findViewById(R.id.myacc_addpg);
         editPG = (Button) findViewById(R.id.myacc_editpg);
         signOut = (Button) findViewById(R.id.myacc_signout);
-        deleteAccount = (Button) findViewById(R.id.myacc_deleteacc);
         myPgs = (Button) findViewById(R.id.myacc_mypg);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -123,7 +122,6 @@ public class MyAccountPage extends AppCompatActivity {
                     });
                 }
 
-
             }
         });
 
@@ -139,14 +137,6 @@ public class MyAccountPage extends AppCompatActivity {
             }
         });
 
-        //Setting click events on the Delete Account button
-        deleteAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-//                RegisterPG.firebaseRef.removeUser();
-            }
-        });
 
     }
 

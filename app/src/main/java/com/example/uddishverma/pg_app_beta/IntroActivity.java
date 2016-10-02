@@ -12,15 +12,14 @@ import agency.tango.materialintroscreen.MessageButtonBehaviour;
 import agency.tango.materialintroscreen.SlideFragmentBuilder;
 import agency.tango.materialintroscreen.animations.IViewTranslation;
 
-import static android.os.Build.VERSION_CODES.M;
 
 public class IntroActivity extends MaterialIntroActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  enableLastSlideAlphaExitTransition(true);
-        setSkipButtonVisible();
+        enableLastSlideAlphaExitTransition(true);
+
         getNextButtonTranslationWrapper()
                 .setEnterTranslation(new IViewTranslation() {
                     @Override
@@ -30,13 +29,12 @@ public class IntroActivity extends MaterialIntroActivity {
                 }) ;
 
         addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.first_slide_background)
-                .buttonsColor(R.color.first_slide_buttons)
-                .image(R.drawable.travel)
-
-                .title("welcome to the new city")
-                .description("We will help you to find your home")
-                .build(),
+                        .backgroundColor(R.color.first_slide_background)
+                        .buttonsColor(R.color.first_slide_buttons)
+                        .image(R.drawable.travel)
+                        .title("welcome to the new city")
+                        .description("We will help you to find your home")
+                        .build(),
 
                 new MessageButtonBehaviour(new View.OnClickListener() {
                     @Override
@@ -49,12 +47,12 @@ public class IntroActivity extends MaterialIntroActivity {
 
 
         addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.second_slide_background)
-                .buttonsColor(R.color.second_slide_buttons)
-                .image(R.drawable.key)
-                .title("Here is the key of your new house")
-                .description("Enjoy")
-                .build(),
+                        .backgroundColor(R.color.second_slide_background)
+                        .buttonsColor(R.color.second_slide_buttons)
+                        .image(R.drawable.key)
+                        .title("Here is the key of your new house")
+                        .description("Enjoy")
+                        .build(),
                 new MessageButtonBehaviour(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -67,28 +65,17 @@ public class IntroActivity extends MaterialIntroActivity {
         addSlide(new SlideFragmentBuilder()
                 .backgroundColor(R.color.third_slide_background)
                 .buttonsColor(R.color.third_slide_buttons)
-                .possiblePermissions(new String[]{
-                        Manifest.permission.CALL_PHONE,
-                        })
-
-                .neededPermissions(new String[]{
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.INTERNET,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                })
+                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_SMS})
+                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
                 .image(R.drawable.interiorhome)
                 .title("Start Your new Life")
                 .description("With us?")
                 .build());
-
     }
 
     @Override
     public void onFinish() {
-          super.onFinish();
-        //Intent intent = new Intent(IntroActivity.this,SplashScreen.class);
+        super.onFinish();
+        Intent intent = new Intent(IntroActivity.this,SplashScreen.class);
     }
 }
