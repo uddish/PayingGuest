@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorAccent">#FAAE3D</color>
-        <color name="windowBackground2">#F4CC70</color>
-        <color name="navigationBarColor">#AF4425</color>
-        <color name="colorPrimary">#AF4425</color>
-        <color name="colorPrimaryDark">#662E1C</color>
-        <color name="themeBack">@drawable/theme_background_two</color>
+    <color name="windowBackground2">#E91E63</color>
+    <color name="navigationBarColor">#3F51B5</color>
+
+    <color name="themeBack">#E91E63</color>
+    <color name="intro">#03A9F4</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#880E4F</color>
+
+    <color name="first_slide_background">#E91E63</color>
+    <color name="first_slide_buttons">#880E4F</color>
+
+    <color name="second_slide_background">#009688</color>
+    <color name="second_slide_buttons">#004D40</color>
+
+    <color name="third_slide_background">#9C27B0</color>
+    <color name="third_slide_buttons">#4A148C</color>
+
+    <!--Splash Screen-->
+    <item name="splash_background" type="color">@color/colorPrimary</item>
 
 </resources>
-
