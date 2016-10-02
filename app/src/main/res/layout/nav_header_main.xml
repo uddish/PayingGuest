@@ -22,7 +22,8 @@
         android:text="ANDROID STUDIO"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:textAppearance="?android:textAppearanceLarge"
+        android:fontFamily="sans-serif"/>
 
     <TextView
         android:id="@+id/account_email"
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:text="android.studio@android.com"
         android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"/>
 
 </LinearLayout>

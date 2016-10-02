@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -223,7 +224,7 @@ public class MainActivity extends AppCompatActivity
 
                 RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-                // ********************************Counting the number of Pgs first in the firebase ***********************************
+                // ********************************Counting the number of Pgs first in the firebase ************************
                 RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -258,7 +259,7 @@ public class MainActivity extends AppCompatActivity
                 });
             }
 
-            // ************************************************************************************************************************
+            // ****************************************************************************************************************
 
 
         } else if (id == R.id.nav_editPg) {
@@ -275,7 +276,7 @@ public class MainActivity extends AppCompatActivity
 //
                 RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 //
-//                // ********************************Counting the number of Pgs first in the firebase ***********************************
+//                // ********************************Counting the number of Pgs first in the firebase **************************
                 RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -331,7 +332,15 @@ public class MainActivity extends AppCompatActivity
                 });
 
                 Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
-            } else
+
+                if(LoginFrag.t == 1)    {
+                    LoginManager.getInstance().logOut();
+                    LoginFrag.t = 0;
+                    Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            else
                 Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
 

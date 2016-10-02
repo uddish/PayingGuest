@@ -29,8 +29,9 @@
                     android:padding="10dp"
                     android:text="SIGN UP"
                     android:textAppearance="?android:textAppearanceLarge"
-                    android:textSize="40dp"
-                    android:textStyle="bold" />
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -114,7 +115,8 @@
                     android:background="#ef6c00"
                     android:text="SIGN UP"
                     android:textAppearance="?android:textAppearanceLarge"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
             </LinearLayout>
 
@@ -134,7 +136,8 @@
                 android:text="OR"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textSize="30dp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:fontFamily="sans-serif"/>
 
         </android.support.v7.widget.CardView>
 
@@ -158,7 +161,8 @@
                     android:drawableLeft="@drawable/googleicon"
                     android:text="Sign Up With Google"
                     android:textStyle="italic"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
                 <Button
                     android:id="@+id/btn_fb"
@@ -169,7 +173,8 @@
                     android:drawableLeft="@drawable/facebookicon"
                     android:text="Sign Up With Facebook"
                     android:textStyle="italic"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="sans-serif"/>
 
             </LinearLayout>
 
