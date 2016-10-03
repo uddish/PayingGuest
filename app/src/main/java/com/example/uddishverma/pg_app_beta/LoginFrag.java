@@ -2,6 +2,7 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -44,6 +45,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.concurrent.Executor;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by UddishVerma on 03/09/16.
  */
@@ -56,9 +59,10 @@ public class LoginFrag extends Fragment {
     EditText loginEmail, loginPassword;
     Button btnLogin, btnGoogle;
     TextView forgotPass;
-    ProgressDialog progressDialog;
     ImageView eye;
     FirebaseAuth firebaseAuth;
+
+    SweetAlertDialog pDialog;
 
     //For facebook login
     CallbackManager callbackManager;
@@ -119,7 +123,7 @@ public class LoginFrag extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(view.getContext());
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 userLogin();
             }
         });
@@ -144,7 +148,7 @@ public class LoginFrag extends Fragment {
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(view.getContext());
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 googleSignIn();
             }
         });
@@ -180,14 +184,15 @@ public class LoginFrag extends Fragment {
         facebookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(view.getContext());
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 facebookBtn.setReadPermissions("email", "public_profile");
                 LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        progressDialog.setMessage("Please Wait...");
-                        progressDialog.setCancelable(false);
-                        progressDialog.show();
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Please Wait");
+                        pDialog.setCancelable(false);
+                        pDialog.show();
                         handleFacebookAccessToken(loginResult.getAccessToken());
                     }
 
@@ -222,15 +227,16 @@ public class LoginFrag extends Fragment {
             return;
         }
 
-        progressDialog.setMessage("Please Wait!");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email, password).
                 addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        pDialog.dismiss();
 
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -266,9 +272,10 @@ public class LoginFrag extends Fragment {
 
     private void fireBaseAuthWithGoogle(GoogleSignInAccount acct) {
 
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
 
@@ -276,7 +283,7 @@ public class LoginFrag extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        pDialog.dismiss();
                         if (!task.isSuccessful()) {
                             Toast.makeText(getContext(), "Authentication Failed !", Toast.LENGTH_SHORT).show();
                         } else {
@@ -297,7 +304,7 @@ public class LoginFrag extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                        progressDialog.dismiss();
+                        pDialog.dismiss();
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.

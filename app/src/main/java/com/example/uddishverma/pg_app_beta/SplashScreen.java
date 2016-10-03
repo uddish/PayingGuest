@@ -32,7 +32,7 @@ public class SplashScreen extends Activity {
 
         shared = getSharedPreferences("ShaPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = shared.edit();
-        boolean  firstTime=shared.getBoolean("first", true);
+        boolean  firstTime = shared.getBoolean("first", true);
 
         if(firstTime) {
             editor.putBoolean("first",false);

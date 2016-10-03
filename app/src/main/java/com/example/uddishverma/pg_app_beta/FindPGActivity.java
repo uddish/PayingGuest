@@ -2,6 +2,7 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,8 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 //************************************Class to Find PGs************************************************************
 public class FindPGActivity extends AppCompatActivity {
@@ -78,10 +81,12 @@ public class FindPGActivity extends AppCompatActivity {
         madapter = new PgDetailsAdapter(cardDetails,this);
         mrecyclerView.setAdapter(madapter);
 
-       //Adding progress dialogue while the cards are loading
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Please Wait...");
-        pd.show();
+
+        final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        mDialog.setTitleText("Please Wait");
+        mDialog.setCancelable(false);
+        mDialog.show();
 
         Firebase.setAndroidContext(this);
 
@@ -117,7 +122,7 @@ public class FindPGActivity extends AppCompatActivity {
                         madapter.notifyDataSetChanged();
 
                         //Stopping the progress dialogue
-                        pd.dismiss();
+                        mDialog.dismiss();
                 }
             }
 

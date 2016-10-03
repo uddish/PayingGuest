@@ -27,6 +27,8 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.concurrent.Executor;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by UddishVerma on 03/09/16.
  */
@@ -38,6 +40,8 @@ public class SignUpFrag extends Fragment {
 
     ProgressDialog progressDialog;
 
+    SweetAlertDialog pDialog;
+
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -47,9 +51,6 @@ public class SignUpFrag extends Fragment {
         view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         progressDialog = new ProgressDialog(getContext());
-
-
-//      Firebase.getDefaultConfig().setPersistenceEnabled(true);
 
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
@@ -63,6 +64,9 @@ public class SignUpFrag extends Fragment {
         signupRepass = (EditText) view.findViewById(R.id.et_repassword);
         btnSignup = (Button) view.findViewById(R.id.btn_signup);
         eye = (ImageView) view.findViewById(R.id.eye);
+        btnGoogle = (Button) view.findViewById(R.id.btn_google);
+        btnFacebook = (Button) view.findViewById(R.id.btn_fb);
+
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +87,27 @@ public class SignUpFrag extends Fragment {
                         break;
                 }
                 return true;
+            }
+        });
+
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText("Please Go To The Login Page!")
+                        .show();
+            }
+        });
+
+        btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText("Please Go To The Login Page!")
+                        .show();
             }
         });
 
