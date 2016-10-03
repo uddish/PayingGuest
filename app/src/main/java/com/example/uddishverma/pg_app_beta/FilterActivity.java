@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +27,7 @@ public class FilterActivity extends AppCompatActivity {
     ArrayList<String> detailsList;
 
     ListView rightList;
-  //  ArrayList<String> locality;
+
     ArrayList<String> colleges;
     ArrayList<String> institutes;
 
@@ -61,7 +62,7 @@ public class FilterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        locality=new Filter_POJO[]
+        locality = new Filter_POJO[]
                 {
                         new Filter_POJO("Dwarka"),
                         new Filter_POJO("Pitampura"),
@@ -74,7 +75,7 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("Pascim Vihar")
                 };
 
-        localityList=new ArrayList<Filter_POJO>();
+        localityList = new ArrayList<Filter_POJO>();
         localityList.addAll(Arrays.asList(locality));
 
 
@@ -150,6 +151,7 @@ public class FilterActivity extends AppCompatActivity {
             {
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
+                ArrayList<String> localityList = new ArrayList<String>(4);
 
                 for(int i = 0; i < checkedListLocality.size(); i++)
                 {
@@ -157,12 +159,15 @@ public class FilterActivity extends AppCompatActivity {
                     if(ob.isChecked())
                     {
                         Log.d(TAG,"checked:"+ob.getName()+"\n");
+                        localityList.add(ob.getName());
                     }
                 }
+
+               Intent i = new Intent(getApplicationContext(), FindPGActivity.class);
+                i.putStringArrayListExtra("list", localityList);
+                startActivity(i);
             }
         });
-
-
 
     }
 

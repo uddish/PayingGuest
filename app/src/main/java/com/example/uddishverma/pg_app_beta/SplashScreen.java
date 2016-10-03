@@ -37,13 +37,20 @@ public class SplashScreen extends Activity {
         if(firstTime) {
             editor.putBoolean("first",false);
             editor.apply();
-            Intent intent = new Intent(SplashScreen.this, IntroActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(SplashScreen.this, IntroActivity.class);
+//            startActivity(intent);
+            TaskStackBuilder.create(getApplicationContext())
+                        .addNextIntentWithParentStack(new Intent(getApplicationContext(), MainActivity.class))
+                        .addNextIntent(new Intent(getApplicationContext(), IntroActivity.class))
+                        .startActivities();
+
+                finish();
         }
         else
         {
             Intent intent = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
 
 //        new Handler().postDelayed(new Runnable() {

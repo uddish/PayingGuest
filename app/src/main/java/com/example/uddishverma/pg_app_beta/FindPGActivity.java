@@ -81,6 +81,9 @@ public class FindPGActivity extends AppCompatActivity {
         madapter = new PgDetailsAdapter(cardDetails,this);
         mrecyclerView.setAdapter(madapter);
 
+        Intent i = getIntent();
+        Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
+
 
         final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
