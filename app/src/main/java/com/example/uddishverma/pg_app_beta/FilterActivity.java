@@ -165,6 +165,7 @@ public class FilterActivity extends AppCompatActivity {
 
                Intent i = new Intent(getApplicationContext(), FindPGActivity.class);
                 i.putStringArrayListExtra("list", localityList);
+                i.putExtra("source", "filter");
                 startActivity(i);
             }
         });

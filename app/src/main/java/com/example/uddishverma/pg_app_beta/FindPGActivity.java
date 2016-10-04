@@ -50,8 +50,7 @@ public class FindPGActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_find_pg);
 
-         filterActivityIntent = new Intent(this,FilterActivity.class);
-
+        filterActivityIntent = new Intent(this, FilterActivity.class);
 
 
 /**
@@ -60,14 +59,13 @@ public class FindPGActivity extends AppCompatActivity {
  * compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar' in GRADLE
  */
 
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        filterButton= (Button) findViewById(R.id.filter);
+        filterButton = (Button) findViewById(R.id.filter);
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(filterActivityIntent);
             }
         });
@@ -78,17 +76,23 @@ public class FindPGActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mrecyclerView.setLayoutManager(layoutManager);
         mrecyclerView.setHasFixedSize(true);
-        madapter = new PgDetailsAdapter(cardDetails,this);
+        madapter = new PgDetailsAdapter(cardDetails, this);
         mrecyclerView.setAdapter(madapter);
 
         Intent i = getIntent();
-        Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
-
+        Bundle b = i.getExtras();
+        if (b != null) {
+            if (b.getString("source").equals("filter")) {
+                Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
+                ArrayList<String> arr = i.getStringArrayListExtra("list");
+                Log.d(TAG, "onCreate: element 0 " + arr.get(0));
+            }
+        }
 
         final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         mDialog.setTitleText("Please Wait");
-        mDialog.setCancelable(false);
+//        mDialog.setCancelable(false);
         mDialog.show();
 
         Firebase.setAndroidContext(this);
@@ -117,15 +121,15 @@ public class FindPGActivity extends AppCompatActivity {
                      */
 
                     Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
-                        PgDetails_POJO.PgDetails model = dataSnapshot
-                                .getValue(PgDetails_POJO.PgDetails.class);
-                        cardDetails.add(model);
+                    PgDetails_POJO.PgDetails model = dataSnapshot
+                            .getValue(PgDetails_POJO.PgDetails.class);
+                    cardDetails.add(model);
 //                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
 //                      madapter.notifyItemInserted(cardDetails.size() - 1);
-                        madapter.notifyDataSetChanged();
+                    madapter.notifyDataSetChanged();
 
-                        //Stopping the progress dialogue
-                        mDialog.dismiss();
+                    //Stopping the progress dialogue
+                    mDialog.dismiss();
                 }
             }
 
@@ -151,7 +155,6 @@ public class FindPGActivity extends AppCompatActivity {
         });
 
     }
-
 
 
 }

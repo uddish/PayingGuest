@@ -38,12 +38,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="PG DETAILS"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textSize="28dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -59,21 +59,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PG NAME"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/pg_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EXAMPLE NAME"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -85,21 +85,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="OWNER's NAME"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/owners_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="XYZ"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -111,21 +111,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="CONTACT NO."
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/contact"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1234567891"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,21 +137,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PG LOCATION"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/loc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EXAMPLE NAME"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,21 +163,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EMAIL ID"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz@gmail.com"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -197,12 +197,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="LOCATION"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textSize="28dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -216,24 +216,25 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/textView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="ADDRESS"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/address_one"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -246,21 +247,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="LOCALITY"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/locality"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -273,21 +274,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="CITY"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/city"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="XYZ"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -300,21 +301,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="STATE"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -327,21 +328,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PINCODE"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/pinCode"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="110095"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -354,21 +355,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="NEARBY INSTITUTION"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/nearby_ins"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -388,12 +389,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="SERVICES"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textSize="28dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -403,356 +404,283 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_signal_wifi_4_bar_grey_700_24dp" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Wi-Fi"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/wifi"
+                        <ImageView
+                            android:id="@+id/wifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_signal_wifi_4_bar_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Wi-Fi" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/ac"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ac" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="AC" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/parking"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_local_parking_grey_700_48dp" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="PARKING" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_ac_unit_grey_700_24dp" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="AC"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/ac"
+                        <ImageView
+                            android:id="@+id/tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tv_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="TV" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
+                        <ImageView
+                            android:id="@+id/breakfast"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_free_breakfast_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="BREAKFAST" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/lunch"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_room_service_grey_700_48dp" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="LUNCH" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/dinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_restaurant_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="DINNER" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/ro"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_opacity_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="RO WATER" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/hot_water"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/shower" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="HOT WATER" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_local_parking_grey_700_24dp" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="PARKING"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/parking"
+                        <ImageView
+                            android:id="@+id/security"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_security_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="SECURITY" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/refrigerator"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_kitchen_grey_700_48dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="FRIDGE" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_tv_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.1"
-                        android:gravity="center"
-                        android:text="TV"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/tv"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_free_breakfast_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="BREAKFAST"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/breakast"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_room_service_black_24dp"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="LUNCH"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/lunch"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_restaurant_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="DINNER"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/dinner"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_opacity_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.1"
-                        android:gravity="center"
-                        android:text="R.O WATER"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/ro"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/hotwater" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.1"
-                        android:gravity="center"
-                        android:text="HOT WATER"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/hot_water"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_security_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.1"
-                        android:gravity="center"
-                        android:text="SECURITY"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/security"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:src="@drawable/ic_kitchen_grey_700_24dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.2"
-                        android:gravity="center"
-                        android:text="REFRIGERATOR"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
-
-                    <TextView
-                        android:id="@+id/refrigerator"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="YES"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
-                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -771,12 +699,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="FINANCE INFORMATION"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textSize="28dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -792,21 +720,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="MINIMUM RENT"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/min_rent"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1000"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -818,21 +746,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.3"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="DEPOSIT AMOUNT"
                         android:textAppearance="?android:textAppearanceLarge"
-                        android:textColor="#000000"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/deposit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1000"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:fontFamily="sans-serif"/>
+                        android:textAppearance="?android:textAppearanceLarge" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -860,13 +788,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:background="#FFFFFF"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="EXTRA FEATURES"
                         android:textAppearance="?android:textAppearanceLarge"
                         android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="0dp"
@@ -880,9 +808,9 @@
                     android:id="@+id/extra_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:text="NONE SPECIFIED BY THE USER"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:fontFamily="sans-serif"/>
+                    android:textAppearance="?android:textAppearanceLarge" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
