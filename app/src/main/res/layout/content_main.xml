@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"/>
-
-    <Button
-        android:id="@+id/register_pg_btn"
-        android:background="@drawable/register"
-        android:onClick="openRegisterPgActivity"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
-
-    <View
-        android:background="@android:color/white"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"/>
+    tools:context=".MainActivity"
+    android:background="@drawable/regfindimg">
 
     <Button
         android:id="@+id/find_pg_btn"
+        android:text="Find Your Pg"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimary"
         android:onClick="openFindPgActivity"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:background="@drawable/findact"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/register_pg_btn"
+        android:layout_alignStart="@+id/register_pg_btn"
+        android:layout_marginBottom="51dp" />
+
+    <Button
+
+        android:text="REGISTER YOUR OWN PG(s) "
+        android:id="@+id/register_pg_btn"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/colorPrimary"
+        android:onClick="openRegisterPgActivity"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/find_pg_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
 
 
-</LinearLayout>
+</RelativeLayout>
 
