@@ -84,7 +84,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
 //        holder.state_tv.setText(details.getState());
         String rent = String.valueOf((int)details.getRent());
-        holder.rent_tv.setText("RENT : " + rent);
+        holder.rent_tv.setText("₹" + rent);
 
         if(details.getWifi()==true)
             holder.ic_wifi.setImageResource(R.drawable.ic_wifi_blue_grey_700_24dp);

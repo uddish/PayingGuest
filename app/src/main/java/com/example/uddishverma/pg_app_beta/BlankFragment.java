@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,9 +139,10 @@ public class BlankFragment extends Fragment {
     }
 
 
-    TextView pg_name, owners_name, contact_no, email_id, wifi, ac, parking, tv, lunch, dinner, breakfast,
-            ro_water, hot_water, security, refrigerator, min_rent, deposit;
+    TextView pg_name, owners_name, contact_no, email_id, min_rent, deposit;
     TextView pgAddress, city, state, pinCode, extraFeatures, locality, nearbyIns;
+
+    ImageView wifi, ac, parking, tv, lunch, dinner, breakfast,ro_water, hot_water, security, refrigerator;
 
     FloatingActionButton fabPlus, fabloc, fabcall;
 
@@ -162,17 +164,17 @@ public class BlankFragment extends Fragment {
         owners_name = (TextView) v.findViewById(R.id.owners_name);
         contact_no = (TextView) v.findViewById(R.id.contact);
         email_id = (TextView) v.findViewById(R.id.email);
-        wifi = (TextView) v.findViewById(R.id.wifi);
-        ac = (TextView) v.findViewById(R.id.ac);
-        parking = (TextView) v.findViewById(R.id.parking);
-        tv = (TextView) v.findViewById(R.id.tv);
-        lunch = (TextView) v.findViewById(R.id.lunch);
-        dinner = (TextView) v.findViewById(R.id.dinner);
-        breakfast = (TextView) v.findViewById(R.id.breakast);
-        ro_water = (TextView) v.findViewById(R.id.ro);
-        hot_water = (TextView) v.findViewById(R.id.hot_water);
-        security = (TextView) v.findViewById(R.id.security);
-        refrigerator = (TextView) v.findViewById(R.id.refrigerator);
+        wifi = (ImageView) v.findViewById(R.id.wifi);
+        ac = (ImageView) v.findViewById(R.id.ac);
+        parking = (ImageView) v.findViewById(R.id.parking);
+        tv = (ImageView) v.findViewById(R.id.tv);
+        lunch = (ImageView) v.findViewById(R.id.lunch);
+        dinner = (ImageView) v.findViewById(R.id.dinner);
+        breakfast = (ImageView) v.findViewById(R.id.breakfast);
+        ro_water = (ImageView) v.findViewById(R.id.ro);
+        hot_water = (ImageView) v.findViewById(R.id.hot_water);
+        security = (ImageView) v.findViewById(R.id.security);
+        refrigerator = (ImageView) v.findViewById(R.id.refrigerator);
         min_rent = (TextView) v.findViewById(R.id.min_rent);
         deposit = (TextView) v.findViewById(R.id.deposit);
         pgAddress = (TextView) v.findViewById(R.id.address_one);
@@ -206,59 +208,63 @@ public class BlankFragment extends Fragment {
         }
 
         if (b.getBoolean("WIFI") == true)
-            wifi.setText("YES");
+            wifi.setImageResource(R.drawable.ic_signal_wifi_4_bar_grey_700_48dp);
         else
-            wifi.setText("NO");
+            wifi.setImageResource(R.drawable.ic_signal_wifi_off_grey_700_48dp);
 
         if (b.getBoolean("AC") == true)
-            ac.setText("YES");
+            ac.setImageResource(R.drawable.ac);
         else
-            ac.setText("NO");
+            ac.setImageResource(R.drawable.ac_no);
 
         if (b.getBoolean("REFRIGERATOR") == true)
-            refrigerator.setText("YES");
+            refrigerator.setImageResource(R.drawable.ic_kitchen_grey_700_48dp);
         else
-            refrigerator.setText("NO");
+            refrigerator.setImageResource(R.drawable.fridge_no);
 
         if (b.getBoolean("PARKING") == true)
-            parking.setText("YES");
+            parking.setImageResource(R.drawable.ic_local_parking_grey_700_48dp);
         else
-            parking.setText("NO");
+            parking.setImageResource(R.drawable.parking_no);
+
 
         if (b.getBoolean("TV") == true)
-            tv.setText("YES");
+            tv.setImageResource(R.drawable.ic_tv_grey_700_48dp);
+
         else
-            tv.setText("NO");
+            tv.setImageResource(R.drawable.tv_no);
+
 
         if (b.getBoolean("LUNCH") == true)
-            lunch.setText("YES");
+            lunch.setImageResource(R.drawable.ic_room_service_grey_700_48dp);
+
         else
-            lunch.setText("NO");
+            lunch.setImageResource(R.drawable.lunch_no);
 
         if (b.getBoolean("DINNER") == true)
-            dinner.setText("YES");
+            dinner.setImageResource(R.drawable.ic_restaurant_grey_700_48dp);
         else
-            dinner.setText("NO");
+            dinner.setImageResource(R.drawable.dinner_no);
 
         if (b.getBoolean("BREAKFAST") == true)
-            breakfast.setText("YES");
+            breakfast.setImageResource(R.drawable.ic_free_breakfast_grey_700_48dp);
         else
-            breakfast.setText("NO");
+            breakfast.setImageResource(R.drawable.breakfast_no);
 
         if (b.getBoolean("RO") == true)
-            ro_water.setText("YES");
+            ro_water.setImageResource(R.drawable.ic_opacity_grey_700_48dp);
         else
-            ro_water.setText("NO");
+            ro_water.setImageResource(R.drawable.ro_no);
 
         if (b.getBoolean("HOT WATER") == true)
-            hot_water.setText("YES");
+            hot_water.setImageResource(R.drawable.shower);
         else
-            hot_water.setText("NO");
+            hot_water.setImageResource(R.drawable.hot_water_no);
 
         if (b.getBoolean("SECURITY") == true)
-            security.setText("YES");
+            security.setImageResource(R.drawable.ic_security_grey_700_48dp);
         else
-            security.setText("NO");
+            security.setImageResource(R.drawable.security_no);
 
     }
 
