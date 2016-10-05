@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F4CC70"
+            android:background="#607D8B"
             android:gravity="center"
             android:padding="15dp"
             android:text="PG IMAGES"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F4CC70"
+            android:background="#607D8B"
             android:gravity="center"
             android:padding="15dp"
             android:text="(Please Upload the PG Images)"
@@ -171,6 +171,7 @@
 
 
         <com.sackcentury.shinebuttonlib.ShineButton
+            android:background="@color/white"
             android:layout_margin="20dp"
             android:id="@+id/shine_button"
             android:layout_width="100dp"
@@ -180,7 +181,6 @@
             android:src="@android:color/darker_gray"
             app:allow_random_color="false"
             app:big_shine_color="#1A237E"
-            app:btn_color="#F4CC70"
             app:btn_fill_color="#1A237E"
             app:click_animation_duration="200"
             app:enable_flashing="false"
