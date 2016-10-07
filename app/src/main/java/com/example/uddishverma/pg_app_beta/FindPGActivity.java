@@ -79,15 +79,15 @@ public class FindPGActivity extends AppCompatActivity {
         madapter = new PgDetailsAdapter(cardDetails, this);
         mrecyclerView.setAdapter(madapter);
 
-        Intent i = getIntent();
-        Bundle b = i.getExtras();
-        if (b != null) {
-            if (b.getString("source").equals("filter")) {
-                Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
-                ArrayList<String> arr = i.getStringArrayListExtra("list");
-                Log.d(TAG, "onCreate: element 0 " + arr.get(0));
-            }
-        }
+//        final Intent i = getIntent();
+//        final Bundle b = i.getExtras();
+//        if (b != null) {
+//            if (b.getString("source").equals("filter")) {
+//                Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
+//                ArrayList<String> arr = i.getStringArrayListExtra("list");
+//                Log.d(TAG, "onCreate: element 0 " + arr.get(0));
+//            }
+//        }
 
         final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -109,7 +109,26 @@ public class FindPGActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+
+                    final Intent i = getIntent();
+                    Bundle b = i.getExtras();
+                    if (b != null) {
+
+                        //TODO after selecting a filter and then removing them app crashes because arr.get(0) is null but not b
+                        if (b.getString("source").equals("filter")) {
+//                            Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
+                            ArrayList<String> arr = i.getStringArrayListExtra("list");
+                            Log.d(TAG, "onCreate: element 0 " + arr.get(0));
+
+                            if (dataSnapshot.child("locality").getValue().equals(arr.get(0))) {
+                                PgDetails_POJO.PgDetails model = dataSnapshot
+                                        .getValue(PgDetails_POJO.PgDetails.class);
+                                cardDetails.add(model);
+                                madapter.notifyDataSetChanged();
+                            }
+                        }
+
+                    }
 
                     /**
                      * This statement will be used to query from the firebase wrt to a particular POJO field
@@ -120,15 +139,15 @@ public class FindPGActivity extends AppCompatActivity {
                      * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
                      */
 
-                    Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
-                    PgDetails_POJO.PgDetails model = dataSnapshot
-                            .getValue(PgDetails_POJO.PgDetails.class);
-                    cardDetails.add(model);
-//                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
-//                      madapter.notifyItemInserted(cardDetails.size() - 1);
-                    madapter.notifyDataSetChanged();
+                    else{
+                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                .getValue(PgDetails_POJO.PgDetails.class);
+                        cardDetails.add(model);
+                        madapter.notifyDataSetChanged();
 
-                    //Stopping the progress dialogue
+                        //Stopping the progress dialogue
+
+                    }
                     mDialog.dismiss();
                 }
             }

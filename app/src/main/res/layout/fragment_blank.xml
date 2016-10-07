@@ -14,8 +14,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="3dp"
+            app:cardCornerRadius="8dp">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/img_view_pager"
@@ -61,7 +61,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PG NAME"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -72,7 +72,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EXAMPLE NAME"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -87,7 +87,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="OWNER's NAME"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -98,7 +98,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="XYZ"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -113,7 +113,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="CONTACT NO."
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1234567891"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -139,7 +139,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PG LOCATION"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -150,7 +150,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EXAMPLE NAME"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -165,7 +165,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="EMAIL ID"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -176,7 +176,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz@gmail.com"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -221,7 +221,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="ADDRESS"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -232,7 +232,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -248,7 +248,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="LOCALITY"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -259,7 +259,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -275,7 +275,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="CITY"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -286,7 +286,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="XYZ"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -302,7 +302,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="STATE"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -313,7 +313,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -329,7 +329,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="PINCODE"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -340,7 +340,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="110095"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -356,7 +356,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="NEARBY INSTITUTION"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -367,7 +367,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="xyz"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -684,8 +684,9 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="3dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -719,7 +720,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="MINIMUM RENT"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -730,7 +731,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1000"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -745,7 +746,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="DEPOSIT AMOUNT"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
 
                     <TextView
@@ -756,7 +757,7 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:text="1000"
-                        android:textAppearance="?android:textAppearanceLarge" />
+                        android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -764,8 +765,9 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="3dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

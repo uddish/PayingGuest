@@ -9,9 +9,9 @@
 
     <Button
         android:id="@+id/find_pg_btn"
-        android:text="Find Your Pg"
+        android:text="FIND YOUR PG"
         android:backgroundTint="@color/white"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:onClick="openFindPgActivity"
         android:layout_width="300dp"
         android:layout_height="70dp"
@@ -25,7 +25,7 @@
         android:text="REGISTER YOUR OWN PG(s) "
         android:id="@+id/register_pg_btn"
         android:backgroundTint="@color/white"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:onClick="openRegisterPgActivity"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"

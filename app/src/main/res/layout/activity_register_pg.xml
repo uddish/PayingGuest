@@ -18,29 +18,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#607D8B"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
             android:text="PG IMAGES"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#607D8B"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
             android:text="(Please Upload the PG Images)"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
             <ImageView
@@ -48,136 +47,196 @@
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_white_48dp" />
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/aluminum" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/pg_img_btn_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="UPLOAD" />
+
+                <Button
+                    android:id="@+id/cancel_image_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cancel_white_18dp"
+                    android:text="EDIT"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/aluminum" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/pg_img_two"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_white_48dp" />
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/aluminum" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/pg_img_btn_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="UPLOAD" />
+
+                <Button
+                    android:id="@+id/cancel_image_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cancel_white_18dp"
+                    android:text="EDIT"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/aluminum" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/cancel_image_one"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:elevation="5dp"
-                android:text="EDIT"
-                android:gravity="center"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:visibility="invisible"
-                android:background="@color/colorPrimary"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
-
-            <TextView
-                android:id="@+id/cancel_image_two"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:elevation="5dp"
-                android:text="EDIT"
-                android:gravity="center"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:visibility="invisible"
-                android:background="@color/colorPrimary"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/pg_img_three"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_white_48dp" />
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/aluminum" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/pg_img_btn_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="UPLOAD" />
+
+                <Button
+                    android:id="@+id/cancel_image_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cancel_white_18dp"
+                    android:text="EDIT"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/aluminum" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/pg_img_four"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_white_48dp" />
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/aluminum" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/pg_img_btn_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="UPLOAD" />
+
+                <Button
+                    android:id="@+id/cancel_image_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cancel_white_18dp"
+                    android:text="EDIT"
+                    android:visibility="invisible" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/cancel_image_three"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:elevation="5dp"
-                android:text="EDIT"
-                android:gravity="center"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:visibility="invisible"
-                android:background="@color/colorPrimary"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
-
-            <TextView
-                android:id="@+id/cancel_image_four"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:elevation="5dp"
-                android:text="EDIT"
-                android:gravity="center"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:visibility="invisible"
-                android:background="@color/colorPrimary"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_cancel_white_18dp" />
-        </LinearLayout>
-
-
+            android:layout_height="2dp"
+            android:background="@color/aluminum" />
 
         <com.sackcentury.shinebuttonlib.ShineButton
-            android:background="@color/white"
-            android:layout_margin="20dp"
             android:id="@+id/shine_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@color/white"
             android:src="@android:color/darker_gray"
             app:allow_random_color="false"
             app:big_shine_color="#1A237E"
