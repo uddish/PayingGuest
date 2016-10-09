@@ -1,5 +1,6 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,8 +17,14 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static com.google.android.gms.analytics.internal.zzy.s;
 
 public class FilterActivity extends AppCompatActivity {
 
@@ -143,11 +150,13 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-
+/*********************************************************************************************************/
+    //   Filter Apply Button code:
         filterApplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                ArrayList<String> filteredNameofLocality=new ArrayList<String>();
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
 
@@ -156,15 +165,27 @@ public class FilterActivity extends AppCompatActivity {
                     Filter_POJO ob = checkedListLocality.get(i);
                     if(ob.isChecked())
                     {
+                        filteredNameofLocality.add(ob.getName());
                         Log.d(TAG,"checked:"+ob.getName()+"\n");
                     }
                 }
+
+                Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(),FindPGActivity.class);
+
+                intentToFindPgActivity_Filter.putExtra("source","FilterActivity");
+                intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList",filteredNameofLocality);
+                startActivity(intentToFindPgActivity_Filter);
+
+
             }
         });
-
-
-
     }
+
+    /*********************************************************************************************************/
+
+
+
+
 
     /***********************************************************************************************/
 
