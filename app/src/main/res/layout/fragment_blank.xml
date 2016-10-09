@@ -26,8 +26,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="PG NAME"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -70,7 +69,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="EXAMPLE NAME"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -85,7 +83,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="OWNER's NAME"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -96,7 +93,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="XYZ"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -111,7 +107,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="CONTACT NO."
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -122,7 +117,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="1234567891"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -137,7 +131,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="PG LOCATION"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -148,7 +141,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="EXAMPLE NAME"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -163,7 +155,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="EMAIL ID"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -174,7 +165,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="xyz@gmail.com"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -184,8 +174,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -219,7 +209,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="ADDRESS"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -230,7 +219,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="xyz"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -246,7 +234,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="LOCALITY"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -257,7 +244,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="xyz"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -273,7 +259,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="CITY"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -284,7 +269,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="XYZ"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -300,7 +284,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="STATE"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -311,7 +294,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="xyz"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -327,7 +309,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="PINCODE"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -338,7 +319,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="110095"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -354,7 +334,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="NEARBY INSTITUTION"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -365,7 +344,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="xyz"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -375,8 +353,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardElevation="3dp">
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -684,9 +662,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="5dp">
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -700,7 +677,7 @@
                     android:gravity="center"
                     android:text="FINANCE INFORMATION"
                     android:textAppearance="?android:textAppearanceLarge"
-                    android:textSize="28dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <View
@@ -718,7 +695,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="MINIMUM RENT"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -729,7 +705,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="1000"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -744,7 +719,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.3"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="DEPOSIT AMOUNT"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="#000000" />
@@ -755,7 +729,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif"
-                        android:gravity="center"
                         android:text="1000"
                         android:textAppearance="?android:textAppearanceMedium" />
                 </LinearLayout>
@@ -765,9 +738,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="5dp">
+            android:layout_margin="2dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -789,7 +761,7 @@
                         android:gravity="center"
                         android:padding="15dp"
                         android:text="EXTRA FEATURES"
-                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textSize="25dp"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
 
@@ -807,7 +779,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="NONE SPECIFIED BY THE USER"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:textAppearance="?android:textAppearanceMedium" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -841,7 +813,6 @@
                 android:visibility="invisible"
                 app:backgroundTint="@color/colorPrimary"
                 app:pressedTranslationZ="12dp" />
-
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_btn_add"

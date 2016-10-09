@@ -79,19 +79,7 @@ public class FilterActivity extends AppCompatActivity {
         localityList.addAll(Arrays.asList(locality));
 
 
-
-
-     /* String l[]={"Dwarka","Pitampura","Rohini","Rithala","Dilshad Garden","Vikas Puri","Jhilmil","Paschim Vihar"};
-
-        locality=new ArrayList<String>();
-        for(int i = 0; i < l.length; i++)
-        {
-            locality.add(l[i]);
-        }
-*/
-
-
-        /*************************************************************************/
+/*************************************************************************/
         //Adding colleges
 
         String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
@@ -122,11 +110,6 @@ public class FilterActivity extends AppCompatActivity {
                     rightList.setAdapter(adapter);
                 }
 
-               /* else if(position == 1)
-                {
-                    RightListDetailsAdapter adapter=new RightListDetailsAdapter(colleges);
-                    rightList.setAdapter(adapter);
-                }*/
             }
         });
 

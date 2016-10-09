@@ -15,11 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,22 +102,18 @@ public class RegisterPG extends AppCompatActivity {
         shineButton = (ShineButton) findViewById(R.id.shine_button);
         shineButton.init(this);
 
-        //Getting fireBase storage instance to upload the images.
-
         //attaching the edit texts
         pgName = (EditText) findViewById(R.id.pg_name_et);
         ownerName = (EditText) findViewById(R.id.owner_name_et);
         contactNo = (EditText) findViewById(R.id.contactNumber_et);
         email = (EditText) findViewById(R.id.email_et);
         addressOne = (EditText) findViewById(R.id.address_line_one_et);
-        locality = (EditText) findViewById(R.id.locality);
         city = (EditText) findViewById(R.id.city_et);
         state = (EditText) findViewById(R.id.state_et);
         pinCode = (EditText) findViewById(R.id.pincode_et);
         rent = (EditText) findViewById(R.id.rent_et);
         depositAmount = (EditText) findViewById(R.id.deposit_et);
         extraFeatures = (EditText) findViewById(R.id.extra_et);
-        nearbyInstitute = (EditText) findViewById(R.id.nearby_inst);
 
         //attaching the checkboxes
         wifi = (CheckBox) findViewById(R.id.chk_wifi);
@@ -629,25 +628,25 @@ public class RegisterPG extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
+            Picasso.with(this).load(uri).fit().into(imgUpload_1);
             cuwbp.url1 = uri;
             uploadImage(uri, 1);
         }
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
+            Picasso.with(this).load(uri).fit().into(imgUpload_2);
             cuwbp.url2 = uri;
             uploadImage(uri, 2);
         }
         if (requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
+            Picasso.with(this).load(uri).fit().into(imgUpload_3);
             cuwbp.url3 = uri;
             uploadImage(uri, 3);
         }
         if (requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
+            Picasso.with(this).load(uri).fit().into(imgUpload_4);
             cuwbp.url4 = uri;
             uploadImage(uri, 4);
         }

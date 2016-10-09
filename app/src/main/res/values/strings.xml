@@ -12,4 +12,36 @@
 
     <string name="action_settings">Settings</string>
     <string name="home">Home</string>
+
+    <string-array name="locality">
+        <item>Anand Vihar</item>
+        <item>Ashok Vihar</item>
+        <item>Dilshad Garden</item>
+        <item>Dwarka</item>
+        <item>Janakpuri</item>
+        <item>Jhilmil</item>
+        <item>Lajpat Nagar</item>
+        <item>Model Town</item>
+        <item>Pitampura</item>
+        <item>Rithala</item>
+        <item>Rohini</item>
+        <item>Shalimar Bagh</item>
+    </string-array>
+
+    <string-array name="institutes">
+        <item>Amity</item>
+        <item>Bhagwan Parshuram</item>
+        <item>BVP</item>
+        <item>DTU</item>
+        <item>GGSIPU Dwarka</item>
+        <item>GTBIT</item>
+        <item>IIIT Delhi</item>
+        <item>IIT Delhi</item>
+        <item>JIMS</item>
+        <item>MAIT</item>
+        <item>NIEC</item>
+        <item>NSIT</item>
+        <item>NSIT</item>
+
+    </string-array>
 </resources>
