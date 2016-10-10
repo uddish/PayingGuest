@@ -151,11 +151,7 @@ public class BlankFragment extends Fragment {
     private void findView(View v) {
 
         vPager = (ViewPager) v.findViewById(R.id.img_view_pager);
-//        callFab = (FloatingActionButton) v.findViewById(R.id.call_fab);
 
-        /**
-         * TEST FUNCTIONS
-         */
         fabPlus = (FloatingActionButton) v.findViewById(R.id.fab_btn_add);
         fabloc = (FloatingActionButton) v.findViewById(R.id.fab_btn_loc);
         fabcall = (FloatingActionButton) v.findViewById(R.id.fab_btn_call);

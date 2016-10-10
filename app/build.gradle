@@ -10,6 +10,8 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -26,6 +28,7 @@ android {
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
+
 }
 
 dependencies {
@@ -46,6 +49,8 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.4.0'
     compile 'com.google.android.gms:play-services-gcm:9.4.0'
     compile 'com.google.android.gms:play-services-auth:9.4.0'
+
+
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'agency.tango.android:material-intro-screen:+'
     compile 'cn.pedant.sweetalert:library:1.3'

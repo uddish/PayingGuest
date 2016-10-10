@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -57,9 +58,10 @@ public class LoginFrag extends Fragment {
     public static final String TAG = "LoginFrag";
 
     EditText loginEmail, loginPassword;
+    TextView linkSignUp;
     Button btnLogin, btnGoogle;
     TextView forgotPass;
-    ImageView eye;
+    // ImageView eye;
     FirebaseAuth firebaseAuth;
 
     SweetAlertDialog pDialog;
@@ -73,6 +75,8 @@ public class LoginFrag extends Fragment {
     GoogleApiClient mGoogleApiClient;
     public static final int RC_SIGN_IN = 9001;
     FirebaseAuth.AuthStateListener mAuthListener;
+
+    ViewPager viewPager;
 
 
     @Override
@@ -89,6 +93,8 @@ public class LoginFrag extends Fragment {
 
 
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        viewPager = (ViewPager) getActivity().findViewById(R.id.container);
 
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
@@ -110,14 +116,22 @@ public class LoginFrag extends Fragment {
         }).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
 
 
-        eye = (ImageView) view.findViewById(R.id.eye);
+        //eye = (ImageView) view.findViewById(R.id.eye);
         loginEmail = (EditText) view.findViewById(R.id.et_email);
         loginPassword = (EditText) view.findViewById(R.id.et_password);
         btnLogin = (Button) view.findViewById(R.id.btn_login);
         btnGoogle = (Button) view.findViewById(R.id.btn_google);
         facebookBtn = (LoginButton) view.findViewById(R.id.btn_fb);
         forgotPass = (TextView) view.findViewById(R.id.forgot_pass);
+        linkSignUp = (TextView) view.findViewById(R.id.link_signup);
 
+
+        linkSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(1);
+            }
+        });
 
         //Adding click events on the login button
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -128,21 +142,6 @@ public class LoginFrag extends Fragment {
             }
         });
 
-        //Adding click events on the eye button
-        eye.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        loginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
-                }
-                return true;
-            }
-        });
 
         //Adding click events to the Google SignIn Button
         btnGoogle.setOnClickListener(new View.OnClickListener() {
@@ -218,12 +217,12 @@ public class LoginFrag extends Fragment {
         String email = loginEmail.getText().toString().trim();
         String password = loginPassword.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getContext(), "Please Enter the Email Id!", Toast.LENGTH_SHORT).show();
+        if (email.isEmpty()) {
+            loginEmail.setError("Please Enter the Email Id!");
             return;
         }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getContext(), "Please Enter the Password!", Toast.LENGTH_SHORT).show();
+        if (password.isEmpty()) {
+            loginPassword.setError("Please Enter the Password!");
             return;
         }
 
@@ -294,7 +293,7 @@ public class LoginFrag extends Fragment {
     }
 
     public void handleFacebookAccessToken(AccessToken token) {
-         Log.d(TAG, "handleFacebookAccessToken:" + token);
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
 

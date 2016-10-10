@@ -156,9 +156,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    //Added by NAMAN
     //This function opens the find pg activity
     public void openFindPgActivity(View view) {
         Intent i = new Intent(this, FindPGActivity.class);
+        i.putExtra("source","MainActivity");  //Adding source so that in FindPgActivity we can check whether to display all cards or filtered cards
         startActivity(i);
     }
 
