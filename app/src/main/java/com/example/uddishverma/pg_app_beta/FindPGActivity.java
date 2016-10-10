@@ -103,6 +103,9 @@ public class FindPGActivity extends AppCompatActivity {
         /***************************************************************************************/
 
 
+
+        /*******************************************************/
+
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
 
