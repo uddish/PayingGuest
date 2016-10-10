@@ -64,14 +64,16 @@ public class FilterActivity extends AppCompatActivity {
 
         locality = new Filter_POJO[]
                 {
+                        new Filter_POJO("Anand Vihar"),
+                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Dwarka"),
+                        new Filter_POJO("Janak Puri"),
+                        new Filter_POJO("Jhilmil"),
+                        new Filter_POJO("Lajpat Nagar"),
                         new Filter_POJO("Pitampura"),
                         new Filter_POJO("Rohini"),
                         new Filter_POJO("Rithala"),
-                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Vikas Puri"),
-                        new Filter_POJO("Janak Puri"),
-                        new Filter_POJO("Jhilmil"),
                         new Filter_POJO("Pascim Vihar")
                 };
 
@@ -82,14 +84,14 @@ public class FilterActivity extends AppCompatActivity {
 /*************************************************************************/
         //Adding colleges
 
-        String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
+        String c[] = {"Amity", "Bhagwan Parshuram", "BVP", "DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
         colleges = new ArrayList<String >();
         for(int i = 0; i < c.length; i++)
         {
             colleges.add(c[i]);
         }
 
-/***********************************************************************************/
+/**************************************************************************/
 
 
         detailsListView = (ListView) findViewById(R.id.list_view_left);
