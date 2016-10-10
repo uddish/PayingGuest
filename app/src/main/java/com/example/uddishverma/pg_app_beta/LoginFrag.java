@@ -2,12 +2,14 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +19,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.firebase.client.Firebase;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -29,10 +39,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.concurrent.Executor;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by UddishVerma on 03/09/16.
@@ -41,23 +54,42 @@ import java.util.concurrent.Executor;
 //TODO add progress bar
 public class LoginFrag extends Fragment {
 
+    public static final String TAG = "LoginFrag";
+
     EditText loginEmail, loginPassword;
-    Button btnLogin, btnGoogle, btnFb;
+    Button btnLogin, btnGoogle;
     TextView forgotPass;
-    ProgressDialog progressDialog;
     ImageView eye;
     FirebaseAuth firebaseAuth;
+
+    SweetAlertDialog pDialog;
+
+    //For facebook login
+    CallbackManager callbackManager;
+    LoginButton facebookBtn;
+    static int t = 0;
 
     //Google Sign In
     GoogleApiClient mGoogleApiClient;
     public static final int RC_SIGN_IN = 9001;
     FirebaseAuth.AuthStateListener mAuthListener;
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        FacebookSdk.sdkInitialize(getContext());
+        callbackManager = CallbackManager.Factory.create();
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
-//        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
 
@@ -83,7 +115,7 @@ public class LoginFrag extends Fragment {
         loginPassword = (EditText) view.findViewById(R.id.et_password);
         btnLogin = (Button) view.findViewById(R.id.btn_login);
         btnGoogle = (Button) view.findViewById(R.id.btn_google);
-        btnFb = (Button) view.findViewById(R.id.btn_fb);
+        facebookBtn = (LoginButton) view.findViewById(R.id.btn_fb);
         forgotPass = (TextView) view.findViewById(R.id.forgot_pass);
 
 
@@ -91,7 +123,7 @@ public class LoginFrag extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(view.getContext());
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 userLogin();
             }
         });
@@ -116,7 +148,7 @@ public class LoginFrag extends Fragment {
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(view.getContext());
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
                 googleSignIn();
             }
         });
@@ -146,6 +178,37 @@ public class LoginFrag extends Fragment {
             }
         });
 
+
+        facebookBtn.setFragment(this);
+
+        facebookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                facebookBtn.setReadPermissions("email", "public_profile");
+                LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Please Wait");
+                        pDialog.setCancelable(false);
+                        pDialog.show();
+                        handleFacebookAccessToken(loginResult.getAccessToken());
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+
+                    }
+                });
+            }
+        });
+
         return view;
     }
 
@@ -164,15 +227,16 @@ public class LoginFrag extends Fragment {
             return;
         }
 
-        progressDialog.setMessage("Please Wait!");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email, password).
                 addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        pDialog.dismiss();
 
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -195,6 +259,7 @@ public class LoginFrag extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -207,9 +272,10 @@ public class LoginFrag extends Fragment {
 
     private void fireBaseAuthWithGoogle(GoogleSignInAccount acct) {
 
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Please Wait");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
 
@@ -217,11 +283,39 @@ public class LoginFrag extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        pDialog.dismiss();
                         if (!task.isSuccessful()) {
                             Toast.makeText(getContext(), "Authentication Failed !", Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(getContext(), MainActivity.class));
+                        }
+                    }
+                });
+    }
+
+    public void handleFacebookAccessToken(AccessToken token) {
+         Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        pDialog.dismiss();
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithCredential", task.getException());
+                            Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            t = 1;
+                            startActivity(new Intent(getContext(),MainActivity.class));
                         }
                     }
                 });
@@ -240,6 +334,7 @@ public class LoginFrag extends Fragment {
         super.onDestroy();
         mGoogleApiClient.stopAutoManage(getActivity());
         mGoogleApiClient.disconnect();
+        FacebookSdk.clearLoggingBehaviors();
     }
 
     @Override
@@ -248,6 +343,7 @@ public class LoginFrag extends Fragment {
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+        FacebookSdk.clearLoggingBehaviors();
         super.onStop();
     }
 }

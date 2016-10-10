@@ -2,6 +2,7 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +30,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//************************************Class to Find PGs************************************************************
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.google.android.gms.analytics.internal.zzy.s;
+
+/************************************Class to Find PGs************************************************************/
 public class FindPGActivity extends AppCompatActivity {
 
     public static final String TAG = "FindPGActivity";
@@ -52,8 +57,7 @@ public class FindPGActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_find_pg);
 
-         filterActivityIntent = new Intent(this,FilterActivity.class);
-
+        filterActivityIntent = new Intent(this, FilterActivity.class);
 
 
 /**
@@ -62,14 +66,13 @@ public class FindPGActivity extends AppCompatActivity {
  * compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar' in GRADLE
  */
 
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        filterButton= (Button) findViewById(R.id.filter);
+        filterButton = (Button) findViewById(R.id.filter);
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(filterActivityIntent);
             }
         });
@@ -80,13 +83,15 @@ public class FindPGActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mrecyclerView.setLayoutManager(layoutManager);
         mrecyclerView.setHasFixedSize(true);
-        madapter = new PgDetailsAdapter(cardDetails,this);
+        madapter = new PgDetailsAdapter(cardDetails, this);
         mrecyclerView.setAdapter(madapter);
 
-       //Adding progress dialogue while the cards are loading
-        final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Please Wait...");
-        pd.show();
+
+        final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        mDialog.setTitleText("Please Wait");
+//        mDialog.setCancelable(false);
+        mDialog.show();
 
         Firebase.setAndroidContext(this);
 
@@ -108,45 +113,36 @@ public class FindPGActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                checkActivityCallerIntent=getIntent();
-                Bundle b=checkActivityCallerIntent.getExtras();
-                final String intentSource= (String) b.get("source");
-                Log.d(TAG,intentSource);
+                checkActivityCallerIntent = getIntent();
+                Bundle b = checkActivityCallerIntent.getExtras();
+                final String intentSource = (String) b.get("source");
+                Log.d(TAG, intentSource);
 
                 /***********************************************************************************/
-                if (dataSnapshot != null && dataSnapshot.getValue() != null)
-                {
-                    if (intentSource.equals("FilterActivity"))
-                    {
-                        if (b != null)
-                        {
-                           // if(checkActivityCallerIntent.getShortArrayExtra("filteredLocalityList").length!=0)
-                            //{
-                                ArrayList<String> filteredLocalityList = new ArrayList<String>();
-                                filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
+                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                    if (intentSource.equals("FilterActivity")) {
+                        if (b != null) {
+                            ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                            filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
 
-                               for(int i=0;i<filteredLocalityList.size();i++)
-                               {
-                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
-                                    {
-                                        PgDetails_POJO.PgDetails model = dataSnapshot
-                                                .getValue(PgDetails_POJO.PgDetails.class);
-                                        cardDetails.add(model);
-                                        madapter.notifyDataSetChanged();
-                                        pd.dismiss();
-                                    }
-                               }
-                           // }
-
+                            for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
+                                    PgDetails_POJO.PgDetails model = dataSnapshot
+                                            .getValue(PgDetails_POJO.PgDetails.class);
+                                    cardDetails.add(model);
+                                    madapter.notifyDataSetChanged();
+                                    pd.dismiss();
+                                }
+                            }
                         }
 
                     }
 
-                    /*******************************************************************************/
 
-                  //  else if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    else if(intentSource.equals("MainActivity"))
-                    {
+                    /**********************************************************************************************/
+
+
+                    else if (intentSource.equals("MainActivity")) {
 
                         Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
 
@@ -160,18 +156,23 @@ public class FindPGActivity extends AppCompatActivity {
                          */
 
                         Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+
+
                         PgDetails_POJO.PgDetails model = dataSnapshot
                                 .getValue(PgDetails_POJO.PgDetails.class);
                         cardDetails.add(model);
-//                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
-//                      madapter.notifyItemInserted(cardDetails.size() - 1);
                         madapter.notifyDataSetChanged();
 
                         //Stopping the progress dialogue
+
                         pd.dismiss();
                     }
+
                 }
+                mDialog.dismiss();
+
             }
+        }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -193,9 +194,5 @@ public class FindPGActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-
-
 }

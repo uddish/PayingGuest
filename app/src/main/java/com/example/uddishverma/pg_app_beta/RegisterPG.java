@@ -15,11 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,8 +89,8 @@ public class RegisterPG extends AppCompatActivity {
             city, state, pinCode, nearbyInstitute;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     ShineButton shineButton;
-    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
-    TextView cancelImage1, cancelImage2, cancelImage3, cancelImage4;
+    ImageView  imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    Button imgUploadBtn_1, imgUploadBtn_2, imgUploadBtn_3, imgUploadBtn_4, cancelImage1, cancelImage2, cancelImage3, cancelImage4;
     String preference;
     String genderPreference;
 
@@ -99,22 +102,18 @@ public class RegisterPG extends AppCompatActivity {
         shineButton = (ShineButton) findViewById(R.id.shine_button);
         shineButton.init(this);
 
-        //Getting fireBase storage instance to upload the images.
-
         //attaching the edit texts
         pgName = (EditText) findViewById(R.id.pg_name_et);
         ownerName = (EditText) findViewById(R.id.owner_name_et);
         contactNo = (EditText) findViewById(R.id.contactNumber_et);
         email = (EditText) findViewById(R.id.email_et);
         addressOne = (EditText) findViewById(R.id.address_line_one_et);
-        locality = (EditText) findViewById(R.id.locality);
         city = (EditText) findViewById(R.id.city_et);
         state = (EditText) findViewById(R.id.state_et);
         pinCode = (EditText) findViewById(R.id.pincode_et);
         rent = (EditText) findViewById(R.id.rent_et);
         depositAmount = (EditText) findViewById(R.id.deposit_et);
         extraFeatures = (EditText) findViewById(R.id.extra_et);
-        nearbyInstitute = (EditText) findViewById(R.id.nearby_inst);
 
         //attaching the checkboxes
         wifi = (CheckBox) findViewById(R.id.chk_wifi);
@@ -135,11 +134,17 @@ public class RegisterPG extends AppCompatActivity {
         imgUpload_3 = (ImageView) findViewById(R.id.pg_img_three);
         imgUpload_4 = (ImageView) findViewById(R.id.pg_img_four);
 
+        //Upload Buttons For Images
+        imgUploadBtn_1 = (Button) findViewById(R.id.pg_img_btn_one);
+        imgUploadBtn_2 = (Button) findViewById(R.id.pg_img_btn_two);
+        imgUploadBtn_3 = (Button) findViewById(R.id.pg_img_btn_three);
+        imgUploadBtn_4 = (Button) findViewById(R.id.pg_img_btn_four);
+
         //Attaching the delete buttons for the images
-        cancelImage1 = (TextView) findViewById(R.id.cancel_image_one);
-        cancelImage2 = (TextView) findViewById(R.id.cancel_image_two);
-        cancelImage3 = (TextView) findViewById(R.id.cancel_image_three);
-        cancelImage4 = (TextView) findViewById(R.id.cancel_image_four);
+        cancelImage1 = (Button) findViewById(R.id.cancel_image_one);
+        cancelImage2 = (Button) findViewById(R.id.cancel_image_two);
+        cancelImage3 = (Button) findViewById(R.id.cancel_image_three);
+        cancelImage4 = (Button) findViewById(R.id.cancel_image_four);
 
         cancelImage1.setClickable(false);
         cancelImage2.setClickable(false);
@@ -151,7 +156,7 @@ public class RegisterPG extends AppCompatActivity {
          *  Handling the click events of the four images being uploaded
          *  Firing the intent
          */
-        imgUpload_1.setOnClickListener(new View.OnClickListener() {
+        imgUploadBtn_1.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
@@ -162,7 +167,7 @@ public class RegisterPG extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
             }
         });
-        imgUpload_2.setOnClickListener(new View.OnClickListener() {
+        imgUploadBtn_2.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
@@ -173,7 +178,7 @@ public class RegisterPG extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
             }
         });
-        imgUpload_3.setOnClickListener(new View.OnClickListener() {
+        imgUploadBtn_3.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
@@ -184,7 +189,7 @@ public class RegisterPG extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
             }
         });
-        imgUpload_4.setOnClickListener(new View.OnClickListener() {
+        imgUploadBtn_4.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
@@ -238,17 +243,18 @@ public class RegisterPG extends AppCompatActivity {
 
                 //Setting the previous PG images in the Register Layout(like shared preferences for the user to edit it
                 firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                        if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+//
                         if (dataSnapshot.child("id").getValue().equals(pgIdForEditing)) {
                             final PgDetails_POJO.PgDetails pgDetails;
                             pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 
-                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).resize(600, 600).centerCrop().into(imgUpload_1);
-                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).resize(600, 600).centerCrop().into(imgUpload_2);
-                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).resize(600, 600).centerCrop().into(imgUpload_3);
-                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).resize(600, 600).centerCrop().into(imgUpload_4);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).fit().into(imgUpload_1);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).fit().into(imgUpload_2);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).fit().into(imgUpload_3);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).fit().into(imgUpload_4);
 
 
                             //Deleting the previous images from the firebase reference
@@ -270,10 +276,14 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage3.setClickable(true);
                             cancelImage4.setClickable(true);
 
-                            imgUpload_1.setClickable(false);
-                            imgUpload_2.setClickable(false);
-                            imgUpload_3.setClickable(false);
-                            imgUpload_4.setClickable(false);
+                            imgUploadBtn_1.setClickable(false);
+                            imgUploadBtn_2.setClickable(false);
+                            imgUploadBtn_3.setClickable(false);
+                            imgUploadBtn_4.setClickable(false);
+                            imgUploadBtn_1.setVisibility(View.INVISIBLE);
+                            imgUploadBtn_2.setVisibility(View.INVISIBLE);
+                            imgUploadBtn_3.setVisibility(View.INVISIBLE);
+                            imgUploadBtn_4.setVisibility(View.INVISIBLE);
 
                             cancelImage1.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -488,7 +498,7 @@ public class RegisterPG extends AppCompatActivity {
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
                     }
-                    registerComplete();
+//                    registerComplete();
                     shineBtnClickListener();
                 } else {
                     Toast.makeText(RegisterPG.this, "Images Not Uploaded Successfully!", Toast.LENGTH_SHORT).show();
@@ -618,25 +628,25 @@ public class RegisterPG extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST_ONE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_1);
+            Picasso.with(this).load(uri).fit().into(imgUpload_1);
             cuwbp.url1 = uri;
             uploadImage(uri, 1);
         }
         if (requestCode == PICK_IMAGE_REQUEST_TWO && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_2);
+            Picasso.with(this).load(uri).fit().into(imgUpload_2);
             cuwbp.url2 = uri;
             uploadImage(uri, 2);
         }
         if (requestCode == PICK_IMAGE_REQUEST_THREE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_3);
+            Picasso.with(this).load(uri).fit().into(imgUpload_3);
             cuwbp.url3 = uri;
             uploadImage(uri, 3);
         }
         if (requestCode == PICK_IMAGE_REQUEST_FOUR && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-            Picasso.with(this).load(uri).resize(600, 600).centerCrop().into(imgUpload_4);
+            Picasso.with(this).load(uri).fit().into(imgUpload_4);
             cuwbp.url4 = uri;
             uploadImage(uri, 4);
         }
@@ -671,7 +681,6 @@ public class RegisterPG extends AppCompatActivity {
         depositAmount.setText("");
         extraFeatures.setText("");
         nearbyInstitute.setText("");
-//        startActivity(new Intent(this, TempActivity.class));
 
         //******************************************For custom toast***********************************************
 //        LayoutInflater inflater = getLayoutInflater();
@@ -690,65 +699,5 @@ public class RegisterPG extends AppCompatActivity {
 
     }
 
-    /**
-     * Checks for the null fields in the RegisterPg Activity
-     */
-//    private int checkForNullFields() {
-//
-//        //TODO CHECK IF IMAGES ARE NULL OR NOT
-//
-//        if (pgName.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//
-//        if (ownerName.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (contactNo.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (email.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (addressOne.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (locality.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//
-//        // NOTE--> not adding constraints on address line two as it is optional
-//        if (city.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (state.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (pinCode.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the PinCode!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (nearbyInstitute.toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (rent.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        if (depositAmount.toString().matches("")) {
-//            Toast.makeText(RegisterPG.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
-//        return 0;
-//    }
 
 }

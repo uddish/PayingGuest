@@ -51,6 +51,7 @@ public class MultiplePGEditAdapter extends RecyclerView.Adapter<MultiplePGEditAd
         return detailsViewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(final MultiplePGEditAdapter.DetailsViewHolder holder, int position)    {
 

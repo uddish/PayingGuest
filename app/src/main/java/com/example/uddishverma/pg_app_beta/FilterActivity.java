@@ -33,7 +33,7 @@ public class FilterActivity extends AppCompatActivity {
     ArrayList<String> detailsList;
 
     ListView rightList;
-  //  ArrayList<String> locality;
+
     ArrayList<String> colleges;
     ArrayList<String> institutes;
 
@@ -68,7 +68,7 @@ public class FilterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        locality=new Filter_POJO[]
+        locality = new Filter_POJO[]
                 {
                         new Filter_POJO("Dwarka"),
                         new Filter_POJO("Pitampura"),
@@ -81,23 +81,11 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("Pascim Vihar")
                 };
 
-        localityList=new ArrayList<Filter_POJO>();
+        localityList = new ArrayList<Filter_POJO>();
         localityList.addAll(Arrays.asList(locality));
 
 
-
-
-     /* String l[]={"Dwarka","Pitampura","Rohini","Rithala","Dilshad Garden","Vikas Puri","Jhilmil","Paschim Vihar"};
-
-        locality=new ArrayList<String>();
-        for(int i = 0; i < l.length; i++)
-        {
-            locality.add(l[i]);
-        }
-*/
-
-
-        /*************************************************************************/
+/*************************************************************************/
         //Adding colleges
 
         String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
@@ -128,11 +116,6 @@ public class FilterActivity extends AppCompatActivity {
                     rightList.setAdapter(adapter);
                 }
 
-               /* else if(position == 1)
-                {
-                    RightListDetailsAdapter adapter=new RightListDetailsAdapter(colleges);
-                    rightList.setAdapter(adapter);
-                }*/
             }
         });
 
@@ -159,6 +142,7 @@ public class FilterActivity extends AppCompatActivity {
                 ArrayList<String> filteredNameofLocality=new ArrayList<String>();
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
+                ArrayList<String> localityList = new ArrayList<String>(4);
 
                 for(int i = 0; i < checkedListLocality.size(); i++)
                 {
@@ -167,8 +151,10 @@ public class FilterActivity extends AppCompatActivity {
                     {
                         filteredNameofLocality.add(ob.getName());
                         Log.d(TAG,"checked:"+ob.getName()+"\n");
+                        localityList.add(ob.getName());
                     }
                 }
+
 
                 Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(),FindPGActivity.class);
 
@@ -176,15 +162,11 @@ public class FilterActivity extends AppCompatActivity {
                 intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList",filteredNameofLocality);
                 startActivity(intentToFindPgActivity_Filter);
 
-
             }
         });
     }
 
     /*********************************************************************************************************/
-
-
-
 
 
     /***********************************************************************************************/

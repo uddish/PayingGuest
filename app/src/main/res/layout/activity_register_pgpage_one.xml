@@ -12,574 +12,646 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-        <TextView
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F4CC70"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="PG DETAILS"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
 
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_location_city_black_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/pg_name_et"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="PG NAME"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
+                android:orientation="vertical">
 
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_perm_identity_black_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/owner_name_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="OWNER'S NAME"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_perm_phone_msg_white_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/contactNumber_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="CONTACT NO."
-                android:inputType="number"
-                android:maxLength="10"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_email_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/email_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="EMAIL ID"
-                android:inputType="textEmailAddress"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:background="#F4CC70"
-                android:gravity="center"
-                android:padding="15dp"
-                android:text="LOCATION"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#F4CC70"
-                android:src="@drawable/ic_room_black_24dp" />
-        </LinearLayout>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_room_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/address_line_one_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ADDRESS"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_home_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/locality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="LOCALITY"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_home_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/city_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="CITY/TOWN"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_room_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/state_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="STATE"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_room_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/pincode_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="PIN CODE"
-                android:inputType="number"
-                android:maxLength="6"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_location_city_black_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/nearby_inst"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="NEARBY INSTITUTION"
-                android:maxLength="6"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F4CC70"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="SERVICES"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/layout_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/chk_wifi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="WiFi"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_ac"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="AC"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_breakfast"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Breakfast"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/chk_lunch"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Lunch"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_dinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Dinner"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_parking"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Parking"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/chk_purifiedwater"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="R.O. Water"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_security"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Security"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_tv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="TV"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/chk_hotwater"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Hot Water"
-                android:textColor="@android:color/white" />
-
-            <CheckBox
-                android:id="@+id/chk_refrigerator"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:padding="10dp"
-                android:text="Refrigerator"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F4CC70"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="PREFERENCE"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-
-        <LinearLayout
-            android:id="@+id/layout_6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radBtn_Individual"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="preferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Individual"
+                    android:background="#607D8B"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="PG DETAILS"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/pg_name_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PG NAME"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/owner_name_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="OWNER'S NAME"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/contactNumber_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CONTACT NO."
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/email_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="EMAIL ID"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="#607D8B"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="LOCATION"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/address_line_one_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ADDRESS"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="5dp">-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/locality"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="LOCALITY"-->
+                        <!--android:textColor="#333"-->
+                        <!--android:textColorHint="#666"-->
+                        <!--android:textSize="15sp" />-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="LOCALITY"
+                    android:layout_margin="5dp"/>
+
+                <Spinner
+                    android:id="@+id/locality_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+                </Spinner>
+
+                <View
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/aluminum"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/city_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CITY/TOWN"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/state_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="STATE"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <EditText
+                        android:id="@+id/pincode_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PIN CODE"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="NEARBY INSTITUTE"/>
+
+                <Spinner
+                    android:id="@+id/institute_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+                </Spinner>
+
+                <View
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/aluminum"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#607D8B"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="SERVICES"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/layout_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chk_wifi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="WiFi"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_ac"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="AC"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_breakfast"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Breakfast"
+                        android:textColor="@color/oil" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chk_lunch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Lunch"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_dinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Dinner"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_parking"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Parking"
+                        android:textColor="@color/oil" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chk_purifiedwater"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="R.O. Water"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_security"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Security"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TV"
+                        android:textColor="@color/oil" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/chk_hotwater"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Hot Water"
+                        android:textColor="@color/oil" />
+
+                    <CheckBox
+                        android:id="@+id/chk_refrigerator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:padding="10dp"
+                        android:text="Refrigerator"
+                        android:textColor="@color/oil" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#607D8B"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="PREFERENCE"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:id="@+id/layout_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radBtn_Individual"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="preferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Individual"
+                            android:textColor="@color/oil" />
+
+                        <RadioButton
+                            android:id="@+id/radBtn_Sharing"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="preferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Sharing"
+                            android:textColor="@color/oil" />
+
+                        <RadioButton
+                            android:id="@+id/rad_both_pref"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="preferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Both"
+                            android:textColor="@color/oil" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#607D8B"
+                    android:fontFamily="sans-serif"
+                    android:text="GENDER PREFERENCE"
                     android:textColor="@android:color/white" />
 
-                <RadioButton
-                    android:id="@+id/radBtn_Sharing"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/layout_7"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="preferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Sharing"
-                    android:textColor="@android:color/white" />
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/rad_both_pref"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="preferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Both"
-                    android:textColor="@android:color/white" />
-            </RadioGroup>
-        </LinearLayout>
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-        <TextView
+                        <RadioButton
+                            android:id="@+id/radBtn_male"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="genderPreferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Male"
+                            android:textColor="@color/oil" />
+
+                        <RadioButton
+                            android:id="@+id/radBtn_female"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="genderPreferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Female"
+                            android:textColor="@color/oil" />
+
+                        <RadioButton
+                            android:id="@+id/rad_both_gender"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="genderPreferenceRadioButton"
+                            android:padding="10dp"
+                            android:text="Both"
+                            android:textColor="@color/oil" />
+                    </RadioGroup>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F4CC70"
-            android:text="GENDER PREFERENCE"
-            android:textColor="@android:color/white" />
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
 
-        <LinearLayout
-            android:id="@+id/layout_7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioGroup
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/radBtn_male"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="genderPreferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Male"
-                    android:textColor="@android:color/white" />
+                    android:background="#607D8B"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="FINANCE INFORMATION"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/radBtn_female"
-                    android:layout_width="0dp"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="genderPreferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Female"
-                    android:textColor="@android:color/white" />
+                    android:layout_margin="5dp">
 
-                <RadioButton
-                    android:id="@+id/rad_both_gender"
-                    android:layout_width="0dp"
+                    <EditText
+                        android:id="@+id/rent_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="MINIMUM RENT"
+                        android:inputType="number"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="genderPreferenceRadioButton"
-                    android:padding="10dp"
-                    android:text="Both"
-                    android:textColor="@android:color/white" />
-            </RadioGroup>
-        </LinearLayout>
+                    android:layout_margin="5dp">
 
-        <TextView
+                    <EditText
+                        android:id="@+id/deposit_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="DEPOSIT AMOUNT"
+                        android:inputType="number"
+                        android:textColor="#333"
+                        android:textColorHint="#666"
+                        android:textSize="15sp"  />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F4CC70"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="FINANCE INFORMATION"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:layout_margin="4dp"
+            app:cardElevation="3dp"
+            android:background="@android:color/darker_gray">
 
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_account_balance_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
-
-            <EditText
-                android:id="@+id/rent_et"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="MINIMUM RENT"
-                android:inputType="number"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
+                android:orientation="vertical">
 
-        <com.github.florent37.materialtextfield.MaterialTextField
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            app:mtf_animationDuration="200"
-            app:mtf_cardCollapsedHeight="4dp"
-            app:mtf_image="@drawable/ic_account_balance_wallet_grey_700_24dp"
-            app:mtf_openKeyboardOnFocus="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#607D8B"
+                    android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/deposit_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="DEPOSIT AMOUNT"
-                android:inputType="number"
-                android:textColor="#333"
-                android:textColorHint="#666"
-                android:textSize="20sp" />
-        </com.github.florent37.materialtextfield.MaterialTextField>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="#607D8B"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="EXTRA FEATURES"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1A237E"
-            android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="57dp"
+                        android:layout_weight="1"
+                        android:background="#607D8B"
+                        android:src="@drawable/ic_feedback_white_24dp" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:background="#F4CC70"
-                android:gravity="center"
-                android:padding="15dp"
-                android:text="EXTRA FEATURES"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/extra_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/iron"
+                    android:gravity="left"
+                    android:hint="MAX(100 chars.)" />
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="57dp"
-                android:layout_weight="1"
-                android:background="#F4CC70"
-                android:src="@drawable/ic_feedback_white_24dp" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/next_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#607D8B"
+                    android:src="@drawable/ic_arrow_forward_white_48dp" />
 
-        <EditText
-            android:id="@+id/extra_et"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@android:color/white"
-            android:gravity="left"
-            android:hint="MAX(100 chars.)" />
+            </LinearLayout>
 
-        <ImageView
-            android:id="@+id/next_button"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_arrow_forward_white_48dp"/>
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 

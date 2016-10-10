@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,157 +8,168 @@
     android:orientation="vertical"
     tools:context="com.example.uddishverma.pg_app_beta.MyAccountPage">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/tool_bar" />
-
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        app:cardCornerRadius="8dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-        <LinearLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/tool_bar" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/details"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_weight="1.5"
-                    android:src="@drawable/usericon" />
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="NAME"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textSize="20dp" />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/usericon" />
 
-                    <TextView
-                        android:id="@+id/myacc_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="UDDISH VERMA"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:textSize="25dp" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@android:color/darker_gray" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="NAME"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textSize="25dp" />
 
+                        <TextView
+                            android:id="@+id/myacc_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="UDDISH VERMA"
+                            android:textAppearance="?android:textAppearanceLarge"
+                            android:textSize="30dp"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-thin"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@android:color/darker_gray" />
+
+                    </LinearLayout>
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="EMAIL ID"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/myacc_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="xyz@gmail.com"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textSize="30dp"
+                    android:fontFamily="sans-serif"/>
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/myacc_mypg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#68829E"
+                    android:text="My Pg(s)"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="#F4CC70"
+                    android:textStyle="italic"
+                    android:fontFamily="sans-serif"/>
+
+                <Button
+                    android:id="@+id/myacc_addpg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#68829E"
+                    android:text="Add a New PG"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="#F4CC70"
+                    android:textStyle="italic"
+                    android:fontFamily="sans-serif"/>
+
+                <Button
+                    android:id="@+id/myacc_editpg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#68829E"
+                    android:text="Edit Your PG"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="#F4CC70"
+                    android:textStyle="italic"
+                    android:fontFamily="sans-serif"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray" />
+
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="EMAIL ID"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textSize="20dp" />
+        </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/myacc_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="xyz@gmail.com"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textSize="25dp" />
-            
-            <View
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
-
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        app:cardCornerRadius="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/myacc_mypg"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My Pg(s)"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="italic"
-                android:background="#68829E"
-                android:textColor="#F4CC70"/>
-            <Button
-                android:id="@+id/myacc_addpg"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add a New PG"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="italic"
-                android:background="#68829E"
-                android:textColor="#F4CC70"/>
-            <Button
-                android:id="@+id/myacc_editpg"
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Edit Your PG"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="italic"
-                android:background="#68829E"
-                android:textColor="#F4CC70"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/myacc_signout"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#8D230F"
+        android:layout_alignParentBottom="true"
         android:text="SIGN OUT"
         android:textColor="#FFFFFF"
-        android:background="#8D230F"/>
-
-    <Button
-        android:id="@+id/myacc_deleteacc"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete account"
-        android:textColor="#FFFFFF"
-        android:background="#8D230F"/>
-
-</LinearLayout>
+        android:textSize="20dp"
+        android:fontFamily="sans-serif"/>
+</RelativeLayout>
