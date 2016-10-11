@@ -32,4 +32,22 @@
 
     <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="login_screen_button" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorButtonNormal">@color/black</item>
+
+    </style>
+    <style name="StyleTilEditTextTheme">
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:colorControlNormal">@android:color/white</item>
+        <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="android:textSize">17dp</item>
+    </style>
+    <style name="StyleTilEditText">
+
+        <item name="android:theme">@style/StyleTilEditTextTheme</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
 </resources>
