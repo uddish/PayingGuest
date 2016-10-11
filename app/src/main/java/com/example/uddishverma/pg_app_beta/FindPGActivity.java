@@ -25,12 +25,16 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-//************************************Class to Find PGs************************************************************
+import static com.google.android.gms.analytics.internal.zzy.s;
+
+/************************************Class to Find PGs************************************************************/
 public class FindPGActivity extends AppCompatActivity {
 
     public static final String TAG = "FindPGActivity";
@@ -43,6 +47,9 @@ public class FindPGActivity extends AppCompatActivity {
     Intent filterActivityIntent;
 
     Toolbar toolbar;
+
+
+    Intent checkActivityCallerIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +86,6 @@ public class FindPGActivity extends AppCompatActivity {
         madapter = new PgDetailsAdapter(cardDetails, this);
         mrecyclerView.setAdapter(madapter);
 
-        Intent i = getIntent();
-        Bundle b = i.getExtras();
-        if (b != null) {
-            if (b.getString("source").equals("filter")) {
-                Log.d(TAG, "onCreate: ARRAY LIST " + i.getStringArrayListExtra("list"));
-                ArrayList<String> arr = i.getStringArrayListExtra("list");
-                Log.d(TAG, "onCreate: element 0 " + arr.get(0));
-            }
-        }
 
         final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -101,6 +99,13 @@ public class FindPGActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("ac").equalTo("true"));
 
+
+        /***************************************************************************************/
+
+
+
+        /*******************************************************/
+
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
 
@@ -108,29 +113,64 @@ public class FindPGActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
+                checkActivityCallerIntent = getIntent();
+                Bundle b = checkActivityCallerIntent.getExtras();
+                final String intentSource = (String) b.get("source");
+                Log.d(TAG, intentSource);
+
+                /***********************************************************************************/
                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+                    if (intentSource.equals("FilterActivity")) {
+                        if (b != null) {
+                            ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                            filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
 
-                    /**
-                     * This statement will be used to query from the firebase wrt to a particular POJO field
-                     * The below log statement displays the city anit value
-                     * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city")));
-                     *
-                     * And this is used tp display cardViews where CITY = DELHI
-                     * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
-                     */
+                            for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
+                                    PgDetails_POJO.PgDetails model = dataSnapshot
+                                            .getValue(PgDetails_POJO.PgDetails.class);
+                                    cardDetails.add(model);
+                                    madapter.notifyDataSetChanged();
+                                    mDialog.dismiss();
+                                }
+                            }
+                        }
 
-                    Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
-                    PgDetails_POJO.PgDetails model = dataSnapshot
-                            .getValue(PgDetails_POJO.PgDetails.class);
-                    cardDetails.add(model);
-//                      mrecyclerView.scrollToPosition(cardDetails.size() - 1);
-//                      madapter.notifyItemInserted(cardDetails.size() - 1);
-                    madapter.notifyDataSetChanged();
+                    }
 
-                    //Stopping the progress dialogue
-                    mDialog.dismiss();
+
+                    /**********************************************************************************************/
+
+
+                    else if (intentSource.equals("MainActivity")) {
+
+                        Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+
+                        /**
+                         * This statement will be used to query from the firebase wrt to a particular POJO field
+                         * The below log statement displays the city anit value
+                         * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city")));
+                         *
+                         * And this is used tp display cardViews where CITY = DELHI
+                         * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+                         */
+
+                        Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+
+
+                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                .getValue(PgDetails_POJO.PgDetails.class);
+                        cardDetails.add(model);
+                        madapter.notifyDataSetChanged();
+
+                        //Stopping the progress dialogue
+
+                        mDialog.dismiss();
+                    }
+
                 }
+                mDialog.dismiss();
+
             }
 
             @Override
@@ -153,8 +193,5 @@ public class FindPGActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-
 }

@@ -74,46 +74,50 @@
             android:gravity="center"
             android:textSize="16dp"/>
 
-        <Button
-            android:id="@+id/btn_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#e74c3c"
-            android:drawableLeft="@drawable/googleicon"
-            android:layout_gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Login With Google"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:fontFamily="sans-serif"/>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/btn_fb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="#3b5998"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:drawableLeft="@drawable/facebookicon"
-            android:textColor="#FFFFFF"
-            facebook:com_facebook_login_text="LOGIN WITH FACEBOOK"
-            facebook:com_facebook_logout_text="LOGIN WITH FACEBOOK"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif"
-            android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btn_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#e74c3c"
+                android:drawableLeft="@drawable/googleicon"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Login With Google"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:fontFamily="sans-serif"/>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btn_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#3b5998"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:drawableLeft="@drawable/facebookicon"
+                android:textColor="#FFFFFF"
+                facebook:com_facebook_login_text="LOGIN WITH FACEBOOK"
+                facebook:com_facebook_logout_text="LOGIN WITH FACEBOOK"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:layout_marginBottom="10dp"/>
+
 
 
         <TextView
             android:id="@+id/link_signup"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="No account yet? Create one"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"
-            android:textSize="16dp"/>
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 </ScrollView>
 

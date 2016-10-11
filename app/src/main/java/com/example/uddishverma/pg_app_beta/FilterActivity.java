@@ -17,8 +17,14 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static com.google.android.gms.analytics.internal.zzy.s;
 
 public class FilterActivity extends AppCompatActivity {
 
@@ -64,14 +70,16 @@ public class FilterActivity extends AppCompatActivity {
 
         locality = new Filter_POJO[]
                 {
+                        new Filter_POJO("Anand Vihar"),
+                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Dwarka"),
+                        new Filter_POJO("Janak Puri"),
+                        new Filter_POJO("Jhilmil"),
+                        new Filter_POJO("Lajpat Nagar"),
                         new Filter_POJO("Pitampura"),
                         new Filter_POJO("Rohini"),
                         new Filter_POJO("Rithala"),
-                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Vikas Puri"),
-                        new Filter_POJO("Janak Puri"),
-                        new Filter_POJO("Jhilmil"),
                         new Filter_POJO("Pascim Vihar")
                 };
 
@@ -79,29 +87,17 @@ public class FilterActivity extends AppCompatActivity {
         localityList.addAll(Arrays.asList(locality));
 
 
-
-
-     /* String l[]={"Dwarka","Pitampura","Rohini","Rithala","Dilshad Garden","Vikas Puri","Jhilmil","Paschim Vihar"};
-
-        locality=new ArrayList<String>();
-        for(int i = 0; i < l.length; i++)
-        {
-            locality.add(l[i]);
-        }
-*/
-
-
-        /*************************************************************************/
+/*************************************************************************/
         //Adding colleges
 
-        String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
+        String c[] = {"Amity", "Bhagwan Parshuram", "BVP", "DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
         colleges = new ArrayList<String >();
         for(int i = 0; i < c.length; i++)
         {
             colleges.add(c[i]);
         }
 
-/***********************************************************************************/
+/**************************************************************************/
 
 
         detailsListView = (ListView) findViewById(R.id.list_view_left);
@@ -122,11 +118,6 @@ public class FilterActivity extends AppCompatActivity {
                     rightList.setAdapter(adapter);
                 }
 
-               /* else if(position == 1)
-                {
-                    RightListDetailsAdapter adapter=new RightListDetailsAdapter(colleges);
-                    rightList.setAdapter(adapter);
-                }*/
             }
         });
 
@@ -144,11 +135,13 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-
+/*********************************************************************************************************/
+    //   Filter Apply Button code:
         filterApplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                ArrayList<String> filteredNameofLocality=new ArrayList<String>();
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
                 ArrayList<String> localityList = new ArrayList<String>(4);
@@ -158,19 +151,25 @@ public class FilterActivity extends AppCompatActivity {
                     Filter_POJO ob = checkedListLocality.get(i);
                     if(ob.isChecked())
                     {
+                        filteredNameofLocality.add(ob.getName());
                         Log.d(TAG,"checked:"+ob.getName()+"\n");
                         localityList.add(ob.getName());
                     }
                 }
 
-               Intent i = new Intent(getApplicationContext(), FindPGActivity.class);
-                i.putStringArrayListExtra("list", localityList);
-                i.putExtra("source", "filter");
-                startActivity(i);
+
+                Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(),FindPGActivity.class);
+
+                intentToFindPgActivity_Filter.putExtra("source","FilterActivity");
+                intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList",filteredNameofLocality);
+                startActivity(intentToFindPgActivity_Filter);
+
             }
         });
-
     }
+
+    /*********************************************************************************************************/
+
 
     /***********************************************************************************************/
 

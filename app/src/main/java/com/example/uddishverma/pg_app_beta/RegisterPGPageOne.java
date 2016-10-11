@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
@@ -29,12 +32,23 @@ public class RegisterPGPageOne extends AppCompatActivity {
 
     public static final String TAG = "RegisterPGPageOne";
 
-    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, locality,
-            city, state, pinCode, nearbyInstitute;
+    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
+            city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     String preference;
     String genderPreference;
     ImageView nextBtn;
+
+
+    //Locality Spinner
+    Spinner localitySpinner;
+    ArrayAdapter<CharSequence> locAdapter;
+    String locality;
+
+    //Nearby Institutes Spinner
+    Spinner institutesSpinner;
+    ArrayAdapter<CharSequence> instAdapter;
+    String nearbyInstitute;
 
     String isEdit = " ";
     public static int editCalledFlag = 120;
@@ -60,14 +74,12 @@ public class RegisterPGPageOne extends AppCompatActivity {
         contactNo = (EditText) findViewById(R.id.contactNumber_et);
         email = (EditText) findViewById(R.id.email_et);
         addressOne = (EditText) findViewById(R.id.address_line_one_et);
-        locality = (EditText) findViewById(R.id.locality);
         city = (EditText) findViewById(R.id.city_et);
         state = (EditText) findViewById(R.id.state_et);
         pinCode = (EditText) findViewById(R.id.pincode_et);
         rent = (EditText) findViewById(R.id.rent_et);
         depositAmount = (EditText) findViewById(R.id.deposit_et);
         extraFeatures = (EditText) findViewById(R.id.extra_et);
-        nearbyInstitute = (EditText) findViewById(R.id.nearby_inst);
 
         //attaching the checkboxes
         wifi = (CheckBox) findViewById(R.id.chk_wifi);
@@ -89,6 +101,47 @@ public class RegisterPGPageOne extends AppCompatActivity {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+
+        //Attaching the locality spinner
+        localitySpinner = (Spinner) findViewById(R.id.locality_spinner);
+        locAdapter = ArrayAdapter.createFromResource(this, R.array.locality,android.R.layout.simple_spinner_item);
+        locAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        localitySpinner.setAdapter(locAdapter);
+        localitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                locality = String.valueOf(adapterView.getItemAtPosition(i));
+                Log.d(TAG, "onItemSelected: ITEM " +  locality);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(RegisterPGPageOne.this, "ERROR!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Attaching the NearbyInstitutes spinner
+        institutesSpinner = (Spinner) findViewById(R.id.institute_spinner);
+        instAdapter = ArrayAdapter.createFromResource(this, R.array.institutes,android.R.layout.simple_spinner_item);
+        instAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        institutesSpinner.setAdapter(instAdapter);
+        institutesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                nearbyInstitute = String.valueOf(adapterView.getItemAtPosition(i));
+                Log.d(TAG, "onItemSelected: ITEM " +  nearbyInstitute);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(RegisterPGPageOne.this, "Please Select From the List!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,14 +159,14 @@ public class RegisterPGPageOne extends AppCompatActivity {
                     intent.putExtra("contactNo", contactNo.getText().toString());
                     intent.putExtra("email", email.getText().toString());
                     intent.putExtra("addressOne", addressOne.getText().toString());
-                    intent.putExtra("locality", locality.getText().toString());
+                    intent.putExtra("locality",  locality);
                     intent.putExtra("city", city.getText().toString());
                     intent.putExtra("state", state.getText().toString());
                     intent.putExtra("pinCode", pinCode.getText().toString());
                     intent.putExtra("rent", rent.getText().toString());
                     intent.putExtra("depositAmount", depositAmount.getText().toString());
                     intent.putExtra("extraFeatures", extraFeatures.getText().toString());
-                    intent.putExtra("nearbyInstitute", nearbyInstitute.getText().toString());
+                    intent.putExtra("nearbyInstitute", nearbyInstitute);
                     intent.putExtra("preference", preference);
                     intent.putExtra("genderPreference", genderPreference);
 
@@ -181,13 +234,11 @@ public class RegisterPGPageOne extends AppCompatActivity {
                         contactNo.setText(String.valueOf((int) pgDetails.getContactNo()));
                         email.setText(pgDetails.getEmail());
                         addressOne.setText(pgDetails.getAddressOne());
-                        locality.setText(pgDetails.getLocality());
                         city.setText(pgDetails.getCity());
                         state.setText(pgDetails.getState());
                         pinCode.setText(String.valueOf((int) pgDetails.getPinCode()));
                         rent.setText(String.valueOf((int) pgDetails.getRent()));
                         depositAmount.setText(String.valueOf((int) pgDetails.getDepositAmount()));
-                        nearbyInstitute.setText(pgDetails.getNearbyInstitute());
                         extraFeatures.setText(pgDetails.getExtraFeatures());
 
                         wifi.setChecked(pgDetails.getWifi());
@@ -310,10 +361,10 @@ public class RegisterPGPageOne extends AppCompatActivity {
             Toast.makeText(RegisterPGPageOne.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
             return 1;
         }
-        if (locality.getText().toString().matches("")) {
-            Toast.makeText(RegisterPGPageOne.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
+//        if (locality.getText().toString().matches("")) {
+//            Toast.makeText(RegisterPGPageOne.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
 
         // NOTE--> not adding constraints on address line two as it is optional
         if (city.getText().toString().matches("")) {
@@ -328,10 +379,10 @@ public class RegisterPGPageOne extends AppCompatActivity {
             Toast.makeText(RegisterPGPageOne.this, "Enter the PinCode!", Toast.LENGTH_SHORT).show();
             return 1;
         }
-        if (nearbyInstitute.toString().matches("")) {
-            Toast.makeText(RegisterPGPageOne.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
-            return 1;
-        }
+//        if (nearbyInstitute.toString().matches("")) {
+//            Toast.makeText(RegisterPGPageOne.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
+//            return 1;
+//        }
         if (rent.getText().toString().matches("")) {
             Toast.makeText(RegisterPGPageOne.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
             return 1;

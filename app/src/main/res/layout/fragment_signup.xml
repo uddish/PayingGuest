@@ -31,8 +31,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimaryDark"
                 android:inputType="textCapWords"
-                style="@style/StyleTilEditText"
-                android:hint="First Name" />
+                android:theme="@style/StyleTilEditText"
+                android:hint="First Name"/>
+
         </android.support.design.widget.TextInputLayout>
 
         <!--Last Name-->
@@ -46,7 +47,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                style="@style/StyleTilEditText"
+                android:theme="@style/StyleTilEditText"
                 android:hint="Last Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -61,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                style="@style/StyleTilEditText"
+                android:theme="@style/StyleTilEditText"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +76,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/StyleTilEditText"
+                android:theme="@style/StyleTilEditText"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </android.support.design.widget.TextInputLayout>
@@ -90,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                style="@style/StyleTilEditText"
+                android:theme="@style/StyleTilEditText"
                 android:hint="Re Enter Your Password"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -148,9 +149,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:gravity="center"
-            android:textSize="16dp"/>
+            android:textSize="18dp"/>
 
     </LinearLayout>
 

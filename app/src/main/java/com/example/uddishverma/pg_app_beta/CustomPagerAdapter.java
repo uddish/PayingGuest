@@ -59,6 +59,7 @@ public class CustomPagerAdapter extends PagerAdapter {
         return view == ((FrameLayout)(object));
     }
 
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
 
@@ -80,6 +81,7 @@ public class CustomPagerAdapter extends PagerAdapter {
 
         return view;
     }
+
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
