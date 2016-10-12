@@ -179,6 +179,7 @@ public class SignUpFrag extends Fragment {
                                             pDialog.dismiss();
                                             Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(getContext(), MainActivity.class));
+                                            getActivity().finish();
                                         }
                                     });
                         } else

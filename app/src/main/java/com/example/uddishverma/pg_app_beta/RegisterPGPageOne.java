@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -38,6 +39,9 @@ public class RegisterPGPageOne extends AppCompatActivity {
     String preference;
     String genderPreference;
     ImageView nextBtn;
+
+
+    Toolbar toolbar;
 
 
     //Locality Spinner
@@ -93,6 +97,9 @@ public class RegisterPGPageOne extends AppCompatActivity {
         tv = (CheckBox) findViewById(R.id.chk_tv);
         hotWater = (CheckBox) findViewById(R.id.chk_hotwater);
         refrigerator = (CheckBox) findViewById(R.id.chk_refrigerator);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //Attaching the next arrow button which will take us to the image upload activity
         nextBtn = (ImageView) findViewById(R.id.next_button);
