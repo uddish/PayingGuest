@@ -25,19 +25,19 @@ This activity shows an expanded view of the PG selected making use of fragments,
 
 ![alt text](screenshots/cardexpanded.png "Expanded Card")        ![alt text](screenshots/cardexpanded2.png "Expanded Card") 
 
- ![alt text](screenshots/cardexpanded4.png "Expanded Card")       ![alt text](screenshots/cardexpanded5.png "Expanded Card")
+ ![alt text](screenshots/cardexpanded3.png "Expanded Card")      
      
 
 LOGIN AND SIGN UP->
 
 ![alt text](screenshots/login.png "Login")          
 
-![alt text](screenshots/signup1.png "Sign Up")    ![alt text](screenshots/signup2.png "Sign Up")
+![alt text](screenshots/signup1.png "Sign Up")   
 
 FILTERS->
 PGs can be Filtered by selecting the appropriate one from the toolbar.
 
-![alt text](screenshots/filter.png "Filter")    ![alt text](screenshots/filter2.png "Filter")
+![alt text](screenshots/filter.png "Filter")   
 
 
 NAVIGATION DRAWER ->
