@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     CoordinatorLayout coordinatorLayout;
 
     GoogleApiClient mGoogleApiClient;
-
+    Button signOut ;
     static long noOfChildren;
 
     Boolean doublepress = false;
@@ -80,6 +81,18 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, "onCreate: USER " + user.getEmail());
             Log.d(TAG, "onCreate: USER " + user.getUid());
         }
+
+        signOut = (Button) findViewById(R.id.nav_signout);
+        //Setting the click events on the sign out button
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                Toast.makeText(MainActivity.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -373,4 +386,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

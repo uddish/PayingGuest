@@ -35,6 +35,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import static com.google.android.gms.analytics.internal.zzy.s;
 
 /************************************Class to Find PGs************************************************************/
+
 public class FindPGActivity extends AppCompatActivity {
 
     public static final String TAG = "FindPGActivity";
@@ -180,8 +181,6 @@ public class FindPGActivity extends AppCompatActivity {
 
 
                             }
-
-
 
                             else if(localityCheckCode!=null)
                             {
