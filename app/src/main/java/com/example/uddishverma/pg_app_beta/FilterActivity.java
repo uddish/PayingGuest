@@ -28,14 +28,19 @@ import static com.google.android.gms.analytics.internal.zzy.s;
 
 public class FilterActivity extends AppCompatActivity {
 
+
+
+    String localityCheckCode="00";
+    String collegeCheckCode="11";
     private static final String TAG ="FilterTestCode" ;
     ListView detailsListView;
     ArrayList<String> detailsList;
 
     ListView rightList;
 
-    ArrayList<String> colleges;
-    ArrayList<String> institutes;
+ //   ArrayList<String> colleges;
+    Filter_POJO colleges[];
+    ArrayList<Filter_POJO> collegeList;
 
     Filter_POJO locality[];
     ArrayList<Filter_POJO> localityList;
@@ -87,13 +92,30 @@ public class FilterActivity extends AppCompatActivity {
 
 /*************************************************************************/
         //Adding colleges
+        colleges=new Filter_POJO[]
+                {
 
+                        new Filter_POJO("DTU"),
+                        new Filter_POJO("NSIT"),
+                        new Filter_POJO("IIT DELHI"),
+                        new Filter_POJO("NIT DELHI"),
+                        new Filter_POJO("MAIT"),
+                        new Filter_POJO("BVP"),
+                        new Filter_POJO("USIT"),
+                        new Filter_POJO("IIIT DELHI"),
+                        new Filter_POJO("JAYPEE NOIDA")
+                };
+
+        collegeList = new ArrayList<Filter_POJO>();
+        collegeList.addAll(Arrays.asList(colleges));
+
+/*
         String c[] = {"DTU","NSIT","IIT DELHI","IIIT DELHI","NIT DELHI","MAIT"};
         colleges = new ArrayList<String >();
         for(int i = 0; i < c.length; i++)
         {
             colleges.add(c[i]);
-        }
+        }*/
 
 /***********************************************************************************/
 
@@ -116,6 +138,11 @@ public class FilterActivity extends AppCompatActivity {
                     rightList.setAdapter(adapter);
                 }
 
+               else if(position == 1)
+                {
+                    RightListDetailsAdapter adapter=new RightListDetailsAdapter(collegeList);
+                    rightList.setAdapter(adapter);
+                }
             }
         });
 
@@ -139,6 +166,7 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+
                 ArrayList<String> filteredNameofLocality=new ArrayList<String>();
                 ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
@@ -156,11 +184,64 @@ public class FilterActivity extends AppCompatActivity {
                 }
 
 
-                Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(),FindPGActivity.class);
 
-                intentToFindPgActivity_Filter.putExtra("source","FilterActivity");
-                intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList",filteredNameofLocality);
-                startActivity(intentToFindPgActivity_Filter);
+
+                ArrayList<String> filteredNameofColleges=new ArrayList<String>();
+                ArrayList<Filter_POJO> checkedListColleges=new ArrayList<Filter_POJO>();
+                checkedListColleges.addAll(Arrays.asList(colleges));
+                ArrayList<String> collegeList = new ArrayList<String>(4);
+
+                for(int i = 0; i < checkedListColleges.size(); i++)
+                {
+                    Filter_POJO ob = checkedListColleges.get(i);
+                    if(ob.isChecked())
+                    {
+                        filteredNameofColleges.add(ob.getName());
+                        Log.d(TAG,"checked:"+ob.getName()+"\n");
+                        collegeList.add(ob.getName());
+                    }
+                }
+
+                if(filteredNameofLocality.isEmpty() && filteredNameofColleges.isEmpty())
+                {
+                    Toast.makeText(FilterActivity.this,"NO field is selected",Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(), FindPGActivity.class);
+                    intentToFindPgActivity_Filter.putExtra("source","FilterActivity");
+
+                    if (!filteredNameofLocality.isEmpty())
+                    {
+                        localityCheckCode="0";
+                        Log.d(TAG,localityCheckCode);
+                        intentToFindPgActivity_Filter.putExtra("localityCheckCode",localityCheckCode);
+                        intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList", filteredNameofLocality);
+                    }
+
+                    if (!filteredNameofColleges.isEmpty())
+                    {
+
+                        collegeCheckCode="1";
+                        Log.d(TAG,collegeCheckCode);
+                        intentToFindPgActivity_Filter.putExtra("collegeCheckCode",collegeCheckCode);
+                        intentToFindPgActivity_Filter.putStringArrayListExtra("filteredCollegesList",filteredNameofColleges);
+                    }
+
+                    startActivity(intentToFindPgActivity_Filter);
+
+
+                  /*  Intent intentToFindPgActivity_Filter = new Intent(getApplicationContext(),FindPGActivity.class);
+
+                    intentToFindPgActivity_Filter.putExtra("source","FilterActivity");
+                    intentToFindPgActivity_Filter.putStringArrayListExtra("filteredLocalityList",filteredNameofLocality);
+                    intentToFindPgActivity_Filter.putStringArrayListExtra("filteredCollegesList",filteredNameofColleges);
+
+                    startActivity(intentToFindPgActivity_Filter);*/
+                }
+
+
 
             }
         });
