@@ -104,7 +104,7 @@ public class FindPGActivity extends AppCompatActivity {
 
 
 
-        /*******************************************************/
+        /**************************************************************************************/
 
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
@@ -116,24 +116,124 @@ public class FindPGActivity extends AppCompatActivity {
                 checkActivityCallerIntent = getIntent();
                 Bundle b = checkActivityCallerIntent.getExtras();
                 final String intentSource = (String) b.get("source");
+
+              /*  if (intentSource.equals("FilterActivity"))
+                {
+                    String localityCheckCode= (String) b.get("localityCheckCode");
+                    String collegeCheckCode= (String) b.get("collegeCheckCode");
+                    String finalCheckCode=localityCheckCode+collegeCheckCode;
+                    Log.d(TAG,"hello"+finalCheckCode);
+                }*/
+
+
                 Log.d(TAG, intentSource);
 
                 /***********************************************************************************/
-                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    if (intentSource.equals("FilterActivity")) {
-                        if (b != null) {
-                            ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                if (dataSnapshot != null && dataSnapshot.getValue() != null)
+                {
+                    if (intentSource.equals("FilterActivity"))
+                    {
+                        if (b != null)
+                        {
+
+                            String localityCheckCode= (String) b.get("localityCheckCode");
+                            String collegeCheckCode= (String) b.get("collegeCheckCode");
+                            String finalCheckCode=localityCheckCode+collegeCheckCode;
+                          /*  Log.d(TAG,localityCheckCode);
+                            Log.d(TAG,collegeCheckCode);
+                          */  Log.d(TAG,finalCheckCode);
+
+
+                            if(finalCheckCode.equals("01"))
+                            {
+
+                                ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                                filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
+
+                                for (int i = 0; i < filteredLocalityList.size(); i++)
+                                {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+
+
+                                ArrayList<String> filteredCollegeList = new ArrayList<String>();
+                                filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
+
+                                for (int i = 0; i < filteredCollegeList.size(); i++)
+                                {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i)))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+
+
+                            }
+
+
+
+                            else if(localityCheckCode!=null)
+                            {
+                                ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                                filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
+
+                                for (int i = 0; i < filteredLocalityList.size(); i++)
+                                {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+                            }
+
+                            else if(collegeCheckCode!=null)
+                            {
+                                ArrayList<String> filteredCollegeList = new ArrayList<String>();
+                                filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
+
+                                for (int i = 0; i < filteredCollegeList.size(); i++)
+                                {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i)))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+                            }
+
+
+                           /* ArrayList<String> filteredLocalityList = new ArrayList<String>();
                             filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
 
-                            for (int i = 0; i < filteredLocalityList.size(); i++) {
-                                if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
+                            for (int i = 0; i < filteredLocalityList.size(); i++)
+                            {
+                                if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
+                                {
                                     PgDetails_POJO.PgDetails model = dataSnapshot
                                             .getValue(PgDetails_POJO.PgDetails.class);
                                     cardDetails.add(model);
                                     madapter.notifyDataSetChanged();
                                     mDialog.dismiss();
                                 }
-                            }
+                            }*/
                         }
 
                     }
