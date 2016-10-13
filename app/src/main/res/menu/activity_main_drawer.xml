@@ -36,6 +36,8 @@
                 android:icon="@drawable/nav_rateus"
                 android:title="Rate Us" />
         </menu>
+
+
     </item>
 
 </menu>

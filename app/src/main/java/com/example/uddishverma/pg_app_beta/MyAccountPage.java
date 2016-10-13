@@ -37,14 +37,14 @@ public class MyAccountPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account_page);
-
-        name = (TextView) findViewById(R.id.myacc_name);
-        email = (TextView) findViewById(R.id.myacc_id);
-
-        addPG = (Button) findViewById(R.id.myacc_addpg);
-        editPG = (Button) findViewById(R.id.myacc_editpg);
-        signOut = (Button) findViewById(R.id.myacc_signout);
-        myPgs = (Button) findViewById(R.id.myacc_mypg);
+//
+//        name = (TextView) findViewById(R.id.myacc_name);
+//        email = (TextView) findViewById(R.id.myacc_id);
+//
+//        addPG = (Button) findViewById(R.id.myacc_addpg);
+//        editPG = (Button) findViewById(R.id.myacc_editpg);
+//        signOut = (Button) findViewById(R.id.myacc_signout);
+//        myPgs = (Button) findViewById(R.id.myacc_mypg);
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -127,15 +127,15 @@ public class MyAccountPage extends AppCompatActivity {
 
 
         //Setting the click events on the sign out button
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.signOut();
-                Toast.makeText(MyAccountPage.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
+//        signOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                firebaseAuth.signOut();
+//                Toast.makeText(MyAccountPage.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
+//                finish();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//            }
+//        });
 
 
     }

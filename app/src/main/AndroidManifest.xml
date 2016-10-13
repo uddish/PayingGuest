@@ -25,11 +25,7 @@
             android:name=".SplashScreen"
 
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".IntroActivity"/>
         <activity android:name=".RegisterPG" />
@@ -37,11 +33,21 @@
         <activity android:name=".FragmentCaller" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/MyTheme" />
+            android:label="@string/home"
+            android:theme="@style/MyTheme" >
+
+
+        </activity>
         <activity android:name=".FilterActivity" />
         <activity android:name=".AuthorisationActivity" />
-        <activity android:name=".MyAccountPage" />
+        <activity android:name=".MyAccountPage" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".MyRegisteredPGInfo" />
         <activity android:name=".EditPG" />
         <activity android:name=".RegisterPGPageOne" />
