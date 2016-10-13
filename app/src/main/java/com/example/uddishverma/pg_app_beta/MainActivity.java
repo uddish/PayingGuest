@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity
 
     Boolean doublepress = false;
 
-//    ProgressDialog progressDialog;
-
     SweetAlertDialog pDialog;
 
 
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-//        progressDialog = new ProgressDialog(this);
+
         pDialog = new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.PROGRESS_TYPE);
 
         user = firebaseAuth.getCurrentUser();
@@ -168,26 +166,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-
-            if (doublepress) {
-                finish();
-                super.onBackPressed();
-                return;
-            }
-            doublepress = true;
-            Toast.makeText(MainActivity.this, "Press Again To Exit", Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    doublepress = false;
-                }
-            }, 2000);
-        }
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

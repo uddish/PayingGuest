@@ -1,184 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-        <android.support.v7.widget.CardView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- First Name Label -->
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <EditText android:id="@+id/edittext_firstusername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:textColor="@color/colorPrimaryDark"
+                android:inputType="textCapWords"
+                android:theme="@style/StyleTilEditText"
+                android:hint="First Name"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="SIGN UP"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+        </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorAccent" />
-
-                <EditText
-                    android:id="@+id/et_fname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="First Name"
-                    android:inputType="textEmailAddress"
-                    android:textAppearance="?android:textAppearanceLarge" />
-
-                <EditText
-                    android:id="@+id/et_lname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="Last Name"
-                    android:inputType="textEmailAddress"
-                    android:textAppearance="?android:textAppearanceLarge" />
-
-                <EditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="Email Id"
-                    android:inputType="textEmailAddress"
-                    android:textAppearance="?android:textAppearanceLarge" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/et_password"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="5"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:textAppearance="?android:textAppearanceLarge" />
-
-                    <ImageView
-                        android:id="@+id/eye"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_remove_red_eye_grey_700_24dp" />
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/et_repassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
-                    android:hint="Retype Password"
-                    android:inputType="textPassword"
-                    android:textAppearance="?android:textAppearanceLarge" />
-
-                <Button
-                    android:id="@+id/btn_signup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="#ef6c00"
-                    android:text="SIGN UP"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:textColor="#FFFFFF"
-                    android:fontFamily="sans-serif"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
+        <!--Last Name-->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardCornerRadius="8dp">
-
-            <TextView
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <EditText android:id="@+id/edittext_lastusername"
                 android:layout_width="match_parent"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="OR"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textSize="30dp"
-                android:textStyle="italic"
-                android:fontFamily="sans-serif"/>
+                android:inputType="textCapWords"
+                android:theme="@style/StyleTilEditText"
+                android:hint="Last Name" />
+        </android.support.design.widget.TextInputLayout>
 
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <EditText android:id="@+id/edittext_email"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:inputType="textEmailAddress"
+                android:theme="@style/StyleTilEditText"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_google"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#e74c3c"
-                    android:drawableLeft="@drawable/googleicon"
-                    android:text="Sign Up With Google"
-                    android:textStyle="italic"
-                    android:textColor="#FFFFFF"
-                    android:fontFamily="sans-serif"/>
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <EditText android:id="@+id/edittext_password"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/StyleTilEditText"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+        </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_fb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#3b5998"
-                    android:drawableLeft="@drawable/facebookicon"
-                    android:text="Sign Up With Facebook"
-                    android:textStyle="italic"
-                    android:textColor="#FFFFFF"
-                    android:fontFamily="sans-serif"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+            <EditText android:id="@+id/edittext_repassword"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:theme="@style/StyleTilEditText"
+                android:hint="Re Enter Your Password"/>
+        </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
+        <!-- Signup Button -->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Create a Account"
+            android:textColor="@color/white"
+            android:theme="@style/login_screen_button"/>
 
-        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_google"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Google"
+                android:textColor="@color/white"
+                android:theme="@style/login_screen_button"
+                android:layout_weight="1"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_facebook"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="facebook"
+                android:textColor="@color/white"
+                android:theme="@style/login_screen_button"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/link_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Already a member? Login"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="18dp"/>
 
     </LinearLayout>
 

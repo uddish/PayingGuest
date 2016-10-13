@@ -2,19 +2,19 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -24,8 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import android.view.WindowManager;
 
-import java.util.concurrent.Executor;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -34,15 +34,15 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class SignUpFrag extends Fragment {
 
-    EditText fName, lName, signupEmail, signupPass, signupRepass;
+    EditText userFirstName,userLastName, signupEmail, signupPassword, signupRepassword;
     Button btnSignup, btnGoogle, btnFacebook;
-    ImageView eye;
-
-    ProgressDialog progressDialog;
+    TextView loginLink;
 
     SweetAlertDialog pDialog;
 
     FirebaseAuth firebaseAuth;
+
+    ViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,23 +50,30 @@ public class SignUpFrag extends Fragment {
         View view;
         view = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        progressDialog = new ProgressDialog(getContext());
+        viewPager = (ViewPager) getActivity().findViewById(R.id.container);
 
         Firebase.goOnline();
         Firebase.setAndroidContext(getContext());
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        fName = (EditText) view.findViewById(R.id.et_fname);
-        lName = (EditText) view.findViewById(R.id.et_lname);
-        signupEmail = (EditText) view.findViewById(R.id.et_email);
-        signupPass = (EditText) view.findViewById(R.id.et_password);
-        signupRepass = (EditText) view.findViewById(R.id.et_repassword);
+        userFirstName = (EditText) view.findViewById(R.id.edittext_firstusername);
+        userLastName = (EditText) view.findViewById(R.id.edittext_lastusername);
+        signupEmail = (EditText) view.findViewById(R.id.edittext_email);
+        signupPassword = (EditText) view.findViewById(R.id.edittext_password);
+        signupRepassword = (EditText) view.findViewById(R.id.edittext_repassword);
         btnSignup = (Button) view.findViewById(R.id.btn_signup);
-        eye = (ImageView) view.findViewById(R.id.eye);
         btnGoogle = (Button) view.findViewById(R.id.btn_google);
-        btnFacebook = (Button) view.findViewById(R.id.btn_fb);
+        btnFacebook = (Button) view.findViewById(R.id.btn_facebook);
+        loginLink = (TextView) view.findViewById(R.id.link_login);
 
+
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(0);
+            }
+        });
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,20 +82,6 @@ public class SignUpFrag extends Fragment {
             }
         });
 
-        eye.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        signupPass.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        signupPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        break;
-                }
-                return true;
-            }
-        });
 
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,64 +109,77 @@ public class SignUpFrag extends Fragment {
 
     private void registerUserFunction() {
 
-        String firstName = fName.getText().toString().trim();
-        String lastName = lName.getText().toString().trim();
-        String email = signupEmail.getText().toString().trim();
-        String password = signupPass.getText().toString().trim();
-        String repeatPassword = signupRepass.getText().toString().trim();
+        String userFirstNameCheck = userFirstName.getText().toString().trim();
+        String userLastNameCheck = userLastName.getText().toString().trim();
+        String emailCheck = signupEmail.getText().toString().trim();
+        String passwordCheck = signupPassword.getText().toString().trim();
+        String repeatPasswordCheck = signupRepassword.getText().toString().trim();
 
+
+        /**
+         * Check the condition on username ,email ,password and re entered password.
+         */
 
         //Checking for the null fields
-        if (TextUtils.isEmpty(firstName)) {
-            Toast.makeText(getContext(), "Please Enter the First Name!", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(userFirstNameCheck)) {
+            userFirstName.setError("Enter Atleast 3 Characters");
+            Toast.makeText(getActivity(), "Enter your First Name Correctly!", Toast.LENGTH_SHORT).show();
             //Stopping further execution
             return;
         }
-        if (TextUtils.isEmpty(lastName)) {
-            Toast.makeText(getContext(), "Please Enter the Last Name!", Toast.LENGTH_SHORT).show();
+
+        if (TextUtils.isEmpty(userLastNameCheck)){
+            userLastName.setError("Enter Atleast 3 Characters");
+            Toast.makeText(getActivity(), "Enter your Last Name Correctly!", Toast.LENGTH_SHORT).show();
             //Stopping further execution
             return;
         }
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getContext(), "Please Enter the Email Id!", Toast.LENGTH_SHORT).show();
-            //Stopping further execution
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getContext(), "Please Enter the Password!", Toast.LENGTH_SHORT).show();
-            //Stopping further execution
-            return;
-        }
-        if (TextUtils.isEmpty(repeatPassword)) {
-            Toast.makeText(getContext(), "Please Enter the Password!", Toast.LENGTH_SHORT).show();
-            //Stopping further execution
-            return;
-        }
-        if (!password.equals(repeatPassword)) {
-            Toast.makeText(getContext(), "Passwords do not Match!", Toast.LENGTH_SHORT).show();
+
+        if (emailCheck.isEmpty()
+                || !Patterns.EMAIL_ADDRESS.matcher(emailCheck).matches()){
+            signupEmail.setError("Enter a Valid Email Address");
+            Toast.makeText(getActivity(), "Enter a Valid Email Address!", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
+        if (passwordCheck.isEmpty()) {
+            signupPassword.setError("It Should Be Between 4 and 15 Alphanumeric Characters");
+            Toast.makeText(getActivity(), "Enter a Valid Password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        if (repeatPasswordCheck.isEmpty()) {
+            signupRepassword.setError("Both passwords should be same");
+            Toast.makeText(getActivity(), "Enter a Valid Password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Registering You");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        firebaseAuth.createUserWithEmailAndPassword(emailCheck, passwordCheck)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                             UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(fName.getText().toString() + " " + lName.getText().toString()).build();
+
+                                    .setDisplayName(userFirstName.getText().toString() + " " + userLastName.getText().toString()).build();
                             user.updateProfile(profileUpdate)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             //start the activity which you want to open after the login in successful
-                                            progressDialog.dismiss();
+                                            pDialog.dismiss();
                                             Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(getContext(), MainActivity.class));
+                                            getActivity().finish();
                                         }
                                     });
                         } else
@@ -183,4 +189,6 @@ public class SignUpFrag extends Fragment {
 
                 });
     }
+
+
 }

@@ -2,8 +2,12 @@ package com.example.uddishverma.pg_app_beta;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.renderscript.Double2;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -18,6 +22,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.barcode.Barcode;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class BlankFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -26,11 +41,16 @@ public class BlankFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "tv_test";
 
+    static String address = null;
+    String pgName;
+
     CustomPagerAdapter customPagerAdapter;
 
     boolean isOpen = false;
 
     Animation fabOpen, fabClose, fabClockwise, fabAnticlockwise;
+
+    SweetAlertDialog pDialog;
 
     Context ctx;
 
@@ -87,6 +107,11 @@ public class BlankFragment extends Fragment {
         final Bundle b = getArguments();
         setDetails(b);
 
+        /**********************************Setting the address in the String*********************************************/
+        address = b.getString("ADDRESS") + " " + b.getString("LOCALITY") + " " + b.getString("STATE");
+
+
+
         //Adding call intent on the floating action button
         fabcall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,10 +121,23 @@ public class BlankFragment extends Fragment {
             }
         });
 
+        //Starting Maps Activity
         fabloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Location Activity Updating Soon", Toast.LENGTH_SHORT).show();
+
+                pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Please Wait");
+                pDialog.setCancelable(false);
+                pDialog.show();
+                Log.d(TAG, "onCreateView: ADDRESS " + address);
+
+                try {
+                    geoLocate();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -151,11 +189,7 @@ public class BlankFragment extends Fragment {
     private void findView(View v) {
 
         vPager = (ViewPager) v.findViewById(R.id.img_view_pager);
-//        callFab = (FloatingActionButton) v.findViewById(R.id.call_fab);
 
-        /**
-         * TEST FUNCTIONS
-         */
         fabPlus = (FloatingActionButton) v.findViewById(R.id.fab_btn_add);
         fabloc = (FloatingActionButton) v.findViewById(R.id.fab_btn_loc);
         fabcall = (FloatingActionButton) v.findViewById(R.id.fab_btn_call);
@@ -189,6 +223,8 @@ public class BlankFragment extends Fragment {
 
     private void setDetails(Bundle b) {
         pg_name.setText(b.getString("PG Name"));
+        pgName = (b.getString("PG Name"));
+
         owners_name.setText(b.getString("OWNER NAME"));
         contact_no.setText(String.valueOf((int) b.getDouble("CONTACT NO")));
         email_id.setText(b.getString("EMAIL"));
@@ -278,4 +314,25 @@ public class BlankFragment extends Fragment {
         super.onAttach(context);
 
     }
+
+
+    public void geoLocate() throws IOException {
+
+        Geocoder gc = new Geocoder(getActivity());
+        List<Address> list = gc.getFromLocationName(address, 1);
+        Address add = list.get(0);
+
+        double lat = add.getLatitude();
+        double lon = add.getLongitude();
+
+        Intent i = new Intent(getActivity(), MapsActivity.class);
+        i.putExtra("latitude", lat);
+        i.putExtra("longitude", lon);
+        i.putExtra("pgname", pgName);
+        pDialog.dismiss();
+        startActivity(i);
+
+    }
+
+
 }

@@ -104,7 +104,7 @@ public class FindPGActivity extends AppCompatActivity {
 
 
 
-        /*******************************************************/
+        /**************************************************************************************/
 
         RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
@@ -272,7 +272,6 @@ public class FindPGActivity extends AppCompatActivity {
                 mDialog.dismiss();
 
             }
-
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {

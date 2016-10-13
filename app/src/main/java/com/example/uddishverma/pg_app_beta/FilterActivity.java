@@ -75,14 +75,16 @@ public class FilterActivity extends AppCompatActivity {
 
         locality = new Filter_POJO[]
                 {
+                        new Filter_POJO("Anand Vihar"),
+                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Dwarka"),
+                        new Filter_POJO("Janak Puri"),
+                        new Filter_POJO("Jhilmil"),
+                        new Filter_POJO("Lajpat Nagar"),
                         new Filter_POJO("Pitampura"),
                         new Filter_POJO("Rohini"),
                         new Filter_POJO("Rithala"),
-                        new Filter_POJO("Dilshad Garden"),
                         new Filter_POJO("Vikas Puri"),
-                        new Filter_POJO("Janak Puri"),
-                        new Filter_POJO("Jhilmil"),
                         new Filter_POJO("Pascim Vihar")
                 };
 
@@ -106,6 +108,7 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("JAYPEE NOIDA")
                 };
 
+
         collegeList = new ArrayList<Filter_POJO>();
         collegeList.addAll(Arrays.asList(colleges));
 
@@ -117,7 +120,7 @@ public class FilterActivity extends AppCompatActivity {
             colleges.add(c[i]);
         }*/
 
-/***********************************************************************************/
+/**************************************************************************/
 
 
         detailsListView = (ListView) findViewById(R.id.list_view_left);
