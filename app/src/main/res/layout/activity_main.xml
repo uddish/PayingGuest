@@ -31,7 +31,35 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer" />
+            app:menu="@menu/activity_main_drawer" >
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                     <android.support.v7.widget.AppCompatButton
+                         android:id="@+id/nav_signout"
+                         android:layout_width="match_parent"
+                         android:layout_marginLeft="10dp"
+                         android:layout_marginRight="10dp"
+                         android:layout_marginBottom="2dp"
+                         android:layout_height="wrap_content"
+                         android:backgroundTint="@color/colorPrimary"
+                         android:textColor="@color/white"
+                         android:text="Sign out "/>
+                <!--Here is a container at the bottom of navigation drawer. Place your images here-->
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </android.support.design.widget.NavigationView>
+
+
 
     </android.support.v4.widget.DrawerLayout>
     </android.support.v4.widget.DrawerLayout>

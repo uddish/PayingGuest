@@ -24,10 +24,24 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 app:layout_scrollFlags="snap"
-                android:title="LOGIN/SIGNUP"
+                android:title="LOGIN/SIGN UP"
                 android:backgroundTint="@color/colorPrimary"
                 app:popupTheme="@style/MyTheme.PopupOverlay">
 
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" >-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/toolbar_title"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="LOGIN/SIGNUP"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:textStyle="bold" />-->
+                <!--</RelativeLayout>-->
             </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
