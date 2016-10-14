@@ -82,16 +82,42 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, "onCreate: USER " + user.getUid());
         }
 
+        /**
+         * Click event fot Signout on nav drawer
+         */
         signOut = (Button) findViewById(R.id.nav_signout);
         //Setting the click events on the sign out button
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.signOut();
-                Toast.makeText(MainActivity.this, "You Are Signed Out!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                if (firebaseAuth.getCurrentUser() != null) {
+                    firebaseAuth.signOut();
+                    user = null;
+
+                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(@NonNull Status status) {
+
+                        }
+                    });
+
+                    Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+
+                    if(LoginFrag.t == 1)    {
+                        LoginManager.getInstance().logOut();
+                        LoginFrag.t = 0;
+                        Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                else
+                    Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
             }
+
         });
 
 
@@ -333,28 +359,6 @@ public class MainActivity extends AppCompatActivity
 
         }  else if (id == R.id.nav_help) {
 
-            if (firebaseAuth.getCurrentUser() != null) {
-                firebaseAuth.signOut();
-                user = null;
-
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-
-                    }
-                });
-
-                Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
-
-                if(LoginFrag.t == 1)    {
-                    LoginManager.getInstance().logOut();
-                    LoginFrag.t = 0;
-                    Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            else
-                Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
         }
 
         else if (id == R.id.nav_invite) {

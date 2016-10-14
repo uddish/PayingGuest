@@ -178,7 +178,7 @@ public class BlankFragment extends Fragment {
 
 
     TextView pg_name, owners_name, contact_no, email_id, min_rent, deposit;
-    TextView pgAddress, city, state, pinCode, extraFeatures, locality, nearbyIns;
+    TextView extraFeatures, nearbyIns, location;
 
     ImageView wifi, ac, parking, tv, lunch, dinner, breakfast,ro_water, hot_water, security, refrigerator;
 
@@ -195,6 +195,7 @@ public class BlankFragment extends Fragment {
         fabcall = (FloatingActionButton) v.findViewById(R.id.fab_btn_call);
 
         pg_name = (TextView) v.findViewById(R.id.pg_name);
+        location = (TextView) v.findViewById(R.id.loc);
         owners_name = (TextView) v.findViewById(R.id.owners_name);
         contact_no = (TextView) v.findViewById(R.id.contact);
         email_id = (TextView) v.findViewById(R.id.email);
@@ -211,12 +212,7 @@ public class BlankFragment extends Fragment {
         refrigerator = (ImageView) v.findViewById(R.id.refrigerator);
         min_rent = (TextView) v.findViewById(R.id.min_rent);
         deposit = (TextView) v.findViewById(R.id.deposit);
-        pgAddress = (TextView) v.findViewById(R.id.address_one);
-        city = (TextView) v.findViewById(R.id.city);
-        state = (TextView) v.findViewById(R.id.state);
-        pinCode = (TextView) v.findViewById(R.id.pinCode);
         extraFeatures = (TextView) v.findViewById(R.id.extra_tv);
-        locality = (TextView) v.findViewById(R.id.locality);
         nearbyIns = (TextView) v.findViewById(R.id.nearby_ins);
 
     }
@@ -224,18 +220,14 @@ public class BlankFragment extends Fragment {
     private void setDetails(Bundle b) {
         pg_name.setText(b.getString("PG Name"));
         pgName = (b.getString("PG Name"));
-
         owners_name.setText(b.getString("OWNER NAME"));
         contact_no.setText(String.valueOf((int) b.getDouble("CONTACT NO")));
         email_id.setText(b.getString("EMAIL"));
         min_rent.setText(String.valueOf((int) b.getDouble("RENT")));
         deposit.setText(String.valueOf((int) b.getDouble("DEPOSIT")));
-        pgAddress.setText(b.getString("ADDRESS"));
-        city.setText(b.getString("CITY"));
-        state.setText(b.getString("STATE"));
-        pinCode.setText(String.valueOf((int) b.getDouble("PINCODE")));
-        locality.setText(b.getString("LOCALITY"));
-        nearbyIns.setText(b.getString("INSTITUTE"));
+        location.setText(b.getString("ADDRESS") + " " + b.getString("LOCALITY") + ", " + " " + b.getString("STATE")
+                + "-" + String.valueOf((int) b.getDouble("PINCODE")));
+        nearbyIns.setText(b.getString("INSTITUTE") + " (Nearby Institute)");
         if(!b.getString("EXTRAFEATURES").equals("")) {
             extraFeatures.setText(b.getString("EXTRAFEATURES"));
         }

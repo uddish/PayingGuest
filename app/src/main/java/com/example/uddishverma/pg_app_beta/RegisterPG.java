@@ -58,7 +58,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 //************************************Class to Register PGs************************************************************
 
-//TODO Images shifted to the second page
 
 public class RegisterPG extends AppCompatActivity {
 
@@ -88,8 +87,8 @@ public class RegisterPG extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST_THREE = 3;
     private int PICK_IMAGE_REQUEST_FOUR = 4;
 
-    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, locality,
-            city, state, pinCode, nearbyInstitute;
+    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
+            city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     Button submitButton;
     ImageView  imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
