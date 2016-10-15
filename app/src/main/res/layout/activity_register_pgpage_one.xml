@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             app:cardElevation="3dp"
-            android:background="@android:color/darker_gray">
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -129,7 +129,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:background="#607D8B"
+                        android:background="@color/colorPrimaryDark"
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:padding="15dp"
@@ -177,6 +177,15 @@
                     android:text="LOCALITY"
                     android:layout_margin="5dp"/>
 
+                <EditText
+                    android:id="@+id/state_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="STATE"
+                    android:textColor="#333"
+                    android:textColorHint="#666"
+                    android:textSize="15sp" />
+
                 <Spinner
                     android:id="@+id/locality_spinner"
                     android:layout_width="match_parent"
@@ -210,14 +219,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
 
-                    <EditText
-                        android:id="@+id/state_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="STATE"
-                        android:textColor="#333"
-                        android:textColorHint="#666"
-                        android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -275,7 +276,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -431,7 +432,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -486,7 +487,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:fontFamily="sans-serif"
                     android:text="GENDER PREFERENCE"
                     android:textColor="@android:color/white" />
@@ -543,7 +544,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             app:cardElevation="3dp"
-            android:background="@android:color/darker_gray">
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -553,7 +554,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -620,7 +621,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:background="#607D8B"
+                        android:background="@color/colorPrimaryDark"
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:padding="15dp"
@@ -629,19 +630,21 @@
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="57dp"
-                        android:layout_weight="1"
-                        android:background="#607D8B"
-                        android:src="@drawable/ic_feedback_white_24dp" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="57dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="#607D8B"-->
+                        <!--android:src="@drawable/ic_feedback_white_24dp" />-->
+
+
                 </LinearLayout>
 
                 <EditText
                     android:id="@+id/extra_et"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@color/iron"
+                    android:background="@color/white"
                     android:gravity="left"
                     android:hint="MAX(100 chars.)" />
 
@@ -650,7 +653,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="#607D8B"
+                    android:background="@color/colorPrimaryDark"
                     android:src="@drawable/ic_arrow_forward_white_48dp" />
 
             </LinearLayout>
