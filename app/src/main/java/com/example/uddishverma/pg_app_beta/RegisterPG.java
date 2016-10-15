@@ -449,6 +449,8 @@ public class RegisterPG extends AppCompatActivity {
 
         }
 
+        Log.d(TAG, "onCreate: FLAG " + MultiplePGEdit.FINAL_FLAG);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -478,18 +480,17 @@ public class RegisterPG extends AppCompatActivity {
                             image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
 
 
+                    Log.d(TAG, "onClick: EDIT CALLED FLAG ________" + RegisterPGPageOne.editCalledFlag);
                     //UPDATING THE PG
-                    if (editCheck == EditPG.FINAL_FLAG) {
+                    if (RegisterPGPageOne.editCalledFlag == 2990) {
                         Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
                         firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterPG.this, MainActivity.class));
                         finish();
                     }
-
-
                     //ADDING A NEW PG
-                    else {
+                    if(RegisterPGPageOne.editCalledFlag == 120) {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
@@ -555,7 +556,7 @@ public class RegisterPG extends AppCompatActivity {
 
 
                                                 //UPDATING THE PG
-                                                if (editCheck == EditPG.FINAL_FLAG) {
+                                                if (RegisterPGPageOne.editCalledFlag == 2990) {
                                                     Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
                                                     firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
                                                     Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
@@ -563,9 +564,8 @@ public class RegisterPG extends AppCompatActivity {
                                                     finish();
                                                 }
 
-
                                                 //ADDING A NEW PG
-                                                else {
+                                                if (RegisterPGPageOne.editCalledFlag == 120) {
                                                     Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                                                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
                                                     Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();

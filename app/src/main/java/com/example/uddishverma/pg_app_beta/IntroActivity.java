@@ -65,7 +65,7 @@ public class IntroActivity extends MaterialIntroActivity {
         addSlide(new SlideFragmentBuilder()
                 .backgroundColor(R.color.third_slide_background)
                 .buttonsColor(R.color.third_slide_buttons)
-                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.READ_SMS})
+                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE})
                 .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
                 .image(R.drawable.interiorhome)
                 .title("Start Your new Life")

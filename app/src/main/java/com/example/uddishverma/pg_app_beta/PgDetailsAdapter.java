@@ -74,12 +74,13 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ctx, "Failed To Upload The Image!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ctx, "Failed To Upload The Image!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure: Failed To Upload The Image!");
             }
         });
 
         holder.name_tv.setText(details.getPgName());
-        holder.address_tv.setText(details.getAddressOne());
+        holder.address_tv.setText(details.getAddressOne() + " " + details.getLocality());
         holder.address_tv.setSelected(true);
 
 //        holder.state_tv.setText(details.getState());
@@ -104,7 +105,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
     public static class DetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
-        TextView name_tv,address_tv, state_tv, rent_tv;
+        TextView name_tv,address_tv, rent_tv;
 
         ArrayList<PgDetails_POJO.PgDetails> list = new ArrayList<PgDetails_POJO.PgDetails>();
         Context ctx;

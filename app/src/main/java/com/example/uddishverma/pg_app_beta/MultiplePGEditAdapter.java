@@ -130,9 +130,9 @@ public class MultiplePGEditAdapter extends RecyclerView.Adapter<MultiplePGEditAd
             PgDetails_POJO.PgDetails obj = this.list.get(position);
 
             Intent intent = new Intent(this.ctx,EditPG.class);
+
             intent.putExtra("PG ID",obj.getId());
             intent.putExtra("source", "MultiplePGEditApapter");
-            //TODO How to add Finish(); here?
             this.ctx.startActivity(intent);
         }
     }
