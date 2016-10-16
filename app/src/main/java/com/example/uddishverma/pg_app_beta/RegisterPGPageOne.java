@@ -190,7 +190,10 @@ public class RegisterPGPageOne extends AppCompatActivity {
                     intent.putExtra("refrigerator", refrigerator.isChecked());
 
                     if (isEdit.equals("comingFromEditActivity")) {
+
                         intent.putExtra("editCheckFlag", editCalledFlag);
+                        //Sending the pgKey on register Page 2
+                        intent.putExtra("key", key);
                         Log.d(TAG, "onClick: EDIT SOURCE " + editCalledFlag);
                     }
 
@@ -230,7 +233,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+
                     if (dataSnapshot.child("id").getValue().equals(pgId)) {
                         final PgDetails_POJO.PgDetails pgDetails;
                         pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
@@ -259,7 +262,6 @@ public class RegisterPGPageOne extends AppCompatActivity {
                         tv.setChecked(pgDetails.getTv());
                         hotWater.setChecked(pgDetails.getHotWater());
                         refrigerator.setChecked(pgDetails.getFridge());
-
 
                     }
 

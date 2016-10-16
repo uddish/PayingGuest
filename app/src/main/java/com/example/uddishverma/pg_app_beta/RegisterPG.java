@@ -87,6 +87,21 @@ public class RegisterPG extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST_THREE = 3;
     private int PICK_IMAGE_REQUEST_FOUR = 4;
 
+    /**
+     * These 4 integers will tell us if any of the edit button
+     * is clicked to change the image
+     */
+    private int IS_BUTTON1_CLICKED = 1001;
+    private int IS_BUTTON2_CLICKED = 1002;
+    private int IS_BUTTON3_CLICKED = 1003;
+    private int IS_BUTTON4_CLICKED = 1004;
+
+    //These are the images already on the imageView which are to be edited/deleted
+    Uri editImageOne;
+    Uri editImageTwo;
+    Uri editImageThree;
+    Uri editImageFour;
+
     EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
             city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
@@ -229,7 +244,6 @@ public class RegisterPG extends AppCompatActivity {
 //*************************************************************************************************************
         //Receiving the key and flag from the Edit PG Activity so that it can be checked and edit here
         Intent i = getIntent();
-
         Bundle b = i.getExtras();
         //Intent is coming from RegisterPGPageOne Activity
         if (b != null) {
@@ -257,6 +271,11 @@ public class RegisterPG extends AppCompatActivity {
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).fit().into(imgUpload_2);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).fit().into(imgUpload_3);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).fit().into(imgUpload_4);
+
+                            editImageOne = Uri.parse(pgDetails.getPgImageOne());
+                            editImageTwo = Uri.parse(pgDetails.getPgImageTwo());
+                            editImageThree = Uri.parse(pgDetails.getPgImageThree());
+                            editImageFour = Uri.parse(pgDetails.getPgImageFour());
 
 
                             //Deleting the previous images from the firebase reference
@@ -291,6 +310,9 @@ public class RegisterPG extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
+                                    //This will confirm that Edit Button 1 is clicked
+                                    IS_BUTTON1_CLICKED = 2001;
+
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
                                     final StorageReference imageone = storageRef;
 
@@ -323,6 +345,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON2_CLICKED = 2002;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageTwo());
                                     StorageReference imagetwo = storageRef;
 
@@ -355,6 +378,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON3_CLICKED = 2003;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageThree());
                                     StorageReference imagethree = storageRef;
 
@@ -386,6 +410,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage4.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON4_CLICKED = 2004;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageFour());
                                     StorageReference imagefour = storageRef;
 
@@ -456,6 +481,21 @@ public class RegisterPG extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                if(IS_BUTTON1_CLICKED == 1001)   {
+                    cuwbp.downloadUrl1 = editImageOne;
+                }
+                if(IS_BUTTON2_CLICKED == 1002)   {
+                    cuwbp.downloadUrl2 = editImageTwo;
+                }
+                if(IS_BUTTON3_CLICKED == 1003)   {
+                    cuwbp.downloadUrl3 = editImageThree;
+                }
+                if(IS_BUTTON4_CLICKED == 1004)   {
+                    cuwbp.downloadUrl4 = editImageFour;
+                }
+
+
                 //Checking if the images are null before pushing them into firebase
 
                 if (cuwbp.downloadUrl1 != null && cuwbp.downloadUrl2 != null &&
@@ -480,17 +520,17 @@ public class RegisterPG extends AppCompatActivity {
                             image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
 
 
-                    Log.d(TAG, "onClick: EDIT CALLED FLAG ________" + RegisterPGPageOne.editCalledFlag);
+                    Log.d(TAG, "onClick: EDIT CALLED FLAG ------ " + RegisterPGPageOne.editCalledFlag);
                     //UPDATING THE PG
                     if (RegisterPGPageOne.editCalledFlag == 2990) {
-                        Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
+                        Log.d(TAG, "onClick: ####### KEY 1 #######" + key);
                         firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterPG.this, MainActivity.class));
                         finish();
                     }
                     //ADDING A NEW PG
-                    if(RegisterPGPageOne.editCalledFlag == 120) {
+                    else {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
