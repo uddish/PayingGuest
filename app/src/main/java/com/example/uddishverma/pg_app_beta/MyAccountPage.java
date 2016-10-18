@@ -1,8 +1,11 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +51,8 @@ public class MyAccountPage extends AppCompatActivity {
     GoogleApiClient mGoogleApiClient;
     FirebaseUser user;
 
+    boolean isInternetConnected = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +70,6 @@ public class MyAccountPage extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
-
-//        final ProgressDialog pd = new ProgressDialog(this);
 
         name.setText(user.getDisplayName().toString());
         email.setText(user.getEmail());
@@ -98,114 +101,125 @@ public class MyAccountPage extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
+
         editPg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (MainActivity.noOfChildren != 0) {
-                    startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
-                }
+                isNetworkConnected();
+                if (isInternetConnected) {
 
-                //Triggered when Number of Children from MainActivity are 0.
-                // Finding the number of Pgs and and then starting the edit activity
-                else {
-                    Log.d(TAG, "onClick: Children are 0");
-                    final SweetAlertDialog mdialog = new SweetAlertDialog(MyAccountPage.this, SweetAlertDialog.PROGRESS_TYPE);
-                    mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    mdialog.setTitleText("Please Wait");
-                    mdialog.setCancelable(false);
-                    mdialog.show();
+                    if (MainActivity.noOfChildren != 0) {
+                        startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
+                    }
 
-                    RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                            if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                                Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                                noOfChildrenTwo = dataSnapshot.getChildrenCount();
+                    //Triggered when Number of Children from MainActivity are 0.
+                    // Finding the number of Pgs and and then starting the edit activity
+                    else {
+                        Log.d(TAG, "onClick: Children are 0");
+                        final SweetAlertDialog mdialog = new SweetAlertDialog(MyAccountPage.this, SweetAlertDialog.PROGRESS_TYPE);
+                        mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        mdialog.setTitleText("Please Wait");
+                        mdialog.setCancelable(false);
+                        mdialog.show();
+
+                        RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                                    Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                                    noOfChildrenTwo = dataSnapshot.getChildrenCount();
 
 //                              Starting the Multiple Pg Edit Activity which will further allow user to choose a particular PG
-                                mdialog.dismiss();
-                                startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
-                                finish();
+                                    mdialog.dismiss();
+                                    startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
+                                    finish();
+
+                                }
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
                             }
-                        }
 
-                        @Override
-                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                            @Override
+                            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+                            @Override
+                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-
-                        }
-
-                    });
+                        });
+                    }
                 }
 
             }
 
         });
 
+
         myPgs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MainActivity.noOfChildren != 0) {
-                    startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
-                } else {
-                    final SweetAlertDialog mdialog = new SweetAlertDialog(MyAccountPage.this, SweetAlertDialog.PROGRESS_TYPE);
-                    mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    mdialog.setTitleText("Please Wait");
-                    mdialog.setCancelable(false);
-                    mdialog.show();
 
-                    RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                            if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                                Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                                noOfChildrenTwo = dataSnapshot.getChildrenCount();
+                isNetworkConnected();
+                if (isInternetConnected) {
+
+                    if (MainActivity.noOfChildren != 0) {
+                        startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                    } else {
+                        final SweetAlertDialog mdialog = new SweetAlertDialog(MyAccountPage.this, SweetAlertDialog.PROGRESS_TYPE);
+                        mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        mdialog.setTitleText("Please Wait");
+                        mdialog.setCancelable(false);
+                        mdialog.show();
+
+                        RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                                    Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                                    noOfChildrenTwo = dataSnapshot.getChildrenCount();
 
 //                              Starting the Multiple Pg Edit Activity which will further allow user to choose a particular PG
-                                mdialog.dismiss();
-                                startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
-                                finish();
+                                    mdialog.dismiss();
+                                    startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                                    finish();
+
+                                }
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
                             }
-                        }
 
-                        @Override
-                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                            @Override
+                            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+                            @Override
+                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                            @Override
+                            public void onCancelled(FirebaseError firebaseError) {
 
-                        }
+                            }
 
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-
-                        }
-
-                    });
+                        });
+                    }
                 }
             }
         });
@@ -240,6 +254,22 @@ public class MyAccountPage extends AppCompatActivity {
         });
 
 
+    }
+
+    //To check if the internet is connected
+    private void isNetworkConnected() {
+
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            isInternetConnected = true;
+        } else {
+            isInternetConnected = false;
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("No Internet")
+                    .setContentText("Please Check Your Internet Connection!")
+                    .show();
+        }
     }
 
 }

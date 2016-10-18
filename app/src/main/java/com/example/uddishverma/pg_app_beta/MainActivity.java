@@ -1,9 +1,12 @@
 package com.example.uddishverma.pg_app_beta;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -40,6 +43,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+//TODO remove setCancellable from all the dialogs
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,14 +55,15 @@ public class MainActivity extends AppCompatActivity
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
+    //To check if the internet is connected
+    boolean isInternetConnected = false;
+
     TextView navName, navEmail;
     CoordinatorLayout coordinatorLayout;
 
     GoogleApiClient mGoogleApiClient;
-    Button signOut ;
+    Button signOut;
     static long noOfChildren;
-
-    Boolean doublepress = false;
 
     SweetAlertDialog pDialog;
 
@@ -71,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
 
         pDialog = new SweetAlertDialog(getApplicationContext(), SweetAlertDialog.PROGRESS_TYPE);
 
@@ -103,14 +108,12 @@ public class MainActivity extends AppCompatActivity
 
                     Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
 
-                    if(LoginFrag.t == 1)    {
+                    if (LoginFrag.t == 1) {
                         LoginManager.getInstance().logOut();
                         LoginFrag.t = 0;
                         Toast.makeText(MainActivity.this, "You are logged out!", Toast.LENGTH_SHORT).show();
                     }
-                }
-
-                else
+                } else
                     Toast.makeText(MainActivity.this, "Please SignIn First", Toast.LENGTH_SHORT).show();
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -164,7 +167,7 @@ public class MainActivity extends AppCompatActivity
 
         if (firebaseAuth.getCurrentUser() == null) {
 
-           // NEW ALERT DIALOG
+            // NEW ALERT DIALOG
             new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("Not Signed In!")
                     .setContentText("Please SignIn Before Registering!")
@@ -185,8 +188,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     })
                     .show();
-        }
-        else {
+        } else {
 
             Intent i = new Intent(this, RegisterPGPageOne.class);
             startActivity(i);
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity
     //This function opens the find pg activity
     public void openFindPgActivity(View view) {
         Intent i = new Intent(this, FindPGActivity.class);
-        i.putExtra("source","MainActivity");  //Adding source so that in FindPgActivity we can check whether to display all cards or filtered cards
+        i.putExtra("source", "MainActivity");  //Adding source so that in FindPgActivity we can check whether to display all cards or filtered cards
         startActivity(i);
     }
 
@@ -243,60 +245,63 @@ public class MainActivity extends AppCompatActivity
 
             if (firebaseAuth.getCurrentUser() == null) {
                 startActivity(new Intent(getApplicationContext(), AuthorisationActivity.class));
-            }
-            else
+            } else
                 startActivity(new Intent(getApplicationContext(), MyAccountPage.class));
 
-        }
-        else if (id == R.id.nav_pg) {
+        } else if (id == R.id.nav_pg) {
 
 // ********************************Counting the number of Pgs first in the firebase ***************************************
-            if (user == null) {
-                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
-            } else {
 
-                final SweetAlertDialog mdialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-                mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                mdialog.setTitleText("Please Wait");
-                mdialog.setCancelable(false);
-                mdialog.show();
-                Firebase.setAndroidContext(this);
+            //Checking if the internet is available
+            isNetworkConnected();
+            if (isInternetConnected) {
+                if (user == null) {
+                    Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+                } else {
 
-                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+                    final SweetAlertDialog mdialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+                    mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    mdialog.setTitleText("Please Wait");
+                    mdialog.setCancelable(false);
+                    mdialog.show();
+                    Firebase.setAndroidContext(this);
 
-                // ********************************Counting the number of Pgs first in the firebase ************************
-                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                            noOfChildren = dataSnapshot.getChildrenCount();
-                            mdialog.dismiss();
-                            startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                    RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+                    // ********************************Counting the number of Pgs first in the firebase ************************
+                    RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                                Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                                noOfChildren = dataSnapshot.getChildrenCount();
+                                mdialog.dismiss();
+                                startActivity(new Intent(getApplicationContext(), MyRegisteredPGInfo.class));
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
 
-                    }
+                        }
 
-                });
+                    });
+                }
             }
 
             // ****************************************************************************************************************
@@ -304,64 +309,68 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_editPg) {
 
-            if (user == null) {
-                Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
-            } else {
+            //Checking if the internet is available
+            isNetworkConnected();
+            if (isInternetConnected) {
 
-                final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-                mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                mDialog.setTitleText("Please Wait");
-                mDialog.setCancelable(false);
-                mDialog.show();
+                if (user == null) {
+                    Toast.makeText(this, "Please Sign In First!", Toast.LENGTH_SHORT).show();
+                } else {
 
-                Firebase.setAndroidContext(this);
+                    final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+                    mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    mDialog.setTitleText("Please Wait");
+                    mDialog.setCancelable(false);
+                    mDialog.show();
+
+                    Firebase.setAndroidContext(this);
 //
-                RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+                    RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 //
 //                // ********************************Counting the number of Pgs first in the firebase **************************
-                RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                            Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                            noOfChildren = dataSnapshot.getChildrenCount();
+                    RegisterPG.firebaseRef.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                                Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
+                                noOfChildren = dataSnapshot.getChildrenCount();
 
 //                            //Starting the Multiple Pg Edit Activity which will further allow user to choose a particular PG
-                            finish();
-                            mDialog.dismiss();
-                            startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
+                                finish();
+                                mDialog.dismiss();
+                                startActivity(new Intent(getApplicationContext(), MultiplePGEdit.class));
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
 
-                    }
+                        }
 
-                });
+                    });
+                }
             }
 
 
-        }  else if (id == R.id.nav_help) {
+        } else if (id == R.id.nav_home) {
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
 
-        }
-
-        else if (id == R.id.nav_invite) {
+        } else if (id == R.id.nav_invite) {
             /**
              * open sharing intent to send
              * a custom link of our app in the playstore .
@@ -370,16 +379,13 @@ public class MainActivity extends AppCompatActivity
              * of our app in the playstore .
 
              */
-        }
+        } else if (id == R.id.nav_help) {
 
-        else if (id == R.id.nav_help) {
+            /**
+             * OUR EMAIL ID'S
 
-                /**
-                 * OUR EMAIL ID'S
-
-                 */
-           }
-        else if (id == R.id.nav_rateus) {
+             */
+        } else if (id == R.id.nav_rateus) {
             /**
              * Our Playstore link comment section
              */
@@ -389,6 +395,25 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * This function checks if the internet is connected
+     * and shows an error dialog if not connected to the internet
+     */
+    private void isNetworkConnected() {
+
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            isInternetConnected = true;
+        } else {
+            isInternetConnected = false;
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("No Internet")
+                    .setContentText("Please Check Your Internet Connection!")
+                    .show();
+        }
     }
 
 }
