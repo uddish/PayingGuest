@@ -1,16 +1,22 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.*;
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -68,6 +74,12 @@ public class RegisterPG extends AppCompatActivity {
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
 
+    //For runtime permissions(Camera and Storage)
+    String reqCameraPerm[] = new String[]{Manifest.permission.CAMERA};
+    String reqStoragePerm[] = new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE};
+    static int REQUEST_PERM_STORAGE = 447;
+    static  int REQUEST_PERM_CAMERA = 490;
+
     SweetAlertDialog mdialog;
 
     String source;                  //Source tell us from which activity the intent is coming from
@@ -106,7 +118,7 @@ public class RegisterPG extends AppCompatActivity {
             city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
     Button submitButton;
-    ImageView  imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
     Button imgUploadBtn_1, imgUploadBtn_2, imgUploadBtn_3, imgUploadBtn_4, cancelImage1, cancelImage2, cancelImage3, cancelImage4;
     String preference;
     String genderPreference;
@@ -177,44 +189,71 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+                if (hasCameraPerm() && hasStoragePerm()) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
         imgUploadBtn_2.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
-                i.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                i.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+                if (hasCameraPerm() && hasStoragePerm()) {
+                    Intent i = new Intent();
+                    i.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    i.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
+
         });
         imgUploadBtn_3.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+                if (hasCameraPerm() && hasStoragePerm()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
         imgUploadBtn_4.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+                if (hasCameraPerm() && hasStoragePerm()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
 
@@ -482,16 +521,16 @@ public class RegisterPG extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if(IS_BUTTON1_CLICKED == 1001)   {
+                if (IS_BUTTON1_CLICKED == 1001) {
                     cuwbp.downloadUrl1 = editImageOne;
                 }
-                if(IS_BUTTON2_CLICKED == 1002)   {
+                if (IS_BUTTON2_CLICKED == 1002) {
                     cuwbp.downloadUrl2 = editImageTwo;
                 }
-                if(IS_BUTTON3_CLICKED == 1003)   {
+                if (IS_BUTTON3_CLICKED == 1003) {
                     cuwbp.downloadUrl3 = editImageThree;
                 }
-                if(IS_BUTTON4_CLICKED == 1004)   {
+                if (IS_BUTTON4_CLICKED == 1004) {
                     cuwbp.downloadUrl4 = editImageFour;
                 }
 
@@ -520,7 +559,6 @@ public class RegisterPG extends AppCompatActivity {
                             image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
 
 
-                    Log.d(TAG, "onClick: EDIT CALLED FLAG ------ " + RegisterPGPageOne.editCalledFlag);
                     //UPDATING THE PG
                     if (RegisterPGPageOne.editCalledFlag == 2990) {
                         Log.d(TAG, "onClick: ####### KEY 1 #######" + key);
@@ -612,8 +650,7 @@ public class RegisterPG extends AppCompatActivity {
                                                     startActivity(new Intent(RegisterPG.this, MainActivity.class));
                                                     finish();
                                                 }
-                                            }
-                                            else    {
+                                            } else {
                                                 Toast.makeText(RegisterPG.this, "Please Press the Submit Button Again!", Toast.LENGTH_SHORT).show();
                                             }
                                         }
@@ -772,8 +809,41 @@ public class RegisterPG extends AppCompatActivity {
         }
     }
 
-
-
+    private boolean hasCameraPerm() {
+        return (ContextCompat.checkSelfPermission(RegisterPG.this,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
+    private void askCameraPerm() {
+        ActivityCompat.requestPermissions(RegisterPG.this, reqCameraPerm, REQUEST_PERM_CAMERA);
+    }
+
+    private boolean hasStoragePerm() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            return (ContextCompat.checkSelfPermission(RegisterPG.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        }
+        return false;
+    }
+    private void askStoragePerm() {
+        ActivityCompat.requestPermissions(RegisterPG.this, reqStoragePerm, REQUEST_PERM_STORAGE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_PERM_STORAGE) {
+
+            if (grantResults.length > 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: STORAGE PERMISSION GRANTED");
+                }
+            }
+
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+}
 
 
