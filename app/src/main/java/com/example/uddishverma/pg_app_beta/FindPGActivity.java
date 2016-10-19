@@ -131,33 +131,48 @@ public class FindPGActivity extends AppCompatActivity {
                 /***********************************************************************************/
                 if (dataSnapshot != null && dataSnapshot.getValue() != null)
                 {
-                    if (intentSource.equals("FilterActivity"))
-                    {
-                        if (b != null)
-                        {
+                    if (intentSource.equals("FilterActivity")) {
+                        if (b != null) {
 
-                            String localityCheckCode= (String) b.get("localityCheckCode");
-                            String collegeCheckCode= (String) b.get("collegeCheckCode");
-                            String finalCheckCode=localityCheckCode+collegeCheckCode;
-                          /*  Log.d(TAG,localityCheckCode);
+                            String localityCheckCode = (String) b.get("localityCheckCode");
+                            String collegeCheckCode = (String) b.get("collegeCheckCode");
+                            String rentCheckCode = (String) b.get("rentCheckCode");
+
+                            String finalCheckCode = "";
+
+                            if (localityCheckCode != null)
+                                finalCheckCode = localityCheckCode;
+
+                            if (collegeCheckCode != null)
+                                finalCheckCode = finalCheckCode + collegeCheckCode;
+
+                            if (rentCheckCode != null)
+                                finalCheckCode = finalCheckCode + rentCheckCode;
+
+
+                            //  String finalCheckCode=localityCheckCode+collegeCheckCode+rentCheckCode;
+                           /*  Log.d(TAG,localityCheckCode);
                             Log.d(TAG,collegeCheckCode);
-                          */  Log.d(TAG,finalCheckCode);
+                          */
+                            Log.d(TAG, finalCheckCode);
 
 
-                            if(finalCheckCode.equals("01"))
-                            {
+                            if (finalCheckCode.equals("012")) {
 
                                 ArrayList<String> filteredLocalityList = new ArrayList<String>();
                                 filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
 
-                                for (int i = 0; i < filteredLocalityList.size(); i++)
-                                {
-                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
-                                    {
+                                ArrayList<PgDetails_POJO.PgDetails> filteredObjects = new ArrayList<PgDetails_POJO.PgDetails>();
+
+                                for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
                                         PgDetails_POJO.PgDetails model = dataSnapshot
                                                 .getValue(PgDetails_POJO.PgDetails.class);
-                                        cardDetails.add(model);
-                                        madapter.notifyDataSetChanged();
+
+                                        filteredObjects.add(model);
+
+                                       /* cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();*/
                                         mDialog.dismiss();
                                     }
                                 }
@@ -166,32 +181,58 @@ public class FindPGActivity extends AppCompatActivity {
                                 ArrayList<String> filteredCollegeList = new ArrayList<String>();
                                 filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
 
-                                for (int i = 0; i < filteredCollegeList.size(); i++)
-                                {
-                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i)))
-                                    {
+                                for (int i = 0; i < filteredCollegeList.size(); i++) {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
                                         PgDetails_POJO.PgDetails model = dataSnapshot
                                                 .getValue(PgDetails_POJO.PgDetails.class);
-                                        cardDetails.add(model);
-                                        madapter.notifyDataSetChanged();
+
+                                        filteredObjects.add(model);
+                                       /* cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();*/
                                         mDialog.dismiss();
                                     }
                                 }
 
 
+                                ArrayList<String> filteredRentList = new ArrayList<String>();
+                                filteredRentList = checkActivityCallerIntent.getStringArrayListExtra("filteredRentList");
+
+                                for (int i = 0; i < filteredRentList.size(); i++) {
+
+                                    String rentSelected = filteredRentList.get(i);
+
+                                    if (rentSelected.equals("Below 5000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 5000);
+
+                                    } else if (rentSelected.equals("5000-10000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 10000);
+                                    } else if (rentSelected.equals("10000-15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15000);
+                                    } else if (rentSelected.equals("Above 15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15001);
+                                    }
+
+
+                                  /*      new Filter_POJO("Below 5000"),
+                                                new Filter_POJO("5000-10000"),
+                                                new Filter_POJO("10000-15000"),
+                                                new Filter_POJO("More than 15000")
+                                };*/
+
+                                }
+
                             }
 
 
+                            //else if(localityCheckCode!=null)
+                            else if (finalCheckCode.equals("01"))
 
-                            else if(localityCheckCode!=null)
                             {
                                 ArrayList<String> filteredLocalityList = new ArrayList<String>();
                                 filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
 
-                                for (int i = 0; i < filteredLocalityList.size(); i++)
-                                {
-                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
-                                    {
+                                for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
                                         PgDetails_POJO.PgDetails model = dataSnapshot
                                                 .getValue(PgDetails_POJO.PgDetails.class);
                                         cardDetails.add(model);
@@ -199,17 +240,128 @@ public class FindPGActivity extends AppCompatActivity {
                                         mDialog.dismiss();
                                     }
                                 }
+
+                                ArrayList<String> filteredCollegeList = new ArrayList<String>();
+                                filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
+
+                                for (int i = 0; i < filteredCollegeList.size(); i++) {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+
+                            } else if (finalCheckCode.equals("02")) {
+                                ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                                filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
+
+                                ArrayList<PgDetails_POJO.PgDetails> filteredObjects = new ArrayList<PgDetails_POJO.PgDetails>();
+
+                                for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+
+                                        filteredObjects.add(model);
+
+                                       /* cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();*/
+                                        mDialog.dismiss();
+                                    }
+                                }
+
+                                ArrayList<String> filteredRentList = new ArrayList<String>();
+                                filteredRentList = checkActivityCallerIntent.getStringArrayListExtra("filteredRentList");
+
+                                for (int i = 0; i < filteredRentList.size(); i++) {
+
+                                    String rentSelected = filteredRentList.get(i);
+
+                                    if (rentSelected.equals("Below 5000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 5000);
+
+                                    } else if (rentSelected.equals("5000-10000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 10000);
+                                    } else if (rentSelected.equals("10000-15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15000);
+                                    } else if (rentSelected.equals("Above 15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15001);
+                                    }
+                                }
                             }
 
-                            else if(collegeCheckCode!=null)
+
+                            else if (finalCheckCode.equals("12"))
+                            {
+                                ArrayList<PgDetails_POJO.PgDetails> filteredObjects = new ArrayList<PgDetails_POJO.PgDetails>();
+
+                                ArrayList<String> filteredCollegeList = new ArrayList<String>();
+                                filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
+
+                                for (int i = 0; i < filteredCollegeList.size(); i++) {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+
+                                        filteredObjects.add(model);
+                                       /* cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();*/
+                                        mDialog.dismiss();
+                                    }
+                                }
+
+
+                                ArrayList<String> filteredRentList = new ArrayList<String>();
+                                filteredRentList = checkActivityCallerIntent.getStringArrayListExtra("filteredRentList");
+
+                                for (int i = 0; i < filteredRentList.size(); i++) {
+
+                                    String rentSelected = filteredRentList.get(i);
+
+                                    if (rentSelected.equals("Below 5000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 5000);
+
+                                    } else if (rentSelected.equals("5000-10000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 10000);
+                                    } else if (rentSelected.equals("10000-15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15000);
+                                    } else if (rentSelected.equals("Above 15000")) {
+                                        filteringForRentWithCollegesOrLocality(filteredObjects, 15001);
+                                    }
+                                }
+                            }
+
+                            else if(finalCheckCode.equals("0"))
+                            {
+                                ArrayList<String> filteredLocalityList = new ArrayList<String>();
+                                filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
+
+                                ArrayList<PgDetails_POJO.PgDetails> filteredObjects = new ArrayList<PgDetails_POJO.PgDetails>();
+
+                                for (int i = 0; i < filteredLocalityList.size(); i++) {
+                                    if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i))) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+
+
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
+                                }
+                            }
+
+                            else if(finalCheckCode.equals("1"))
                             {
                                 ArrayList<String> filteredCollegeList = new ArrayList<String>();
                                 filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
 
-                                for (int i = 0; i < filteredCollegeList.size(); i++)
-                                {
-                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i)))
-                                    {
+                                for (int i = 0; i < filteredCollegeList.size(); i++) {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
                                         PgDetails_POJO.PgDetails model = dataSnapshot
                                                 .getValue(PgDetails_POJO.PgDetails.class);
                                         cardDetails.add(model);
@@ -219,24 +371,78 @@ public class FindPGActivity extends AppCompatActivity {
                                 }
                             }
 
-
-                           /* ArrayList<String> filteredLocalityList = new ArrayList<String>();
-                            filteredLocalityList = checkActivityCallerIntent.getStringArrayListExtra("filteredLocalityList");
-
-                            for (int i = 0; i < filteredLocalityList.size(); i++)
+                            else if(finalCheckCode.equals("2"))
                             {
-                                if (dataSnapshot.child("locality").getValue().equals(filteredLocalityList.get(i)))
-                                {
-                                    PgDetails_POJO.PgDetails model = dataSnapshot
-                                            .getValue(PgDetails_POJO.PgDetails.class);
-                                    cardDetails.add(model);
-                                    madapter.notifyDataSetChanged();
-                                    mDialog.dismiss();
+                                ArrayList<String> filteredRentList = new ArrayList<String>();
+                                filteredRentList = checkActivityCallerIntent.getStringArrayListExtra("filteredRentList");
+
+
+
+
+                               /* for (int i = 0; i < filteredCollegeList.size(); i++) {
+                                    if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        cardDetails.add(model);
+                                        madapter.notifyDataSetChanged();
+                                        mDialog.dismiss();
+                                    }
                                 }
-                            }*/
+*/
+                                for (int i = 0; i < filteredRentList.size(); i++) {
+
+                                    String rentSelected = filteredRentList.get(i);
+
+                                    if (rentSelected.equals("Below 5000")) {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        if (model.getRent() <= 5000) {
+                                            cardDetails.add(model);
+                                            madapter.notifyDataSetChanged();
+                                            mDialog.dismiss();
+                                        }
+                                    }
+
+                                     else if (rentSelected.equals("5000-10000"))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        if (model.getRent() > 5000 && model.getRent() <= 10000) {
+                                            cardDetails.add(model);
+                                            madapter.notifyDataSetChanged();
+                                            mDialog.dismiss();
+                                        }
+                                    }
+
+
+                                     else if (rentSelected.equals("10000-15000"))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        if (model.getRent()>10000 && model.getRent()<=15000) {
+                                            cardDetails.add(model);
+                                            madapter.notifyDataSetChanged();
+                                            mDialog.dismiss();
+                                        }
+                                    }
+
+                                    else if (rentSelected.equals("Above 15000"))
+                                    {
+                                        PgDetails_POJO.PgDetails model = dataSnapshot
+                                                .getValue(PgDetails_POJO.PgDetails.class);
+                                        if (model.getRent()>15000) {
+                                            cardDetails.add(model);
+                                            madapter.notifyDataSetChanged();
+                                            mDialog.dismiss();
+                                        }
+
+                                    }
+                                }
+                            }
                         }
-
                     }
+
+
 
 
                     /**********************************************************************************************/
@@ -293,5 +499,65 @@ public class FindPGActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+
+
+
+
+    private void filteringForRentWithCollegesOrLocality(ArrayList<PgDetails_POJO.PgDetails> filteredObjects,int rentSelected)
+    {
+            for(int i=0;i<filteredObjects.size();i++)
+            {
+                final SweetAlertDialog mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+                mDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                mDialog.setTitleText("Please Wait");
+//        mDialog.setCancelable(false);
+                mDialog.show();
+
+
+
+                if(rentSelected==15001)
+                {
+                    if(filteredObjects.get(i).getRent()>15000)
+                    {
+                        cardDetails.add(filteredObjects.get(i));
+                        madapter.notifyDataSetChanged();
+                        mDialog.dismiss();
+                    }
+                }
+
+                else if(rentSelected==5000)
+                {
+                    if(filteredObjects.get(i).getRent()<=5000)
+                    {
+                        cardDetails.add(filteredObjects.get(i));
+                        madapter.notifyDataSetChanged();
+                        mDialog.dismiss();
+                    }
+                }
+
+                else if(rentSelected==10000)
+                {
+                    if(filteredObjects.get(i).getRent()>5000 && filteredObjects.get(i).getRent()<=10000)
+                    {
+                        cardDetails.add(filteredObjects.get(i));
+                        madapter.notifyDataSetChanged();
+                        mDialog.dismiss();
+                    }
+                }
+
+                else if(rentSelected==15000)
+                {
+                    if(filteredObjects.get(i).getRent()>10000 && filteredObjects.get(i).getRent()<=15000)
+                    {
+                        cardDetails.add(filteredObjects.get(i));
+                        madapter.notifyDataSetChanged();
+                        mDialog.dismiss();
+                    }
+                }
+                mDialog.dismiss();
+            }
     }
 }

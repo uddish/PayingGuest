@@ -447,7 +447,8 @@ public class RegisterPG extends AppCompatActivity {
 
         }
 
-        shineButton.setOnClickListener(new View.OnClickListener() {
+        shineButton.setOnClickListener(new View.OnClickListener()
+        {
 
             @Override
             public void onClick(View v) {
@@ -493,7 +494,8 @@ public class RegisterPG extends AppCompatActivity {
 
 
                     //ADDING A NEW PG
-                    else {
+                    else
+                    {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
@@ -506,6 +508,9 @@ public class RegisterPG extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     //Uploading the image to FireBase Storage
     public void uploadImage(Uri downloadUrl, final int imageNumber) {
@@ -698,6 +703,4 @@ public class RegisterPG extends AppCompatActivity {
 //        toast.show();
 
     }
-
-
 }
