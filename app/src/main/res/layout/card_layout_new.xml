@@ -94,6 +94,15 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_restaurant_grey_700_24dp" />
 
+
+                <ImageView
+                    android:id="@+id/ic_ac"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_directions_subway_grey_700_24dp" />
+
                 <ImageView
                     android:id="@+id/ic_car_parking"
                     android:layout_width="0dp"
@@ -102,13 +111,6 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_time_to_leave_grey_700_24dp" />
 
-                <ImageView
-                    android:id="@+id/ic_metro"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_directions_subway_grey_700_24dp" />
 
                 <TextView
                     android:id="@+id/rent_tv"
