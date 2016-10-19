@@ -8,22 +8,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/authlogo"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
             <EditText
                 android:id="@+id/et_email"
                 android:hint="Email"
@@ -39,7 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
@@ -58,9 +59,12 @@
             android:layout_marginTop="24dp"
             android:text="Login"
             android:padding="12dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
             android:layout_marginBottom="10dp"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/login_screen_button"
             />
 
 

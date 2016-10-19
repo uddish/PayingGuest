@@ -36,7 +36,7 @@
 
     <style name="login_screen_button" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/colorPrimary</item>
-        <item name="colorButtonNormal">@color/black</item>
+        <item name="colorButtonNormal">@color/white</item>
 
     </style>
     <style name="StyleTilEditTextTheme">

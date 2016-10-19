@@ -1,16 +1,22 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.*;
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +48,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.sackcentury.shinebuttonlib.ShineButton;
 import com.squareup.picasso.Picasso;
 
 import android.os.Handler;
@@ -55,9 +60,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 //************************************Class to Register PGs************************************************************
 
-//TODO Images shifted to the second page
 
 public class RegisterPG extends AppCompatActivity {
 
@@ -67,6 +73,14 @@ public class RegisterPG extends AppCompatActivity {
     public static final String TAG = "RegisterPG";
     callUploadWhenBtnPressed cuwbp = new callUploadWhenBtnPressed();
     String image1, image2, image3, image4;
+
+    //For runtime permissions(Camera and Storage)
+    String reqCameraPerm[] = new String[]{Manifest.permission.CAMERA};
+    String reqStoragePerm[] = new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE};
+    static int REQUEST_PERM_STORAGE = 447;
+    static  int REQUEST_PERM_CAMERA = 490;
+
+    SweetAlertDialog mdialog;
 
     String source;                  //Source tell us from which activity the intent is coming from
 
@@ -85,11 +99,26 @@ public class RegisterPG extends AppCompatActivity {
     private int PICK_IMAGE_REQUEST_THREE = 3;
     private int PICK_IMAGE_REQUEST_FOUR = 4;
 
-    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne, locality,
-            city, state, pinCode, nearbyInstitute;
+    /**
+     * These 4 integers will tell us if any of the edit button
+     * is clicked to change the image
+     */
+    private int IS_BUTTON1_CLICKED = 1001;
+    private int IS_BUTTON2_CLICKED = 1002;
+    private int IS_BUTTON3_CLICKED = 1003;
+    private int IS_BUTTON4_CLICKED = 1004;
+
+    //These are the images already on the imageView which are to be edited/deleted
+    Uri editImageOne;
+    Uri editImageTwo;
+    Uri editImageThree;
+    Uri editImageFour;
+
+    EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
+            city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
-    ShineButton shineButton;
-    ImageView  imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
+    Button submitButton;
+    ImageView imgUpload_1, imgUpload_2, imgUpload_3, imgUpload_4;
     Button imgUploadBtn_1, imgUploadBtn_2, imgUploadBtn_3, imgUploadBtn_4, cancelImage1, cancelImage2, cancelImage3, cancelImage4;
     String preference;
     String genderPreference;
@@ -99,8 +128,8 @@ public class RegisterPG extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_pg);
 
-        shineButton = (ShineButton) findViewById(R.id.shine_button);
-        shineButton.init(this);
+
+        submitButton = (Button) findViewById(R.id.submit_btn);
 
         //attaching the edit texts
         pgName = (EditText) findViewById(R.id.pg_name_et);
@@ -160,44 +189,71 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+                if (hasCameraPerm() && hasStoragePerm()) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_ONE);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
         imgUploadBtn_2.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
-                i.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                i.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+                if (hasCameraPerm() && hasStoragePerm()) {
+                    Intent i = new Intent();
+                    i.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    i.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE_REQUEST_TWO);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
+
         });
         imgUploadBtn_3.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+                if (hasCameraPerm() && hasStoragePerm()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_THREE);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
         imgUploadBtn_4.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+                if (hasCameraPerm() && hasStoragePerm()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_FOUR);
+                }
+                else    {
+                    askCameraPerm();
+                    askStoragePerm();
+                }
             }
         });
 
@@ -227,7 +283,6 @@ public class RegisterPG extends AppCompatActivity {
 //*************************************************************************************************************
         //Receiving the key and flag from the Edit PG Activity so that it can be checked and edit here
         Intent i = getIntent();
-
         Bundle b = i.getExtras();
         //Intent is coming from RegisterPGPageOne Activity
         if (b != null) {
@@ -255,6 +310,11 @@ public class RegisterPG extends AppCompatActivity {
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).fit().into(imgUpload_2);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).fit().into(imgUpload_3);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).fit().into(imgUpload_4);
+
+                            editImageOne = Uri.parse(pgDetails.getPgImageOne());
+                            editImageTwo = Uri.parse(pgDetails.getPgImageTwo());
+                            editImageThree = Uri.parse(pgDetails.getPgImageThree());
+                            editImageFour = Uri.parse(pgDetails.getPgImageFour());
 
 
                             //Deleting the previous images from the firebase reference
@@ -289,6 +349,9 @@ public class RegisterPG extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
+                                    //This will confirm that Edit Button 1 is clicked
+                                    IS_BUTTON1_CLICKED = 2001;
+
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageOne());
                                     final StorageReference imageone = storageRef;
 
@@ -321,6 +384,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON2_CLICKED = 2002;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageTwo());
                                     StorageReference imagetwo = storageRef;
 
@@ -353,6 +417,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON3_CLICKED = 2003;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageThree());
                                     StorageReference imagethree = storageRef;
 
@@ -384,6 +449,7 @@ public class RegisterPG extends AppCompatActivity {
                             cancelImage4.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    IS_BUTTON4_CLICKED = 2004;
                                     storageRef = storage.getReferenceFromUrl(pgDetails.getPgImageFour());
                                     StorageReference imagefour = storageRef;
 
@@ -447,31 +513,40 @@ public class RegisterPG extends AppCompatActivity {
 
         }
 
-        shineButton.setOnClickListener(new View.OnClickListener()
-        {
+
+        Log.d(TAG, "onCreate: FLAG " + MultiplePGEdit.FINAL_FLAG);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+
+                if (IS_BUTTON1_CLICKED == 1001) {
+                    cuwbp.downloadUrl1 = editImageOne;
+                }
+                if (IS_BUTTON2_CLICKED == 1002) {
+                    cuwbp.downloadUrl2 = editImageTwo;
+                }
+                if (IS_BUTTON3_CLICKED == 1003) {
+                    cuwbp.downloadUrl3 = editImageThree;
+                }
+                if (IS_BUTTON4_CLICKED == 1004) {
+                    cuwbp.downloadUrl4 = editImageFour;
+                }
+
+
                 //Checking if the images are null before pushing them into firebase
+
                 if (cuwbp.downloadUrl1 != null && cuwbp.downloadUrl2 != null &&
                         cuwbp.downloadUrl3 != null && cuwbp.downloadUrl4 != null) {
+
 
                     image1 = (cuwbp.downloadUrl1).toString();
                     image2 = (cuwbp.downloadUrl2).toString();
                     image3 = (cuwbp.downloadUrl3).toString();
                     image4 = (cuwbp.downloadUrl4).toString();
 
-//                    if(check == 0)
-
-//                        PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, pgName.getText().toString(), ownerName.getText().toString(),
-//                                Double.parseDouble(contactNo.getText().toString()), email.getText().toString(),
-//                                Double.parseDouble(rent.getText().toString()), Double.parseDouble(depositAmount.getText().toString()), extraFeatures.getText().toString(),
-//                                wifi.isChecked(), breakfast.isChecked(), parking.isChecked(), ac.isChecked(), lunch.isChecked(), dinner.isChecked(),
-//                                roWater.isChecked(), security.isChecked(), tv.isChecked(), hotWater.isChecked(), refrigerator.isChecked(),
-//                                addressOne.getText().toString(), locality.getText().toString(),
-//                                city.getText().toString(), state.getText().toString(), Double.parseDouble(pinCode.getText().toString()), preference, genderPreference,
-//                                image1, image2, image3, image4, userUID, nearbyInstitute.getText().toString());
 
 //******************************************* SENDING THE DETAILS TO THE FIREBASE DATABASE****************************************
 
@@ -486,24 +561,106 @@ public class RegisterPG extends AppCompatActivity {
 
 
                     //UPDATING THE PG
-                    if (editCheck == EditPG.FINAL_FLAG) {
-                        Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
+                    if (RegisterPGPageOne.editCalledFlag == 2990) {
+                        Log.d(TAG, "onClick: ####### KEY 1 #######" + key);
                         firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterPG.this, MainActivity.class));
+                        finish();
                     }
-
-
                     //ADDING A NEW PG
                     else
                     {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(RegisterPG.this, MainActivity.class));
+                        finish();
                     }
-//                    registerComplete();
-                    shineBtnClickListener();
+
                 } else {
-                    Toast.makeText(RegisterPG.this, "Images Not Uploaded Successfully!", Toast.LENGTH_SHORT).show();
+
+                    /**
+                     * This function is called when the images are null
+                     * We show a progress Dialog for 8 seconds and then a dialog box is shown
+                     * when selected, we again check if the images are null or not
+                     */
+                    mdialog = new SweetAlertDialog(RegisterPG.this, SweetAlertDialog.PROGRESS_TYPE);
+                    mdialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    mdialog.setTitleText("Please Wait");
+                    mdialog.setCancelable(false);
+                    mdialog.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // This method will be executed once the animation of the shine button is over
+                            // Start your app main activity
+                            mdialog.dismiss();
+                            new SweetAlertDialog(RegisterPG.this, SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("COFIRM")
+                                    .setContentText("Are You Sure You Want To Submit These Details?")
+                                    .setCancelText("CANCEL")
+                                    .setConfirmText("SUBMIT")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sDialog) {
+                                            sDialog.cancel();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            sweetAlertDialog.dismiss();
+                                            if (cuwbp.downloadUrl1 != null && cuwbp.downloadUrl2 != null &&
+                                                    cuwbp.downloadUrl3 != null && cuwbp.downloadUrl4 != null) {
+
+
+                                                image1 = (cuwbp.downloadUrl1).toString();
+                                                image2 = (cuwbp.downloadUrl2).toString();
+                                                image3 = (cuwbp.downloadUrl3).toString();
+                                                image4 = (cuwbp.downloadUrl4).toString();
+
+
+//******************************************* SENDING THE DETAILS TO THE FIREBASE DATABASE****************************************
+
+                                                PgDetails_POJO.PgDetails pgDetails = new PgDetails_POJO.PgDetails(PgId, bun.getString("pgName"), bun.getString("ownerName"),
+                                                        Double.parseDouble(bun.getString("contactNo")), bun.getString("email"),
+                                                        Double.parseDouble(bun.getString("rent")), Double.parseDouble(bun.getString("depositAmount")), bun.getString("extraFeatures"),
+                                                        bun.getBoolean("wifi"), bun.getBoolean("breakfast"), bun.getBoolean("parking"), bun.getBoolean("ac"), bun.getBoolean("lunching"), bun.getBoolean("dinner"),
+                                                        bun.getBoolean("roWater"), bun.getBoolean("security"), bun.getBoolean("tv"), bun.getBoolean("hotWater"), bun.getBoolean("refrigerator"),
+                                                        bun.getString("addressOne"), bun.getString("locality"),
+                                                        bun.getString("city"), bun.getString("state"), Double.parseDouble(bun.getString("pinCode")), bun.getString("preference"), bun.getString("genderPreference"),
+                                                        image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
+
+
+                                                //UPDATING THE PG
+                                                if (RegisterPGPageOne.editCalledFlag == 2990) {
+                                                    Log.d(TAG, "onClick: INSIDE UPDATE PG LOG");
+                                                    firebaseRef.child("PgDetails").child(key).setValue(pgDetails);
+                                                    Toast.makeText(RegisterPG.this, "Details Updated!", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(RegisterPG.this, MainActivity.class));
+                                                    finish();
+                                                }
+
+                                                //ADDING A NEW PG
+                                                if (RegisterPGPageOne.editCalledFlag == 120) {
+                                                    Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
+                                                    firebaseRef.child("PgDetails").push().setValue(pgDetails);
+                                                    Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(RegisterPG.this, MainActivity.class));
+                                                    finish();
+                                                }
+                                            } else {
+                                                Toast.makeText(RegisterPG.this, "Please Press the Submit Button Again!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }, 7000);
+
                 }
             }
         });
@@ -657,50 +814,39 @@ public class RegisterPG extends AppCompatActivity {
         }
     }
 
-    private void shineBtnClickListener() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // This method will be executed once the animation of the shine button is over
-                // Start your app main activity
-                Intent i = new Intent(RegisterPG.this, MainActivity.class);
-                startActivity(i);
-                // close this activity
-                finish();
-            }
-        }, 1000);
+    private boolean hasCameraPerm() {
+        return (ContextCompat.checkSelfPermission(RegisterPG.this,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
+    }
+    private void askCameraPerm() {
+        ActivityCompat.requestPermissions(RegisterPG.this, reqCameraPerm, REQUEST_PERM_CAMERA);
     }
 
-    private void registerComplete() {
-        pgName.setText("");
-        addressOne.setText("");
-        ownerName.setText("");
-        contactNo.setText("");
-        email.setText("");
-        addressOne.setText("");
-        locality.setText("");
-        city.setText("");
-        state.setText("");
-        pinCode.setText("");
-        rent.setText("");
-        depositAmount.setText("");
-        extraFeatures.setText("");
-        nearbyInstitute.setText("");
+    private boolean hasStoragePerm() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            return (ContextCompat.checkSelfPermission(RegisterPG.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        }
+        return false;
+    }
+    private void askStoragePerm() {
+        ActivityCompat.requestPermissions(RegisterPG.this, reqStoragePerm, REQUEST_PERM_STORAGE);
+    }
 
-        //******************************************For custom toast***********************************************
-//        LayoutInflater inflater = getLayoutInflater();
-//        View layout = inflater.inflate(R.layout.custom_toast,
-//                (ViewGroup) findViewById(R.id.toast_layout_root));
-//
-//        ImageView image = (ImageView) layout.findViewById(R.id.image);
-//        image.setImageResource(R.drawable.android);
-//        TextView text = (TextView) layout.findViewById(R.id.text);
-//        text.setText("Hello! This is a custom toast!");
-//        Toast toast = new Toast(getApplicationContext());
-//        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-//        toast.setDuration(Toast.LENGTH_LONG);
-//        toast.setView(layout);
-//        toast.show();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
+        if (requestCode == REQUEST_PERM_STORAGE) {
+
+            if (grantResults.length > 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: STORAGE PERMISSION GRANTED");
+                }
+            }
+
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
+
+

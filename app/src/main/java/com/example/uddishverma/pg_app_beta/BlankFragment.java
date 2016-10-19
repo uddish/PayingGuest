@@ -1,7 +1,10 @@
 package com.example.uddishverma.pg_app_beta;
 
+import android.*;
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,8 +12,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.renderscript.Double2;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,12 +47,22 @@ public class BlankFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "tv_test";
 
+    static int REQUEST_PERM_CALL = 445;
+
     static String address = null;
     String pgName;
 
     CustomPagerAdapter customPagerAdapter;
 
     boolean isOpen = false;
+
+    //For runtime permissions
+    String reqCallPerm[] = new String[]{
+            android.Manifest.permission.CALL_PHONE,
+    };
+    String reqLocationPerm[] = new String[]{
+            android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+    };
 
     Animation fabOpen, fabClose, fabClockwise, fabAnticlockwise;
 
@@ -111,13 +127,16 @@ public class BlankFragment extends Fragment {
         address = b.getString("ADDRESS") + " " + b.getString("LOCALITY") + " " + b.getString("STATE");
 
 
-
         //Adding call intent on the floating action button
         fabcall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + String.valueOf((int) b.getDouble("CONTACT NO"))));
-                startActivity(intent);
+                if (hasCallPerm()) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + String.valueOf((int) b.getDouble("CONTACT NO"))));
+                    startActivity(intent);
+                } else {
+                    askCallPerm();
+                }
             }
         });
 
@@ -126,26 +145,32 @@ public class BlankFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
-                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                pDialog.setTitleText("Please Wait");
-                pDialog.setCancelable(false);
-                pDialog.show();
-                Log.d(TAG, "onCreateView: ADDRESS " + address);
+                if (hasLocationPerm()) {
 
-                try {
-                    geoLocate();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    pDialog.setTitleText("Please Wait");
+                    pDialog.setCancelable(false);
+                    pDialog.show();
+                    Log.d(TAG, "onCreateView: ADDRESS " + address);
+
+                    try {
+                        geoLocate();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    askLocationPerm();
                 }
             }
+//
         });
 
         fabPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(isOpen)  {
+                if (isOpen) {
 
                     fabloc.startAnimation(fabClose);
                     fabcall.startAnimation(fabClose);
@@ -153,9 +178,7 @@ public class BlankFragment extends Fragment {
                     fabloc.setClickable(false);
                     fabcall.setClickable(false);
                     isOpen = false;
-                }
-
-                else    {
+                } else {
 
                     fabloc.startAnimation(fabOpen);
                     fabcall.startAnimation(fabOpen);
@@ -178,9 +201,9 @@ public class BlankFragment extends Fragment {
 
 
     TextView pg_name, owners_name, contact_no, email_id, min_rent, deposit;
-    TextView pgAddress, city, state, pinCode, extraFeatures, locality, nearbyIns;
+    TextView extraFeatures, nearbyIns, location;
 
-    ImageView wifi, ac, parking, tv, lunch, dinner, breakfast,ro_water, hot_water, security, refrigerator;
+    ImageView wifi, ac, parking, tv, lunch, dinner, breakfast, ro_water, hot_water, security, refrigerator;
 
     FloatingActionButton fabPlus, fabloc, fabcall;
 
@@ -195,6 +218,7 @@ public class BlankFragment extends Fragment {
         fabcall = (FloatingActionButton) v.findViewById(R.id.fab_btn_call);
 
         pg_name = (TextView) v.findViewById(R.id.pg_name);
+        location = (TextView) v.findViewById(R.id.loc);
         owners_name = (TextView) v.findViewById(R.id.owners_name);
         contact_no = (TextView) v.findViewById(R.id.contact);
         email_id = (TextView) v.findViewById(R.id.email);
@@ -211,12 +235,7 @@ public class BlankFragment extends Fragment {
         refrigerator = (ImageView) v.findViewById(R.id.refrigerator);
         min_rent = (TextView) v.findViewById(R.id.min_rent);
         deposit = (TextView) v.findViewById(R.id.deposit);
-        pgAddress = (TextView) v.findViewById(R.id.address_one);
-        city = (TextView) v.findViewById(R.id.city);
-        state = (TextView) v.findViewById(R.id.state);
-        pinCode = (TextView) v.findViewById(R.id.pinCode);
         extraFeatures = (TextView) v.findViewById(R.id.extra_tv);
-        locality = (TextView) v.findViewById(R.id.locality);
         nearbyIns = (TextView) v.findViewById(R.id.nearby_ins);
 
     }
@@ -224,22 +243,17 @@ public class BlankFragment extends Fragment {
     private void setDetails(Bundle b) {
         pg_name.setText(b.getString("PG Name"));
         pgName = (b.getString("PG Name"));
-
         owners_name.setText(b.getString("OWNER NAME"));
         contact_no.setText(String.valueOf((int) b.getDouble("CONTACT NO")));
         email_id.setText(b.getString("EMAIL"));
         min_rent.setText(String.valueOf((int) b.getDouble("RENT")));
         deposit.setText(String.valueOf((int) b.getDouble("DEPOSIT")));
-        pgAddress.setText(b.getString("ADDRESS"));
-        city.setText(b.getString("CITY"));
-        state.setText(b.getString("STATE"));
-        pinCode.setText(String.valueOf((int) b.getDouble("PINCODE")));
-        locality.setText(b.getString("LOCALITY"));
-        nearbyIns.setText(b.getString("INSTITUTE"));
-        if(!b.getString("EXTRAFEATURES").equals("")) {
+        location.setText(b.getString("ADDRESS") + " " + b.getString("LOCALITY") + ", " + " " + b.getString("STATE")
+                + "-" + String.valueOf((int) b.getDouble("PINCODE")));
+        nearbyIns.setText(b.getString("INSTITUTE") + " (Nearby Institute)");
+        if (!b.getString("EXTRAFEATURES").equals("")) {
             extraFeatures.setText(b.getString("EXTRAFEATURES"));
-        }
-        else {
+        } else {
             extraFeatures.setText("NO EXTRA FEATURES SPECIFIED!");
         }
 
@@ -332,6 +346,39 @@ public class BlankFragment extends Fragment {
         pDialog.dismiss();
         startActivity(i);
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_PERM_CALL) {
+
+            if (grantResults.length > 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "onRequestPermissionsResult: CALL PERMISSION GRANTED");
+                }
+            }
+
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private boolean hasCallPerm() {
+        return (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private void askCallPerm() {
+        ActivityCompat.requestPermissions(getActivity(), reqCallPerm, REQUEST_PERM_CALL);
+    }
+
+    private boolean hasLocationPerm() {
+        return (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private void askLocationPerm() {
+        ActivityCompat.requestPermissions(getActivity(), reqLocationPerm, REQUEST_PERM_CALL);
     }
 
 

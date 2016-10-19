@@ -74,15 +74,15 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ctx, "Failed To Upload The Image!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ctx, "Failed To Upload The Image!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure: Failed To Upload The Image!");
             }
         });
 
         holder.name_tv.setText(details.getPgName());
-        holder.address_tv.setText(details.getAddressOne());
+        holder.address_tv.setText(details.getAddressOne() + " " + details.getLocality());
         holder.address_tv.setSelected(true);
 
-//        holder.state_tv.setText(details.getState());
         String rent = String.valueOf((int)details.getRent());
         holder.rent_tv.setText("₹" + rent);
 
@@ -93,6 +93,21 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
         if(details.getBreakfast()==true)
             holder.ic_lunch.setImageResource(R.drawable.ic_restaurant_grey_700_24dp);
+        else if(details.getLunch() == true)
+            holder.ic_lunch.setImageResource(R.drawable.ic_room_service_black_24dp);
+        else
+            holder.ic_lunch.setImageResource(R.drawable.ic_restaurant_grey_700_24dp);
+
+        if(details.getAc() == true)
+            holder.ic_ac.setImageResource(R.drawable.ic_ac_unit_grey_700_24dp);
+        else
+            holder.ic_ac.setImageResource(R.drawable.ic_ac_no_unit_grey_700_24dp);
+
+        if(details.getParking() == true)
+            holder.ic_parking.setImageResource(R.drawable.ic_local_parking_grey_700_24dp);
+        else
+            holder.ic_parking.setImageResource(R.drawable.ic_local_parking_no_grey_700_24dp);
+
     }
 
     @Override
@@ -103,8 +118,8 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
 
     public static class DetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_metro;
-        TextView name_tv,address_tv, state_tv, rent_tv;
+        ImageView pg_img,ic_wifi,ic_lunch, ic_parking, ic_ac;
+        TextView name_tv,address_tv, rent_tv;
 
         ArrayList<PgDetails_POJO.PgDetails> list = new ArrayList<PgDetails_POJO.PgDetails>();
         Context ctx;
@@ -125,7 +140,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.Deta
             ic_wifi = (ImageView) view.findViewById(R.id.ic_wifi);
             ic_lunch = (ImageView) view.findViewById(R.id.ic_lunch);
             ic_parking = (ImageView) view.findViewById(R.id.ic_car_parking);
-            ic_metro = (ImageView) view.findViewById(R.id.ic_metro);
+            ic_ac = (ImageView) view.findViewById(R.id.ic_ac);
 
         }
 

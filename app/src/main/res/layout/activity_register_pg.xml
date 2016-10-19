@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#607D8B"
+            android:background="@color/colorPrimaryDark"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
@@ -34,7 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#607D8B"
+            android:background="@color/colorPrimaryDark"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
@@ -50,11 +48,11 @@
             <ImageView
                 android:id="@+id/pg_img_one"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_black_24dp" />
+                android:src="@drawable/camera_register" />
 
             <View
                 android:layout_width="2dp"
@@ -98,11 +96,11 @@
             <ImageView
                 android:id="@+id/pg_img_two"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_black_24dp" />
+                android:src="@drawable/camera_register" />
 
             <View
                 android:layout_width="2dp"
@@ -146,11 +144,11 @@
             <ImageView
                 android:id="@+id/pg_img_three"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_black_24dp" />
+                android:src="@drawable/camera_register" />
 
             <View
                 android:layout_width="2dp"
@@ -194,11 +192,11 @@
             <ImageView
                 android:id="@+id/pg_img_four"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_weight="1"
                 android:elevation="5dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_photo_camera_black_24dp" />
+                android:src="@drawable/camera_register" />
 
             <View
                 android:layout_width="2dp"
@@ -234,27 +232,19 @@
             android:layout_height="2dp"
             android:background="@color/aluminum" />
 
-        <com.sackcentury.shinebuttonlib.ShineButton
-            android:id="@+id/shine_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@color/white"
-            android:src="@android:color/darker_gray"
-            app:allow_random_color="false"
-            app:big_shine_color="#1A237E"
-            app:btn_fill_color="#1A237E"
-            app:click_animation_duration="200"
-            app:enable_flashing="false"
-            app:shine_animation_duration="1500"
-            app:shine_count="8"
-            app:shine_distance_multiple="1.5"
-            app:shine_turn_angle="10"
-            app:siShape="@raw/like"
-            app:small_shine_color="@color/colorPrimary"
-            app:small_shine_offset_angle="20" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="SUBMIT"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/colorPrimaryDark"
+            android:theme="@style/login_screen_button"/>
 
     </LinearLayout>
 

@@ -36,8 +36,8 @@ public class RegisterPGPageOne extends AppCompatActivity {
     EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
             city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
-    String preference;
-    String genderPreference;
+    String preference = "none";
+    String genderPreference = "none";
     ImageView nextBtn;
 
 
@@ -190,7 +190,10 @@ public class RegisterPGPageOne extends AppCompatActivity {
                     intent.putExtra("refrigerator", refrigerator.isChecked());
 
                     if (isEdit.equals("comingFromEditActivity")) {
+
                         intent.putExtra("editCheckFlag", editCalledFlag);
+                        //Sending the pgKey on register Page 2
+                        intent.putExtra("key", key);
                         Log.d(TAG, "onClick: EDIT SOURCE " + editCalledFlag);
                     }
 
@@ -230,7 +233,7 @@ public class RegisterPGPageOne extends AppCompatActivity {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                    if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
+
                     if (dataSnapshot.child("id").getValue().equals(pgId)) {
                         final PgDetails_POJO.PgDetails pgDetails;
                         pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
@@ -259,7 +262,6 @@ public class RegisterPGPageOne extends AppCompatActivity {
                         tv.setChecked(pgDetails.getTv());
                         hotWater.setChecked(pgDetails.getHotWater());
                         refrigerator.setChecked(pgDetails.getFridge());
-
 
                     }
 
@@ -348,53 +350,62 @@ public class RegisterPGPageOne extends AppCompatActivity {
     private int checkForNullFields() {
 
         if (pgName.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Name");
             Toast.makeText(RegisterPGPageOne.this, "Enter the PG Name!", Toast.LENGTH_SHORT).show();
             return 1;
         }
 
         if (ownerName.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Name");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (contactNo.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Number");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (email.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Email Id");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (addressOne.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Address");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Owner's Name!", Toast.LENGTH_SHORT).show();
             return 1;
         }
-//        if (locality.getText().toString().matches("")) {
-//            Toast.makeText(RegisterPGPageOne.this, "Enter the Locality!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
 
-        // NOTE--> not adding constraints on address line two as it is optional
         if (city.getText().toString().matches("")) {
+            pgName.setError("Enter a City");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Contact Number!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (state.getText().toString().matches("")) {
+            pgName.setError("Enter a State");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Email ID!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (pinCode.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid PinCode");
             Toast.makeText(RegisterPGPageOne.this, "Enter the PinCode!", Toast.LENGTH_SHORT).show();
             return 1;
         }
-//        if (nearbyInstitute.toString().matches("")) {
-//            Toast.makeText(RegisterPGPageOne.this, "Enter the nearby Institution!", Toast.LENGTH_SHORT).show();
-//            return 1;
-//        }
+        if(preference.equals("none"))    {
+            Toast.makeText(RegisterPGPageOne.this, "Select a Preference", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if(genderPreference.equals("none"))    {
+            Toast.makeText(RegisterPGPageOne.this, "Select a Gender Preference", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
         if (rent.getText().toString().matches("")) {
+            pgName.setError("Enter a Valid Rent");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Rent!", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (depositAmount.toString().matches("")) {
+            pgName.setError("Enter a Valid Amount");
             Toast.makeText(RegisterPGPageOne.this, "Enter the Deposit Amount!", Toast.LENGTH_SHORT).show();
             return 1;
         }

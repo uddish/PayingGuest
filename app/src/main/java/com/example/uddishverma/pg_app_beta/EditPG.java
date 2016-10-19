@@ -58,7 +58,6 @@ public class EditPG extends AppCompatActivity {
 
         if (b.getString("source").equals("MultiplePGEditApapter")) {
             final String pgId = b.getString("PG ID");
-            Log.d(TAG, "onCreate: ID " + pgId);
             Log.d(TAG, "onClick: ID FROM INTENT " + b.getString("PG ID"));
 
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
