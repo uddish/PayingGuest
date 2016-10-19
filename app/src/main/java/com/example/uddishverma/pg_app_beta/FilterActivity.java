@@ -30,15 +30,22 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-    String localityCheckCode="00";
-    String collegeCheckCode="11";
+    String localityCheckCode="000";
+    String collegeCheckCode="111";
+    String rentCheckCode="222";
     private static final String TAG ="FilterTestCode" ;
     ListView detailsListView;
     ArrayList<String> detailsList;
 
     ListView rightList;
 
- //   ArrayList<String> colleges;
+    Filter_POJO rent[];
+    ArrayList<Filter_POJO> rentList;
+
+
+
+
+    //   ArrayList<String> colleges;
     Filter_POJO colleges[];
     ArrayList<Filter_POJO> collegeList;
 
@@ -59,8 +66,8 @@ public class FilterActivity extends AppCompatActivity {
         detailsList = new ArrayList<String>();
         detailsList.add("Locality");
         detailsList.add("College");
-        detailsList.add("Coaching Institute");
         detailsList.add("Rent");
+
 
         /******************************************************/
         checkBox= (CheckBox) findViewById(R.id.filter_chkbox);
@@ -121,8 +128,25 @@ public class FilterActivity extends AppCompatActivity {
         }*/
 
 /**************************************************************************/
+        rent=new Filter_POJO[]
+                {
+
+                        new Filter_POJO("Below 5000"),
+                        new Filter_POJO("5000-10000"),
+                        new Filter_POJO("10000-15000"),
+                        new Filter_POJO("More than 15000")
+                };
 
 
+        rentList = new ArrayList<Filter_POJO>();
+        rentList.addAll(Arrays.asList(rent));
+
+
+
+
+
+
+    /**********************************************************************/
         detailsListView = (ListView) findViewById(R.id.list_view_left);
 
         rightList= (ListView) findViewById(R.id.list_view_right);
@@ -144,6 +168,12 @@ public class FilterActivity extends AppCompatActivity {
                else if(position == 1)
                 {
                     RightListDetailsAdapter adapter=new RightListDetailsAdapter(collegeList);
+                    rightList.setAdapter(adapter);
+                }
+
+                else if(position==2)
+                {
+                    RightListDetailsAdapter adapter=new RightListDetailsAdapter(rentList);
                     rightList.setAdapter(adapter);
                 }
             }
@@ -205,7 +235,30 @@ public class FilterActivity extends AppCompatActivity {
                     }
                 }
 
-                if(filteredNameofLocality.isEmpty() && filteredNameofColleges.isEmpty())
+
+
+
+                ArrayList<String> filteredNameofRent=new ArrayList<String>();
+                ArrayList<Filter_POJO> checkedListRent=new ArrayList<Filter_POJO>();
+                checkedListRent.addAll(Arrays.asList(rent));
+                ArrayList<String> rentList = new ArrayList<String>();
+
+                for(int i = 0; i < checkedListRent.size(); i++)
+                {
+                    Filter_POJO ob = checkedListRent.get(i);
+                    if(ob.isChecked())
+                    {
+                        filteredNameofRent.add(ob.getName());
+                        Log.d(TAG,"checked:"+ob.getName()+"\n");
+                        rentList.add(ob.getName());
+                    }
+                }
+
+
+
+
+
+                if(filteredNameofLocality.isEmpty() && filteredNameofColleges.isEmpty() && filteredNameofRent.isEmpty())
                 {
                     Toast.makeText(FilterActivity.this,"NO field is selected",Toast.LENGTH_SHORT).show();
                 }
@@ -230,6 +283,16 @@ public class FilterActivity extends AppCompatActivity {
                         Log.d(TAG,collegeCheckCode);
                         intentToFindPgActivity_Filter.putExtra("collegeCheckCode",collegeCheckCode);
                         intentToFindPgActivity_Filter.putStringArrayListExtra("filteredCollegesList",filteredNameofColleges);
+                    }
+
+
+                    if (!filteredNameofRent.isEmpty())
+                    {
+
+                        rentCheckCode="2";
+                        Log.d(TAG,rentCheckCode);
+                        intentToFindPgActivity_Filter.putExtra("rentCheckCode",rentCheckCode);
+                        intentToFindPgActivity_Filter.putStringArrayListExtra("filteredRentList",filteredNameofRent);
                     }
 
                     startActivity(intentToFindPgActivity_Filter);

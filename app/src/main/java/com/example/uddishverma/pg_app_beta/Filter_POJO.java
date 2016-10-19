@@ -55,8 +55,4 @@ public class Filter_POJO
         checked = !checked;
     }
 
-
-
-
-
 }
