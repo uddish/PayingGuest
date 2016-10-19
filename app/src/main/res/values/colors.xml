@@ -19,8 +19,8 @@
     <color name="second_slide_background">#009688</color>
     <color name="second_slide_buttons">#004D40</color>
 
-    <color name="third_slide_background">#9C27B0</color>
-    <color name="third_slide_buttons">#4A148C</color>
+    <color name="third_slide_background">#FFC107</color>
+    <color name="third_slide_buttons">#FFA000</color>
 
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/colorPrimary</item>
