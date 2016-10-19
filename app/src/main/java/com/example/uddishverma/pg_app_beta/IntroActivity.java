@@ -20,7 +20,8 @@ public class IntroActivity extends MaterialIntroActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         enableLastSlideAlphaExitTransition(true);
-        getSkipButtonTranslationWrapper();
+        setSkipButtonVisible();
+
 
         getNextButtonTranslationWrapper()
                 .setEnterTranslation(new IViewTranslation() {
@@ -51,9 +52,9 @@ public class IntroActivity extends MaterialIntroActivity {
         addSlide(new SlideFragmentBuilder()
                         .backgroundColor(R.color.second_slide_background)
                         .buttonsColor(R.color.second_slide_buttons)
-                        .image(R.drawable.key)
-                        .title("Here is The Key of Your New House")
-                        .description("Enjoy")
+                        .image(R.drawable.register)
+                        .title("Give Someone A Home")
+                        .description("Register Your PG(s)")
                         .build(),
                 new MessageButtonBehaviour(new View.OnClickListener() {
                     @Override
@@ -62,18 +63,29 @@ public class IntroActivity extends MaterialIntroActivity {
 
                     }
 
-                },"Grab Your key"));
+                },"Register Now"));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+//        addSlide(new SlideFragmentBuilder()
+//                .backgroundColor(R.color.third_slide_background)
+//                .buttonsColor(R.color.third_slide_buttons)
+//                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE})
+//                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+//                .image(R.drawable.call)
+//                .title("Contact Directly")
+//                .description("Connect to your favourite PG directly")
+//                .build());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             addSlide(new SlideFragmentBuilder()
                     .backgroundColor(R.color.third_slide_background)
                     .buttonsColor(R.color.third_slide_buttons)
                     .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE,Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
     //                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
-                    .image(R.drawable.interiorhome)
-                    .title("Start Your New Life")
-                    .description("With Us?")
+                    .image(R.drawable.call)
+                    .title("Contact Directly")
+                    .description("Connect to your favourite PG directly")
                     .build());
         }
     }

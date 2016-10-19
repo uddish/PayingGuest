@@ -21,7 +21,12 @@
         tools:replace="android:icon,android:theme">
 
 
-        <activity android:name=".IntroActivity" />
+        <activity android:name=".IntroActivity" >
+
+
+
+
+        </activity>
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".FragmentCaller" />
@@ -30,9 +35,6 @@
             android:name=".MainActivity"
             android:label="HOME"
             android:theme="@style/MyTheme" />
-        android:label="@string/home"
-        android:theme="@style/MyTheme">
-
 
         <activity android:name=".FilterActivity" />
         <activity android:name=".AuthorisationActivity" />
