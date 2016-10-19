@@ -214,7 +214,7 @@ public class FindPGActivity extends AppCompatActivity {
                                         ArrayList<String> filteredCollegeList = new ArrayList<String>();
                                         filteredCollegeList = checkActivityCallerIntent.getStringArrayListExtra("filteredCollegesList");
 
-                                        for ( i = 0; i < filteredCollegeList.size(); i++) {
+                                        for (i = 0; i < filteredCollegeList.size(); i++) {
                                             if (dataSnapshot.child("nearbyInstitute").getValue().equals(filteredCollegeList.get(i))) {
                                                 PgDetails_POJO.PgDetails model = dataSnapshot
                                                         .getValue(PgDetails_POJO.PgDetails.class);
@@ -373,37 +373,38 @@ public class FindPGActivity extends AppCompatActivity {
                             }
                         }
 
-                    }       /**********************************************************************************************/
+                        /**********************************************************************************************/
 
-                    else if (intentSource.equals("MainActivity")) {
+                        else if (intentSource.equals("MainActivity")) {
 
-                        Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
+                            Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
 
-                        /**
-                         * This statement will be used to query from the firebase wrt to a particular POJO field
-                         * The below log statement displays the city anit value
-                         * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city")));
-                         *
-                         * And this is used tp display cardViews where CITY = DELHI
-                         * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
-                         */
+                            /**
+                             * This statement will be used to query from the firebase wrt to a particular POJO field
+                             * The below log statement displays the city anit value
+                             * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city")));
+                             *
+                             * And this is used tp display cardViews where CITY = DELHI
+                             * Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+                             */
 
-                        Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
+                            Log.d(TAG, "onChildAdded: KEY VALUE : " + (dataSnapshot.child("city").getValue().equals("delhi")));
 
 
-                        PgDetails_POJO.PgDetails model = dataSnapshot
-                                .getValue(PgDetails_POJO.PgDetails.class);
-                        cardDetails.add(model);
-                        madapter.notifyDataSetChanged();
+                            PgDetails_POJO.PgDetails model = dataSnapshot
+                                    .getValue(PgDetails_POJO.PgDetails.class);
+                            cardDetails.add(model);
+                            madapter.notifyDataSetChanged();
 
-                        //Stopping the progress dialogue
+                            //Stopping the progress dialogue
+
+                            mDialog.dismiss();
+                        }
+
 
                         mDialog.dismiss();
+
                     }
-
-
-                    mDialog.dismiss();
-
                 }
 
                 @Override
