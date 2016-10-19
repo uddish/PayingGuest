@@ -19,7 +19,8 @@ public class IntroActivity extends MaterialIntroActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         enableLastSlideAlphaExitTransition(true);
-        getSkipButtonTranslationWrapper();
+        setSkipButtonVisible();
+
 
         getNextButtonTranslationWrapper()
                 .setEnterTranslation(new IViewTranslation() {
@@ -50,9 +51,9 @@ public class IntroActivity extends MaterialIntroActivity {
         addSlide(new SlideFragmentBuilder()
                         .backgroundColor(R.color.second_slide_background)
                         .buttonsColor(R.color.second_slide_buttons)
-                        .image(R.drawable.key)
-                        .title("Here is the key of your new house")
-                        .description("Enjoy")
+                        .image(R.drawable.register)
+                        .title("Give Someone A Home")
+                        .description("Register Your PG(s)")
                         .build(),
                 new MessageButtonBehaviour(new View.OnClickListener() {
                     @Override
@@ -68,9 +69,9 @@ public class IntroActivity extends MaterialIntroActivity {
                 .buttonsColor(R.color.third_slide_buttons)
                 .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE})
                 .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
-                .image(R.drawable.interiorhome)
-                .title("Start Your new Life")
-                .description("With us?")
+                .image(R.drawable.call)
+                .title("Contact Directly")
+                .description("Connect to your favourite PG directly")
                 .build());
     }
 

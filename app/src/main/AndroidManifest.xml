@@ -21,7 +21,14 @@
         tools:replace="android:icon,android:theme">
 
 
-        <activity android:name=".IntroActivity" />
+        <activity android:name=".IntroActivity" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RegisterPG" />
         <activity android:name=".FindPGActivity" />
         <activity android:name=".FragmentCaller" />
@@ -30,20 +37,13 @@
             android:name=".MainActivity"
             android:label="HOME"
             android:theme="@style/MyTheme" />
-        android:label="@string/home"
-        android:theme="@style/MyTheme">
-
 
         <activity android:name=".FilterActivity" />
         <activity android:name=".AuthorisationActivity" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".MyRegisteredPGInfo" />
