@@ -19,22 +19,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/materialwalll" />
 
-        <!--DISPLAY PICTURE-->
-        <!--If she is a girl she will have a female icon
-         ,which I'm saving in drawable so please use-->
-
-        <!--<ImageButton-->
-            <!--android:id="@+id/user_profile_photo"-->
-            <!--android:layout_width="120dp"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:layout_below="@+id/header_cover_image"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="-60dp"-->
-            <!--android:background="@drawable/profile_circular_board_imageview"-->
-            <!--android:elevation="5dp"-->
-            <!--android:padding="20dp"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--/>-->
 
         <TextView
             android:id="@+id/user_profile_photo"
@@ -68,26 +52,26 @@
 
 
             <!--invite intent will open on click-->
-            <ImageView
-                android:id="@+id/add_friend"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_toLeftOf="@+id/drop_down_option_menu"
-                android:src="@drawable/adduser"
-                />
+            <!--<ImageView-->
+                <!--android:id="@+id/add_friend"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:layout_toLeftOf="@+id/drop_down_option_menu"-->
+                <!--android:src="@drawable/adduser"-->
+                <!--/>-->
 
-            <ImageView
-                android:id="@+id/drop_down_option_menu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/bulletlist"
-                android:layout_marginRight="15dp"
-                />
+            <!--<ImageView-->
+                <!--android:id="@+id/drop_down_option_menu"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:src="@drawable/bulletlist"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--/>-->
 
             <TextView
                 android:id="@+id/myacc_name"

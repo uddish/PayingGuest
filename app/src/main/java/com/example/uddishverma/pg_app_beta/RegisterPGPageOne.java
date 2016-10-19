@@ -36,8 +36,8 @@ public class RegisterPGPageOne extends AppCompatActivity {
     EditText pgName, ownerName, contactNo, email, rent, depositAmount, extraFeatures, addressOne,
             city, state, pinCode;
     CheckBox wifi, ac, breakfast, lunch, dinner, parking, roWater, security, tv, hotWater, refrigerator;
-    String preference;
-    String genderPreference;
+    String preference = "none";
+    String genderPreference = "none";
     ImageView nextBtn;
 
 
@@ -389,6 +389,14 @@ public class RegisterPGPageOne extends AppCompatActivity {
         if (pinCode.getText().toString().matches("")) {
             pgName.setError("Enter a Valid PinCode");
             Toast.makeText(RegisterPGPageOne.this, "Enter the PinCode!", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if(preference.equals("none"))    {
+            Toast.makeText(RegisterPGPageOne.this, "Select a Preference", Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        if(genderPreference.equals("none"))    {
+            Toast.makeText(RegisterPGPageOne.this, "Select a Gender Preference", Toast.LENGTH_SHORT).show();
             return 1;
         }
         if (rent.getText().toString().matches("")) {
