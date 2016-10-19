@@ -188,7 +188,7 @@ public class MyAccountPage extends AppCompatActivity {
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                                 if (dataSnapshot != null && dataSnapshot.getValue() != null) {
                                     Log.d(TAG, "onChildAdded: NUMBER OF CHILDREN " + dataSnapshot.getChildrenCount());
-                                    noOfChildrenTwo = dataSnapshot.getChildrenCount();
+                                    MainActivity.noOfChildren = dataSnapshot.getChildrenCount();
 
 //                              Starting the Multiple Pg Edit Activity which will further allow user to choose a particular PG
                                     mdialog.dismiss();
