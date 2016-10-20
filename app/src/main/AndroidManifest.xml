@@ -21,22 +21,23 @@
         tools:replace="android:icon,android:theme">
 
 
-        <activity android:name=".IntroActivity" >
+        <activity android:name=".IntroActivity" />
 
-
-
-
-        </activity>
         <activity android:name=".RegisterPG" />
-        <activity android:name=".FindPGActivity" />
+        <activity android:name=".FindPGActivity"
+            android:label="PG list"/>
         <activity android:name=".FragmentCaller" />
-        <activity android:name=".MyAccountPage" />
+        <activity android:name=".MyAccountPage"
+            android:theme="@style/ProfilePage">
+            </activity>
         <activity
             android:name=".MainActivity"
             android:label="HOME"
             android:theme="@style/MyTheme" />
 
-        <activity android:name=".FilterActivity" />
+        <activity android:name=".FilterActivity"
+            android:label="Filter"/>
+
         <activity android:name=".AuthorisationActivity" />
         <activity
             android:name=".SplashScreen"
@@ -58,6 +59,7 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

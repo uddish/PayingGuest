@@ -35,7 +35,7 @@
             android:textSize="50dp"
             android:gravity="center"
             android:elevation="5dp"
-            android:textColor="#0097A7"
+            android:textColor="@color/black"
             android:padding="20dp"
             android:scaleType="centerCrop"
             />
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="#0097A7"
+            android:background="@color/profile_page_primary"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
@@ -138,12 +138,12 @@
                 android:padding="20dp"
                 android:text="Edit My Pg(s)" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
             android:id="@+id/myacc_signout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="#8D230F"
+            android:background="@color/profile_page_primary"
             android:layout_alignParentBottom="true"
             android:text="SIGN OUT"
             android:textColor="#FFFFFF"

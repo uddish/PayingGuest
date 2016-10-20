@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="User"
+        android:textSize="10dp"
         android:textAppearance="?android:textAppearanceLarge"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/imageView"

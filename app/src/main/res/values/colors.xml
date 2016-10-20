@@ -22,8 +22,20 @@
     <color name="third_slide_background">#FFC107</color>
     <color name="third_slide_buttons">#FFA000</color>
 
+
+
+    <!--Login-->
+    <color name="login_page_primary">#E91E63</color>
+    <color name="login_page_primaryDark">#C2185B</color>
+    <color name="login_textcolor">#8BC34A</color>
+
+    <!--Profile Page-->
+
+    <color name="profile_page_primary">#FFC107</color>
+    <color name="profile_page_primary_dark">#FFA000</color>
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/colorPrimary</item>
+
 
     <color name="primarytext">#212121</color>
     <color name="secondarytext">#757575</color>
