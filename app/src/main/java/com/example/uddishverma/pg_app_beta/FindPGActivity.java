@@ -411,7 +411,8 @@ public class FindPGActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
                 }
 

@@ -30,10 +30,10 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-    String localityCheckCode="000";
-    String collegeCheckCode="111";
-    String rentCheckCode="222";
-    private static final String TAG ="FilterTestCode" ;
+    String localityCheckCode = "000";
+    String collegeCheckCode = "111";
+    String rentCheckCode = "222";
+    private static final String TAG = "FilterTestCode" ;
     ListView detailsListView;
     ArrayList<String> detailsList;
 
@@ -58,6 +58,9 @@ public class FilterActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    String[] localityListFromResources;
+    String[] collegeListFromResources;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +82,17 @@ public class FilterActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.filter_toolbar);
         setSupportActionBar(toolbar);
 
+        localityListFromResources=getResources().getStringArray(R.array.locality);
 
-        locality = new Filter_POJO[]
+        locality=new Filter_POJO[localityListFromResources.length];
+        for(int i=0;i<localityListFromResources.length;i++)
+        {
+            locality[i]=new Filter_POJO(localityListFromResources[i]);
+        }
+
+
+
+        /*locality = new Filter_POJO[]
                 {
                         new Filter_POJO("Anand Vihar"),
                         new Filter_POJO("Dilshad Garden"),
@@ -94,14 +106,24 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("Vikas Puri"),
                         new Filter_POJO("Paschim Vihar")
                 };
+*/
 
         localityList = new ArrayList<Filter_POJO>();
         localityList.addAll(Arrays.asList(locality));
 
 
+
 /*************************************************************************/
         //Adding colleges
-        colleges = new Filter_POJO[]
+        collegeListFromResources = getResources().getStringArray(R.array.institutes);
+
+        colleges=new Filter_POJO[collegeListFromResources.length];
+        for(int i=0;i<collegeListFromResources.length;i++)
+        {
+            colleges[i]=new Filter_POJO(collegeListFromResources[i]);
+        }
+
+       /* colleges=new Filter_POJO[]
                 {
                         new Filter_POJO("DTU"),
                         new Filter_POJO("NSIT"),
@@ -112,7 +134,7 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("USIT"),
                         new Filter_POJO("IIIT DELHI"),
                         new Filter_POJO("JAYPEE NOIDA")
-                };
+                };*/
 
 
         collegeList = new ArrayList<Filter_POJO>();
