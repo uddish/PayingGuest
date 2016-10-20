@@ -15,33 +15,90 @@
 
     <string-array name="locality">
         <item>Anand Vihar</item>
+        <item>Ansari Nagar</item>
         <item>Ashok Vihar</item>
+        <item> Bahadur Shah Zafar Marg</item>
+        <item>Chanakyapuri</item>
+        <item>Civil Lines</item>
+        <item>Connaught Place</item>
         <item>Dilshad Garden</item>
         <item>Dwarka</item>
+        <item>Geeta Colony</item>
+        <item>Hamidpur</item>
+        <item>Hamdard Nagar</item>
+        <item>Hauz Khas</item>
         <item>Janakpuri</item>
         <item>Jhilmil</item>
+        <item>Kakrola</item>
+        <item>Kashmere Gate</item>
+        <item>Kohat Enclave</item>
         <item>Lajpat Nagar</item>
+        <item>Lodhi Road</item>
+        <item>Malkaganj</item>
+        <item>Mandi House</item>
+        <item>Maurice Nagar</item>
         <item>Model Town</item>
+        <item>Moti Nagar</item>
+        <item>Noida</item>
+        <item>North Campus</item>
+        <item>Okhla</item>
+        <item>Paschim Vihar</item>
         <item>Pitampura</item>
+        <item>Raja Garden</item>
+        <item>Rajouri Garden</item>
         <item>Rithala</item>
         <item>Rohini</item>
+        <item>Shahdara</item>
         <item>Shalimar Bagh</item>
+        <item>Shastri Park</item>
+        <item>Siri Fort</item>
+        <item>University Enclave</item>
+        <item>Uttam Nagar</item>
     </string-array>
 
     <string-array name="institutes">
+        <item>AIIMS</item>
         <item>Amity</item>
+        <item>Ambedkar Institute of Technology</item>
         <item>Bhagwan Parshuram</item>
-        <item>BVP</item>
+        <item>BVPCOE</item>
+        <item>Daulat Ram College</item>
+        <item>Dyal Singh College</item>
         <item>DTU</item>
+        <item>FMS</item>
+        <item>Gargi College</item>
+        <item>G.B. Pant</item>
         <item>GGSIPU Dwarka</item>
         <item>GTBIT</item>
+        <item>Hansraj</item>
+        <item>Hindu College</item>
+        <item>HMR</item>
         <item>IIIT Delhi</item>
         <item>IIT Delhi</item>
-        <item>JIMS</item>
+        <item>IGDTUW</item>
+        <item>Indraprastha College for Women</item>
+        <item>Jamia Hamdard</item>
+        <item>Jesus and Mary College</item>
+        <item>JIMS Rohini Sec-3</item>
+        <item>Kirori Mal College</item>
+        <item>Lady Hardinge Medical College</item>
+        <item>Lady Irwin College</item>
         <item>MAIT</item>
+        <item>Maharaja Surajmal</item>
+        <item>Maulana Azad Medical College</item>
+        <item>Miranda House College</item>
         <item>NIEC</item>
         <item>NSIT</item>
-        <item>NSIT</item>
+        <item>Ramjas College</item>
+        <item>Shaheed Bhagat Singh College</item>
+        <item>Shivaji College</item>
+        <item>Shyam Lal College</item>
+        <item>SRCC</item>
+        <item>St. Stephens</item>
+        <item>LSR</item>
+        <item>University College of Medical Science and GTB Hospital</item>
+        <item>USIT</item>
+        <item>VIPS(Pitampura)</item>
 
     </string-array>
     <string name="title_activity_maps">Map</string>

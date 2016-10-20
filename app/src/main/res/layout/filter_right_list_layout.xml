@@ -8,10 +8,9 @@
     <CheckBox
         android:id="@+id/filter_chkbox"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:layout_height="55dp"
         android:text="Checkbox"
         android:gravity="center"
-        android:textColor="#000000"
         android:textAppearance="?android:textAppearanceMedium"
         android:fontFamily="sans-serif"/>
 </LinearLayout>

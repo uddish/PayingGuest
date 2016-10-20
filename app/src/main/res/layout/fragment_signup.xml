@@ -122,14 +122,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="#e74c3c"
-                android:drawableLeft="@drawable/googleicon"
-                android:layout_gravity="center"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/google_icon"                android:layout_gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="Login With Google"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:fontFamily="sans-serif"/>
 
             <com.facebook.login.widget.LoginButton
@@ -140,7 +139,7 @@
                 android:background="#3b5998"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:drawableLeft="@drawable/facebookicon"
+                android:drawableLeft="@drawable/fbicon"
                 android:textColor="#FFFFFF"
                 facebook:com_facebook_login_text="LOGIN WITH FACEBOOK"
                 facebook:com_facebook_logout_text="LOGIN WITH FACEBOOK"

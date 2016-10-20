@@ -92,7 +92,7 @@ public class FilterActivity extends AppCompatActivity {
                         new Filter_POJO("Rohini"),
                         new Filter_POJO("Rithala"),
                         new Filter_POJO("Vikas Puri"),
-                        new Filter_POJO("Pascim Vihar")
+                        new Filter_POJO("Paschim Vihar")
                 };
 
         localityList = new ArrayList<Filter_POJO>();
@@ -101,9 +101,8 @@ public class FilterActivity extends AppCompatActivity {
 
 /*************************************************************************/
         //Adding colleges
-        colleges=new Filter_POJO[]
+        colleges = new Filter_POJO[]
                 {
-
                         new Filter_POJO("DTU"),
                         new Filter_POJO("NSIT"),
                         new Filter_POJO("IIT DELHI"),
@@ -128,7 +127,7 @@ public class FilterActivity extends AppCompatActivity {
         }*/
 
 /**************************************************************************/
-        rent=new Filter_POJO[]
+        rent = new Filter_POJO[]
                 {
 
                         new Filter_POJO("Below 5000"),
@@ -149,7 +148,7 @@ public class FilterActivity extends AppCompatActivity {
     /**********************************************************************/
         detailsListView = (ListView) findViewById(R.id.list_view_left);
 
-        rightList= (ListView) findViewById(R.id.list_view_right);
+        rightList = (ListView) findViewById(R.id.list_view_right);
 
         DetailsListAdapter listAdapter = new DetailsListAdapter(detailsList);
         detailsListView.setAdapter(listAdapter);
@@ -200,8 +199,8 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view)
             {
 
-                ArrayList<String> filteredNameofLocality=new ArrayList<String>();
-                ArrayList<Filter_POJO> checkedListLocality=new ArrayList<Filter_POJO>();
+                ArrayList<String> filteredNameofLocality = new ArrayList<String>();
+                ArrayList<Filter_POJO> checkedListLocality = new ArrayList<Filter_POJO>();
                 checkedListLocality.addAll(Arrays.asList(locality));
                 ArrayList<String> localityList = new ArrayList<String>(4);
 

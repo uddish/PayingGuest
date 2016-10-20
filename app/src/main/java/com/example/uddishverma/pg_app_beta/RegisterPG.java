@@ -306,7 +306,7 @@ public class RegisterPG extends AppCompatActivity {
                             final PgDetails_POJO.PgDetails pgDetails;
                             pgDetails = dataSnapshot.getValue(PgDetails_POJO.PgDetails.class);
 
-                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).fit().into(imgUpload_1);
+                            Picasso.with(getApplicationContext()).load(pgDetails.getPgImageOne()).centerCrop()i.into(imgUpload_1);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageTwo()).fit().into(imgUpload_2);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageThree()).fit().into(imgUpload_3);
                             Picasso.with(getApplicationContext()).load(pgDetails.getPgImageFour()).fit().into(imgUpload_4);
