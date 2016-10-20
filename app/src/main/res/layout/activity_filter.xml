@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context="com.example.uddishverma.pg_app_beta.FilterActivity">
 
@@ -20,7 +19,7 @@
             android:id="@+id/list_view_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.5" />
+            android:layout_weight="2.2" />
 
         <View
             android:layout_width="2dp"
@@ -32,6 +31,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:divider="@null"
+            android:dividerHeight="0dp"
             android:background="@android:color/white">
 
         </ListView>

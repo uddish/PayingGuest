@@ -626,7 +626,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:elevation="6dp"
-                android:src="@drawable/ic_add_white_24dp"
+                android:src="@drawable/ic_more_horiz_white_24dp"
                 app:backgroundTint="@color/colorPrimary"
                 app:fabSize="normal"
                 app:pressedTranslationZ="12dp" />

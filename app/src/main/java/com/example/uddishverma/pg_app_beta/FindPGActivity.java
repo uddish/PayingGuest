@@ -27,7 +27,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +52,9 @@ public class FindPGActivity extends AppCompatActivity {
     Intent filterActivityIntent;
 
     Toolbar toolbar;
+/***********************/
+    int mPageEndOffset = 0;
+    int mPageLimit = 10;
 
     boolean isInternetConnected = false;
 
@@ -375,6 +377,7 @@ public class FindPGActivity extends AppCompatActivity {
 
                         /**********************************************************************************************/
 
+                        //NO FILTER SELECTED
                         else if (intentSource.equals("MainActivity")) {
 
                             Log.d(TAG, "onChildAdded: " + dataSnapshot.child("PgDetails").getValue());
@@ -408,7 +411,8 @@ public class FindPGActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
                 }
 
