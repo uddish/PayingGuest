@@ -1,7 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MyTheme" parent="MyTheme.base" />
+    <style name="MyTheme" parent="MyTheme.base" >
+        <item name="android:statusBarColor">@color/mainPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/mainPrimaryDark</item>
+    </style>
 
     <style name="MyTheme.base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -28,9 +31,14 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
-    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
 
     <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 
 
     <style name="ProfilePage" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -41,14 +49,29 @@
 
 
 
+    <style name="MainActivityTheme" parent="MyTheme.base">
+        <item name="android:statusBarColor">@color/mainPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/mainPrimary</item>
+
+    </style>
+
+
+    <!--loginSignup-->
+    <style name="loginsignupTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/loginsignPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/loginsignPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
 
     <!--login-->
     <style name="login_screen_button" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/login_page_primary</item>
-        <item name="colorButtonNormal">@color/white</item>
-        <item name="android:statusBarColor">@color/login_page_primaryDark</item>
-        <item name="android:navigationBarColor">@color/login_page_primaryDark</item>
-        <item name="android:textColorHint">@color/white</item>
+            <item name="colorControlHighlight">@color/loginsignupAccent</item>
+        <item name="colorButtonNormal">@color/loginsignPrimary</item>
+
+        <item name="android:textColorHint">@color/black</item>
 
     </style>
 

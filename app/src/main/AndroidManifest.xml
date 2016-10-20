@@ -33,12 +33,15 @@
         <activity
             android:name=".MainActivity"
             android:label="HOME"
-            android:theme="@style/MyTheme" />
+            android:theme="@style/MainActivityTheme"
+            />
 
         <activity android:name=".FilterActivity"
             android:label="Filter"/>
 
-        <activity android:name=".AuthorisationActivity" />
+        <activity android:name=".AuthorisationActivity"
+            android:theme="@style/loginsignupTheme"
+            />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/SplashTheme">

@@ -30,7 +30,7 @@
             <EditText android:id="@+id/edittext_firstusername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/loginsignPrimary"
                 android:inputType="textCapWords"
                 android:theme="@style/StyleTilEditText"
                 android:hint="First Name"/>
@@ -47,7 +47,7 @@
             android:layout_marginBottom="4dp">
             <EditText android:id="@+id/edittext_lastusername"
                 android:layout_width="match_parent"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/loginsignPrimary"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:theme="@style/StyleTilEditText"
@@ -63,7 +63,7 @@
             android:paddingRight="24dp"
             android:layout_marginBottom="4dp">
             <EditText android:id="@+id/edittext_email"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/loginsignPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -80,7 +80,7 @@
             android:paddingRight="24dp"
             android:layout_marginBottom="4dp">
             <EditText android:id="@+id/edittext_password"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/loginsignPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/StyleTilEditText"
@@ -96,7 +96,7 @@
             android:paddingRight="24dp"
             android:layout_marginBottom="4dp">
             <EditText android:id="@+id/edittext_repassword"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/loginsignPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -107,17 +107,19 @@
         <!-- Signup Button -->
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:text="Sign Up"
-            android:textColor="@color/colorPrimaryDark"
-            android:theme="@style/login_screen_button"/>
+            android:textColor="@color/white"
+            android:theme="@style/login_screen_button"
+            android:textAppearance="?android:textAppearanceLarge"/>
 
-            <Button
+
+        <Button
                 android:id="@+id/btn_google"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/loginsignPrimary"
             android:gravity="center"
             android:textSize="18dp"/>
 

@@ -143,13 +143,13 @@ public class SignUpFrag extends Fragment {
         }
 
 
-        if (passwordCheck.isEmpty()) {
-            signupPassword.setError("It Should Be Between 4 and 15 Alphanumeric Characters");
+        if (passwordCheck.isEmpty() || passwordCheck.length() < 6) {
+            signupPassword.setError("It Should Be Between 6 and 15 Characters");
             Toast.makeText(getActivity(), "Enter a Valid Password!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (repeatPasswordCheck.isEmpty()) {
+        if (repeatPasswordCheck.isEmpty() || (!passwordCheck.equals(repeatPasswordCheck))) {
             signupRepassword.setError("Both passwords should be same");
             Toast.makeText(getActivity(), "Enter a Valid Password!", Toast.LENGTH_SHORT).show();
             return;

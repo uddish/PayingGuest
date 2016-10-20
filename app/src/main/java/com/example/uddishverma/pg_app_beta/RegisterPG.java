@@ -315,6 +315,10 @@ public class RegisterPG extends AppCompatActivity {
                             editImageTwo = Uri.parse(pgDetails.getPgImageTwo());
                             editImageThree = Uri.parse(pgDetails.getPgImageThree());
                             editImageFour = Uri.parse(pgDetails.getPgImageFour());
+                            IS_BUTTON1_CLICKED = 3001;
+                            IS_BUTTON2_CLICKED = 3002;
+                            IS_BUTTON3_CLICKED = 3003;
+                            IS_BUTTON4_CLICKED = 3004;
 
 
                             //Deleting the previous images from the firebase reference
@@ -513,6 +517,7 @@ public class RegisterPG extends AppCompatActivity {
 
         }
 
+
         Log.d(TAG, "onCreate: FLAG " + MultiplePGEdit.FINAL_FLAG);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -521,16 +526,16 @@ public class RegisterPG extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (IS_BUTTON1_CLICKED == 1001) {
+                if (IS_BUTTON1_CLICKED == 3001) {
                     cuwbp.downloadUrl1 = editImageOne;
                 }
-                if (IS_BUTTON2_CLICKED == 1002) {
+                if (IS_BUTTON2_CLICKED == 3002) {
                     cuwbp.downloadUrl2 = editImageTwo;
                 }
-                if (IS_BUTTON3_CLICKED == 1003) {
+                if (IS_BUTTON3_CLICKED == 3003) {
                     cuwbp.downloadUrl3 = editImageThree;
                 }
-                if (IS_BUTTON4_CLICKED == 1004) {
+                if (IS_BUTTON4_CLICKED == 3004) {
                     cuwbp.downloadUrl4 = editImageFour;
                 }
 
@@ -568,7 +573,8 @@ public class RegisterPG extends AppCompatActivity {
                         finish();
                     }
                     //ADDING A NEW PG
-                    else {
+                    else
+                    {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
@@ -643,7 +649,7 @@ public class RegisterPG extends AppCompatActivity {
                                                 }
 
                                                 //ADDING A NEW PG
-                                                if (RegisterPGPageOne.editCalledFlag == 120) {
+                                                else {
                                                     Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                                                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
                                                     Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
@@ -663,6 +669,9 @@ public class RegisterPG extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     //Uploading the image to FireBase Storage
     public void uploadImage(Uri downloadUrl, final int imageNumber) {
@@ -842,8 +851,6 @@ public class RegisterPG extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
-
 }
 
 

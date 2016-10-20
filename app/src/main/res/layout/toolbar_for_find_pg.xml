@@ -19,15 +19,18 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="right"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:drawableLeft="@drawable/sort"-->
-        <!--android:text="Sort"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--android:textStyle="bold" />-->
+<!--<<<<<<< HEAD-->
+    <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_gravity="right"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="@color/colorPrimary"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:drawableLeft="@drawable/sort"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="Sort"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="#FFFFFF"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
 
+<!--=======-->
+<!--&gt;>>>>>> 1c0d76594c93e723f66e86dfe67239bff451eac0-->
 
 </android.support.v7.widget.Toolbar>
