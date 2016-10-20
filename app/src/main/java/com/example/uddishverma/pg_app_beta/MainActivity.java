@@ -387,6 +387,8 @@ public class MainActivity extends AppCompatActivity
              * OUR EMAIL ID'S
 
              */
+
+        startActivity(new Intent(MainActivity.this, HelpUsActivity.class));
         } else if (id == R.id.nav_rateus) {
             /**
              * Our Playstore link comment section
