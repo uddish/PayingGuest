@@ -392,10 +392,10 @@ public class FilterActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         Filter_POJO ob = (Filter_POJO) cb.getTag();
-                        Toast.makeText(getApplicationContext(),
-                                "" + cb.getText() +
-                                        " is " + "selected",
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                "" + cb.getText() +
+//                                        " is " + "selected",
+//                                Toast.LENGTH_LONG).show();
 
                         ob.setChecked(cb.isChecked());
                     }

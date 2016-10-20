@@ -85,7 +85,7 @@ public class IntroActivity extends MaterialIntroActivity {
     //                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
                     .image(R.drawable.call)
                     .title("Contact Directly")
-                    .description("Connect to your favourite PG directly")
+                    .description("Connect to Your Favourite PG Directly")
                     .build());
         }
     }

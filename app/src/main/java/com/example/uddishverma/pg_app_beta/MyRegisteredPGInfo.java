@@ -89,8 +89,6 @@ public class MyRegisteredPGInfo extends AppCompatActivity {
 
         RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
 
-        Log.d(TAG, "onCreate: " + RegisterPG.firebaseRef.orderByChild("ac").equalTo("true"));
-
         if (user != null) {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
 
