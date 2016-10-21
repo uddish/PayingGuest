@@ -563,6 +563,9 @@ public class RegisterPG extends AppCompatActivity {
                             bun.getString("city"), bun.getString("state"), Double.parseDouble(bun.getString("pinCode")), bun.getString("preference"), bun.getString("genderPreference"),
                             image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
 
+                    //For Second Database
+                    PgDetails_POJO.PgDetails nameDatabase  = new PgDetails_POJO.PgDetails(bun.getString("ownerName"), Double.parseDouble(bun.getString("contactNo")));
+
 
                     //UPDATING THE PG
                     if (RegisterPGPageOne.editCalledFlag == 2990) {
@@ -577,6 +580,7 @@ public class RegisterPG extends AppCompatActivity {
                     {
                         Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                         firebaseRef.child("PgDetails").push().setValue(pgDetails);
+                        firebaseRef.child("NameDatabase").push().setValue(nameDatabase);
                         Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterPG.this, MainActivity.class));
                         finish();
@@ -638,6 +642,8 @@ public class RegisterPG extends AppCompatActivity {
                                                         bun.getString("city"), bun.getString("state"), Double.parseDouble(bun.getString("pinCode")), bun.getString("preference"), bun.getString("genderPreference"),
                                                         image1, image2, image3, image4, userUID, bun.getString("nearbyInstitute"));
 
+                                                //For Second Database
+                                                PgDetails_POJO.PgDetails nameDatabase  = new PgDetails_POJO.PgDetails(bun.getString("ownerName"), Double.parseDouble(bun.getString("contactNo")));
 
                                                 //UPDATING THE PG
                                                 if (RegisterPGPageOne.editCalledFlag == 2990) {
@@ -652,6 +658,7 @@ public class RegisterPG extends AppCompatActivity {
                                                 else {
                                                     Log.d(TAG, "onClick: INSIDE REGISTER PG LOG");
                                                     firebaseRef.child("PgDetails").push().setValue(pgDetails);
+                                                    firebaseRef.child("NameDatabase").push().setValue(nameDatabase);
                                                     Toast.makeText(RegisterPG.this, "Details Submitted!", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(RegisterPG.this, MainActivity.class));
                                                     finish();
