@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/StyleTilEditText"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password(6-18 characters)"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout

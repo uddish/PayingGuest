@@ -92,6 +92,13 @@ public class PgDetails_POJO {
         }
 
 
+        //For New Database
+        public PgDetails(String ownerName, Double contactNo)    {
+            this.ownerName = ownerName;
+            this.contactNo = contactNo;
+        }
+
+
         public String getPgName() {
             return pgName;
         }
