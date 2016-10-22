@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/helplayout"
     tools:context="com.example.uddishverma.pg_app_beta.HelpUsActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -18,8 +19,11 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="15dp"
         android:elevation="6dp"
+
         app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_more_horiz_white_24dp"/>
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_call"
@@ -42,5 +46,57 @@
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
         android:src="@drawable/ic_email_white_24dp"/>
+
+
+<!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+
+
+    <!--<include-->
+        <!--android:id="@+id/toolbar"-->
+        <!--layout="@layout/tool_bar" />-->
+    <!---->
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="00dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/loginsignup"-->
+        <!---->
+        <!--/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/help_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/header_cover_image"-->
+        <!--android:background="@color/com_facebook_blue"-->
+        <!--android:elevation="4dp"-->
+        <!--android:paddingBottom="24dp">-->
+
+       <!--<TextView-->
+        <!--android:id="@+id/myacc_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="76dp"-->
+        <!--android:text="Always Ready to Help You"-->
+        <!--android:textColor="#fff"-->
+        <!--android:textSize="30sp"-->
+        <!--android:textStyle="bold" />-->
+
+
+        <!--</RelativeLayout>-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--&gt;-->
+
+
+    <!--</LinearLayout>-->
+<!--</RelativeLayout>-->
 
 </android.support.design.widget.CoordinatorLayout>
