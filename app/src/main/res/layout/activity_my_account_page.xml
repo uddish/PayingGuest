@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="76dp"
-                android:text="Shashank Mahajan(NAME)"
+                android:text="Guest"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -92,7 +92,7 @@
                 android:layout_below="@+id/myacc_name"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="shashankmahajan18@gmail.com"
+                android:text="Guest email id"
                 android:textColor="#fff"
                 android:textSize="14sp" />
         </RelativeLayout>

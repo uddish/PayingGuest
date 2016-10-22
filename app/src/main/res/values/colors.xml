@@ -24,6 +24,11 @@
 
 
 
+    <!--<help>-->
+
+    <color name="helpPrimary">#795548</color>
+    <color name="helpPrimaryDark">#5D4037</color>
+
     <!--Login-->
 
     <color name="login_page_primary">#E91E63</color>
@@ -48,6 +53,12 @@
     <color name="loginsignPrimary">#009688</color>
     <color name="loginsignPrimaryDark">#00796B</color>
     <color name="loginsignupAccent">#FFEB3B</color>
+
+
+    <!--Register a PG-->
+
+    <color name="registerPgPrimary">#4CAF50</color>
+    <color name="registerPgPrimaryDark">#388E3C</color>
 
 
 
