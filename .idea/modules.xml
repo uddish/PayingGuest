@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/PGApp_beta.iml" filepath="$PROJECT_DIR$/PGApp_beta.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PGApp_beta.iml" filepath="$PROJECT_DIR$/PGApp_beta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PGApp_beta-1.iml" filepath="$PROJECT_DIR$/PGApp_beta-1.iml" />
+>>>>>>> 644bc9e9d63a6f50d2e228764284ee994348daa3
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

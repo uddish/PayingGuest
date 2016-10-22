@@ -5,7 +5,7 @@
     <!--<color name="windowBackground2">#E91E63</color>-->
     <color name="windowBackground2">#FFFFFF</color>
 
-    <color name="navigationBarColor">#0097A7</color>
+    <color name="navigationBarColor">@color/colorPrimaryDark</color>
 
     <color name="themeBack">@color/white</color>
     <color name="intro">#03A9F4</color>
@@ -22,8 +22,48 @@
     <color name="third_slide_background">#FFC107</color>
     <color name="third_slide_buttons">#FFA000</color>
 
+
+
+    <!--<help>-->
+
+    <color name="helpPrimary">#795548</color>
+    <color name="helpPrimaryDark">#5D4037</color>
+
+    <!--Login-->
+
+    <color name="login_page_primary">#E91E63</color>
+    <color name="login_page_primaryDark">#C2185B</color>
+    <color name="login_textcolor">#8BC34A</color>
+
+
+    <!--Profile Page-->
+
+    <color name="profile_page_primary">#FFC107</color>
+    <color name="profile_page_primary_dark">#FFA000</color>
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/colorPrimary</item>
+
+
+    <!--mainActivity-->
+    <color name="mainPrimary">#FF9800</color>
+    <color name="mainPrimaryDark">#F57C00</color>
+    <color name="mainAccentColor">#FF5722</color>
+
+    <!--loginsignup screen-->
+    <color name="loginsignPrimary">#009688</color>
+    <color name="loginsignPrimaryDark">#00796B</color>
+    <color name="loginsignupAccent">#FFEB3B</color>
+
+
+    <!--Register a PG-->
+
+    <color name="registerPgPrimary">#4CAF50</color>
+    <color name="registerPgPrimaryDark">#388E3C</color>
+
+
+
+
+
 
     <color name="primarytext">#212121</color>
     <color name="secondarytext">#757575</color>

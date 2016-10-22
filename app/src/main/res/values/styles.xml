@@ -1,7 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="MyTheme" parent="MyTheme.base" />
+    <style name="MyTheme" parent="MyTheme.base" >
+        <item name="android:statusBarColor">@color/mainPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/mainPrimaryDark</item>
+    </style>
 
     <style name="MyTheme.base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -28,17 +31,72 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
-    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
 
     <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 
-    <style name="login_screen_button" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/colorPrimary</item>
-        <item name="colorButtonNormal">@color/white</item>
+
+
+
+    <style name="ProfilePage" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/profile_page_primary_dark</item>
+        <item name="android:navigationBarColor">@color/profile_page_primary_dark</item>
 
     </style>
+
+
+
+    <style name="MainActivityTheme" parent="MyTheme.base">
+        <item name="android:statusBarColor">@color/mainPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/mainPrimary</item>
+
+    </style>
+
+
+    <style name="helpActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/helpPrimaryDark</item>
+      0  <item name="android:navigationBarColor">@color/helpPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+
+    <!--Register pg-->
+    <style name="RegisterinfoActivity" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/registerPgPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/registerPgPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--loginSignup-->
+    <style name="loginsignupTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:statusBarColor">@color/loginsignPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/loginsignPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+
+    <style name="registerToolbar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+    <!--login-->
+    <style name="login_screen_button" parent="Theme.AppCompat.Light">
+            <item name="colorControlHighlight">@color/loginsignupAccent</item>
+        <item name="colorButtonNormal">@color/loginsignPrimary</item>
+
+        <item name="android:textColorHint">@color/black</item>
+
+    </style>
+
     <style name="StyleTilEditTextTheme">
         <item name="android:imeOptions">actionNext</item>
         <item name="android:singleLine">true</item>

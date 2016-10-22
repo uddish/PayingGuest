@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/registerPgPrimary"
             app:cardElevation="3dp">
 
             <LinearLayout
@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -129,7 +129,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/registerPgPrimary"
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:padding="15dp"
@@ -256,7 +256,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -412,7 +412,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -467,7 +467,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:fontFamily="sans-serif"
                     android:text="GENDER PREFERENCE"
                     android:textColor="@android:color/white" />
@@ -534,7 +534,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="15dp"
@@ -601,7 +601,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/registerPgPrimary"
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:padding="15dp"
@@ -626,7 +626,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/registerPgPrimary"
                     android:src="@drawable/ic_arrow_forward_white_48dp" />
 
             </LinearLayout>

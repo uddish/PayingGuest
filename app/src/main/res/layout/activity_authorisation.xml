@@ -22,10 +22,9 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
                 app:layout_scrollFlags="snap"
                 android:title="LOGIN/SIGN UP"
-                android:backgroundTint="@color/colorPrimary"
+                android:background="@color/loginsignPrimary"
                 app:popupTheme="@style/MyTheme.PopupOverlay">
 
                 <!--<RelativeLayout-->
@@ -48,7 +47,7 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@color/loginsignPrimary"
                 app:tabMode="fixed"
                 app:tabGravity="fill">
 

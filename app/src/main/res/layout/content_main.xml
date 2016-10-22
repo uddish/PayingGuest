@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@drawable/mainnnedit">
+    android:background="@drawable/mainactivityback"
+    >
 
       <!--<Button-->
     <!--android:id="@+id/find_pg_btn"-->
@@ -22,6 +23,47 @@
 
     <!--<Button-->
 
+        <!--android:text="REGISTER YOUR OWN PG(s) "-->
+        <!--//android:id="@+id/register_pg_btn"-->
+        <!--android:backgroundTint="@color/white"-->
+        <!--android:textColor="@color/colorPrimaryDark"-->
+        <!--android:onClick="openRegisterPgActivity"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="70dp"-->
+        <!--android:layout_above="@+id/find_pg_btn"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="34dp" />-->
+
+
+  <Button
+      android:id="@+id/register_pg_btn"
+      android:textColor="@color/mainPrimaryDark"
+      android:layout_gravity="center_horizontal"
+      android:layout_width="match_parent"
+      android:backgroundTint="@color/white"
+      android:onClick="openRegisterPgActivity"
+      android:text="REGISTER YOUR OWN PG(s)"
+      android:layout_height="70dp"
+
+      android:layout_above="@+id/find_pg_btn"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
+
+  <Button
+
+      android:text="FIND YOUR PG"
+      android:backgroundTint="@color/white"
+      android:textColor="@color/mainPrimaryDark"
+      android:onClick="openFindPgActivity"
+      android:layout_width="match_parent"
+
+      android:layout_height="70dp"
+      android:id="@+id/find_pg_btn"
+      android:padding="10dp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true" />
+=======
     <!--android:text="REGISTER YOUR OWN PG(s) "-->
     <!--//android:id="@+id/register_pg_btn"-->
     <!--android:backgroundTint="@color/white"-->
@@ -33,37 +75,6 @@
     <!--android:layout_above="@+id/find_pg_btn"-->
     <!--android:layout_centerHorizontal="true"-->
     <!--android:layout_marginBottom="34dp" />-->
-
-
-    <Button
-
-    android:text="FIND YOUR PG"
-    android:backgroundTint="@color/white"
-    android:textColor="@color/colorPrimaryDark"
-    android:onClick="openFindPgActivity"
-    android:layout_width="300dp"
-
-    android:layout_height="wrap_content"
-    android:id="@+id/find_pg_btn"
-    android:padding="10dp"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true" />
-
-    <Button
-    android:id="@+id/register_pg_btn"
-    android:textColor="@color/colorPrimaryDark"
-    android:layout_gravity="center_horizontal"
-    android:layout_width="300dp"
-    android:backgroundTint="@color/white"
-    android:onClick="openRegisterPgActivity"
-    android:text="REGISTER YOUR OWN PG(s)"
-    android:layout_height="wrap_content"
-
-    android:layout_above="@+id/find_pg_btn"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="200dp"
-
-    />
 
 </RelativeLayout>
 
