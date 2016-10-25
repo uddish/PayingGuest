@@ -1,10 +1,7 @@
 package app.paying.guest.alpha;
 
-<<<<<<< HEAD:app/src/main/java/app/paying/guest/alpha/MainActivity.java
-=======
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
->>>>>>> f5d57d2137b9dbab014bcf9a6da7691e28cbbb86:app/src/main/java/com/example/uddishverma/pg_app_beta/MainActivity.java
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,11 +25,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD:app/src/main/java/app/paying/guest/alpha/MainActivity.java
 
 import com.example.uddishverma.pg_app_beta.R;
-=======
->>>>>>> f5d57d2137b9dbab014bcf9a6da7691e28cbbb86:app/src/main/java/com/example/uddishverma/pg_app_beta/MainActivity.java
 import com.facebook.login.LoginManager;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -101,7 +95,7 @@ public class MainActivity extends AppCompatActivity
          */
         signOut = (Button) findViewById(R.id.nav_signout);
 
-        if(firebaseAuth.getCurrentUser() == null)   {
+        if (firebaseAuth.getCurrentUser() == null) {
             signOut.setVisibility(View.INVISIBLE);
         }
         //Setting the click events on the sign out button
@@ -394,24 +388,17 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_invite) {
 
-
-
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.alpha"); // Simple text and URL to share
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check Out This Dope App to Register and Find new PG(s)! - https://play.google.com/store/apps/details?id=app.paying.guest.alpha"); // Simple text and URL to share
             sendIntent.setType("text/plain");
             this.startActivity(sendIntent);
 
 
         } else if (id == R.id.nav_help) {
 
+            startActivity(new Intent(MainActivity.this, HelpUsActivity.class));
 
-            /**
-             * OUR EMAIL ID'S
-
-             */
-
-        startActivity(new Intent(MainActivity.this, HelpUsActivity.class));
         } else if (id == R.id.nav_rateus) {
             /**
              * Our Playstore link comment section
@@ -420,10 +407,9 @@ public class MainActivity extends AppCompatActivity
                 Uri uri1 = Uri.parse("market://details?id=app.paying.guest.alpha");
                 Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
                 startActivity(goToPlayStore);
-            }
-            catch(ActivityNotFoundException e ){
+            } catch (ActivityNotFoundException e) {
                 Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.alpha");
-                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW,uri1);
+                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
                 startActivity(goToPlayStore);
             }
         }
