@@ -373,6 +373,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         } else if (id == R.id.nav_invite) {
+
+
             /**
              * open sharing intent to send
              * a custom link of our app in the playstore .
@@ -381,6 +383,17 @@ public class MainActivity extends AppCompatActivity
              * of our app in the playstore .
 
              */
+
+            Intent inviteIntent = new Intent(MainActivity.this,Invite.class);
+            startActivity(inviteIntent);
+//
+//            Intent sendIntent = new Intent();
+//            sendIntent.setAction(Intent.ACTION_SEND);
+//            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App ! - https://play.google.com/store/apps/details?id=app.paying.guest.alpha"); // Simple text and URL to share
+//            sendIntent.setType("text/plain");
+//            this.startActivity(sendIntent);
+
+
         } else if (id == R.id.nav_help) {
 
             /**
