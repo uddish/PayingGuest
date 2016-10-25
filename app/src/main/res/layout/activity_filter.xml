@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.uddishverma.pg_app_beta.FilterActivity">
+    tools:context="com.example.uddishverma.pg_app_beta.app.example.uddishverma.pg_app_beta.FilterActivity">
 
     <include
         android:id="@+id/filter_toolbar"

@@ -5,11 +5,11 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "com.example.uddishverma.pg_app_beta"
+        applicationId "app.paying.guest.alpha"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         multiDexEnabled true
 
     }
@@ -27,6 +27,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
 }

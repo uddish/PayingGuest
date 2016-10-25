@@ -3,5 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.uddishverma.pg_app_beta.SplashScreen">
+    tools:context="com.example.uddishverma.pg_app_beta.app.example.uddishverma.pg_app_beta.SplashScreen">
 </RelativeLayout>

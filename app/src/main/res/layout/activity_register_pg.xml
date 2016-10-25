@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.uddishverma.pg_app_beta.RegisterPG">
+    tools:context="app.paying.guest.alpha.RegisterPG">
 
     <LinearLayout
         android:id="@+id/layout_1"
@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="#4CAF50"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="#4CAF50"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:padding="15dp"
@@ -243,8 +243,8 @@
             android:paddingRight="12dp"
             android:text="SUBMIT"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/colorPrimaryDark"
-            android:theme="@style/login_screen_button"/>
+            android:textColor="#FFFFFF"
+            android:background="#4CAF50"/>
 
     </LinearLayout>
 

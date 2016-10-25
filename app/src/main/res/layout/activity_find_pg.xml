@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="com.example.uddishverma.pg_app_beta.FindPGActivity">
+    tools:context="com.example.uddishverma.pg_app_beta.app.example.uddishverma.pg_app_beta.FindPGActivity">
 
     <LinearLayout
         android:id="@+id/toolbar_layout"
