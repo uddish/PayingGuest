@@ -1,10 +1,16 @@
 package app.paying.guest.alpha;
 
+<<<<<<< HEAD:app/src/main/java/app/paying/guest/alpha/MainActivity.java
+=======
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+>>>>>>> f5d57d2137b9dbab014bcf9a6da7691e28cbbb86:app/src/main/java/com/example/uddishverma/pg_app_beta/MainActivity.java
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -22,8 +28,11 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD:app/src/main/java/app/paying/guest/alpha/MainActivity.java
 
 import com.example.uddishverma.pg_app_beta.R;
+=======
+>>>>>>> f5d57d2137b9dbab014bcf9a6da7691e28cbbb86:app/src/main/java/com/example/uddishverma/pg_app_beta/MainActivity.java
 import com.facebook.login.LoginManager;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -384,15 +393,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         } else if (id == R.id.nav_invite) {
-            /**
-             * open sharing intent to send
-             * a custom link of our app in the playstore .
-             *
-             * and side by side we can open an activity and show a QR code
-             * of our app in the playstore .
 
-             */
+
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.alpha"); // Simple text and URL to share
+            sendIntent.setType("text/plain");
+            this.startActivity(sendIntent);
+
+
         } else if (id == R.id.nav_help) {
+
 
             /**
              * OUR EMAIL ID'S
@@ -404,6 +416,16 @@ public class MainActivity extends AppCompatActivity
             /**
              * Our Playstore link comment section
              */
+            try {
+                Uri uri1 = Uri.parse("market://details?id=app.paying.guest.alpha");
+                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
+                startActivity(goToPlayStore);
+            }
+            catch(ActivityNotFoundException e ){
+                Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.alpha");
+                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW,uri1);
+                startActivity(goToPlayStore);
+            }
         }
 
 
