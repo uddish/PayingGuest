@@ -5,7 +5,7 @@
     android:id="@+id/activity_register_pgpage_one"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.uddishverma.pg_app_beta.RegisterPGPageOne">
+    tools:context="app.paying.guest.alpha.RegisterPGPageOne">
 
     <LinearLayout
         android:layout_width="match_parent"

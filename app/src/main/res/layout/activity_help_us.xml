@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/helplayout"
-    tools:context="com.example.uddishverma.pg_app_beta.HelpUsActivity">
+    tools:context="com.example.uddishverma.pg_app_beta.app.example.uddishverma.pg_app_beta.HelpUsActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_menu"
