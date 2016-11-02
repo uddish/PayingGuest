@@ -379,7 +379,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.alpha"); // Simple text and URL to share
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.release"); // Simple text and URL to share
             sendIntent.setType("text/plain");
             this.startActivity(sendIntent);
 
@@ -398,12 +398,12 @@ public class MainActivity extends AppCompatActivity
              * Our Playstore link comment section
              */
             try {
-                Uri uri1 = Uri.parse("market://details?id=app.paying.guest.alpha");
+                Uri uri1 = Uri.parse("market://details?id=app.paying.guest.release");
                 Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
                 startActivity(goToPlayStore);
             }
             catch(ActivityNotFoundException e ){
-                Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.alpha");
+                Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.release");
                 Intent goToPlayStore = new Intent(Intent.ACTION_VIEW,uri1);
                 startActivity(goToPlayStore);
             }
