@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.Manifest;
 import android.content.Intent;
@@ -68,16 +68,6 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 },"Register Now"));
 
-
-//        addSlide(new SlideFragmentBuilder()
-//                .backgroundColor(R.color.third_slide_background)
-//                .buttonsColor(R.color.third_slide_buttons)
-//                .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE})
-//                .neededPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
-//                .image(R.drawable.call)
-//                .title("Contact Directly")
-//                .description("Connect to your favourite PG directly")
-//                .build());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             addSlide(new SlideFragmentBuilder()

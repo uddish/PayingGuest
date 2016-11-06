@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -456,7 +456,7 @@ public class FilterActivity extends AppCompatActivity {
                 detailsViewHolder = (DetailsViewHolder) convertView.getTag();
             }
 
-            String ob= (String) getItem(position);
+            String ob = (String) getItem(position);
             detailsViewHolder.filterOptions.setText(ob);
             return convertView;
         }

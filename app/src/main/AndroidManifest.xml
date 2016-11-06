@@ -21,46 +21,46 @@
         tools:replace="android:icon,android:theme">
 
         <activity
-            android:name="app.paying.guest.alpha.HelpUsActivity"
+            android:name="app.paying.guest.release.HelpUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/helpActivityTheme" />
 
         <activity
-            android:name="app.paying.guest.alpha.IntroActivity"
+            android:name="app.paying.guest.release.IntroActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="app.paying.guest.alpha.RegisterPG"
+            android:name="app.paying.guest.release.RegisterPG"
             android:screenOrientation="portrait"
             android:theme="@style/RegisterinfoActivity"/>
         <activity
-            android:name="app.paying.guest.alpha.FindPGActivity"
+            android:name="app.paying.guest.release.FindPGActivity"
             android:label="PG list"
             android:screenOrientation="portrait" />
-        <activity android:name="app.paying.guest.alpha.FragmentCaller" />
+        <activity android:name="app.paying.guest.release.FragmentCaller" />
         <activity
-            android:name="app.paying.guest.alpha.MyAccountPage"
+            android:name="app.paying.guest.release.MyAccountPage"
             android:screenOrientation="portrait"
             android:theme="@style/ProfilePage">
 
         </activity>
         <activity
-            android:name="app.paying.guest.alpha.MainActivity"
+            android:name="app.paying.guest.release.MainActivity"
             android:label="HOME"
             android:screenOrientation="portrait"
             android:theme="@style/MainActivityTheme" />
 
         <activity
-            android:name="app.paying.guest.alpha.FilterActivity"
+            android:name="app.paying.guest.release.FilterActivity"
             android:label="Filter"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="app.paying.guest.alpha.AuthorisationActivity"
+            android:name="app.paying.guest.release.AuthorisationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/loginsignupTheme" />
         <activity
-            android:name="app.paying.guest.alpha.SplashScreen"
+            android:name="app.paying.guest.release.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -71,19 +71,19 @@
 
         </activity>
         <activity
-            android:name="app.paying.guest.alpha.MyRegisteredPGInfo"
+            android:name="app.paying.guest.release.MyRegisteredPGInfo"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="app.paying.guest.alpha.EditPG"
+            android:name="app.paying.guest.release.EditPG"
             android:screenOrientation="portrait" />
         <activity
-            android:name="app.paying.guest.alpha.RegisterPGPageOne"
+            android:name="app.paying.guest.release.RegisterPGPageOne"
             android:label="REGISTER"
             android:screenOrientation="portrait"
             android:theme="@style/RegisterinfoActivity" />
         <activity
-            android:name="app.paying.guest.alpha.MultiplePGEdit"
+            android:name="app.paying.guest.release.MultiplePGEdit"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -108,7 +108,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="app.paying.guest.alpha.MapsActivity"
+            android:name="app.paying.guest.release.MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
     </application>

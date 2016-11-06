@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "991428861284-709m54ljeacpm500dop6bf0h7nhqc2h5.apps.googleusercontent.com",
+          "client_id": "991428861284-hkq9kof8ctmk8ognuc0v8ted53m4neq8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.uddishverma.pg_app_beta",
-            "certificate_hash": "AD1CCEDC7471EDF1406A639F2F220AE8705F50BF"
+            "certificate_hash": "7DCEEA1D67FECA25AD084CA8EA6C0618C1C1FB1B"
           }
         },
         {
@@ -64,6 +64,50 @@
           "android_info": {
             "package_name": "app.paying.guest.alpha",
             "certificate_hash": "7DCEEA1D67FECA25AD084CA8EA6C0618C1C1FB1B"
+          }
+        },
+        {
+          "client_id": "991428861284-rsi3vd9p4v2rp8moivadknc2pkoqinqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnz6JcblDMKQJ5HTL5RgXxjop-QN8B0oA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991428861284-rsi3vd9p4v2rp8moivadknc2pkoqinqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991428861284:android:a58b3aa408a84f76",
+        "android_client_info": {
+          "package_name": "app.paying.guest.release"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991428861284-j71grpe94m4ecoqbhnl1b2ags4br9lk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.paying.guest.release",
+            "certificate_hash": "0522E89E483B66F8E6FE1F80C09D663BF1C63887"
           }
         },
         {
