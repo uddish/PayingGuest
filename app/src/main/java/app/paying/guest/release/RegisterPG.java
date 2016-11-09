@@ -175,7 +175,7 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                if (hasCameraPerm() && hasStoragePerm()) {
+                if (hasCameraPerm()) {
                     Intent intent = new Intent();
                     intent.setType("image/*");
                     //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
@@ -192,7 +192,7 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                if (hasCameraPerm() && hasStoragePerm()) {
+                if (hasCameraPerm()) {
                     Intent i = new Intent();
                     i.setType("image/*");
                     //If you want the user to choose something based on MIME type, use ACTION_GET_CONTENT.
@@ -210,7 +210,7 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                if (hasCameraPerm() && hasStoragePerm()) {
+                if (hasCameraPerm()) {
 
                     Intent intent = new Intent();
                     intent.setType("image/*");
@@ -228,7 +228,7 @@ public class RegisterPG extends AppCompatActivity {
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                if (hasCameraPerm() && hasStoragePerm()) {
+                if (hasCameraPerm()) {
 
                     Intent intent = new Intent();
                     intent.setType("image/*");
@@ -592,7 +592,7 @@ public class RegisterPG extends AppCompatActivity {
                             // Start your app main activity
                             mdialog.dismiss();
                             new SweetAlertDialog(RegisterPG.this, SweetAlertDialog.SUCCESS_TYPE)
-                                    .setTitleText("COFIRM")
+                                    .setTitleText("CONFIRM")
                                     .setContentText("Are You Sure You Want To Submit These Details?")
                                     .setCancelText("CANCEL")
                                     .setConfirmText("SUBMIT")

@@ -389,11 +389,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-<<<<<<< HEAD:app/src/main/java/app/paying/guest/release/MainActivity.java
             sendIntent.putExtra(Intent.EXTRA_TEXT, "Check Out This Dope App to Register and Find new PG(s)! - https://play.google.com/store/apps/details?id=app.paying.guest.release"); // Simple text and URL to share
-=======
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.release");
->>>>>>> 3c8361b93caeb92166b508fe8c21e10aceb8fc8c:app/src/main/java/app/paying/guest/alpha/MainActivity.java
             sendIntent.setType("text/plain");
             this.startActivity(sendIntent);
 
@@ -410,15 +406,7 @@ public class MainActivity extends AppCompatActivity
                 Uri uri1 = Uri.parse("market://details?id=app.paying.guest.release");
                 Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
                 startActivity(goToPlayStore);
-<<<<<<< HEAD:app/src/main/java/app/paying/guest/release/MainActivity.java
             } catch (ActivityNotFoundException e) {
-=======
-            }
-            catch(ActivityNotFoundException e ) {
->>>>>>> 3c8361b93caeb92166b508fe8c21e10aceb8fc8c:app/src/main/java/app/paying/guest/alpha/MainActivity.java
-                Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.release");
-                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
-                startActivity(goToPlayStore);
             }
         }
 
