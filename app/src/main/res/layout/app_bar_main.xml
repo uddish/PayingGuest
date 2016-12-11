@@ -7,7 +7,7 @@
     android:id="@+id/coordinate_layout"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.paying.guest.alpha.MainActivity"
+    tools:context="app.paying.guest.release.MainActivity"
 
     >
 

@@ -1,6 +1,5 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -390,7 +389,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this dope App to Register and find new PG(s) ! - https://play.google.com/store/apps/details?id=app.paying.guest.release");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check Out This Dope App to Register and Find new PG(s)! - https://play.google.com/store/apps/details?id=app.paying.guest.release"); // Simple text and URL to share
             sendIntent.setType("text/plain");
             this.startActivity(sendIntent);
 
@@ -407,11 +406,7 @@ public class MainActivity extends AppCompatActivity
                 Uri uri1 = Uri.parse("market://details?id=app.paying.guest.release");
                 Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
                 startActivity(goToPlayStore);
-            }
-            catch(ActivityNotFoundException e ) {
-                Uri uri1 = Uri.parse("https://play.google.com/store/apps/details?id=app.paying.guest.release");
-                Intent goToPlayStore = new Intent(Intent.ACTION_VIEW, uri1);
-                startActivity(goToPlayStore);
+            } catch (ActivityNotFoundException e) {
             }
         }
 

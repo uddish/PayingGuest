@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 /**
  * Created by naman on 29/9/16.

@@ -1,12 +1,9 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,15 +23,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
- * Created by UddishVerma on 28/09/16.
- * This activity shows the multiple PGs added by the user
- * which can be further selected for editing
+ * Thi activity is called when the user selects MY PG from the navigation drawer
+ * It directs the user to the fragment and shows his/her PG's information
  */
+//TODO Check if the pg exists for the user
 
-public class MultiplePGEdit extends AppCompatActivity {
+public class MyRegisteredPGInfo extends AppCompatActivity {
 
     public static final String TAG = "FindPGActivity";
 
@@ -45,21 +40,13 @@ public class MultiplePGEdit extends AppCompatActivity {
     Button filterButton;
     Intent filterActivityIntent;
 
-    public static final int INITIAL_FLAG = 9001;
-    public static final int FINAL_FLAG = 8001;
-    int flag = INITIAL_FLAG;
-
-    //To check is the internet is connected
-    boolean isInternetConnected = false;
-
     Toolbar toolbar;
-
-    long noOfChildren;
-    long count = 0;
-    int countFind = 0;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
+
+    long count = 0;
+    int countFind = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +56,6 @@ public class MultiplePGEdit extends AppCompatActivity {
 
         filterActivityIntent = new Intent(this, FilterActivity.class);
 
-        //Checking if the internet is connected
-        isNetworkConnected();
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,28 +74,25 @@ public class MultiplePGEdit extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         mrecyclerView.setLayoutManager(layoutManager);
         mrecyclerView.setHasFixedSize(true);
-        madapter = new MultiplePGEditAdapter(cardDetails, this);
+        madapter = new PgDetailsAdapter(cardDetails, this);
         mrecyclerView.setAdapter(madapter);
 
+        //Adding progress dialogue while the cards are loading
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Please Wait...");
+        pd.show();
 
-        if (isInternetConnected) {
-            //Adding progress dialogue while the cards are loading
-            final ProgressDialog pd = new ProgressDialog(this);
-            pd.setMessage("Please Wait...");
-//            pd.setCancelable(false);
-            pd.show();
+        Firebase.setAndroidContext(this);
 
-            Firebase.setAndroidContext(this);
-
-            RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
-
-            if (MainActivity.noOfChildren == 0) {
-                Log.d(TAG, "onCreate: NUMBER OF CHILDREN FROM MY ACCOUNT " + MyAccountPage.noOfChildrenTwo);
-                MainActivity.noOfChildren = MyAccountPage.noOfChildrenTwo;
-            }
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
 
+        RegisterPG.firebaseRef = new Firebase("https://pgapp-c51ce.firebaseio.com/");
+
+        if (user != null) {
             RegisterPG.firebaseRef.child("PgDetails").addChildEventListener(new ChildEventListener() {
+
 
                 @JsonIgnoreProperties
                 @Override
@@ -126,7 +105,6 @@ public class MultiplePGEdit extends AppCompatActivity {
                         if (dataSnapshot.child("userUID").getValue().equals(user.getUid())) {
                             PgDetails_POJO.PgDetails model = dataSnapshot
                                     .getValue(PgDetails_POJO.PgDetails.class);
-                            flag = FINAL_FLAG;
                             cardDetails.add(model);
                             madapter.notifyDataSetChanged();
 
@@ -168,29 +146,13 @@ public class MultiplePGEdit extends AppCompatActivity {
                 }
             });
         }
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        super.onBackPressed();
-    }
-
-
-    private void isNetworkConnected() {
-
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            isInternetConnected = true;
-        } else {
-            isInternetConnected = false;
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("No Internet")
-                    .setContentText("Please Check Your Internet Connection!")
-                    .show();
+        else    {
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+
     }
+
+
 }

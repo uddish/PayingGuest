@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.content.Context;
 import android.os.Bundle;

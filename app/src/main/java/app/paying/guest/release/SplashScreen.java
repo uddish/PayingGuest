@@ -1,4 +1,4 @@
-package app.paying.guest.alpha;
+package app.paying.guest.release;
 
 import android.app.Activity;
 import android.content.Context;
@@ -36,8 +36,7 @@ public class SplashScreen extends Activity {
         if(firstTime) {
             editor.putBoolean("first",false);
             editor.apply();
-//            Intent intent = new Intent(SplashScreen.this, IntroActivity.class);
-//            startActivity(intent);
+
             TaskStackBuilder.create(getApplicationContext())
                         .addNextIntentWithParentStack(new Intent(getApplicationContext(), MainActivity.class))
                         .addNextIntent(new Intent(getApplicationContext(), IntroActivity.class))

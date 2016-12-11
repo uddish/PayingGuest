@@ -24,6 +24,7 @@
         <item>Dilshad Garden</item>
         <item>Dwarka</item>
         <item>Geeta Colony</item>
+        <item>Greater Noida West</item>
         <item>Hamidpur</item>
         <item>Hamdard Nagar</item>
         <item>Hauz Khas</item>
@@ -35,19 +36,24 @@
         <item>Lajpat Nagar</item>
         <item>Lodhi Road</item>
         <item>Malkaganj</item>
+        <item>Malviya Nagar</item>
         <item>Mandi House</item>
         <item>Maurice Nagar</item>
+        <item>Mayur Vihar</item>
         <item>Model Town</item>
         <item>Moti Nagar</item>
         <item>Noida</item>
         <item>North Campus</item>
         <item>Okhla</item>
         <item>Paschim Vihar</item>
+        <item>Patel Nagar</item>
         <item>Pitampura</item>
         <item>Raja Garden</item>
         <item>Rajouri Garden</item>
+        <item>Rajender Nagar</item>
         <item>Rithala</item>
         <item>Rohini</item>
+        <item>Saket</item>
         <item>Shahdara</item>
         <item>Shalimar Bagh</item>
         <item>Shastri Park</item>
@@ -57,6 +63,7 @@
     </string-array>
 
     <string-array name="institutes">
+        <item>NONE</item>
         <item>AIIMS</item>
         <item>Amity</item>
         <item>Ambedkar Institute of Technology</item>
