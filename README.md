@@ -13,7 +13,6 @@ Beta version of the PG App
 This activity allows only the signed in users to register their PG and list it in the app using firebase realtime database
 
 ![alt text](screenshots/register1.png "Register PG")               ![alt text](screenshots/register2.png "Register PG")
-![alt text](screenshots/register3.png "Register PG")                 ![alt text](screenshots/register4.png "Register PG")
 
 ## FIND PG ACTIVITY
 This activity enables any user(Logged in ot Guest) to search for the appropriate PG by applying filters(By College, Locality etc.)
