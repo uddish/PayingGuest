@@ -1,7 +1,9 @@
-# PGApp_beta
+# Paying Guest Android Application
 Beta version of the PG App
 
-## SPLASH SCREEN   
+
+SPLASH SCREEN    
+
 
 ![alt text](screenshots/splash.png "Splash Screen")      
 
