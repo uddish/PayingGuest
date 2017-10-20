@@ -142,8 +142,6 @@ public class RegisterPGPageOne extends AppCompatActivity {
         });
 
 
-
-
         nextBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -171,7 +169,6 @@ public class RegisterPGPageOne extends AppCompatActivity {
                     intent.putExtra("nearbyInstitute", nearbyInstitute);
                     intent.putExtra("preference", preference);
                     intent.putExtra("genderPreference", genderPreference);
-
                     intent.putExtra("wifi", wifi.isChecked());
                     intent.putExtra("ac", ac.isChecked());
                     intent.putExtra("breakfast", breakfast.isChecked());
