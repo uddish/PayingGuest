@@ -2,7 +2,7 @@
 Beta version of the PG App
 
 
-SPLASH SCREEN    
+SPLASH . SCREEN    
 
 
 ![alt text](screenshots/splash.png "Splash Screen")      
