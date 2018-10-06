@@ -1,4 +1,5 @@
 # Paying Guest Android Application
+Beta version of the PG App
 
 
 
